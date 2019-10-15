@@ -1,12 +1,13 @@
 import styled, { css } from "styled-components";
 
 export const PageBackground = styled.div`
-  background: #f8f9fa;
+  background: ${props => props.theme.light};
   padding-top: 100px;
   padding-bottom: 100px;
 `;
 
 export const Container = styled.div`
+  margin-bottom: 40px;
   width: 100%;
   max-width: 1200px;
   padding: 15px;
@@ -55,11 +56,9 @@ export const SpaceBeetween = styled.div`
 `;
 
 export const H5 = styled.h5`
-  font-size: 1.25rem;
   margin-bottom: 0.5rem;
   font-weight: 500;
   line-height: 1.2;
-  background-color: red;
 `;
 
 export const QuestionText = styled(H5)`
@@ -67,4 +66,19 @@ export const QuestionText = styled(H5)`
   padding-top: 10px;
   padding-bottom: 10px;
   background-color: lightgray;
+`;
+
+export const Video = styled.video`
+  background-color: lightgray;
+  border: 4px solid gray;
+  max-width: 100%;
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
+export const Img = styled.img`
+  background-color: lightgray;
+  border: 4px solid gray;
+  max-width: 100%;
 `;

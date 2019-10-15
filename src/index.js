@@ -5,12 +5,20 @@ import * as serviceWorker from "./serviceWorker";
 import { createStore } from "redux";
 import { Provider } from "react-redux";
 import { questionsReducer } from "./store/reducers/questionsReducer";
+import GlobalStyle from "./theme/GlobalStyle";
+import { ThemeProvider } from "styled-components";
+import { theme } from "./theme/Theme";
 
 const store = createStore(questionsReducer);
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <ThemeProvider theme={theme}>
+      <>
+        <GlobalStyle />
+        <App />
+      </>
+    </ThemeProvider>
   </Provider>,
   document.getElementById("root")
 );

@@ -12,6 +12,7 @@ const initialState = [
     c: "",
     r: "t",
     s: "3",
+    v: true,
     m: "AK_D05_06_org.mp4",
     th: "Pozostałe"
   },
@@ -25,6 +26,7 @@ const initialState = [
     c: "Koło zapasowe.",
     r: "a",
     s: "3",
+    v: false,
     m: "",
     th:
       "Wyposażenie pojazdu związane z bezpieczeństwem, korzystanie z pasów, zagłówków i fotelików"
@@ -39,6 +41,7 @@ const initialState = [
     c: "C.",
     r: "c",
     s: "1",
+    v: false,
     m: "6002.jpg",
     th: "Aspekty mechaniczne związane z zachowaniem bezpieczeństwa na drodze"
   }

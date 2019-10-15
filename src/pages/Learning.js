@@ -1,21 +1,26 @@
 import React, { Component } from "react";
 import Question from "../components/Question";
 import { connect } from "react-redux";
+import Button from "../components/Button";
+import { Container, Row, Col } from "../elements/elements";
 
 class Learning extends Component {
   render() {
-    console.log(
-      "Learning render this.props.questions = ",
-      this.props.questions
-    );
-
-    const { questions } = this.props;
     return (
       <>
         <h5>Nauka pytań</h5>
-        {questions.map(question => (
+        {this.props.questions.map(question => (
           <Question key={question.id} question={question} />
         ))}
+        <div>
+          <Container>
+            <Row>
+              <Col>
+                <Button>Następne</Button>
+              </Col>
+            </Row>
+          </Container>
+        </div>
       </>
     );
   }
