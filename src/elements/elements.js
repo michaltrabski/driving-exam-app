@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 
 export const PageBackground = styled.div`
-  background: ${props => props.theme.light};
+  background: ${({ theme }) => theme.light};
   padding-top: 100px;
   padding-bottom: 100px;
 `;
@@ -9,13 +9,13 @@ export const PageBackground = styled.div`
 export const Container = styled.div`
   margin-bottom: 40px;
   width: 100%;
-  max-width: 1200px;
+  max-width: ${({ theme }) => theme.pageMaxWidth};
   padding: 15px;
   margin-right: auto;
   margin-left: auto;
-  background: white;
+  background: ${({ theme }) => theme.white};
   border-radius: 0.25rem;
-  border: 1px solid #ced4da;
+  border: 1px solid ${({ theme }) => theme.gray400};
   box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
 `;
 

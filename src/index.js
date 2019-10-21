@@ -8,6 +8,7 @@ import { questionsReducer } from "./store/reducers/questionsReducer";
 import GlobalStyle from "./theme/GlobalStyle";
 import { ThemeProvider } from "styled-components";
 import { theme } from "./theme/Theme";
+// import "bootstrap/dist/css/bootstrap.min.css";
 
 const store = createStore(questionsReducer);
 
