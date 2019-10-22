@@ -10,7 +10,6 @@ export const userReducer = (state = initialState, actions) => {
       }
     };
   }
-  console.log(state);
   return state;
 };
 

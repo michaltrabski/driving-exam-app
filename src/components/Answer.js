@@ -1,26 +1,48 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "react-bootstrap";
 import { connect } from "react-redux";
 import { saveAnswer } from "./../store/actions/userActions";
 
 const Answer = props => {
   const [colors, setColors] = useState({
-    tak: "danger"
+    t: "light",
+    n: "light",
+    a: "light",
+    b: "light",
+    c: "light"
   });
 
+  useEffect(() => {
+    if (props.settings.showAnswerNow) {
+      setColors({
+        ...colors,
+        [props.r]: "success"
+      });
+    }
+  }, []);
+
   const handleAnswer = user_answer => {
-    console.log(props.r);
+    if (user_answer === props.r) {
+      setColors({ ...colors, [user_answer]: "success" });
+    } else {
+      setColors({
+        ...colors,
+        [props.r]: "success",
+        [user_answer]: "danger"
+      });
+    }
     props.saveAnswer(props.id, user_answer);
   };
 
   const yesNo = (
     <div>
-      <Button onClick={() => handleAnswer("t")} variant={colors.tak}>
+      <Button onClick={() => handleAnswer("t")} variant={colors.t}>
         Tak
       </Button>
-      <Button onClick={() => handleAnswer("n")} variant={getButtonColor()}>
+      <Button onClick={() => handleAnswer("n")} variant={colors.n}>
         Nie
       </Button>
+      {props.settings.showAnswerNow ? "tak" : "nie"}
     </div>
   );
 
@@ -28,9 +50,10 @@ const Answer = props => {
     <div>
       {["a", "b", "c"].map(item => (
         <Button
+          key={item}
           onClick={() => handleAnswer(item)}
           className="text-left"
-          variant={getButtonColor()}
+          variant={colors[item]}
           block
         >
           {item}) {props[item]}
@@ -42,10 +65,12 @@ const Answer = props => {
   return props.a !== "" ? abc : yesNo;
 };
 
-const getButtonColor = user_answer => {
-  console.log(user_answer);
-  return "light";
+const mapStateToProps = state => {
+  return {
+    settings: state.settingsReducer
+  };
 };
+
 const mapDispatchToProps = dispatch => {
   return {
     saveAnswer: (question_id, user_answer) => {
@@ -54,6 +79,6 @@ const mapDispatchToProps = dispatch => {
   };
 };
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(Answer);
