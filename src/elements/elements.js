@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+import { lighten } from "polished";
 
 export const PageBackground = styled.div`
   background: ${({ theme }) => theme.light};
@@ -81,4 +82,32 @@ export const Img = styled.img`
   background-color: lightgray;
   border: 4px solid gray;
   max-width: 100%;
+`;
+
+export const Button = styled.button`
+  display: inline-block;
+  font-weight: 400;
+  text-align: center;
+  vertical-align: middle;
+  user-select: none;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: 0.25rem;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+
+  width: 100%;
+  display: block;
+
+  margin-bottom: 1rem;
+  /* color: #212529;
+  background-color: ${({ theme }) => theme.light};
+  border-color: ${({ theme }) => lighten(0.2, theme.light)} !important;
+
+  &:hover {
+    color: #212529;
+    background-color: #e2e6ea;
+    border-color: #dae0e5;
+  } */
 `;

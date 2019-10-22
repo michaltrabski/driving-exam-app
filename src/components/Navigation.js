@@ -1,6 +1,7 @@
 import React from "react";
 import { NavLink, Link } from "react-router-dom";
 import styled, { css } from "styled-components";
+import { path } from "./../data/GlobalData";
 
 const Nav = styled.nav`
   display: flex;
@@ -47,18 +48,18 @@ const Navigation = () => {
     <Nav>
       <Logo>
         <h3>
-          <Link to="/">poznaj-Testy.pl</Link>
+          <Link to="/">poznajTesty.pl</Link>
         </h3>
       </Logo>
       <Ul>
         <Li>
-          <NavLink to="/learn">Nauka Pytań </NavLink>
+          <NavLink to={path.learn}>Nauka Pytań </NavLink>
         </Li>
         <Li>
-          <NavLink to="/exam">Wykonaj Egzamin </NavLink>
+          <NavLink to={path.exam}>Wykonaj Egzamin </NavLink>
         </Li>
         <Li>
-          <NavLink to="/exam-reviev">Przeglądaj wyniki egzaminów</NavLink>
+          <NavLink to={path.exam_reviev}>Przeglądaj wyniki egzaminów</NavLink>
         </Li>
       </Ul>
     </Nav>

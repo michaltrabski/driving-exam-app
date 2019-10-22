@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import Question from "../components/Question";
 import { connect } from "react-redux";
-import Button from "../components/Button";
-import { Container, Row, Col } from "../elements/elements";
+import { Container, Row, Col, Button } from "../elements/elements";
 
 class Learning extends Component {
   render() {

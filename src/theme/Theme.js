@@ -25,7 +25,7 @@ const colors = {
 
 const weight = {
   weight_light: 300,
-  weight_normal: 400,
+  weight_normal: 500,
   weight_bold: 600
 };
 const widths = {

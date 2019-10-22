@@ -1,10 +1,15 @@
 import React from "react";
-import { Container, Row, Col, QuestionText } from "../elements/elements";
+import { Container, Row, Col } from "../elements/elements";
 import Media from "./Media";
+import styled from "styled-components";
+import Answer from "./Answer";
 
-const Question = ({ question }) => {
-  const { t, m, v } = question;
+const QuestionTest = styled.h5`
+  margin: 0;
+  padding: 0;
+`;
 
+const Question = ({ question, question: { t, m, v } }) => {
   return (
     <Container>
       <Row>
@@ -12,11 +17,8 @@ const Question = ({ question }) => {
           <Media m={m} v={v} />
         </Col>
         <Col pl left>
-          <h5>{t}</h5>
-
-          {/* {Object.keys(question).map(key => (
-            <p>{key + question[key]}</p>
-          ))} */}
+          <QuestionTest>{t}</QuestionTest>
+          <Answer {...question} />
         </Col>
       </Row>
     </Container>
