@@ -11,6 +11,6 @@ export const settingsReducer = (state = initialState, actions) => {
 };
 
 const initialState = {
-  showAnswerNow: true,
+  showAnswerNow: false,
   other: "yyy"
 };

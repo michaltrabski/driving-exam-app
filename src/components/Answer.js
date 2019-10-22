@@ -3,30 +3,35 @@ import { Button } from "react-bootstrap";
 import { connect } from "react-redux";
 import { saveAnswer } from "./../store/actions/userActions";
 
+const colors = {
+  t: "light",
+  n: "light",
+  a: "light",
+  b: "light",
+  c: "light"
+};
+
 const Answer = props => {
-  const [colors, setColors] = useState({
-    t: "light",
-    n: "light",
-    a: "light",
-    b: "light",
-    c: "light"
-  });
+  const [color, setcolor] = useState(colors);
+  const { showAnswerNow } = props.settings;
 
   useEffect(() => {
-    if (props.settings.showAnswerNow) {
-      setColors({
-        ...colors,
+    if (showAnswerNow) {
+      setcolor({
+        ...color,
         [props.r]: "success"
       });
+    } else {
+      setcolor(colors);
     }
-  }, []);
+  }, [showAnswerNow]);
 
   const handleAnswer = user_answer => {
     if (user_answer === props.r) {
-      setColors({ ...colors, [user_answer]: "success" });
+      setcolor({ ...color, [user_answer]: "success" });
     } else {
-      setColors({
-        ...colors,
+      setcolor({
+        ...color,
         [props.r]: "success",
         [user_answer]: "danger"
       });
@@ -36,13 +41,12 @@ const Answer = props => {
 
   const yesNo = (
     <div>
-      <Button onClick={() => handleAnswer("t")} variant={colors.t}>
+      <Button onClick={() => handleAnswer("t")} variant={color.t}>
         Tak
       </Button>
-      <Button onClick={() => handleAnswer("n")} variant={colors.n}>
+      <Button onClick={() => handleAnswer("n")} variant={color.n}>
         Nie
       </Button>
-      {props.settings.showAnswerNow ? "tak" : "nie"}
     </div>
   );
 
@@ -53,7 +57,7 @@ const Answer = props => {
           key={item}
           onClick={() => handleAnswer(item)}
           className="text-left"
-          variant={colors[item]}
+          variant={color[item]}
           block
         >
           {item}) {props[item]}

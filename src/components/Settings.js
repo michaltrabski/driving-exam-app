@@ -17,6 +17,7 @@ const Settings = props => {
               id="njgkrefd"
               label="Pokazuj odpowiedzi od razu"
               onChange={() => props.toogleShowAnswerNow()}
+              checked={props.settings.showAnswerNow}
             />
           </Form>
         </Col>
