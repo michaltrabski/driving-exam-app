@@ -5,6 +5,7 @@ import { Container, Row, Col, Button } from "../elements/elements";
 
 class Learning extends Component {
   render() {
+    // console.log(this.props);
     return (
       <>
         <h5>Nauka pytań</h5>
@@ -27,7 +28,8 @@ class Learning extends Component {
 
 const mapStateToProps = state => {
   return {
-    questions: state
+    questions: state.questionsReducer
   };
 };
+
 export default connect(mapStateToProps)(Learning);

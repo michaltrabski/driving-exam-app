@@ -2,15 +2,19 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
-import { createStore } from "redux";
+import { createStore, combineReducers } from "redux";
 import { Provider } from "react-redux";
 import { questionsReducer } from "./store/reducers/questionsReducer";
 import GlobalStyle from "./theme/GlobalStyle";
 import { ThemeProvider } from "styled-components";
 import { theme } from "./theme/Theme";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { userReducer } from "./store/reducers/userReducer";
+import { settingsReducer } from "./store/reducers/settingsReducer";
 
-const store = createStore(questionsReducer);
+const store = createStore(
+  combineReducers({ questionsReducer, userReducer, settingsReducer })
+);
 
 ReactDOM.render(
   <Provider store={store}>

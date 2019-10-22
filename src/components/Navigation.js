@@ -61,6 +61,9 @@ const Navigation = () => {
         <Li>
           <NavLink to={path.exam_reviev}>Przeglądaj wyniki egzaminów</NavLink>
         </Li>
+        <Li>
+          <NavLink to={path.blog}>Blog</NavLink>
+        </Li>
       </Ul>
     </Nav>
   );

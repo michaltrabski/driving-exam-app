@@ -1,20 +1,38 @@
-import React from "react";
-// import { Button } from "../elements/elements";
+import React, { useState } from "react";
 import { Button } from "react-bootstrap";
+import { connect } from "react-redux";
+import { saveAnswer } from "./../store/actions/userActions";
 
 const Answer = props => {
+  const [colors, setColors] = useState({
+    tak: "danger"
+  });
+
+  const handleAnswer = user_answer => {
+    console.log(props.r);
+    props.saveAnswer(props.id, user_answer);
+  };
+
   const yesNo = (
     <div>
-      {["Tak", "Nie"].map(item => (
-        <Button variant="light">{item}</Button>
-      ))}
+      <Button onClick={() => handleAnswer("t")} variant={colors.tak}>
+        Tak
+      </Button>
+      <Button onClick={() => handleAnswer("n")} variant={getButtonColor()}>
+        Nie
+      </Button>
     </div>
   );
 
   const abc = (
     <div>
       {["a", "b", "c"].map(item => (
-        <Button className="text-left" variant="light" block>
+        <Button
+          onClick={() => handleAnswer(item)}
+          className="text-left"
+          variant={getButtonColor()}
+          block
+        >
           {item}) {props[item]}
         </Button>
       ))}
@@ -24,4 +42,18 @@ const Answer = props => {
   return props.a !== "" ? abc : yesNo;
 };
 
-export default Answer;
+const getButtonColor = user_answer => {
+  console.log(user_answer);
+  return "light";
+};
+const mapDispatchToProps = dispatch => {
+  return {
+    saveAnswer: (question_id, user_answer) => {
+      dispatch(saveAnswer(question_id, user_answer));
+    }
+  };
+};
+export default connect(
+  null,
+  mapDispatchToProps
+)(Answer);
