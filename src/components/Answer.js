@@ -16,14 +16,10 @@ const Answer = props => {
   const { showAnswerNow } = props.settings;
 
   useEffect(() => {
-    if (showAnswerNow) {
-      setcolor({
-        ...color,
-        [props.r]: "success"
-      });
-    } else {
-      setcolor(colors);
-    }
+    let newColors = showAnswerNow
+      ? { ...colors, [props.r]: "success" }
+      : colors;
+    setcolor(newColors);
   }, [showAnswerNow]);
 
   const handleAnswer = user_answer => {
