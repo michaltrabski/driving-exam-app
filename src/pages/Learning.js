@@ -7,24 +7,26 @@ import { getQuestions } from "../store/actions/questionsActions";
 import { Button } from "react-bootstrap";
 
 const Learning = props => {
+  const { questionsAll, kat, lang, getQuestions } = props;
   const [questions, setQuestions] = useState([]);
 
   // automaticaly get allQuestions when component is mounted
   useEffect(() => {
-    props.getQuestions(props.kat, props.lang);
-  }, []);
+    console.log("1 ", kat, lang);
+    getQuestions(kat, lang);
+  }, [kat, lang]);
 
   //when questionsAll has changed (expl: user changed kat or lang), then change questions than I work with inside this component
   useEffect(() => {
-    setQuestions(props.questionsAll.slice(0, 3));
-  }, [props.questionsAll]);
+    setQuestions(questionsAll.slice(0, 5));
+  }, [questionsAll]);
 
   return (
     <>
       {questions.map(question => (
         <Question key={question.id} question={question} />
       ))}
-      <Button onClick={() => props.getQuestions("b", "eng")}>X</Button>
+
       <QuestionNavigation />
       <Settings />
     </>

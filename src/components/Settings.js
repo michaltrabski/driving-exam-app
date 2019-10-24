@@ -1,8 +1,9 @@
 import React from "react";
-import { Form } from "react-bootstrap";
+import { Form, Button } from "react-bootstrap";
 import { Container, Row, Col } from "../elements/elements";
 import { connect } from "react-redux";
 import { toogleShowAnswerNow } from "./../store/actions/settingsActions";
+import { changeKategory } from "../store/actions/questionsActions";
 
 const Settings = props => {
   return (
@@ -23,7 +24,16 @@ const Settings = props => {
         </Col>
       </Row>
       <Row>
-        <Col left>Kategorie tematyczne</Col>
+        <Col>
+          <p>Wybierz kategorię prawa jazdy</p>
+          <div>
+            {props.katList.map(kat => (
+              <Button variant="light" onClick={() => props.changeKategory(kat)}>
+                {kat}
+              </Button>
+            ))}
+          </div>
+        </Col>
       </Row>
     </Container>
   );
@@ -31,7 +41,8 @@ const Settings = props => {
 
 const mapStateToProps = state => {
   return {
-    settings: state.settingsReducer
+    settings: state.settingsReducer,
+    katList: state.questionsReducer.katList
   };
 };
 
@@ -39,6 +50,9 @@ const mapDispatchToProps = dispatch => {
   return {
     toogleShowAnswerNow: () => {
       dispatch(toogleShowAnswerNow());
+    },
+    changeKategory: kat => {
+      dispatch(changeKategory(kat));
     }
   };
 };
