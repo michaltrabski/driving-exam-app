@@ -3,31 +3,27 @@ import { kat_b_pl } from "./../../data/kat_b_pl";
 import { kat_a_eng } from "./../../data/kat_a_eng";
 import { kat_b_eng } from "./../../data/kat_b_eng";
 import { GET_QUESTIONS, CHANGE_KATEGORY } from "./../actions/questionsActions";
+import { adminSettings } from "../../data/GlobalData";
 
 const initialState = {
   questionsAll: [],
-  katList: ["a", "b", "d", "d1"],
-  kat: "a",
-  lang: "pl"
+  ...adminSettings
 };
 
 export const questionsReducer = (state = initialState, actions) => {
-  console.log("questionsReducer");
-
   switch (actions.type) {
     case GET_QUESTIONS:
       state = {
         ...state,
+        // questionsAll: getRightList(actions.kat, actions.lang).slice(0, 5)
         questionsAll: getRightList(actions.kat, actions.lang)
       };
-      console.log("questionsReducer GET_QUESTIONS fired", state);
       return state;
     case CHANGE_KATEGORY:
       state = {
         ...state,
         kat: actions.kat
       };
-      console.log("questionsReducer GET_QUESTIONS fired", state);
       return state;
     default:
       return state;

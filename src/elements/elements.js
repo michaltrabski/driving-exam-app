@@ -4,7 +4,9 @@ import { lighten } from "polished";
 export const PageBackground = styled.div`
   background: ${({ theme }) => theme.light};
   padding-top: 100px;
-  padding-bottom: 100px;
+  padding-bottom: 150px;
+  padding-right: 5px;
+  padding-left: 5px;
 `;
 
 export const Container = styled.div`
@@ -24,6 +26,11 @@ export const Row = styled.div`
   display: flex;
   flex-wrap: wrap;
   margin-bottom: 5px;
+  flex-direction: column;
+
+  @media (${({ theme }) => theme.tablet}) {
+    flex-direction: row;
+  }
 
   ${({ bottom }) =>
     bottom &&
@@ -38,15 +45,25 @@ export const Col = styled.div`
   max-width: 100%;
   text-align: center;
   background-color: ${({ light }) => light && "lightgray"};
-  text-align: ${props => props.right && "right"};
+  text-align: ${({ right }) => right && "right"};
   text-align: ${({ left }) => left && "left"};
-  padding-right: ${({ pr }) => pr && "5px"};
-  padding-left: ${({ pl }) => pl && "5px"};
 
-  ${props =>
-    props.flex &&
+  @media (${({ theme }) => theme.tablet}) {
+    padding-right: ${({ pr }) => pr && "5px"};
+    padding-left: ${({ pl }) => pl && "5px"};
+  }
+
+  ${({ between }) => between && "justify-content: space-between;"};
+
+  ${({ flex }) =>
+    flex &&
     css`
       display: flex;
+    `};
+
+  ${({ column }) =>
+    column &&
+    css`
       flex-direction: column;
     `};
 `;

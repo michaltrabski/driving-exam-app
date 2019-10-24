@@ -3,6 +3,10 @@ import { lighten } from "polished";
 const gray100 = "#f8f9fa";
 // const gray200 = lighten(0.2, gray100);
 
+const media = {
+  phone: "min-width: 576px",
+  tablet: "min-width: 768px"
+};
 const gray = {
   gray100: "#f8f9fa",
   gray200: "#e9ecef",
@@ -33,6 +37,7 @@ const widths = {
 };
 
 export const theme = {
+  ...media,
   ...gray,
   ...colors,
   ...widths,
