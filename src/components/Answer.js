@@ -32,6 +32,7 @@ const Answer = props => {
         [user_answer]: "danger"
       });
     }
+    props.setShowExplanation(true);
     props.saveAnswer(props.id, user_answer);
   };
 

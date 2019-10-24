@@ -29,7 +29,7 @@ const weight = {
   weight_bold: 600
 };
 const widths = {
-  pageMaxWidth: "850px"
+  pageMaxWidth: "1100px"
 };
 
 export const theme = {

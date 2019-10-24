@@ -22,6 +22,9 @@ const Settings = props => {
           </Form>
         </Col>
       </Row>
+      <Row>
+        <Col left>Kategorie tematyczne</Col>
+      </Row>
     </Container>
   );
 };

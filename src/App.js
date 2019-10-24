@@ -1,7 +1,7 @@
 import React from "react";
 import { PageBackground } from "./elements/elements";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-import Navigation from "./components/Navigation";
+import TopPageNavigation from "./components/TopPageNavigation";
 import Home from "./pages/Home";
 import Learning from "./pages/Learning";
 import Exam from "./pages/Exam";
@@ -13,7 +13,7 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <Navigation></Navigation>
+        <TopPageNavigation></TopPageNavigation>
         <PageBackground>
           <Switch>
             <Route exact path="/" component={Home} />
