@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import Settings from "../components/Settings";
 import QuestionNavigation from "./../components/QuestionNavigation";
 import { getQuestions } from "../store/actions/questionsActions";
-import { Button } from "react-bootstrap";
 import _ from "lodash";
 
 const Learning = props => {
@@ -37,25 +36,25 @@ const Learning = props => {
       setCurrent(current - perPage);
     }
   };
+
+  const questionsNavigation = (
+    <QuestionNavigation
+      perPage={perPage}
+      current={current}
+      questionsAll={questionsAll}
+      prevQuestions={prevQuestions}
+      prevQuestionsDisabled={current <= 0 ? true : false}
+      nextQuestions={nextQuestions}
+      nextQuestionsDisabled={false}
+    />
+  );
   return (
     <>
-      <QuestionNavigation
-        prevQuestions={prevQuestions}
-        prevQuestionsDisabled={current <= 0 ? true : false}
-        nextQuestions={nextQuestions}
-        nextQuestionsDisabled={false}
-      />
-
+      {perPage === 1 || questionsNavigation}
       {questionsToDisplay.map(question => (
         <Question key={question.id} question={question} />
       ))}
-
-      <QuestionNavigation
-        prevQuestions={prevQuestions}
-        prevQuestionsDisabled={current <= 0 ? true : false}
-        nextQuestions={nextQuestions}
-        nextQuestionsDisabled={false}
-      />
+      {questionsNavigation}
       <Settings />
     </>
   );

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Button } from "react-bootstrap";
 import { connect } from "react-redux";
 import { saveAnswer } from "./../store/actions/userActions";
+import styled from "styled-components";
 
 const colors = {
   t: "light",
@@ -10,6 +11,12 @@ const colors = {
   b: "light",
   c: "light"
 };
+
+const AnswersWrapper = styled.div`
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: center;
+`;
 
 const Answer = props => {
   const [color, setcolor] = useState(colors);
@@ -32,16 +39,24 @@ const Answer = props => {
         [user_answer]: "danger"
       });
     }
-    props.setShowExplanation(true);
+    // props.setShowExplanation(true);
     props.saveAnswer(props.id, user_answer);
   };
 
   const yesNo = (
     <div>
-      <Button onClick={() => handleAnswer("t")} variant={color.t}>
+      <Button
+        className="mr-2"
+        onClick={() => handleAnswer("t")}
+        variant={color.t}
+      >
         Tak
       </Button>
-      <Button onClick={() => handleAnswer("n")} variant={color.n}>
+      <Button
+        className="ml-2"
+        onClick={() => handleAnswer("n")}
+        variant={color.n}
+      >
         Nie
       </Button>
     </div>
@@ -63,7 +78,9 @@ const Answer = props => {
     </div>
   );
 
-  return props.a !== "" ? abc : yesNo;
+  let ans = props.a !== "" ? abc : yesNo;
+
+  return <AnswersWrapper>{ans}</AnswersWrapper>;
 };
 
 const mapStateToProps = state => {
