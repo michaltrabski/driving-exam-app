@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import axios from "axios";
 import { Container, Row, Col } from "../elements/elements";
 
+const url = "https://poznaj-testy.pl/wp-json/wp/v2/posts";
+
 class Blog extends Component {
   state = { posts: [], isLoaded: false };
 
@@ -9,9 +11,9 @@ class Blog extends Component {
     console.log("Blog componentDidMount");
 
     axios
-      .get("https://poznaj-testy.pl/wp-json/wp/v2/posts")
-      //   .then(res => console.log(res.data[0].content.rendered));
-      //   .then(res => console.log(res.data));
+      .get(url)
+      // .then(res => console.log(res.data[0].content.rendered))
+      // .then(res => console.log(res.data));
       .then(res => this.setState({ posts: res.data, isLoaded: true }));
   }
 
