@@ -11,7 +11,6 @@ export const questionsReducer = (state = initialState, actions) => {
     case GET_QUESTIONS:
       state = {
         ...state,
-        // questionsAll: getRightList(actions.kat, actions.lang).slice(0, 5)
         questionsAll: actions.allQuestions
       };
       return state;

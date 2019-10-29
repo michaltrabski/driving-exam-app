@@ -7,7 +7,7 @@ export const getQuestions = (kat, lang) => {
     firebase
       .firestore()
       .collection("questions")
-      .doc(`kat_b_pl`)
+      .doc(`kat_${kat}_${lang}`)
       .get()
       .then(doc => {
         if (doc.exists) {
