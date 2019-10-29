@@ -8,7 +8,7 @@ export const path = {
 export const adminSettings = {
   katList: ["a", "b", "d", "d1"], //awaylable kategory that I have questions
   langList: ["pl", "eng", "de"], //awaylable kategory that I have questions
-  kat: "a", //default category when you load page first time
-  lang: "eng", //default language when you load page first time
+  kat: "b", //default category when you load page first time
+  lang: "pl", //default language when you load page first time
   perPageDefault: 1
 };

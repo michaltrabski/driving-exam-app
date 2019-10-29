@@ -6,6 +6,10 @@ const numer_pytania = "Numer pytania";
 const pytanie_pl = "Pytanie";
 const poprawna_odp = "Poprawna odp";
 const media = "Media";
+const odpowiedz_a = "Odpowiedź A";
+const odpowiedz_b = "Odpowiedź B";
+const odpowiedz_c = "Odpowiedź C";
+const liczba_punktow = "Liczba punktów";
 
 const PrevievDataTable = ({ obj }) => {
   const dataToFirebase = () => {
@@ -20,16 +24,21 @@ const PrevievDataTable = ({ obj }) => {
           const data = {};
           data.id = item[numer_pytania];
           data.t = item[pytanie_pl];
+          data.a = item[odpowiedz_a];
+          data.b = item[odpowiedz_b];
+          data.c = item[odpowiedz_c];
           data.r = item[poprawna_odp].toLowerCase();
-          data.m = item[media].indexOf(".wmv")
-            ? item[media].replace(".wmv", ".mp4")
-            : item[media];
+          data.m =
+            item[media].indexOf(".wmv") > 0
+              ? item[media].replace(".wmv", ".mp4")
+              : item[media];
+          data.p = item[liczba_punktow];
 
           return data;
         });
         console.log(`kat_${kat}_${lang} = `, kat_x_lang[0]);
-        console.log(`kat_${kat}_${lang} = `, kat_x_lang);
-        // updateFirebase(`kat_${kat}_${lang}`, kat_x_lang);
+        // console.log(`kat_${kat}_${lang} = `, kat_x_lang);
+        updateFirebase(`kat_${kat}_${lang}`, kat_x_lang);
       });
     });
   };
@@ -65,11 +74,11 @@ const PrevievDataTable = ({ obj }) => {
               <tr key={item[numer_pytania]}>
                 <td>{item[numer_pytania]}</td>
                 <td>{item[pytanie_pl]}</td>
-                <td>{item["Odpowiedź A"]}</td>
-                <td>{item["Odpowiedź B"]}</td>
-                <td>{item["Odpowiedź C"]}</td>
+                <td>{item[odpowiedz_a]}</td>
+                <td>{item[odpowiedz_b]}</td>
+                <td>{item[odpowiedz_c]}</td>
                 <td>{item[poprawna_odp]}</td>
-                <td>{item["Media"]}</td>
+                <td>{item[media]}</td>
                 <td>{item["Liczba punktów"]}</td>
                 <td>{item["Kategorie"]}</td>
                 {/* <td>{item[""]}</td>
