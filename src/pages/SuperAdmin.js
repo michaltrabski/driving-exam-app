@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { Table, Form, Button } from "react-bootstrap";
+
 import { data_mini } from "./../data/data_mini";
+import PrevievDataTable from "../components/superAdmin/PrevievDataTable";
 
 const SuperAdmin = () => {
   const [str, setStr] = useState(JSON.stringify(data_mini));
@@ -10,7 +11,7 @@ const SuperAdmin = () => {
     setStr(e.target.value);
   };
 
-  const handleSubbmit = e => {
+  const handleSubmit = e => {
     e.preventDefault();
     let newObj = "";
     try {
@@ -22,12 +23,13 @@ const SuperAdmin = () => {
       console.log("you have pasted not an object to parse");
     }
   };
+
   return (
     <div>
-      <form onSubmit={handleSubbmit}>
+      <form onSubmit={handleSubmit}>
         <label htmlFor="zxc">Wklej object ze wszystkim</label>
         <textarea value={str} onChange={handleChange}></textarea>
-        <button type="submit">Wyślij do firebase</button>
+        <button type="submit">Sprawdź dane (parse object wth data)</button>
       </form>
       <div>
         <p>
@@ -43,43 +45,7 @@ const SuperAdmin = () => {
             `obj.michal_info.length = ${obj.michal_info.length}`}
         </p>
       </div>
-
-      <div>
-        <Table striped bordered hover>
-          <thead>
-            <tr>
-              <th>id</th>
-              <th>t</th>
-              <th>a</th>
-              <th>b</th>
-              <th>c</th>
-              <th>r</th>
-              <th>m</th>
-              <th>p</th>
-              <th>k</th>
-            </tr>
-          </thead>
-          <tbody>
-            {obj !== "empty" &&
-              obj.questions_from_gov.map(item => (
-                <tr>
-                  <td>{item["Numer pytania"]}</td>
-                  <td>{item["Pytanie"]}</td>
-                  <td>{item["Odpowiedź A"]}</td>
-                  <td>{item["Odpowiedź B"]}</td>
-                  <td>{item["Odpowiedź C"]}</td>
-                  <td>{item["Poprawna odp"]}</td>
-                  <td>{item["Media"]}</td>
-                  <td>{item["Liczba punktów"]}</td>
-                  <td>{item["Kategorie"]}</td>
-                  {/* <td>{item[""]}</td>
-                  <td>{item[""]}</td>
-                  <td>{item[""]}</td> */}
-                </tr>
-              ))}
-          </tbody>
-        </Table>
-      </div>
+      <PrevievDataTable obj={obj}></PrevievDataTable>
     </div>
   );
 };
