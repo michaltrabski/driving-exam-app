@@ -10,5 +10,5 @@ export const adminSettings = {
   langList: ["pl", "eng", "de"], //awaylable kategory that I have questions
   kat: "a", //default category when you load page first time
   lang: "eng", //default language when you load page first time
-  perPageDefault: 1
+  perPageDefault: 5
 };
