@@ -1,7 +1,3 @@
-import { kat_a_pl } from "./../../data/kat_a_pl";
-import { kat_b_pl } from "./../../data/kat_b_pl";
-import { kat_a_eng } from "./../../data/kat_a_eng";
-import { kat_b_eng } from "./../../data/kat_b_eng";
 import { GET_QUESTIONS, CHANGE_KATEGORY } from "./../actions/questionsActions";
 import { adminSettings } from "../../data/GlobalData";
 
@@ -16,7 +12,7 @@ export const questionsReducer = (state = initialState, actions) => {
       state = {
         ...state,
         // questionsAll: getRightList(actions.kat, actions.lang).slice(0, 5)
-        questionsAll: getRightList(actions.kat, actions.lang)
+        questionsAll: actions.allQuestions
       };
       return state;
     case CHANGE_KATEGORY:
@@ -28,17 +24,4 @@ export const questionsReducer = (state = initialState, actions) => {
     default:
       return state;
   }
-};
-
-const getRightList = (kat, lang) => {
-  let x = kat_b_pl;
-  if (kat === "a") {
-    if (lang === "pl") x = kat_a_pl;
-    if (lang === "eng") x = x = kat_a_eng;
-  }
-  if (kat === "b") {
-    if (lang === "pl") x = kat_b_pl;
-    if (lang === "eng") x = x = kat_b_eng;
-  }
-  return x;
 };
