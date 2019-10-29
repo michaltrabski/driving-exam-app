@@ -8,6 +8,7 @@ import Exam from "./pages/Exam";
 import ExamReview from "./pages/ExamReview";
 import { path } from "./data/GlobalData";
 import Blog from "./pages/Blog";
+import SuperAdmin from "./pages/SuperAdmin";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
             <Route path={path.exam} component={Exam} />
             <Route path={path.exam_reviev} component={ExamReview} />
             <Route path={path.blog} component={Blog} />
+            <Route path={path.super_admin} component={SuperAdmin} />
           </Switch>
         </PageBackground>
       </BrowserRouter>

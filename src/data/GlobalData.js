@@ -2,7 +2,8 @@ export const path = {
   learn: "/nauka-pytan-testowych-na-prawo-jazdy",
   exam: "/wykonaj-egzamin-na-prawo-jazdy",
   exam_reviev: "/przegladaj-wyniki-twoich-egzaminow",
-  blog: "/blog"
+  blog: "/blog",
+  super_admin: "/super-admin"
 };
 export const adminSettings = {
   katList: ["a", "b", "d", "d1"], //awaylable kategory that I have questions

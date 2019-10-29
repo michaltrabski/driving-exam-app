@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-import { kat_b_pl } from "./../data/kat_b_pl";
-import { kat_a_eng } from "./../data/kat_a_eng";
 const firebase = require("firebase");
 
 let kat_x_lang = "kat_b_pl";
