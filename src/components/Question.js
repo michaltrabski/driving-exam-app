@@ -43,7 +43,7 @@ const Question = ({ question, question: { t, m, v, nr, s } }) => {
           />
         </Col>
       </Row>
-      {showExplanation && <Explanation />}
+      {showExplanation && <Explanation {...question} />}
     </Container>
   );
 };

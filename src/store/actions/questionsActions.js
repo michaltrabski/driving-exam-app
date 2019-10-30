@@ -3,7 +3,7 @@ export const CHANGE_KATEGORY = "CHANGE_KATEGORY";
 const firebase = require("firebase");
 
 export const getQuestions = (kat, lang) => {
-  console.log(kat, lang);
+  // console.log(kat, lang);
   return dispatch => {
     firebase
       .firestore()
