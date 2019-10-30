@@ -21,6 +21,18 @@ firebase.initializeApp({
   appId: "1:14333994731:web:6b71c6fe3b41042c4a80ae"
 });
 
+firebase.auth().onAuthStateChanged(user => {
+  if (user) {
+    // User is signed in.
+    console.log("logged as", user.email);
+    // store.dispatch(setCurrentUser(user.mail));
+  } else {
+    console.log("User logged out");
+    // User is signed out.
+    // store.dispatch(setCurrentUser({}));
+  }
+});
+
 ReactDOM.render(
   <Provider store={store}>
     <ThemeProvider theme={theme}>

@@ -5,7 +5,7 @@ export const path = {
   blog: "/blog",
   super_admin: "/super-admin",
   sign_in: "/logowanie",
-  sing_up: "/rejestracja"
+  sign_up: "/rejestracja"
 };
 export const adminSettings = {
   katList: ["a", "b", "c", "d"], //awaylable kategory that I have questions

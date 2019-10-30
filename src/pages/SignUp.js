@@ -3,8 +3,12 @@ import { Form, Button } from "react-bootstrap";
 import { Container, Row, Col } from "../elements/elements";
 const firebase = require("firebase");
 
-const SignIn = () => {
-  const [cred, setCred] = useState({ email: "", password: "" });
+const SignUp = () => {
+  const [cred, setCred] = useState({
+    email: "",
+    password: "",
+    passwordRepeat: ""
+  });
 
   const handleChange = e => {
     // console.log(e.target.value);
@@ -15,24 +19,24 @@ const SignIn = () => {
     e.preventDefault();
     console.log(cred);
 
-    firebase
-      .auth()
-      .signInWithEmailAndPassword(cred.email, cred.password)
-      .then(() => {
-        console.log("zalogowano");
-        // dispatch({ type: "LOGIN_SUCCESS" });
-      })
-      .catch(err => {
-        console.log("NIE zalogowano", err);
-        // dispatch({ type: "LOGIN_ERROR", err });
-      });
+    // firebase
+    //   .auth()
+    //   .signInWithEmailAndPassword(cred.email, cred.password)
+    //   .then(() => {
+    //     console.log("zalogowano");
+    //     // dispatch({ type: "LOGIN_SUCCESS" });
+    //   })
+    //   .catch(err => {
+    //     console.log("NIE zalogowano", err);
+    //     // dispatch({ type: "LOGIN_ERROR", err });
+    //   });
   };
   return (
     <Container>
       <Row>
         <Col left>
           <div style={{ maxWidth: "300px" }}>
-            <h5 className="grey-text text-darken-3">Logowanie</h5>
+            <h5 className="grey-text text-darken-3">Rejestracja</h5>
             <form onSubmit={handleSubmit}>
               <div className="form-group">
                 <label htmlFor="email">Email</label>
@@ -54,8 +58,18 @@ const SignIn = () => {
                   value={cred.password}
                 />
               </div>
+              <div className="form-group">
+                <label htmlFor="password">Password</label>
+                <input
+                  className="form-control"
+                  type="password"
+                  id="passwordRepeat"
+                  onChange={handleChange}
+                  value={cred.passwordRepeat}
+                />
+              </div>
               <Button type="submit" variant="primary">
-                Zaloguj się
+                Zarejestruj się
               </Button>
               {/* {this.props.authError} */}
             </form>
@@ -66,4 +80,4 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+export default SignUp;
