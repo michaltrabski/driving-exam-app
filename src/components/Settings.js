@@ -16,7 +16,7 @@ const Settings = props => {
               custom
               type="checkbox"
               id="njgkrefd"
-              label="Pokazuj odpowiedzi od razu"
+              label="Czy pokazywać odpowiedzi od razu?"
               onChange={() => props.toogleShowAnswerNow()}
               checked={props.settings.showAnswerNow}
             />
@@ -24,11 +24,35 @@ const Settings = props => {
         </Col>
       </Row>
       <Row>
-        <Col>
-          <p>Wybierz kategorię prawa jazdy</p>
+        <Col left>
+          <Form.Group controlId="exampleForm.ControlSelect1">
+            <Form.Control
+              value={props.perPageDefault}
+              as="select"
+              className="d-inline w-auto mr-1"
+              onChange={() => console.log("changed")}
+            >
+              {props.perPageOptions.map(opt => (
+                <option key={opt} value={opt}>
+                  {opt}
+                </option>
+              ))}
+            </Form.Control>
+            <Form.Label>Ile pytań pokazywać na jednej stronie?</Form.Label>
+          </Form.Group>
+        </Col>
+      </Row>
+      <Row>
+        <Col left>
+          <p>Zmień kategorię prawa jazdy</p>
           <div>
             {props.katList.map(kat => (
-              <Button variant="light" onClick={() => props.changeKategory(kat)}>
+              <Button
+                key={kat}
+                variant={kat === props.kat ? "success" : "light"}
+                onClick={() => props.changeKategory(kat)}
+                className="mr-3"
+              >
                 {kat}
               </Button>
             ))}
@@ -42,7 +66,10 @@ const Settings = props => {
 const mapStateToProps = state => {
   return {
     settings: state.settingsReducer,
-    katList: state.questionsReducer.katList
+    katList: state.questionsReducer.katList,
+    kat: state.questionsReducer.kat,
+    perPageOptions: state.questionsReducer.perPageOptions,
+    perPageDefault: state.questionsReducer.perPageDefault
   };
 };
 

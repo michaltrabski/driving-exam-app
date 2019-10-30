@@ -1,16 +1,17 @@
 import React, { useState } from "react";
-import { Table, Form, Button } from "react-bootstrap";
-import { data_mini } from "./../data/data_mini";
+import PrevievDataTable from "../components/superAdmin/PrevievDataTable";
+import { Form, Button } from "react-bootstrap";
+import { Container, Row, Col } from "../elements/elements";
 
 const SuperAdmin = () => {
-  const [str, setStr] = useState(JSON.stringify(data_mini));
+  const [str, setStr] = useState("");
   const [obj, setObj] = useState("empty");
 
   const handleChange = e => {
     setStr(e.target.value);
   };
 
-  const handleSubbmit = e => {
+  const handleSubmit = e => {
     e.preventDefault();
     let newObj = "";
     try {
@@ -22,65 +23,47 @@ const SuperAdmin = () => {
       console.log("you have pasted not an object to parse");
     }
   };
-  return (
-    <div>
-      <form onSubmit={handleSubbmit}>
-        <label htmlFor="zxc">Wklej object ze wszystkim</label>
-        <textarea value={str} onChange={handleChange}></textarea>
-        <button type="submit">Wyślij do firebase</button>
-      </form>
-      <div>
-        <p>
-          {obj.questions_from_gov &&
-            `obj.questions_from_gov.length = ${obj.questions_from_gov.length}`}
-        </p>
-        <p>
-          {obj.thematic_category &&
-            `obj.thematic_category.length = ${obj.thematic_category.length}`}
-        </p>
-        <p>
-          {obj.michal_info &&
-            `obj.michal_info.length = ${obj.michal_info.length}`}
-        </p>
-      </div>
 
-      <div>
-        <Table striped bordered hover>
-          <thead>
-            <tr>
-              <th>id</th>
-              <th>t</th>
-              <th>a</th>
-              <th>b</th>
-              <th>c</th>
-              <th>r</th>
-              <th>m</th>
-              <th>p</th>
-              <th>k</th>
-            </tr>
-          </thead>
-          <tbody>
-            {obj !== "empty" &&
-              obj.questions_from_gov.map(item => (
-                <tr>
-                  <td>{item["Numer pytania"]}</td>
-                  <td>{item["Pytanie"]}</td>
-                  <td>{item["Odpowiedź A"]}</td>
-                  <td>{item["Odpowiedź B"]}</td>
-                  <td>{item["Odpowiedź C"]}</td>
-                  <td>{item["Poprawna odp"]}</td>
-                  <td>{item["Media"]}</td>
-                  <td>{item["Liczba punktów"]}</td>
-                  <td>{item["Kategorie"]}</td>
-                  {/* <td>{item[""]}</td>
-                  <td>{item[""]}</td>
-                  <td>{item[""]}</td> */}
-                </tr>
-              ))}
-          </tbody>
-        </Table>
-      </div>
-    </div>
+  return (
+    <>
+      <Container>
+        <Row>
+          <Col pr>
+            <Form onSubmit={handleSubmit}>
+              <Form.Group controlId="exampleForm.ControlTextarea1">
+                <Form.Label>Wklej object ze wszystkimi pytaniami</Form.Label>
+                <Form.Control
+                  value={str}
+                  onChange={handleChange}
+                  as="textarea"
+                  rows="3"
+                />
+              </Form.Group>
+              <Button variant="primary" type="submit">
+                Sprawdź dane (parse object wth data)
+              </Button>
+            </Form>
+          </Col>
+          <Col left pl>
+            <p>
+              {obj.questions_from_gov &&
+                `obj.questions_from_gov.length = ${obj.questions_from_gov.length}`}
+            </p>
+            <p>
+              {obj.thematic_category &&
+                `obj.thematic_category.length = ${obj.thematic_category.length}`}
+            </p>
+            <p>
+              {obj.michal_info &&
+                `obj.michal_info.length = ${obj.michal_info.length}`}
+            </p>
+          </Col>
+        </Row>
+      </Container>
+      {obj.questions_from_gov && (
+        <PrevievDataTable obj={obj}></PrevievDataTable>
+      )}
+    </>
   );
 };
 

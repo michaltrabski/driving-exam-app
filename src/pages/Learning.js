@@ -69,8 +69,7 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = (dispatch, ownProps) => {
-  console.log("ownProps = ", ownProps);
+const mapDispatchToProps = dispatch => {
   return {
     getQuestions: (kat, lang) => {
       dispatch(getQuestions(kat, lang));

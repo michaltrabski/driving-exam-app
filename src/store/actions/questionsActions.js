@@ -3,6 +3,7 @@ export const CHANGE_KATEGORY = "CHANGE_KATEGORY";
 const firebase = require("firebase");
 
 export const getQuestions = (kat, lang) => {
+  console.log(kat, lang);
   return dispatch => {
     firebase
       .firestore()
@@ -12,10 +13,21 @@ export const getQuestions = (kat, lang) => {
       .then(doc => {
         if (doc.exists) {
           const data = doc.data();
-          // console.log(data.allQuestions);
+          let allQuestions = data.allQuestions.map((item, i) => {
+            let newItem = item;
+            newItem.nr = i + 1;
+            newItem.m = newItem.m === "" ? "empty.jpg" : newItem.m;
+            newItem.v = item.m.indexOf(".mp4") > 0 ? true : false;
+            return newItem;
+          });
+          sessionStorage.setItem(
+            `kat_${kat}_${lang}`,
+            JSON.stringify(allQuestions)
+          );
+          // console.log(allQuestions);
           dispatch({
             type: GET_QUESTIONS,
-            allQuestions: data.allQuestions
+            allQuestions
           });
         } else {
           // doc.data() will be undefined in this case
@@ -25,6 +37,14 @@ export const getQuestions = (kat, lang) => {
       .catch(function(error) {
         console.log("Error getting document:", error);
       });
+
+    // retriev questions from sessionStorage
+    // dispatch({
+    //   type: GET_QUESTIONS,
+    //   allQuestions: JSON.parse(
+    //     sessionStorage.getItem(`test___kat_${kat}_${lang}`)
+    //   )
+    // });
   };
 };
 
