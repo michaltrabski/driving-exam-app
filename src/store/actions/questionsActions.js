@@ -3,12 +3,12 @@ export const CHANGE_KATEGORY = "CHANGE_KATEGORY";
 const firebase = require("firebase");
 
 export const getQuestions = (kat, lang) => {
+  console.log(kat, lang);
   return dispatch => {
     firebase
       .firestore()
       .collection("questions")
-      // .doc(`kat_${kat}_${lang}`)
-      .doc(`test___kat_${kat}_${lang}`)
+      .doc(`kat_${kat}_${lang}`)
       .get()
       .then(doc => {
         if (doc.exists) {
@@ -21,10 +21,10 @@ export const getQuestions = (kat, lang) => {
             return newItem;
           });
           sessionStorage.setItem(
-            `test___kat_${kat}_${lang}`,
+            `kat_${kat}_${lang}`,
             JSON.stringify(allQuestions)
           );
-          console.log(allQuestions);
+          // console.log(allQuestions);
           dispatch({
             type: GET_QUESTIONS,
             allQuestions

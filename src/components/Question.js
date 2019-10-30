@@ -27,7 +27,7 @@ const Question = ({ question, question: { t, m, v, nr, s } }) => {
     <Container>
       <Row>
         <QuestionInfo>
-          Nr <strong>{nr},</strong> kat. B, pkt {s}
+          <strong>{nr},</strong> kat. B, pkt {s}
         </QuestionInfo>
       </Row>
       <Row>
@@ -43,13 +43,7 @@ const Question = ({ question, question: { t, m, v, nr, s } }) => {
           />
         </Col>
       </Row>
-      {showExplanation && (
-        <Row>
-          <Col left>
-            <Explanation />
-          </Col>
-        </Row>
-      )}
+      {showExplanation && <Explanation />}
     </Container>
   );
 };

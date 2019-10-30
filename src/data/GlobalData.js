@@ -6,9 +6,10 @@ export const path = {
   super_admin: "/super-admin"
 };
 export const adminSettings = {
-  katList: ["a", "b", "d", "d1"], //awaylable kategory that I have questions
+  katList: ["a", "b", "c", "d"], //awaylable kategory that I have questions
   langList: ["pl", "eng", "de"], //awaylable kategory that I have questions
   kat: "b", //default category when you load page first time
   lang: "pl", //default language when you load page first time
-  perPageDefault: 1
+  perPageDefault: 1,
+  perPageOptions: [1, 5, 10, 25]
 };

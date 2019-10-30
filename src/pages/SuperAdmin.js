@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-
-import { data_mini } from "./../data/data_mini";
 import PrevievDataTable from "../components/superAdmin/PrevievDataTable";
+import { Form, Button } from "react-bootstrap";
+import { Container, Row, Col } from "../elements/elements";
 
 const SuperAdmin = () => {
-  const [str, setStr] = useState(JSON.stringify(data_mini));
+  const [str, setStr] = useState("");
   const [obj, setObj] = useState("empty");
 
   const handleChange = e => {
@@ -25,28 +25,45 @@ const SuperAdmin = () => {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="zxc">Wklej object ze wszystkim</label>
-        <textarea value={str} onChange={handleChange}></textarea>
-        <button type="submit">Sprawdź dane (parse object wth data)</button>
-      </form>
-      <div>
-        <p>
-          {obj.questions_from_gov &&
-            `obj.questions_from_gov.length = ${obj.questions_from_gov.length}`}
-        </p>
-        <p>
-          {obj.thematic_category &&
-            `obj.thematic_category.length = ${obj.thematic_category.length}`}
-        </p>
-        <p>
-          {obj.michal_info &&
-            `obj.michal_info.length = ${obj.michal_info.length}`}
-        </p>
-      </div>
-      <PrevievDataTable obj={obj}></PrevievDataTable>
-    </div>
+    <>
+      <Container>
+        <Row>
+          <Col pr>
+            <Form onSubmit={handleSubmit}>
+              <Form.Group controlId="exampleForm.ControlTextarea1">
+                <Form.Label>Wklej object ze wszystkimi pytaniami</Form.Label>
+                <Form.Control
+                  value={str}
+                  onChange={handleChange}
+                  as="textarea"
+                  rows="3"
+                />
+              </Form.Group>
+              <Button variant="primary" type="submit">
+                Sprawdź dane (parse object wth data)
+              </Button>
+            </Form>
+          </Col>
+          <Col left pl>
+            <p>
+              {obj.questions_from_gov &&
+                `obj.questions_from_gov.length = ${obj.questions_from_gov.length}`}
+            </p>
+            <p>
+              {obj.thematic_category &&
+                `obj.thematic_category.length = ${obj.thematic_category.length}`}
+            </p>
+            <p>
+              {obj.michal_info &&
+                `obj.michal_info.length = ${obj.michal_info.length}`}
+            </p>
+          </Col>
+        </Row>
+      </Container>
+      {obj.questions_from_gov && (
+        <PrevievDataTable obj={obj}></PrevievDataTable>
+      )}
+    </>
   );
 };
 
