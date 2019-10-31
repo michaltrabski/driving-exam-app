@@ -1,9 +1,9 @@
 import React from "react";
 import { NavLink, Link } from "react-router-dom";
-import { path } from "../data/GlobalData";
+import { path } from "../../data/GlobalData";
 import { Navbar, Nav } from "react-bootstrap";
 
-const TopPageNavigation = () => {
+const WebNav = () => {
   return (
     <Navbar bg="dark" variant="dark" expand="lg" className="shadow">
       <Link className="navbar-brand" to="/">
@@ -38,4 +38,4 @@ const TopPageNavigation = () => {
   );
 };
 
-export default TopPageNavigation;
+export default WebNav;

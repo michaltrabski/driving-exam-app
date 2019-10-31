@@ -1,11 +1,11 @@
 import React from "react";
 import { Form, Button } from "react-bootstrap";
-import { Container, Row, Col } from "../elements/elements";
+import { Container, Row, Col } from "../../elements/elements";
 import { connect } from "react-redux";
-import { toogleShowAnswerNow } from "./../store/actions/settingsActions";
-import { changeKategory } from "../store/actions/questionsActions";
+import { toogleShowAnswerNow } from "../../store/actions/settingsActions";
+import { changeKategory } from "../../store/actions/questionsActions";
 
-const Settings = props => {
+const LearningSettings = props => {
   return (
     <Container>
       <Row>
@@ -25,21 +25,23 @@ const Settings = props => {
       </Row>
       <Row>
         <Col left>
-          <Form.Group controlId="exampleForm.ControlSelect1">
-            <Form.Control
-              value={props.perPageDefault}
-              as="select"
-              className="d-inline w-auto mr-1"
-              onChange={() => console.log("changed")}
-            >
-              {props.perPageOptions.map(opt => (
-                <option key={opt} value={opt}>
-                  {opt}
-                </option>
-              ))}
-            </Form.Control>
-            <Form.Label>Ile pytań pokazywać na jednej stronie?</Form.Label>
-          </Form.Group>
+          <Form>
+            <Form.Group controlId="exampleForm.ControlSelect1">
+              <Form.Control
+                value={props.perPageDefault}
+                as="select"
+                className="d-inline w-auto mr-1"
+                onChange={() => console.log("changed")}
+              >
+                {props.perPageOptions.map(opt => (
+                  <option key={opt} value={opt}>
+                    {opt}
+                  </option>
+                ))}
+              </Form.Control>
+              <Form.Label>Ile pytań pokazywać na jednej stronie?</Form.Label>
+            </Form.Group>
+          </Form>
         </Col>
       </Row>
       <Row>
@@ -86,4 +88,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Settings);
+)(LearningSettings);

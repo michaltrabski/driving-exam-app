@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
 import Question from "../components/Question";
 import { connect } from "react-redux";
-import Settings from "../components/Settings";
-import QuestionNavigation from "./../components/QuestionNavigation";
+import LearningSettings from "../components/learning/LearningSettings";
+import LearningPagination from "../components/navigation/LearningPagination";
 import { getQuestions } from "../store/actions/questionsActions";
 import _ from "lodash";
 
 const Learning = props => {
   const { questionsAll, kat, lang, getQuestions, perPageDefault } = props;
   const [questionsToDisplay, setQuestionsToDisplay] = useState([]);
-  const [current, setCurrent] = useState(0);
+  const [currentQuestionIndex, setcurrentQuestionIndex] = useState(0);
   const [perPage] = useState(perPageDefault);
 
   // automaticaly get allQuestions when component is mounted
@@ -19,43 +19,47 @@ const Learning = props => {
 
   //when questionsAll has changed (expl: user changed kat or lang), then change questions than I work with inside this component
   useEffect(() => {
-    let slice = _.slice(questionsAll, current);
+    let slice = _.slice(questionsAll, currentQuestionIndex);
     let take = _.take(slice, perPage);
     setQuestionsToDisplay(take);
-  }, [questionsAll, current]);
+  }, [questionsAll, currentQuestionIndex]);
 
-  const nextQuestions = () => {
-    if (current + perPage < questionsAll.length) {
+  const nextPage = () => {
+    if (currentQuestionIndex + perPage < questionsAll.length) {
       window.scrollTo(0, 0);
-      setCurrent(current + perPage);
+      setcurrentQuestionIndex(currentQuestionIndex + perPage);
     }
   };
-  const prevQuestions = () => {
-    if (current - perPage >= 0) {
+  const previousPage = () => {
+    if (currentQuestionIndex - perPage >= 0) {
       window.scrollTo(0, 0);
-      setCurrent(current - perPage);
+      setcurrentQuestionIndex(currentQuestionIndex - perPage);
     }
   };
 
-  const questionsNavigation = (
-    <QuestionNavigation
+  const exactPage = page => {
+    window.scrollTo(0, 0);
+    setcurrentQuestionIndex(perPage * page - perPage);
+  };
+
+  const pagination = (
+    <LearningPagination
       perPage={perPage}
-      current={current}
+      currentQuestionIndex={currentQuestionIndex}
       questionsAll={questionsAll}
-      prevQuestions={prevQuestions}
-      prevQuestionsDisabled={current <= 0 ? true : false}
-      nextQuestions={nextQuestions}
-      nextQuestionsDisabled={false}
+      previousPage={previousPage}
+      nextPage={nextPage}
+      exactPage={exactPage}
     />
   );
   return (
     <>
-      {perPage === 1 || questionsNavigation}
+      {perPage === 1 || pagination}
       {questionsToDisplay.map(question => (
         <Question key={question.id} question={question} />
       ))}
-      {questionsNavigation}
-      <Settings />
+      {pagination}
+      <LearningSettings />
     </>
   );
 };
