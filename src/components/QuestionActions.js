@@ -25,7 +25,7 @@ const QuestionActions = props => {
           className="mr-1"
           onClick={() => props.setShowExplanation(!props.showExplanation)}
         >
-          Wyjaśnienie
+          {props.showExplanation ? "ukryj wyjaśnienie" : "Wyjaśnienie"}
         </Button>
       </Col>
     </Row>

@@ -5,11 +5,11 @@ import { saveAnswer } from "./../store/actions/userActions";
 import styled from "styled-components";
 
 const colors = {
-  t: "secondary",
-  n: "secondary",
-  a: "secondary",
-  b: "secondary",
-  c: "secondary"
+  t: "light",
+  n: "light",
+  a: "light",
+  b: "light",
+  c: "light"
 };
 
 const AnswersWrapper = styled.div`
