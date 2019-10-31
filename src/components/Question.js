@@ -4,7 +4,7 @@ import Media from "./Media";
 import styled from "styled-components";
 import Answer from "./Answer";
 import Explanation from "./Explanation";
-import QuestionToDo from "./QuestionToDo";
+import QuestionActions from "./QuestionActions";
 
 const QuestionTest = styled.h5`
   margin: 0;
@@ -37,7 +37,7 @@ const Question = ({ question, question: { t, m, v, nr, s } }) => {
         <Col pl left flex column>
           <QuestionTest>{t}</QuestionTest>
           <Answer {...question} setShowExplanation={setShowExplanation} />
-          <QuestionToDo
+          <QuestionActions
             setShowExplanation={setShowExplanation}
             showExplanation={showExplanation}
           />

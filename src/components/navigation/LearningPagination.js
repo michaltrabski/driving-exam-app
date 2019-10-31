@@ -8,6 +8,7 @@ import {
   faAngleDoubleLeft,
   faAngleLeft
 } from "@fortawesome/free-solid-svg-icons";
+import Resize from "../Resize";
 
 const LearningPagination = ({
   perPage,
@@ -18,6 +19,7 @@ const LearningPagination = ({
   exactQuestnionNr
 }) => {
   const [nr, setNr] = useState(currentQuestionIndex + 1);
+  let width = window.innerWidth;
 
   useEffect(() => {
     console.log("fired");
@@ -32,45 +34,51 @@ const LearningPagination = ({
     setNr(e.target.value);
   };
 
+  const goTo = (
+    <Form inline onSubmit={handleSubmit}>
+      <Form.Group>
+        <Form.Label>Idź do pytania nr: </Form.Label>
+      </Form.Group>
+      <Form.Group>
+        <Form.Control
+          value={nr}
+          type="number"
+          className="d-inline w-auto mr-1"
+          onChange={handleChange}
+        ></Form.Control>
+      </Form.Group>
+      <Form.Group>
+        <Button variant="primary" type="submit">
+          idź
+        </Button>
+      </Form.Group>
+    </Form>
+  );
   return (
     <Container>
+      {width <= 800 && (
+        <Row>
+          <Col>{goTo}</Col>
+        </Row>
+      )}
+
       <Row>
         <Col flex between>
           <div>
-            <Button className="mr-1" onClick={() => exactQuestnionNr(1)}>
+            <Button className="mr-1 mb-1" onClick={() => exactQuestnionNr(1)}>
               <FontAwesomeIcon icon={faAngleDoubleLeft} />
             </Button>
-            <Button onClick={previousPage}>
+            <Button className="px-4 mb-1" onClick={previousPage}>
               <FontAwesomeIcon icon={faAngleLeft} />
             </Button>
           </div>
+          {width > 800 && goTo}
           <div>
-            <Form inline onSubmit={handleSubmit}>
-              <Form.Group>
-                <Form.Label>Idź do pytania nr: </Form.Label>
-              </Form.Group>
-              <Form.Group>
-                <Form.Control
-                  value={nr}
-                  type="number"
-                  className="d-inline w-auto mr-1"
-                  onChange={handleChange}
-                ></Form.Control>
-              </Form.Group>
-              <Form.Group>
-                <Button variant="primary" type="submit">
-                  idź
-                </Button>
-              </Form.Group>
-            </Form>
-          </div>
-
-          <div>
-            <Button onClick={nextPage}>
+            <Button className="px-4 mb-1" onClick={nextPage}>
               <FontAwesomeIcon icon={faAngleRight} />
             </Button>
             <Button
-              className="ml-1"
+              className="ml-1 mb-1"
               onClick={() =>
                 exactQuestnionNr(
                   Math.floor(questionsAll.length / perPage) * perPage + 1
