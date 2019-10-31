@@ -25,6 +25,14 @@ const TopPageNavigation = () => {
             Blog
           </NavLink>
         </Nav>
+        <Nav>
+          <NavLink className="nav-link" to={path.sign_up}>
+            Rejestracja
+          </NavLink>
+          <NavLink className="nav-link" to={path.sign_in}>
+            Logowanie
+          </NavLink>
+        </Nav>
       </Navbar.Collapse>
     </Navbar>
   );
