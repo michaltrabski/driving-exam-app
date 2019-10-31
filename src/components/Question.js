@@ -27,7 +27,7 @@ const Question = ({ question, question: { t, m, v, nr, s } }) => {
     <Container>
       <Row>
         <QuestionInfo>
-          <strong>{nr},</strong> kat. B, pkt {s}
+          <strong>{nr}</strong> kat. B, pkt {s}
         </QuestionInfo>
       </Row>
       <Row>

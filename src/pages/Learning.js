@@ -37,9 +37,9 @@ const Learning = props => {
     }
   };
 
-  const exactPage = page => {
+  const exactQuestnionNr = nr => {
     window.scrollTo(0, 0);
-    setcurrentQuestionIndex(perPage * page - perPage);
+    setcurrentQuestionIndex(nr - 1);
   };
 
   const pagination = (
@@ -49,7 +49,7 @@ const Learning = props => {
       questionsAll={questionsAll}
       previousPage={previousPage}
       nextPage={nextPage}
-      exactPage={exactPage}
+      exactQuestnionNr={exactQuestnionNr}
     />
   );
   return (
