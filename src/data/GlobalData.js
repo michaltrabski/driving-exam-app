@@ -7,11 +7,11 @@ export const path = {
   sign_in: "/logowanie",
   sign_up: "/rejestracja"
 };
-export const adminSettings = {
-  katList: ["a", "b", "c", "d"], //awaylable kategory that I have questions
-  langList: ["pl", "eng", "de"], //awaylable kategory that I have questions
-  kat: "b", //default category when you load page first time
-  lang: "pl", //default language when you load page first time
-  perPageDefault: 5,
-  perPageOptions: [1, 2, 5, 10, 25]
-};
+// export const adminSettings = {
+//   katList: ["a", "b", "c", "d"], //awaylable kategory that I have questions
+//   langList: ["pl", "eng", "de"], //awaylable kategory that I have questions
+//   kat: "b", //default category when you load page first time
+//   lang: "pl", //default language when you load page first time
+//   perPageDefault: 5,
+//   perPageOptions: [1, 2, 5, 10, 25]
+// };

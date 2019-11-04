@@ -7,24 +7,20 @@ import { getQuestions } from "../store/actions/questionsActions";
 import _ from "lodash";
 
 const Learning = props => {
-  const { kat, lang } = props;
-  console.log(
-    "Learning props.filteredQuestions = ",
-    props.filteredQuestions,
-    props.allQuestions
-  );
+  const { filteredQuestions, kat, lang, getQuestions } = props;
   // automaticaly get allQuestions when component is mounted
   useEffect(() => {
-    // console.log("fired");
     getQuestions(kat, lang);
   }, [kat, lang]);
 
   return (
     <>
-      <p>szukam...</p>
-      {props.filteredQuestions.slice(0.2).map(question => (
+      {/* {perPage === 1 || pagination} */}
+      {filteredQuestions.map(question => (
         <Question key={question.id} question={question} />
       ))}
+      {/* {pagination} */}
+      {/* <LearningSettings /> */}
     </>
   );
 };
