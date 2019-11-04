@@ -10,16 +10,40 @@ import {
 } from "../../store/actions/questionsActions";
 
 const LearningPagination = props => {
+  const [search, setSearch] = useState("");
+
+  const handleSearchSubmit = e => {
+    e.preventDefault();
+    props.searchQuestions(search);
+  };
+
+  React.useEffect(() => {
+    console.log("fired");
+    props.searchQuestions(search);
+  }, [search]);
+
   return (
     <Container>
       <Row>
+        <Col>
+          <form onSubmit={handleSearchSubmit}>
+            <input
+              type="text"
+              id="search"
+              onChange={e => setSearch(e.target.value)}
+              value={search}
+            />
+            <button type="submit">Szukaj</button>
+          </form>
+        </Col>
+      </Row>
+      <Row>
         <Col flex between>
-          <Button className="px-4 mb-1">
-            <FontAwesomeIcon icon={faArrowLeft} />
+          <Button>
+            <FontAwesomeIcon icon={faArrowLeft} /> poprzednia strona
           </Button>
-
-          <Button className="px-4 mb-1" onClick={props.nextPage}>
-            <FontAwesomeIcon icon={faArrowRight} />
+          <Button onClick={props.nextPage}>
+            Następna strona <FontAwesomeIcon icon={faArrowRight} />
           </Button>
         </Col>
       </Row>

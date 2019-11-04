@@ -4,12 +4,6 @@ export const CHANGE_KATEGORY = "CHANGE_KATEGORY";
 export const NEXT_PAGE = "NEXT_PAGE";
 const firebase = require("firebase");
 
-// export const nextPage = () => {
-//   return {
-//     type: NEXT_PAGE
-//   };
-// };
-
 export const searchQuestions = search => {
   return {
     type: SEARCH_QUESTIONS,

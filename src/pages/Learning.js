@@ -7,16 +7,28 @@ import { getQuestions } from "../store/actions/questionsActions";
 import _ from "lodash";
 
 const Learning = props => {
-  const { filteredQuestions, kat, lang, getQuestions } = props;
+  const { allQuestions, kat, lang, cqi, perPage } = props;
+  const { getQuestions } = props;
   // automaticaly get allQuestions when component is mounted
   useEffect(() => {
     getQuestions(kat, lang);
   }, [kat, lang]);
 
+  let allQuestionsSearched = allQuestions.filter(item =>
+    item.t.includes(props.search)
+  );
   return (
     <>
       <LearningPagination />
-      {filteredQuestions.map(question => (
+
+      {props.search !== "" && (
+        <h1 className="text-center">
+          Znaleziono <strong>{allQuestionsSearched.length}</strong> pytania ze{" "}
+          {allQuestions.length}
+        </h1>
+      )}
+
+      {allQuestionsSearched.slice(cqi, cqi + perPage).map(question => (
         <Question key={question.id} question={question} />
       ))}
 
@@ -28,10 +40,11 @@ const Learning = props => {
 const mapStateToProps = state => {
   return {
     allQuestions: state.questionsReducer.allQuestions,
-    filteredQuestions: state.questionsReducer.filteredQuestions,
     kat: state.questionsReducer.kat,
     lang: state.questionsReducer.lang,
-    perPageDefault: state.questionsReducer.perPageDefault
+    cqi: state.questionsReducer.cqi,
+    perPage: state.questionsReducer.perPage,
+    search: state.questionsReducer.search
   };
 };
 

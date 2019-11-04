@@ -20,7 +20,7 @@ const QuestionInfo = styled.p`
   margin-bottom: 10px;
 `;
 
-const Question = ({ question, question: { t, m, v, nr, s } }) => {
+const Question = ({ question, question: { id, t, m, v, nr, s } }) => {
   const [showExplanation, setShowExplanation] = useState(false);
 
   return (

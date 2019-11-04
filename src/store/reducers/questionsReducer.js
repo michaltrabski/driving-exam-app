@@ -10,14 +10,14 @@ import { SAVE_ANSWER } from "./../actions/userActions";
 
 const initialState = {
   allQuestions: [],
-  filteredQuestions: [],
   katList: ["a", "b", "c", "d"], //awaylable kategory that I have questions
   langList: ["pl", "eng", "de"], //awaylable kategory that I have questions
   kat: "b", //default category when you load page first time
   lang: "pl", //default language when you load page first time
-  perPage: 2,
+  perPage: 5,
   cqi: 0, // current question index
-  perPageOptions: [1, 2, 5, 10, 25]
+  perPageOptions: [1, 2, 5, 10, 25],
+  search: ""
 };
 
 export const questionsReducer = (state = initialState, actions) => {
@@ -26,8 +26,7 @@ export const questionsReducer = (state = initialState, actions) => {
     case GET_QUESTIONS:
       state = {
         ...state,
-        allQuestions: actions.allQuestions,
-        filteredQuestions: actions.allQuestions.slice(cqi, cqi + perPage)
+        allQuestions: actions.allQuestions
       };
       return state;
     //------------------------------------------------------------
@@ -35,16 +34,15 @@ export const questionsReducer = (state = initialState, actions) => {
       console.log("NEXT_PAGE", state);
       state = {
         ...state,
-        cqi: cqi + perPage,
-        filteredQuestions: state.allQuestions.slice(cqi, cqi + perPage)
+        cqi: cqi + perPage
       };
       return state;
     //------------------------------------------------------------
     case SEARCH_QUESTIONS:
-      let x = state.allQuestions.slice(0, 3);
       state = {
         ...state,
-        filteredQuestions: x
+        cqi: 0,
+        search: actions.search
       };
       console.log("SEARCH_QUESTIONS", state);
       return state;
