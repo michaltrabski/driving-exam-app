@@ -7,13 +7,15 @@ import { adminSettings } from "../../data/GlobalData";
 import { SAVE_ANSWER } from "./../actions/userActions";
 
 const initialState = {
-  questionsAll: [],
+  allQuestions: [],
+  filteredQuestions: [],
   ...adminSettings
 };
 
 export const questionsReducer = (state = initialState, actions) => {
   switch (actions.type) {
     case GET_QUESTIONS:
+      console.log("fired");
       state = {
         ...state,
         allQuestions: actions.allQuestions,
@@ -27,7 +29,7 @@ export const questionsReducer = (state = initialState, actions) => {
         ...state,
         filteredQuestions: x
       };
-      console.log('SEARCH_QUESTIONS',state);
+      console.log("SEARCH_QUESTIONS", state);
       return state;
     //------------------------------------------------------------
     case CHANGE_KATEGORY:

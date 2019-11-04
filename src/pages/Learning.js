@@ -7,68 +7,24 @@ import { getQuestions } from "../store/actions/questionsActions";
 import _ from "lodash";
 
 const Learning = props => {
-  const {
-    allQuestions,
-    filteredQuestions,
-    kat,
-    lang,
-    getQuestions,
-    perPageDefault
-  } = props;
-
-  // console.log(allQuestions, filteredQuestions);
-  const [questionsToDisplay, setQuestionsToDisplay] = useState([]);
-  const [currentQuestionIndex, setcurrentQuestionIndex] = useState(0);
-  const [perPage] = useState(perPageDefault);
-
+  const { kat, lang } = props;
+  console.log(
+    "Learning props.filteredQuestions = ",
+    props.filteredQuestions,
+    props.allQuestions
+  );
   // automaticaly get allQuestions when component is mounted
   useEffect(() => {
+    // console.log("fired");
     getQuestions(kat, lang);
   }, [kat, lang]);
 
-  //when allQuestions has changed (expl: user changed kat or lang), then change questions than I work with inside this component
-  useEffect(() => {
-    let slice = _.slice(allQuestions, currentQuestionIndex);
-    let take = _.take(slice, perPage);
-    setQuestionsToDisplay(take);
-  }, [allQuestions, currentQuestionIndex]);
-
-  const nextPage = () => {
-    if (currentQuestionIndex + perPage < allQuestions.length) {
-      window.scrollTo(0, 0);
-      setcurrentQuestionIndex(currentQuestionIndex + perPage);
-    }
-  };
-  const previousPage = () => {
-    if (currentQuestionIndex - perPage >= 0) {
-      window.scrollTo(0, 0);
-      setcurrentQuestionIndex(currentQuestionIndex - perPage);
-    }
-  };
-
-  const exactQuestnionNr = nr => {
-    window.scrollTo(0, 0);
-    setcurrentQuestionIndex(nr - 1);
-  };
-
-  const pagination = (
-    <LearningPagination
-      perPage={perPage}
-      currentQuestionIndex={currentQuestionIndex}
-      allQuestions={allQuestions}
-      previousPage={previousPage}
-      nextPage={nextPage}
-      exactQuestnionNr={exactQuestnionNr}
-    />
-  );
   return (
     <>
-      {perPage === 1 || pagination}
-      {questionsToDisplay.map(question => (
+      <p>szukam...</p>
+      {props.filteredQuestions.slice(0.2).map(question => (
         <Question key={question.id} question={question} />
       ))}
-      {pagination}
-      <LearningSettings />
     </>
   );
 };

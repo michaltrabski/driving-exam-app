@@ -2,23 +2,20 @@ export const GET_QUESTIONS = "GET_QUESTIONS";
 export const SEARCH_QUESTIONS = "SEARCH_QUESTIONS";
 export const CHANGE_KATEGORY = "CHANGE_KATEGORY";
 const firebase = require("firebase");
-
-export const searchQuestions = search => {
-  return {
-    type: SEARCH_QUESTIONS,
-    search
-  };
-};
+console.log("firebase", firebase);
 
 export const getQuestions = (kat, lang) => {
-  // console.log(kat, lang);
+  console.log("1", kat, lang);
   return dispatch => {
+    console.log("2");
+
     firebase
       .firestore()
       .collection("questions")
       .doc(`kat_${kat}_${lang}`)
       .get()
       .then(doc => {
+        console.log("3", doc);
         if (doc.exists) {
           const data = doc.data();
           let allQuestions = data.allQuestions.map((item, i) => {
@@ -32,7 +29,7 @@ export const getQuestions = (kat, lang) => {
             `kat_${kat}_${lang}`,
             JSON.stringify(allQuestions)
           );
-          // console.log(allQuestions);
+          console.log("allQuestions are back from firebase = ", allQuestions);
           dispatch({
             type: GET_QUESTIONS,
             allQuestions
@@ -60,5 +57,12 @@ export const changeKategory = kat => {
   return {
     type: CHANGE_KATEGORY,
     kat
+  };
+};
+
+export const searchQuestions = search => {
+  return {
+    type: SEARCH_QUESTIONS,
+    search
   };
 };
