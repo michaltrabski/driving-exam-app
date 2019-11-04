@@ -6,6 +6,11 @@ import { toogleShowAnswerNow } from "../../store/actions/settingsActions";
 import { changeKategory } from "../../store/actions/questionsActions";
 
 const LearningSettings = props => {
+  const handleChangeKategory = (e, kat) => {
+    e.preventDefault();
+    window.scrollTo(0, 0);
+    props.changeKategory(kat);
+  };
   return (
     <Container>
       <Row>
@@ -52,10 +57,10 @@ const LearningSettings = props => {
               <Button
                 key={kat}
                 variant={kat === props.kat ? "success" : "light"}
-                onClick={() => props.changeKategory(kat)}
+                onClick={e => handleChangeKategory(e, kat)}
                 className="mr-3"
               >
-                {kat}
+                {kat.toUpperCase()}
               </Button>
             ))}
           </div>

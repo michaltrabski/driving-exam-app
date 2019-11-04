@@ -6,19 +6,25 @@ import { faArrowRight, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { connect } from "react-redux";
 import {
   searchQuestions,
-  NEXT_PAGE
+  NEXT_PAGE,
+  PREVIES_PAGE
 } from "../../store/actions/questionsActions";
 
 const LearningPagination = props => {
   const [search, setSearch] = useState("");
+  const [nr, setNr] = useState(props.cqi + 1);
 
   const handleSearchSubmit = e => {
     e.preventDefault();
     props.searchQuestions(search);
   };
 
+  const handleGoToSubmit = e => {
+    e.preventDefault();
+    props.searchQuestions(search);
+  };
+
   React.useEffect(() => {
-    console.log("fired");
     props.searchQuestions(search);
   }, [search]);
 
@@ -38,12 +44,36 @@ const LearningPagination = props => {
         </Col>
       </Row>
       <Row>
+        <Col>
+          <form onSubmit={handleGoToSubmit}>
+            <label htmlFor="gotonr">Idź do pytania nr: </label>
+            <input
+              id="gotonr"
+              value={nr}
+              type="number"
+              onChange={e => setNr(e.target.value)}
+            />
+            <button variant="primary" type="submit">
+              idź
+            </button>
+          </form>
+        </Col>
+      </Row>
+      <Row>
         <Col flex between>
-          <Button>
+          <Button
+            disabled={props.cqi === 0 ? true : false}
+            onClick={props.previesPage}
+          >
             <FontAwesomeIcon icon={faArrowLeft} /> poprzednia strona
           </Button>
-          <Button onClick={props.nextPage}>
+          {props.amount}
+          <Button
+            disabled={props.cqi + props.perPage >= props.amount ? true : false}
+            onClick={props.nextPage}
+          >
             Następna strona <FontAwesomeIcon icon={faArrowRight} />
+            {props.cqi} === {props.amount}
           </Button>
         </Col>
       </Row>
@@ -51,15 +81,12 @@ const LearningPagination = props => {
   );
 };
 
-// const mapStateToProps = state => {
-//   return {
-//     allQuestions: state.questionsReducer.allQuestions,
-//     filteredQuestions: state.questionsReducer.filteredQuestions,
-//     kat: state.questionsReducer.kat,
-//     lang: state.questionsReducer.lang,
-//     perPageDefault: state.questionsReducer.perPageDefault
-//   };
-// };
+const mapStateToProps = state => {
+  return {
+    perPage: state.questionsReducer.perPage,
+    cqi: state.questionsReducer.cqi
+  };
+};
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -68,11 +95,14 @@ const mapDispatchToProps = dispatch => {
     },
     nextPage: () => {
       dispatch({ type: NEXT_PAGE });
+    },
+    previesPage: () => {
+      dispatch({ type: PREVIES_PAGE });
     }
   };
 };
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(LearningPagination);

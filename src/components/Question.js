@@ -5,6 +5,7 @@ import styled from "styled-components";
 import Answer from "./Answer";
 import Explanation from "./Explanation";
 import QuestionActions from "./QuestionActions";
+import { useSelector } from "react-redux";
 
 const QuestionTest = styled.h5`
   margin: 0;
@@ -20,14 +21,15 @@ const QuestionInfo = styled.p`
   margin-bottom: 10px;
 `;
 
-const Question = ({ question, question: { id, t, m, v, nr, s } }) => {
+const Question = ({ question, question: { id, t, m, v, nr, p } }) => {
   const [showExplanation, setShowExplanation] = useState(false);
+  const kat = useSelector(state => state.questionsReducer.kat);
 
   return (
     <Container>
       <Row>
         <QuestionInfo>
-          <strong>{nr}</strong> kat. B, pkt {s}
+          <strong>{nr}</strong> kat. {kat.toUpperCase()}, pkt {p}
         </QuestionInfo>
       </Row>
       <Row>

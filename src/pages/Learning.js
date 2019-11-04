@@ -19,20 +19,18 @@ const Learning = props => {
   );
   return (
     <>
-      <LearningPagination />
-
       {props.search !== "" && (
         <h1 className="text-center">
           Znaleziono <strong>{allQuestionsSearched.length}</strong> pytania ze{" "}
           {allQuestions.length}
         </h1>
       )}
-
+      <LearningPagination amount={allQuestionsSearched.length} />
       {allQuestionsSearched.slice(cqi, cqi + perPage).map(question => (
         <Question key={question.id} question={question} />
       ))}
-
-      {/* <LearningSettings /> */}
+      <LearningPagination amount={allQuestionsSearched.length} />
+      <LearningSettings />
     </>
   );
 };
