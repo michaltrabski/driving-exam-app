@@ -9,15 +9,20 @@ import {
   faAngleLeft
 } from "@fortawesome/free-solid-svg-icons";
 import Resize from "../Resize";
+import { connect } from "react-redux";
+import { searchQuestions } from "../../store/actions/questionsActions";
 
-const LearningPagination = ({
-  perPage,
-  currentQuestionIndex,
-  questionsAll,
-  previousPage,
-  nextPage,
-  exactQuestnionNr
-}) => {
+const LearningPagination = (
+  props,
+  {
+    perPage,
+    currentQuestionIndex,
+    allQuestions,
+    previousPage,
+    nextPage,
+    exactQuestnionNr
+  }
+) => {
   const [nr, setNr] = useState(currentQuestionIndex + 1);
   let width = window.innerWidth;
 
@@ -34,6 +39,12 @@ const LearningPagination = ({
     setNr(e.target.value);
   };
 
+  console.log(props);
+  const handleSearch = e => {
+    console.log("searched");
+    e.preventDefault();
+    props.searchQuestions("string to search");
+  };
   const goTo = (
     <Form inline onSubmit={handleSubmit}>
       <Form.Group>
@@ -63,6 +74,14 @@ const LearningPagination = ({
       )}
 
       <Row>
+        <Col>
+          <form onSubmit={handleSearch}>
+            <input type="text" />
+            <button type="submit">Szukaj</button>
+          </form>
+        </Col>
+      </Row>
+      <Row>
         <Col flex between>
           <div>
             <Button className="mr-1 mb-1" onClick={() => exactQuestnionNr(1)}>
@@ -81,7 +100,7 @@ const LearningPagination = ({
               className="ml-1 mb-1"
               onClick={() =>
                 exactQuestnionNr(
-                  Math.floor(questionsAll.length / perPage) * perPage + 1
+                  Math.floor(allQuestions.length / perPage) * perPage + 1
                 )
               }
             >
@@ -94,67 +113,25 @@ const LearningPagination = ({
   );
 };
 
-export default LearningPagination;
-
-// const LearningPagination = ({
-//   perPage,
-//   currentQuestionIndex,
-//   questionsAll,
-//   previousPage,
-//   nextPage,
-//   exactPage
-// }) => {
-//   const [page, setPage] = useState(
-//     Math.floor(currentQuestionIndex / perPage) + 1
-//   );
-
-//   const handleSubmit = e => {
-//     e.preventDefault();
-//     exactPage(page);
+// const mapStateToProps = state => {
+//   return {
+//     allQuestions: state.questionsReducer.allQuestions,
+//     filteredQuestions: state.questionsReducer.filteredQuestions,
+//     kat: state.questionsReducer.kat,
+//     lang: state.questionsReducer.lang,
+//     perPageDefault: state.questionsReducer.perPageDefault
 //   };
-
-//   return (
-//     <Container>
-//       <Row>
-//         <Col flex between>
-//           <div>
-//             <Button className="mr-1" onClick={previousPage}>
-//               <FontAwesomeIcon icon={faAngleLeft} />
-//             </Button>
-//           </div>
-//           <div>
-//             <Form inline onSubmit={handleSubmit}>
-//               <Form.Group>
-//                 <Form.Control
-//                   value={page}
-//                   type="number"
-//                   className="d-inline w-auto mr-1"
-//                   onChange={e => setPage(e.target.value)}
-//                 ></Form.Control>
-//               </Form.Group>
-//               <Form.Group>
-//                 <Button variant="primary" type="submit">
-//                   idź
-//                 </Button>
-//               </Form.Group>
-//               <Form.Group>
-//                 <Form.Label>
-//                   {" "}
-//                   (z {Math.floor(questionsAll.length / perPage) + 1} stron)
-//                 </Form.Label>
-//               </Form.Group>
-//             </Form>
-//           </div>
-
-//           <div>
-//             <Button className="ml-1" onClick={nextPage}>
-//               <FontAwesomeIcon icon={faAngleRight} />
-//             </Button>
-//           </div>
-//         </Col>
-//       </Row>
-//     </Container>
-//   );
 // };
 
-// export default LearningPagination;
+const mapDispatchToProps = dispatch => {
+  return {
+    searchQuestions: search => {
+      dispatch(searchQuestions(search));
+    }
+  };
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(LearningPagination);

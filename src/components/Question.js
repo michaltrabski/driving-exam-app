@@ -36,7 +36,7 @@ const Question = ({ question, question: { t, m, v, nr, s } }) => {
         </Col>
         <Col pl left flex column>
           <QuestionTest>{t}</QuestionTest>
-          <Answer {...question} setShowExplanation={setShowExplanation} />
+          <Answer {...question} />
           <QuestionActions
             setShowExplanation={setShowExplanation}
             showExplanation={showExplanation}

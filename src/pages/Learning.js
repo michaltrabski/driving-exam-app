@@ -7,7 +7,16 @@ import { getQuestions } from "../store/actions/questionsActions";
 import _ from "lodash";
 
 const Learning = props => {
-  const { questionsAll, kat, lang, getQuestions, perPageDefault } = props;
+  const {
+    allQuestions,
+    filteredQuestions,
+    kat,
+    lang,
+    getQuestions,
+    perPageDefault
+  } = props;
+
+  // console.log(allQuestions, filteredQuestions);
   const [questionsToDisplay, setQuestionsToDisplay] = useState([]);
   const [currentQuestionIndex, setcurrentQuestionIndex] = useState(0);
   const [perPage] = useState(perPageDefault);
@@ -17,15 +26,15 @@ const Learning = props => {
     getQuestions(kat, lang);
   }, [kat, lang]);
 
-  //when questionsAll has changed (expl: user changed kat or lang), then change questions than I work with inside this component
+  //when allQuestions has changed (expl: user changed kat or lang), then change questions than I work with inside this component
   useEffect(() => {
-    let slice = _.slice(questionsAll, currentQuestionIndex);
+    let slice = _.slice(allQuestions, currentQuestionIndex);
     let take = _.take(slice, perPage);
     setQuestionsToDisplay(take);
-  }, [questionsAll, currentQuestionIndex]);
+  }, [allQuestions, currentQuestionIndex]);
 
   const nextPage = () => {
-    if (currentQuestionIndex + perPage < questionsAll.length) {
+    if (currentQuestionIndex + perPage < allQuestions.length) {
       window.scrollTo(0, 0);
       setcurrentQuestionIndex(currentQuestionIndex + perPage);
     }
@@ -46,7 +55,7 @@ const Learning = props => {
     <LearningPagination
       perPage={perPage}
       currentQuestionIndex={currentQuestionIndex}
-      questionsAll={questionsAll}
+      allQuestions={allQuestions}
       previousPage={previousPage}
       nextPage={nextPage}
       exactQuestnionNr={exactQuestnionNr}
@@ -66,7 +75,8 @@ const Learning = props => {
 
 const mapStateToProps = state => {
   return {
-    questionsAll: state.questionsReducer.questionsAll,
+    allQuestions: state.questionsReducer.allQuestions,
+    filteredQuestions: state.questionsReducer.filteredQuestions,
     kat: state.questionsReducer.kat,
     lang: state.questionsReducer.lang,
     perPageDefault: state.questionsReducer.perPageDefault
