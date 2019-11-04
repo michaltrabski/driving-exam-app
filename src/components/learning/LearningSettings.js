@@ -4,6 +4,7 @@ import { Container, Row, Col } from "../../elements/elements";
 import { connect } from "react-redux";
 import { toogleShowAnswerNow } from "../../store/actions/settingsActions";
 import { changeKategory } from "../../store/actions/questionsActions";
+import { changePerPage } from "../../store/actions/questionsActions";
 
 const LearningSettings = props => {
   const handleChangeKategory = (e, kat) => {
@@ -33,10 +34,10 @@ const LearningSettings = props => {
           <Form>
             <Form.Group controlId="exampleForm.ControlSelect1">
               <Form.Control
-                value={props.perPageDefault}
+                value={props.perPage}
                 as="select"
                 className="d-inline w-auto mr-1"
-                onChange={() => console.log("changed")}
+                onChange={e => props.changePerPage(e.target.value)}
               >
                 {props.perPageOptions.map(opt => (
                   <option key={opt} value={opt}>
@@ -76,7 +77,7 @@ const mapStateToProps = state => {
     katList: state.questionsReducer.katList,
     kat: state.questionsReducer.kat,
     perPageOptions: state.questionsReducer.perPageOptions,
-    perPageDefault: state.questionsReducer.perPageDefault
+    perPage: state.questionsReducer.perPage
   };
 };
 
@@ -87,6 +88,9 @@ const mapDispatchToProps = dispatch => {
     },
     changeKategory: kat => {
       dispatch(changeKategory(kat));
+    },
+    changePerPage: perPage => {
+      dispatch(changePerPage(perPage));
     }
   };
 };

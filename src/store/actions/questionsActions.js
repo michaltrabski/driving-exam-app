@@ -3,14 +3,10 @@ export const SEARCH_QUESTIONS = "SEARCH_QUESTIONS";
 export const CHANGE_KATEGORY = "CHANGE_KATEGORY";
 export const NEXT_PAGE = "NEXT_PAGE";
 export const PREVIES_PAGE = "PREVIES_PAGE";
-const firebase = require("firebase");
+export const GO_TO_QUESTION_NR = "GO_TO_QUESTION_NR";
+export const CHANGE_PER_PAGE = "CHANGE_PER_PAGE";
 
-export const searchQuestions = search => {
-  return {
-    type: SEARCH_QUESTIONS,
-    search
-  };
-};
+const firebase = require("firebase");
 
 export const getQuestions = (kat, lang) => {
   // console.log(kat, lang);
@@ -62,5 +58,19 @@ export const changeKategory = kat => {
   return {
     type: CHANGE_KATEGORY,
     kat
+  };
+};
+
+export const searchQuestions = search => {
+  return {
+    type: SEARCH_QUESTIONS,
+    search
+  };
+};
+
+export const changePerPage = perPage => {
+  return {
+    type: CHANGE_PER_PAGE,
+    perPage
   };
 };

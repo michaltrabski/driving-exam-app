@@ -1,13 +1,12 @@
-import _ from "lodash";
 import {
   GET_QUESTIONS,
   CHANGE_KATEGORY,
   SEARCH_QUESTIONS,
   NEXT_PAGE,
-  PREVIES_PAGE
+  PREVIES_PAGE,
+  GO_TO_QUESTION_NR,
+  CHANGE_PER_PAGE
 } from "./../actions/questionsActions";
-import { adminSettings } from "../../data/GlobalData";
-import { SAVE_ANSWER } from "./../actions/userActions";
 
 const initialState = {
   allQuestions: [],
@@ -15,7 +14,7 @@ const initialState = {
   langList: ["pl", "eng", "de"], //awaylable kategory that I have questions
   kat: "b", //default category when you load page first time
   lang: "pl", //default language when you load page first time
-  perPage: 2,
+  perPage: 5,
   cqi: 0, // current question index
   perPageOptions: [1, 2, 5, 10, 25],
   search: ""
@@ -52,14 +51,31 @@ export const questionsReducer = (state = initialState, actions) => {
         cqi: 0,
         search: actions.search
       };
-      console.log("SEARCH_QUESTIONS", state);
       return state;
     //------------------------------------------------------------
     case CHANGE_KATEGORY:
       state = {
         ...state,
         cqi: 0,
-        kat: actions.kat
+        kat: actions.kat,
+        search: ""
+      };
+      return state;
+    //------------------------------------------------------------
+    case GO_TO_QUESTION_NR:
+      state = {
+        ...state,
+        cqi: actions.nr - 1,
+        search: ""
+      };
+      return state;
+    //------------------------------------------------------------
+    case CHANGE_PER_PAGE:
+      state = {
+        ...state,
+        cqi: 0,
+        search: "",
+        perPage: actions.perPage
       };
       return state;
     //------------------------------------------------------------

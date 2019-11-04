@@ -7,55 +7,40 @@ import { connect } from "react-redux";
 import {
   searchQuestions,
   NEXT_PAGE,
-  PREVIES_PAGE
+  PREVIES_PAGE,
+  GO_TO_QUESTION_NR
 } from "../../store/actions/questionsActions";
 
 const LearningPagination = props => {
-  const [search, setSearch] = useState("");
-  const [nr, setNr] = useState(props.cqi + 1);
-
-  const handleSearchSubmit = e => {
-    e.preventDefault();
-    props.searchQuestions(search);
-  };
-
-  const handleGoToSubmit = e => {
-    e.preventDefault();
-    props.searchQuestions(search);
-  };
-
-  React.useEffect(() => {
-    props.searchQuestions(search);
-  }, [search]);
-
   return (
     <Container>
       <Row>
         <Col>
-          <form onSubmit={handleSearchSubmit}>
+          <form onSubmit={e => e.preventDefault()}>
+            <label htmlFor="gotonr">Idź do pytania nr: </label>
             <input
-              type="text"
-              id="search"
-              onChange={e => setSearch(e.target.value)}
-              value={search}
+              id="gotonr"
+              value={props.cqi + 1}
+              type="number"
+              onChange={e => props.goToQuestionNr(e.target.value)}
+              onFocus={e => e.target.select()}
             />
-            <button type="submit">Szukaj</button>
+            <button variant="primary" type="submit">
+              idź
+            </button>
           </form>
         </Col>
       </Row>
       <Row>
         <Col>
-          <form onSubmit={handleGoToSubmit}>
-            <label htmlFor="gotonr">Idź do pytania nr: </label>
+          <form onSubmit={e => e.preventDefault()}>
             <input
-              id="gotonr"
-              value={nr}
-              type="number"
-              onChange={e => setNr(e.target.value)}
+              type="text"
+              id="search"
+              onChange={e => props.searchQuestions(e.target.value)}
+              value={props.search}
             />
-            <button variant="primary" type="submit">
-              idź
-            </button>
+            <button type="submit">Szukaj</button>
           </form>
         </Col>
       </Row>
@@ -73,7 +58,6 @@ const LearningPagination = props => {
             onClick={props.nextPage}
           >
             Następna strona <FontAwesomeIcon icon={faArrowRight} />
-            {props.cqi} === {props.amount}
           </Button>
         </Col>
       </Row>
@@ -84,7 +68,8 @@ const LearningPagination = props => {
 const mapStateToProps = state => {
   return {
     perPage: state.questionsReducer.perPage,
-    cqi: state.questionsReducer.cqi
+    cqi: state.questionsReducer.cqi,
+    search: state.questionsReducer.search
   };
 };
 
@@ -98,6 +83,9 @@ const mapDispatchToProps = dispatch => {
     },
     previesPage: () => {
       dispatch({ type: PREVIES_PAGE });
+    },
+    goToQuestionNr: nr => {
+      dispatch({ type: GO_TO_QUESTION_NR, nr });
     }
   };
 };
