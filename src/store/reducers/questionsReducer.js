@@ -2,7 +2,8 @@ import _ from "lodash";
 import {
   GET_QUESTIONS,
   CHANGE_KATEGORY,
-  SEARCH_QUESTIONS
+  SEARCH_QUESTIONS,
+  NEXT_PAGE
 } from "./../actions/questionsActions";
 import { adminSettings } from "../../data/GlobalData";
 import { SAVE_ANSWER } from "./../actions/userActions";
@@ -23,12 +24,19 @@ export const questionsReducer = (state = initialState, actions) => {
   const { perPage, cqi } = state;
   switch (actions.type) {
     case GET_QUESTIONS:
-      let slice = _.slice(actions.allQuestions, cqi);
-      let filteredQuestions = _.take(slice, perPage);
       state = {
         ...state,
         allQuestions: actions.allQuestions,
-        filteredQuestions
+        filteredQuestions: actions.allQuestions.slice(cqi, cqi + perPage)
+      };
+      return state;
+    //------------------------------------------------------------
+    case NEXT_PAGE:
+      console.log("NEXT_PAGE", state);
+      state = {
+        ...state,
+        cqi: cqi + perPage,
+        filteredQuestions: state.allQuestions.slice(cqi, cqi + perPage)
       };
       return state;
     //------------------------------------------------------------

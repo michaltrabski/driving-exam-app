@@ -1,7 +1,14 @@
 export const GET_QUESTIONS = "GET_QUESTIONS";
 export const SEARCH_QUESTIONS = "SEARCH_QUESTIONS";
 export const CHANGE_KATEGORY = "CHANGE_KATEGORY";
+export const NEXT_PAGE = "NEXT_PAGE";
 const firebase = require("firebase");
+
+// export const nextPage = () => {
+//   return {
+//     type: NEXT_PAGE
+//   };
+// };
 
 export const searchQuestions = search => {
   return {

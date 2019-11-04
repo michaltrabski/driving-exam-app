@@ -15,11 +15,11 @@ const Learning = props => {
 
   return (
     <>
-      {/* {perPage === 1 || pagination} */}
+      <LearningPagination />
       {filteredQuestions.map(question => (
         <Question key={question.id} question={question} />
       ))}
-      {/* {pagination} */}
+
       {/* <LearningSettings /> */}
     </>
   );
