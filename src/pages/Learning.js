@@ -17,8 +17,9 @@ const Learning = props => {
   }, [kat, lang]);
 
   let allQuestionsSearched = allQuestions.filter(item =>
-    item.t.includes(props.search)
+    item.t.toLowerCase().includes(props.search.toLowerCase())
   );
+
   return (
     <>
       <SearchForm />
