@@ -7,7 +7,7 @@ import Explanation from "./Explanation";
 import QuestionActions from "./QuestionActions";
 import { useSelector } from "react-redux";
 
-const QuestionTest = styled.h5`
+const QuestionText = styled.h5`
   margin: 0;
   padding: 0;
   margin-top: 10px;
@@ -21,9 +21,25 @@ const QuestionInfo = styled.p`
   margin-bottom: 10px;
 `;
 
+const QuestionTextRegExp = props => {
+  return (
+    <QuestionText
+      dangerouslySetInnerHTML={{
+        __html: props.t
+      }}
+    ></QuestionText>
+  );
+};
+
 const Question = ({ question, question: { id, t, m, v, nr, p } }) => {
   const [showExplanation, setShowExplanation] = useState(false);
   const kat = useSelector(state => state.questionsReducer.kat);
+  const search = useSelector(state => state.questionsReducer.search);
+
+  const regex = new RegExp(search, "gi");
+  const replaceRegEx = text => {
+    return text.replace(regex, `<span class="bg-warning">${search}</span>`);
+  };
 
   return (
     <Container>
@@ -37,7 +53,11 @@ const Question = ({ question, question: { id, t, m, v, nr, p } }) => {
           <Media m={m} v={v} />
         </Col>
         <Col pl left flex column>
-          <QuestionTest>{t}</QuestionTest>
+          {search === "" ? (
+            <QuestionText>{t}</QuestionText>
+          ) : (
+            <QuestionTextRegExp t={replaceRegEx(t)} />
+          )}
           <Answer {...question} />
           <QuestionActions
             setShowExplanation={setShowExplanation}

@@ -17,9 +17,13 @@ const SearchForm = () => {
               id="search"
               onChange={e => dispatch(searchQuestions(e.target.value))}
               value={search}
+              onFocus={e => e.target.select()}
             />
             <button type="submit">Szukaj</button>
           </form>
+          <button type="text" onClick={e => dispatch(searchQuestions(""))}>
+            X
+          </button>
         </Col>
       </Row>
     </Container>

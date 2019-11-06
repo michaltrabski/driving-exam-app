@@ -6,6 +6,7 @@ import NextPage from "../components/learning/NextPage";
 import { getQuestions } from "../store/actions/questionsActions";
 import SearchForm from "../components/learning/SearchForm";
 import GoToQuestionNumber from "../components/learning/GoToQuestionNumber";
+import SearchInfo from "./../components/learning/SearchInfo";
 
 const Learning = props => {
   const { allQuestions, kat, lang, cqi, perPage } = props;
@@ -21,14 +22,13 @@ const Learning = props => {
   return (
     <>
       <SearchForm />
-
       <NextPage amount={allQuestionsSearched.length} />
 
       {props.search !== "" && (
-        <h1 className="text-center">
-          Znaleziono <strong>{allQuestionsSearched.length}</strong> pytania ze{" "}
-          {allQuestions.length}
-        </h1>
+        <SearchInfo
+          amount={allQuestionsSearched.length}
+          max={allQuestions.length}
+        />
       )}
       {allQuestionsSearched.slice(cqi, cqi + perPage).map(question => (
         <Question key={question.id} question={question} />
