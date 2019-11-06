@@ -9,7 +9,6 @@ export const CHANGE_PER_PAGE = "CHANGE_PER_PAGE";
 const firebase = require("firebase");
 
 export const getQuestions = (kat, lang) => {
-  // console.log(kat, lang);
   return dispatch => {
     firebase
       .firestore()
@@ -30,13 +29,11 @@ export const getQuestions = (kat, lang) => {
             `kat_${kat}_${lang}`,
             JSON.stringify(allQuestions)
           );
-          // console.log(allQuestions);
           dispatch({
             type: GET_QUESTIONS,
             allQuestions
           });
         } else {
-          // doc.data() will be undefined in this case
           console.log("No such document!");
         }
       })
@@ -71,6 +68,6 @@ export const searchQuestions = search => {
 export const changePerPage = perPage => {
   return {
     type: CHANGE_PER_PAGE,
-    perPage
+    perPage: parseInt(perPage)
   };
 };
