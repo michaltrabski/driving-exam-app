@@ -10,6 +10,7 @@ const GoToQuestionNumber = () => {
   const handleSubmit = e => {
     e.preventDefault();
     window.scrollTo(0, 0);
+    document.getElementById("gtqnr").blur();
     dispatch(goToQuestionNr(cqi + 1));
   };
 

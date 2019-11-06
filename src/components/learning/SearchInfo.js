@@ -1,10 +1,12 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
 const SearchInfo = props => {
+  const max = useSelector(state => state.questionsReducer.allQuestions.length);
   return (
-    <h1 className="text-center">
-      Znaleziono <strong>{props.amount}</strong> pytania ze {props.max}
-    </h1>
+    <>
+      Znaleziono <strong>{props.amount}</strong> pytania ze {max}
+    </>
   );
 };
 

@@ -38,8 +38,8 @@ const Question = ({ question, question: { id, t, m, v, nr, p } }) => {
 
   const regex = new RegExp(search, "gi");
   const replaceRegEx = text => {
-    let foundText = text.match(regex)[0];
-    return text.replace(regex, `<span class="bg-warning">${foundText}</span>`);
+    let found = text.match(regex)[0];
+    return text.replace(regex, `<span class="bg-warning">${found}</span>`);
   };
 
   return (

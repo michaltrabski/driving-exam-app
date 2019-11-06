@@ -30,11 +30,13 @@ function Resize() {
       window.removeEventListener("resize", debouncedHandleResize);
     };
   });
-  return (
-    <div>
-      Rendered at {dimensions.width} x {dimensions.height}
-    </div>
-  );
+  // return (
+  //   <div>
+  //     Rendered at {dimensions.width} x {dimensions.height}
+  //   </div>
+  // );
+
+  return dimensions.width;
 }
 
 export default Resize;

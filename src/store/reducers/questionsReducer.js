@@ -46,13 +46,11 @@ export const questionsReducer = (state = initialState, actions) => {
       return state;
     //------------------------------------------------------------
     case SEARCH_QUESTIONS:
-      console.log("1", state);
       state = {
         ...state,
         cqi: 0,
         search: actions.search
       };
-      console.log("2", state);
       return state;
     //------------------------------------------------------------
     case CHANGE_KATEGORY:

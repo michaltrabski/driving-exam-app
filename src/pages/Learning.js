@@ -7,34 +7,39 @@ import { getQuestions } from "../store/actions/questionsActions";
 import SearchForm from "../components/learning/SearchForm";
 import GoToQuestionNumber from "../components/learning/GoToQuestionNumber";
 import SearchInfo from "./../components/learning/SearchInfo";
+import { Container } from "../elements/elements";
+import Resize from "./../components/Resize";
 
 const Learning = props => {
   const { allQuestions, kat, lang, cqi, perPage } = props;
   const { getQuestions } = props;
+  const width = Resize();
 
   useEffect(() => {
     getQuestions(kat, lang); // automaticaly get allQuestions when component is mounted
   }, [kat, lang]);
 
   let allQuestionsSearched = allQuestions.filter(item =>
-    item.t.toLowerCase().includes(props.search.toLowerCase())
+    item.t.includes(props.search)
   );
 
   return (
     <>
-      <SearchForm />
-      <NextPage amount={allQuestionsSearched.length} />
-
-      {props.search !== "" && (
-        <SearchInfo
-          amount={allQuestionsSearched.length}
-          max={allQuestions.length}
-        />
+      <Container>
+        <SearchForm amount={allQuestionsSearched.length} />
+        <NextPage amount={allQuestionsSearched.length} />
+      </Container>
+      {props.search !== "" && width >= 768 && (
+        <h1 className="text-center">
+          <SearchInfo amount={allQuestionsSearched.length} />
+        </h1>
       )}
       {allQuestionsSearched.slice(cqi, cqi + perPage).map(question => (
         <Question key={question.id} question={question} />
       ))}
-      <NextPage amount={allQuestionsSearched.length} />
+      <Container>
+        <NextPage amount={allQuestionsSearched.length} />
+      </Container>
       <LearningSettings />
     </>
   );
