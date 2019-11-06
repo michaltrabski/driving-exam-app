@@ -71,3 +71,7 @@ export const changePerPage = perPage => {
     perPage: parseInt(perPage)
   };
 };
+
+export const goToQuestionNr = nr => {
+  return { type: GO_TO_QUESTION_NR, nr: parseInt(nr) };
+};

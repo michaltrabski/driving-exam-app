@@ -1,17 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import Question from "../components/Question";
 import { connect } from "react-redux";
 import LearningSettings from "../components/learning/LearningSettings";
-import LearningPagination from "../components/navigation/LearningPagination";
+import NextPage from "../components/learning/NextPage";
 import { getQuestions } from "../store/actions/questionsActions";
-import _ from "lodash";
+import SearchForm from "../components/learning/SearchForm";
+import GoToQuestionNumber from "../components/learning/GoToQuestionNumber";
 
 const Learning = props => {
   const { allQuestions, kat, lang, cqi, perPage } = props;
   const { getQuestions } = props;
-  // automaticaly get allQuestions when component is mounted
+
   useEffect(() => {
-    getQuestions(kat, lang);
+    getQuestions(kat, lang); // automaticaly get allQuestions when component is mounted
   }, [kat, lang]);
 
   let allQuestionsSearched = allQuestions.filter(item =>
@@ -25,11 +26,13 @@ const Learning = props => {
           {allQuestions.length}
         </h1>
       )}
-      <LearningPagination amount={allQuestionsSearched.length} />
+      <SearchForm />
+      <GoToQuestionNumber />
+      <NextPage amount={allQuestionsSearched.length} />
       {allQuestionsSearched.slice(cqi, cqi + perPage).map(question => (
         <Question key={question.id} question={question} />
       ))}
-      <LearningPagination amount={allQuestionsSearched.length} />
+      <NextPage amount={allQuestionsSearched.length} />
       <LearningSettings />
     </>
   );
