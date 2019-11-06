@@ -1,26 +1,21 @@
 import React from "react";
 import { Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faQuestion,
-  faThumbsUp,
-  faThumbsDown
-} from "@fortawesome/free-solid-svg-icons";
+import { faThumbsUp, faThumbsDown } from "@fortawesome/free-regular-svg-icons"; //"@fortawesome/free-regular-svg-icons" "@fortawesome/free-solid-svg-icons"
 import { Row, Col } from "../elements/elements";
 
 const QuestionActions = props => {
   return (
     <Row mtAuto>
       <Col left>
-        <Button variant="primary" size="sm" className="mr-1">
+        <Button variant="light" size="sm" className="mr-1">
           <FontAwesomeIcon icon={faThumbsDown} />
         </Button>
-        <Button variant="primary" size="sm" className="mr-1">
+        <Button variant="light" size="sm" className="mr-1">
           <FontAwesomeIcon icon={faThumbsUp} />
         </Button>
-
         <Button
-          variant="primary"
+          variant="light"
           size="sm"
           className="mr-1"
           onClick={() => props.setShowExplanation(!props.showExplanation)}

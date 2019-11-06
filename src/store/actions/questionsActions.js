@@ -73,5 +73,14 @@ export const changePerPage = perPage => {
 };
 
 export const goToQuestionNr = nr => {
+  if (nr === "") nr = 1;
   return { type: GO_TO_QUESTION_NR, nr: parseInt(nr) };
+};
+
+export const nextPage = () => {
+  return { type: NEXT_PAGE };
+};
+
+export const previesPage = () => {
+  return { type: PREVIES_PAGE };
 };

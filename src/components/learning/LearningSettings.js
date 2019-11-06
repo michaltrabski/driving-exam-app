@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { toogleShowAnswerNow } from "../../store/actions/settingsActions";
 import { changeKategory } from "../../store/actions/questionsActions";
 import { changePerPage } from "../../store/actions/questionsActions";
+import GoToQuestionNumber from "./GoToQuestionNumber";
 
 const LearningSettings = props => {
   const handleChangeKategory = (e, kat) => {
@@ -29,6 +30,7 @@ const LearningSettings = props => {
           </Form>
         </Col>
       </Row>
+      <GoToQuestionNumber />
       <Row>
         <Col left>
           <Form>

@@ -20,15 +20,16 @@ const Learning = props => {
   );
   return (
     <>
+      <SearchForm />
+
+      <NextPage amount={allQuestionsSearched.length} />
+
       {props.search !== "" && (
         <h1 className="text-center">
           Znaleziono <strong>{allQuestionsSearched.length}</strong> pytania ze{" "}
           {allQuestions.length}
         </h1>
       )}
-      <SearchForm />
-      <GoToQuestionNumber />
-      <NextPage amount={allQuestionsSearched.length} />
       {allQuestionsSearched.slice(cqi, cqi + perPage).map(question => (
         <Question key={question.id} question={question} />
       ))}

@@ -4,23 +4,35 @@ import { Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { connect } from "react-redux";
-import { NEXT_PAGE, PREVIES_PAGE } from "../../store/actions/questionsActions";
+import { nextPage, previesPage } from "./../../store/actions/questionsActions";
 
 const NextPage = props => {
+  const handleNextPage = () => {
+    window.scrollTo(0, 0);
+    props.nextPage();
+  };
+  const handlepreviesPage = () => {
+    window.scrollTo(0, 0);
+    props.previesPage();
+  };
   return (
     <Container>
       <Row>
         <Col flex between>
           <Button
+            variant={props.cqi === 0 ? "light" : "primary"}
             disabled={props.cqi === 0 ? true : false}
-            onClick={props.previesPage}
+            onClick={handlepreviesPage}
           >
             <FontAwesomeIcon icon={faArrowLeft} /> poprzednia strona
           </Button>
-          {props.amount}
+          {/* {props.amount} */}
           <Button
+            variant={
+              props.cqi + props.perPage >= props.amount ? "light" : "primary"
+            }
             disabled={props.cqi + props.perPage >= props.amount ? true : false}
-            onClick={props.nextPage}
+            onClick={handleNextPage}
           >
             Następna strona <FontAwesomeIcon icon={faArrowRight} />
           </Button>
@@ -40,10 +52,10 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     nextPage: () => {
-      dispatch({ type: NEXT_PAGE });
+      dispatch(nextPage());
     },
     previesPage: () => {
-      dispatch({ type: PREVIES_PAGE });
+      dispatch(previesPage());
     }
   };
 };
