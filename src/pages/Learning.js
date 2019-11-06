@@ -1,12 +1,10 @@
 import React, { useEffect } from "react";
 import Question from "../components/Question";
 import { connect } from "react-redux";
-import LearningSettings from "../components/learning/LearningSettings";
+import Settings from "../components/learning/Settings";
 import NextPage from "../components/learning/NextPage";
 import { getQuestions } from "../store/actions/questionsActions";
 import SearchForm from "../components/learning/SearchForm";
-import GoToQuestionNumber from "../components/learning/GoToQuestionNumber";
-import SearchInfo from "./../components/learning/SearchInfo";
 import { Container } from "../elements/elements";
 import Resize from "./../components/Resize";
 
@@ -20,7 +18,7 @@ const Learning = props => {
   }, [kat, lang]);
 
   let allQuestionsSearched = allQuestions.filter(item =>
-    item.t.includes(props.search)
+    item.t.includes(props.search.toLowerCase())
   );
 
   return (
@@ -29,18 +27,22 @@ const Learning = props => {
         <SearchForm amount={allQuestionsSearched.length} />
         <NextPage amount={allQuestionsSearched.length} />
       </Container>
-      {props.search !== "" && width >= 768 && (
+      {/* {props.search !== "" && width >= 768 && (
         <h1 className="text-center">
           <SearchInfo amount={allQuestionsSearched.length} />
         </h1>
-      )}
+      )} */}
       {allQuestionsSearched.slice(cqi, cqi + perPage).map(question => (
         <Question key={question.id} question={question} />
       ))}
-      <Container>
-        <NextPage amount={allQuestionsSearched.length} />
-      </Container>
-      <LearningSettings />
+
+      {allQuestionsSearched.length > 0 && (
+        <Container>
+          <NextPage amount={allQuestionsSearched.length} />
+        </Container>
+      )}
+
+      <Settings />
     </>
   );
 };

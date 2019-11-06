@@ -19,7 +19,15 @@ export const Container = styled.div`
   background: ${({ theme }) => theme.white};
   border-radius: 0.25rem;
   border: 1px solid ${({ theme }) => theme.gray400};
-  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  text-align: left;
+  ${props =>
+    props.transparent &&
+    css`
+      background: transparent;
+      border: none;
+      box-shadow: none;
+    `};
 `;
 
 export const Row = styled.div`
@@ -35,13 +43,13 @@ export const Row = styled.div`
   ${({ mt10 }) => mt10 && "margin-top: 100px;"};
 
   ${({ mtAuto }) => mtAuto && "margin-top: auto;"};
+  ${props => props.mb && "margin-bottom: 15px;"};
 `;
 
 export const Col = styled.div`
   flex-basis: 0;
   flex-grow: 1;
   max-width: 100%;
-  text-align: center;
   background-color: ${({ light }) => light && "lightgray"};
   text-align: ${({ right }) => right && "right"};
   text-align: ${({ left }) => left && "left"};
@@ -85,22 +93,3 @@ export const Img = styled.img`
   border: 4px solid gray;
   max-width: 100%;
 `;
-
-// export const Button = styled.button`
-//   display: inline-block;
-//   font-weight: 400;
-//   text-align: center;
-//   vertical-align: middle;
-//   user-select: none;
-//   padding: 0.375rem 0.75rem;
-//   font-size: 1rem;
-//   line-height: 1.5;
-//   border-radius: 0.25rem;
-//   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
-//     border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-
-//   width: 100%;
-//   display: block;
-
-//   margin-bottom: 1rem;
-// `;

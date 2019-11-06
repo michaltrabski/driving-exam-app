@@ -17,25 +17,31 @@ const SearchForm = props => {
     dispatch(searchQuestions(search));
   };
   return (
-    <Row>
+    <Row mb>
       <Col>
-        {search !== "" && width < 768 && (
-          <p>
-            <SearchInfo amount={props.amount} />
-          </p>
-        )}
+        <SearchInfo amount={props.amount} />
 
-        <form onSubmit={handleSubmit}>
+        <form
+          onSubmit={handleSubmit}
+          className="form-inline justify-content-center"
+        >
           <input
+            className="form-control mb-2 mr-sm-2"
             type="text"
             id="search"
             onChange={e => dispatch(searchQuestions(e.target.value))}
             value={search}
-            onFocus={e => e.target.select()}
-            placeholder="wyszukaj..."
+            // onFocus={e => e.target.select()}
+            placeholder="szukana fraza..."
           />
-          <button type="submit">Szukaj</button>
-          <button type="text" onClick={e => dispatch(searchQuestions(""))}>
+          <button className="btn btn-primary mb-2 mr-sm-2" type="submit">
+            Szukaj
+          </button>
+          <button
+            className="btn btn-danger mb-2"
+            type="text"
+            onClick={e => dispatch(searchQuestions(""))}
+          >
             X
           </button>
         </form>

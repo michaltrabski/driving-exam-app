@@ -38,10 +38,9 @@ export const questionsReducer = (state = initialState, actions) => {
       return state;
     //------------------------------------------------------------
     case PREVIES_PAGE:
-      let newcqi = cqi - perPage > 0 ? cqi - perPage : 0;
       state = {
         ...state,
-        cqi: newcqi
+        cqi: cqi - perPage > 0 ? cqi - perPage : 0
       };
       return state;
     //------------------------------------------------------------

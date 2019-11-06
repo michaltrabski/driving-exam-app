@@ -7,11 +7,12 @@ const WebNav = () => {
   return (
     <Navbar bg="dark" variant="dark" expand="lg" className="shadow">
       <Link className="navbar-brand" to="/">
-        poznajTesty.pl
+        poznajTesty.pl{" "}
+        <span className="text-primary font-weight-bolder">App</span>
       </Link>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
-        <Nav className="mr-auto">
+        <Nav className="ml-auto mr-auto">
           <NavLink className="nav-link" to={path.learn}>
             Nauka Pytań
           </NavLink>

@@ -3,20 +3,34 @@ import { Form, Button } from "react-bootstrap";
 import { Container, Row, Col } from "../../elements/elements";
 import { connect } from "react-redux";
 import { toogleShowAnswerNow } from "../../store/actions/settingsActions";
-import { changeKategory } from "../../store/actions/questionsActions";
-import { changePerPage } from "../../store/actions/questionsActions";
+import {
+  changeKategory,
+  changePerPage
+} from "../../store/actions/questionsActions";
 import GoToQuestionNumber from "./GoToQuestionNumber";
 
-const LearningSettings = props => {
+const Settings = props => {
   const handleChangeKategory = (e, kat) => {
     e.preventDefault();
     window.scrollTo(0, 0);
     props.changeKategory(kat);
   };
+  const handleChangePerPage = e => {
+    e.preventDefault();
+    window.scrollTo(0, 0);
+    props.changePerPage(e.target.value);
+  };
+
   return (
-    <Container>
+    <Container transparent>
       <Row>
-        <Col left>
+        <Col>
+          <h1>Ustawienia:</h1>
+        </Col>
+      </Row>
+
+      <Row>
+        <Col>
           <Form>
             <Form.Check
               className="mb-3 success"
@@ -32,14 +46,15 @@ const LearningSettings = props => {
       </Row>
       <GoToQuestionNumber />
       <Row>
-        <Col left>
+        <Col>
           <Form>
             <Form.Group controlId="exampleForm.ControlSelect1">
+              <Form.Label>Ile pytań pokazywać na jednej stronie?</Form.Label>
               <Form.Control
                 value={props.perPage}
                 as="select"
                 className="d-inline w-auto mr-1"
-                onChange={e => props.changePerPage(e.target.value)}
+                onChange={e => handleChangePerPage(e)}
               >
                 {props.perPageOptions.map(opt => (
                   <option key={opt} value={opt}>
@@ -47,26 +62,23 @@ const LearningSettings = props => {
                   </option>
                 ))}
               </Form.Control>
-              <Form.Label>Ile pytań pokazywać na jednej stronie?</Form.Label>
             </Form.Group>
           </Form>
         </Col>
       </Row>
       <Row>
-        <Col left>
-          <p>Zmień kategorię prawa jazdy</p>
-          <div>
-            {props.katList.map(kat => (
-              <Button
-                key={kat}
-                variant={kat === props.kat ? "success" : "light"}
-                onClick={e => handleChangeKategory(e, kat)}
-                className="mr-3"
-              >
-                {kat.toUpperCase()}
-              </Button>
-            ))}
-          </div>
+        <Col>
+          <span>Zmień kategorię prawa jazdy</span>
+          {props.katList.map(kat => (
+            <Button
+              key={kat}
+              variant={kat === props.kat ? "success" : "light"}
+              onClick={e => handleChangeKategory(e, kat)}
+              className="mr-3"
+            >
+              {kat.toUpperCase()}
+            </Button>
+          ))}
         </Col>
       </Row>
     </Container>
@@ -99,4 +111,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(LearningSettings);
+)(Settings);
