@@ -1,3 +1,4 @@
+import { storage } from "./../../functions/functions";
 import {
   GET_QUESTIONS,
   CHANGE_KATEGORY,
@@ -12,9 +13,9 @@ const initialState = {
   allQuestions: [],
   katList: ["a", "b", "c", "d"], //awaylable kategory that I have questions
   langList: ["pl", "eng", "de"], //awaylable kategory that I have questions
-  kat: "b", //default category when you load page first time
+  kat: storage("kat") ? storage("kat") : "b", //default category when you load page first time
   lang: "pl", //default language when you load page first time
-  perPage: 1,
+  perPage: storage("perPage") ? storage("perPage") : 1,
   cqi: 0, // current question index
   perPageOptions: [1, 2, 5, 10, 25],
   search: ""
@@ -59,6 +60,7 @@ export const questionsReducer = (state = initialState, actions) => {
         kat: actions.kat,
         search: ""
       };
+      storage("kat", state.kat);
       return state;
     //------------------------------------------------------------
     case GO_TO_QUESTION_NR:
@@ -78,6 +80,7 @@ export const questionsReducer = (state = initialState, actions) => {
         search: "",
         perPage: actions.perPage
       };
+      storage("perPage", state.perPage);
       return state;
     //------------------------------------------------------------
     default:

@@ -1,3 +1,5 @@
+import { storage } from "./../../functions/functions";
+
 export const GET_QUESTIONS = "GET_QUESTIONS";
 export const SEARCH_QUESTIONS = "SEARCH_QUESTIONS";
 export const CHANGE_KATEGORY = "CHANGE_KATEGORY";
@@ -10,13 +12,14 @@ const firebase = require("firebase");
 
 export const getQuestions = (kat, lang) => {
   const name = `kat_${kat}_${lang}`;
-  if (sessionStorage.getItem(name)) {
+
+  if (storage(name)) {
     // console.log("pobrano z sessionStorage");
     // retriev questions from sessionStorage
     return dispatch => {
       dispatch({
         type: GET_QUESTIONS,
-        allQuestions: JSON.parse(sessionStorage.getItem(name))
+        allQuestions: storage(name)
       });
     };
   } else {
@@ -38,7 +41,7 @@ export const getQuestions = (kat, lang) => {
               newItem.v = item.m.indexOf(".mp4") > 0 ? true : false;
               return newItem;
             });
-            sessionStorage.setItem(name, JSON.stringify(allQuestions));
+            storage(name, allQuestions);
             dispatch({
               type: GET_QUESTIONS,
               allQuestions
