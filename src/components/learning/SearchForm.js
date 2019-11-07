@@ -26,7 +26,8 @@ const SearchForm = props => {
           className="form-inline justify-content-center"
         >
           <input
-            className="form-control mb-2 mr-sm-2"
+            className="form-control mb-1 mr-1"
+            style={{ maxWidth: "150px" }}
             type="text"
             id="search"
             onChange={e => dispatch(searchQuestions(e.target.value))}
@@ -34,11 +35,11 @@ const SearchForm = props => {
             // onFocus={e => e.target.select()}
             placeholder="szukana fraza..."
           />
-          <button className="btn btn-primary mb-2 mr-sm-2" type="submit">
+          <button className="btn btn-primary mb-1 mr-1" type="submit">
             Szukaj
           </button>
           <button
-            className="btn btn-danger mb-2"
+            className="btn btn-danger mb-1"
             type="text"
             onClick={e => dispatch(searchQuestions(""))}
           >
