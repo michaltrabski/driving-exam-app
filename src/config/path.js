@@ -1,4 +1,4 @@
-export const path = {
+const path = {
   learn: "/nauka-pytan-testowych-na-prawo-jazdy",
   exam: "/wykonaj-egzamin-na-prawo-jazdy",
   exam_reviev: "/przegladaj-wyniki-twoich-egzaminow",
@@ -8,3 +8,5 @@ export const path = {
   sign_in: "/logowanie",
   sign_up: "/rejestracja"
 };
+
+export default path;

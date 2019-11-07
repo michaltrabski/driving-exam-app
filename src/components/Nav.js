@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink, Link } from "react-router-dom";
-import { path } from "../data/GlobalData";
+import path from "../config/path";
 import { Navbar } from "react-bootstrap";
 
 const Nav = () => {
