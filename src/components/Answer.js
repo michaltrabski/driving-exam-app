@@ -19,7 +19,6 @@ const AnswersWrapper = styled.div`
 `;
 
 const Answer = props => {
-  console.log("Answer = ", props);
   const [color, setcolor] = useState(colors);
   const { showAnswerNow } = props.settings;
 

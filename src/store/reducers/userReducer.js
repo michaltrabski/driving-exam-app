@@ -1,9 +1,20 @@
-import { SAVE_ANSWER } from "./../actions/userActions";
+import { SAVE_ANSWER, GET_USER_DATA } from "./../actions/userActions";
+import { storage } from "./../../functions/functions";
 
-export const userReducer = (state = initialState, actions) => {
+export const userReducer = (state = {}, actions) => {
   switch (actions.type) {
+    case GET_USER_DATA:
+      console.log("1", state);
+      state = {
+        ...state,
+        ...actions.userData
+      };
+      console.log("2", state);
+      return state;
+    //------------------------------------------------------------
     case SAVE_ANSWER:
       console.log("1", state);
+
       state = {
         ...state,
         [`id_${actions.question_id}`]: {
@@ -11,6 +22,7 @@ export const userReducer = (state = initialState, actions) => {
           userAsnwer: actions.user_answer
         }
       };
+      storage("userData", state);
       console.log("2", state);
       return state;
     //------------------------------------------------------------
@@ -18,5 +30,3 @@ export const userReducer = (state = initialState, actions) => {
       return state;
   }
 };
-
-const initialState = {};
