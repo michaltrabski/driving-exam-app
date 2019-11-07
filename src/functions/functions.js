@@ -9,3 +9,16 @@ export const storage = (key, value) => {
     console.log(err);
   }
 };
+
+export const rightAnswerArr = (allQuestions, userData) => {
+  let x = allQuestions.filter(item => {
+    let result = false;
+    if (typeof userData[`id_${item.id}`] !== "undefined") {
+      if (item.r === userData[`id_${item.id}`].userAnswer) {
+        result = true;
+      }
+    }
+    return result;
+  });
+  return x;
+};

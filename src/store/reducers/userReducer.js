@@ -19,7 +19,7 @@ export const userReducer = (state = {}, actions) => {
         ...state,
         [`id_${actions.question_id}`]: {
           ...state[`id_${actions.question_id}`],
-          userAsnwer: actions.user_answer
+          userAnswer: actions.user_answer
         }
       };
       storage("userData", state);
