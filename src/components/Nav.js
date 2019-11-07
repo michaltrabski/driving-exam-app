@@ -1,9 +1,9 @@
 import React from "react";
 import { NavLink, Link } from "react-router-dom";
-import { path } from "../../data/GlobalData";
-import { Navbar, Nav } from "react-bootstrap";
+import { path } from "../data/GlobalData";
+import { Navbar } from "react-bootstrap";
 
-const WebNav = () => {
+const Nav = () => {
   return (
     <Navbar bg="dark" variant="dark" expand="lg" className="shadow">
       <Link className="navbar-brand" to="/">
@@ -12,7 +12,7 @@ const WebNav = () => {
       </Link>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
-        <Nav className="ml-auto mr-auto">
+        <ul className="navbar-nav ml-auto mr-auto">
           <NavLink className="nav-link" to={path.learn}>
             Nauka Pytań
           </NavLink>
@@ -25,18 +25,21 @@ const WebNav = () => {
           <NavLink className="nav-link" to={path.blog}>
             Blog
           </NavLink>
-        </Nav>
-        <Nav>
+          <NavLink className="nav-link" to={path.stats}>
+            Statystyki
+          </NavLink>
+        </ul>
+        <ul className="navbar-nav">
           <NavLink className="nav-link" to={path.sign_up}>
             Rejestracja
           </NavLink>
           <NavLink className="nav-link" to={path.sign_in}>
             Logowanie
           </NavLink>
-        </Nav>
+        </ul>
       </Navbar.Collapse>
     </Navbar>
   );
 };
 
-export default WebNav;
+export default Nav;
