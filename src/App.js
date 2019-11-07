@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { PageBackground } from "./elements/elements";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Nav from "./components/Nav";
@@ -12,8 +12,18 @@ import SuperAdmin from "./pages/SuperAdmin";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import Stats from "./pages/Stats";
+import { useSelector, useDispatch } from "react-redux";
+import { getQuestions } from "./store/actions/questionsActions";
 
 function App() {
+  const kat = useSelector(state => state.questionsReducer.kat);
+  const lang = useSelector(state => state.questionsReducer.lang);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getQuestions(kat, lang)); // automaticaly get allQuestions when component is mounted
+  }, [kat, lang]);
+
   return (
     <>
       <BrowserRouter>
