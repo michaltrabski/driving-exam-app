@@ -62,11 +62,13 @@ export const questionsReducer = (state = initialState, actions) => {
       return state;
     //------------------------------------------------------------
     case GO_TO_QUESTION_NR:
+      console.log("1", state);
       state = {
         ...state,
         cqi: actions.nr - 1,
         search: ""
       };
+      console.log("2", state);
       return state;
     //------------------------------------------------------------
     case CHANGE_PER_PAGE:

@@ -1,22 +1,17 @@
-import React, { useState } from "react";
+import React from "react";
 import { Row, Col } from "../../elements/elements";
 import { useSelector, useDispatch } from "react-redux";
 import { goToQuestionNr } from "../../store/actions/questionsActions";
 
 const GoToQuestionNumber = () => {
-  const max = useSelector(state => state.questionsReducer.allQuestions.length);
-  let [nr, setNr] = useState("");
+  const cqi = useSelector(state => state.questionsReducer.cqi);
   const dispatch = useDispatch();
 
   const handleSubmit = e => {
     e.preventDefault();
     window.scrollTo(0, 0);
     document.getElementById("gtqnr").blur();
-
-    if (nr === "" || nr < 1) nr = 1;
-    if (nr > max) nr = max;
-    dispatch(goToQuestionNr(nr));
-    setNr("");
+    dispatch(goToQuestionNr(cqi + 1));
   };
 
   return (
@@ -28,10 +23,10 @@ const GoToQuestionNumber = () => {
             className="form-control mb-1 ml-1"
             style={{ width: "100px" }}
             id="gtqnr"
-            value={nr}
+            value={cqi + 1}
             type="number"
-            onChange={e => setNr(e.target.value)}
-            placeholder={1}
+            onChange={e => dispatch(goToQuestionNr(e.target.value))}
+            // onFocus={e => e.target.select()}
           />
           <button
             className="btn btn-primary form-control mb-1 ml-1"
