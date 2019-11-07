@@ -28,6 +28,7 @@ function App() {
   useEffect(() => {
     dispatch(getUserData()); // automaticaly get user data from (local/session)storage or firebase
   }, []);
+
   return (
     <>
       <BrowserRouter>

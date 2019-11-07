@@ -1,5 +1,5 @@
 import React from "react";
-import Question from "../components/Question";
+import Question from "../components/learning/Question";
 import { connect, useSelector } from "react-redux";
 import Settings from "../components/learning/Settings";
 import NextPage from "../components/learning/NextPage";

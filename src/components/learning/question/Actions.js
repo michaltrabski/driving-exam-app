@@ -2,16 +2,25 @@ import React from "react";
 import { Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faThumbsUp, faThumbsDown } from "@fortawesome/free-regular-svg-icons"; //"@fortawesome/free-regular-svg-icons" "@fortawesome/free-solid-svg-icons"
-import { Row, Col } from "../elements/elements";
+import { Row, Col } from "../../../elements/elements";
+import { useDispatch } from "react-redux";
+import { toogleLike } from "../../../store/actions/userActions";
 
-const QuestionActions = props => {
+const Actions = props => {
+  const dispatch = useDispatch();
+
   return (
     <Row mtAuto>
       <Col left>
         <Button variant="light" size="sm" className="mr-1">
           <FontAwesomeIcon icon={faThumbsDown} />
         </Button>
-        <Button variant="light" size="sm" className="mr-1">
+        <Button
+          variant="light"
+          size="sm"
+          className="mr-1"
+          onClick={() => dispatch(toogleLike(props.id))}
+        >
           <FontAwesomeIcon icon={faThumbsUp} />
         </Button>
         <Button
@@ -27,4 +36,4 @@ const QuestionActions = props => {
   );
 };
 
-export default QuestionActions;
+export default Actions;

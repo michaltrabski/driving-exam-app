@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { Container, Row, Col } from "../elements/elements";
-import Media from "./Media";
+import { Container, Row, Col } from "../../elements/elements";
+import Media from "../Media";
 import styled from "styled-components";
-import Answer from "./Answer";
-import Explanation from "./Explanation";
-import QuestionActions from "./QuestionActions";
+import Answer from "../Answer";
+import Explanation from "../Explanation";
+import Actions from "./question/Actions";
 import { useSelector } from "react-redux";
 
 const QuestionText = styled.h5`
@@ -60,7 +60,8 @@ const Question = ({ question, question: { id, t, m, v, nr, p } }) => {
             <QuestionTextRegExp t={replaceRegEx(t)} />
           )}
           <Answer {...question} />
-          <QuestionActions
+          <Actions
+            id={question.id}
             setShowExplanation={setShowExplanation}
             showExplanation={showExplanation}
           />
