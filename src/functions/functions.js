@@ -12,6 +12,12 @@ export const storage = (key, value) => {
   }
 };
 
+export const replaceRegEx = (text, search) => {
+  const regex = new RegExp(search, "gi");
+  let found = text.match(regex)[0];
+  return text.replace(regex, `<span class="bg-warning">${found}</span>`);
+};
+
 export const rightAnswerArr = (allQuestions, userData) => {
   let x = allQuestions.filter(item => {
     let result = false;

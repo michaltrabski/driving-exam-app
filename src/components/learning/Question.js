@@ -6,17 +6,12 @@ import Answer from "../Answer";
 import Explanation from "../Explanation";
 import Actions from "./question/Actions";
 import { useSelector } from "react-redux";
+import { replaceRegEx } from "../../functions/functions";
 
 const Question = ({ question, question: { t, m, v, nr, p } }) => {
   const [showExplanation, setShowExplanation] = useState(false);
   const kat = useSelector(state => state.questionsReducer.kat);
   const search = useSelector(state => state.questionsReducer.search);
-
-  const regex = new RegExp(search, "gi");
-  const replaceRegEx = text => {
-    let found = text.match(regex)[0];
-    return text.replace(regex, `<span class="bg-warning">${found}</span>`);
-  };
 
   return (
     <Container>
@@ -33,8 +28,9 @@ const Question = ({ question, question: { t, m, v, nr, p } }) => {
           {search === "" ? (
             <Text>{t}</Text>
           ) : (
-            <TextRegExp t={replaceRegEx(t)} />
+            <TextRegExp t={replaceRegEx(t, search)} />
           )}
+
           <Answer {...question} />
           <Actions
             id={question.id}
