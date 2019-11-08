@@ -7,22 +7,34 @@ import SearchForm from "../components/learning/SearchForm";
 import { Container, Row, Col } from "../elements/elements";
 import Filters from "./../components/learning/Filters";
 import SearchInfo from "../components/learning/SearchInfo";
+import { rightAnswerArr } from "../functions/functions";
 
 const Learning = props => {
   const userData = useSelector(state => state.userReducer);
-  const { allQuestions, cqi, perPage } = props;
+  const { cqi, perPage } = props;
 
-  let allQuestionsSearched = allQuestions.filter(item =>
+  let { allQuestions } = props;
+
+  // filter array based on search result
+  allQuestions = allQuestions.filter(item =>
     item.t.includes(props.search.toLowerCase())
   );
 
-  let allQuestionsFiltered = allQuestionsSearched;
+  // filter array based on filter that user choose
+  // console.log("userData", userData);
+  // allQuestions = allQuestions.slice(0, 1).filter(item => {
+  //   console.log("item", item);
+  //   console.log("userData", userData[`id_${item.id}`]);
+  //   return true;
+  // });
+
+  let amount = allQuestions.length;
 
   return (
     <>
       {/* userData = {JSON.stringify(userData)} */}
       <Container>
-        <SearchInfo amount={allQuestionsSearched.length} />
+        <SearchInfo amount={amount} />
         <Row mb>
           <Col pr>
             <Filters />
@@ -31,14 +43,14 @@ const Learning = props => {
             <SearchForm />
           </Col>
         </Row>
-        <NextPage amount={allQuestionsSearched.length} />
+        <NextPage amount={amount} />
       </Container>
-      {allQuestionsFiltered.slice(cqi, cqi + perPage).map(question => (
+      {allQuestions.slice(cqi, cqi + perPage).map(question => (
         <Question key={question.id} question={question} />
       ))}
-      {allQuestionsSearched.length > 0 && (
+      {amount > 0 && (
         <Container>
-          <NextPage amount={allQuestionsSearched.length} />
+          <NextPage amount={amount} />
         </Container>
       )}
       <Settings />
