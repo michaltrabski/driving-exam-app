@@ -66,7 +66,7 @@ const PrevievDataTable = ({ obj }) => {
             return data;
           });
         console.log(`kat_${kat}_${lang} = `, kat_x_lang);
-        // updateFirebase(`kat_${kat}_${lang}`, kat_x_lang);
+        updateFirebase(`kat_${kat}_${lang}`, kat_x_lang);
       });
     });
   };
