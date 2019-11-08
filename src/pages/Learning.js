@@ -4,7 +4,9 @@ import { connect, useSelector } from "react-redux";
 import Settings from "../components/learning/Settings";
 import NextPage from "../components/learning/NextPage";
 import SearchForm from "../components/learning/SearchForm";
-import { Container } from "../elements/elements";
+import { Container, Row, Col } from "../elements/elements";
+import Filters from "./../components/learning/Filters";
+import SearchInfo from "../components/learning/SearchInfo";
 
 const Learning = props => {
   const userData = useSelector(state => state.userReducer);
@@ -14,14 +16,24 @@ const Learning = props => {
     item.t.includes(props.search.toLowerCase())
   );
 
+  let allQuestionsFiltered = allQuestionsSearched;
+
   return (
     <>
       {/* userData = {JSON.stringify(userData)} */}
       <Container>
-        <SearchForm amount={allQuestionsSearched.length} />
+        <SearchInfo amount={allQuestionsSearched.length} />
+        <Row mb>
+          <Col pr>
+            <Filters />
+          </Col>
+          <Col pl>
+            <SearchForm />
+          </Col>
+        </Row>
         <NextPage amount={allQuestionsSearched.length} />
       </Container>
-      {allQuestionsSearched.slice(cqi, cqi + perPage).map(question => (
+      {allQuestionsFiltered.slice(cqi, cqi + perPage).map(question => (
         <Question key={question.id} question={question} />
       ))}
       {allQuestionsSearched.length > 0 && (
