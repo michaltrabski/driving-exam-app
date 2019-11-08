@@ -27,9 +27,7 @@ const Question = ({ question, question: { id, t, m, v, nr, p, r } }) => {
         </Col>
         <Col pl left flex column>
           {search === "" ? (
-            <Text className={getTextColor(r, userDataQuestion)}>
-              {id} {t} {r}
-            </Text>
+            <Text className={getTextColor(r, userDataQuestion)}>{t}</Text>
           ) : (
             <TextRegExp
               t={replaceRegEx(t, search)}
@@ -54,7 +52,7 @@ const Question = ({ question, question: { id, t, m, v, nr, p, r } }) => {
 const Text = styled.h5`
   margin: 0;
   padding: 0;
-  margin-top: 10px;
+  margin-top: 5px;
   @media (${({ theme }) => theme.tablet}) {
     margin-top: 0;
   }

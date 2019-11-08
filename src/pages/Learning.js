@@ -16,7 +16,7 @@ const Learning = props => {
 
   return (
     <>
-      userData = {JSON.stringify(userData)}
+      {/* userData = {JSON.stringify(userData)} */}
       <Container>
         <SearchForm amount={allQuestionsSearched.length} />
         <NextPage amount={allQuestionsSearched.length} />
