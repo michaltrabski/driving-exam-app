@@ -7,31 +7,7 @@ import Explanation from "../Explanation";
 import Actions from "./question/Actions";
 import { useSelector } from "react-redux";
 
-const QuestionText = styled.h5`
-  margin: 0;
-  padding: 0;
-  margin-top: 10px;
-  @media (${({ theme }) => theme.tablet}) {
-    margin-top: 0;
-  }
-`;
-const QuestionInfo = styled.p`
-  margin: 0;
-  padding: 0;
-  margin-bottom: 10px;
-`;
-
-const QuestionTextRegExp = props => {
-  return (
-    <QuestionText
-      dangerouslySetInnerHTML={{
-        __html: props.t
-      }}
-    ></QuestionText>
-  );
-};
-
-const Question = ({ question, question: { id, t, m, v, nr, p } }) => {
+const Question = ({ question, question: { t, m, v, nr, p } }) => {
   const [showExplanation, setShowExplanation] = useState(false);
   const kat = useSelector(state => state.questionsReducer.kat);
   const search = useSelector(state => state.questionsReducer.search);
@@ -45,9 +21,9 @@ const Question = ({ question, question: { id, t, m, v, nr, p } }) => {
   return (
     <Container>
       <Row>
-        <QuestionInfo>
+        <Info>
           <strong>{nr}</strong> kat. {kat.toUpperCase()}, pkt {p}
-        </QuestionInfo>
+        </Info>
       </Row>
       <Row>
         <Col pr>
@@ -55,9 +31,9 @@ const Question = ({ question, question: { id, t, m, v, nr, p } }) => {
         </Col>
         <Col pl left flex column>
           {search === "" ? (
-            <QuestionText>{t}</QuestionText>
+            <Text>{t}</Text>
           ) : (
-            <QuestionTextRegExp t={replaceRegEx(t)} />
+            <TextRegExp t={replaceRegEx(t)} />
           )}
           <Answer {...question} />
           <Actions
@@ -72,4 +48,26 @@ const Question = ({ question, question: { id, t, m, v, nr, p } }) => {
   );
 };
 
+const Text = styled.h5`
+  margin: 0;
+  padding: 0;
+  margin-top: 10px;
+  @media (${({ theme }) => theme.tablet}) {
+    margin-top: 0;
+  }
+`;
+const Info = styled.p`
+  margin: 0;
+  padding: 0;
+  margin-bottom: 10px;
+`;
+const TextRegExp = props => {
+  return (
+    <Text
+      dangerouslySetInnerHTML={{
+        __html: props.t
+      }}
+    ></Text>
+  );
+};
 export default Question;

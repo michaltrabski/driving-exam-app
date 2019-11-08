@@ -2,12 +2,6 @@ import React from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 
-const StyledSearchInfo = styled.p`
-  @media (${({ theme }) => theme.tablet}) {
-    font-size: 2.5rem;
-  }
-`;
-
 const SearchInfo = ({ amount }) => {
   const max = useSelector(state => state.questionsReducer.allQuestions.length);
   const search = useSelector(state => state.questionsReducer.search);
@@ -20,11 +14,17 @@ const SearchInfo = ({ amount }) => {
 
   return (
     search !== "" && (
-      <StyledSearchInfo>
+      <Info className="bg-warning">
         Znaleziono <strong>{amount}</strong> {question} z {max}
-      </StyledSearchInfo>
+      </Info>
     )
   );
 };
 
+const Info = styled.p`
+  text-align: center;
+  @media (${({ theme }) => theme.tablet}) {
+    font-size: 2.5rem;
+  }
+`;
 export default SearchInfo;
