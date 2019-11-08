@@ -12,6 +12,17 @@ export const storage = (key, value) => {
   }
 };
 
+export const getTextColor = (right_answer, userDataQuestion) => {
+  if (typeof userDataQuestion !== "undefined") {
+    if (typeof userDataQuestion.userAnswer !== "undefined") {
+      return right_answer === userDataQuestion.userAnswer
+        ? "text-success"
+        : "text-danger";
+    }
+  }
+  return;
+};
+
 export const replaceRegEx = (text, search) => {
   const regex = new RegExp(search, "gi");
   let found = text.match(regex)[0];

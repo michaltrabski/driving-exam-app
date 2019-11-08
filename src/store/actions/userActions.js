@@ -13,7 +13,7 @@ export const toogleLike = question_id => {
 
 export const getUserData = () => {
   let userData = storage("userData");
-  console.log("userData", userData);
+  // console.log("userData", userData);
   if (userData) {
     // From storage
     return dispatch =>
@@ -32,12 +32,9 @@ export const getUserData = () => {
 };
 
 export const saveAnswer = (question_id, user_answer) => {
-  return dispatch =>
-    // do some staff here
-
-    dispatch({
-      type: SAVE_ANSWER,
-      question_id,
-      user_answer
-    });
+  return {
+    type: SAVE_ANSWER,
+    question_id,
+    user_answer
+  };
 };

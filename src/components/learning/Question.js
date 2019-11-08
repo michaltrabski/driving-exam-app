@@ -6,12 +6,13 @@ import Answer from "../Answer";
 import Explanation from "../Explanation";
 import Actions from "./question/Actions";
 import { useSelector } from "react-redux";
-import { replaceRegEx } from "../../functions/functions";
+import { replaceRegEx, getTextColor } from "../../functions/functions";
 
-const Question = ({ question, question: { t, m, v, nr, p } }) => {
+const Question = ({ question, question: { id, t, m, v, nr, p, r } }) => {
   const [showExplanation, setShowExplanation] = useState(false);
   const kat = useSelector(state => state.questionsReducer.kat);
   const search = useSelector(state => state.questionsReducer.search);
+  const userDataQuestion = useSelector(state => state.userReducer[`id_${id}`]);
 
   return (
     <Container>
@@ -26,9 +27,15 @@ const Question = ({ question, question: { t, m, v, nr, p } }) => {
         </Col>
         <Col pl left flex column>
           {search === "" ? (
-            <Text>{t}</Text>
+            <Text className={getTextColor(r, userDataQuestion)}>
+              {id} {t} {r}
+            </Text>
           ) : (
-            <TextRegExp t={replaceRegEx(t, search)} />
+            <TextRegExp
+              t={replaceRegEx(t, search)}
+              r={r}
+              userDataQuestion={userDataQuestion}
+            />
           )}
 
           <Answer {...question} />
@@ -52,6 +59,7 @@ const Text = styled.h5`
     margin-top: 0;
   }
 `;
+
 const Info = styled.p`
   margin: 0;
   padding: 0;
@@ -60,6 +68,7 @@ const Info = styled.p`
 const TextRegExp = props => {
   return (
     <Text
+      className={getTextColor(props.r, props.userDataQuestion)}
       dangerouslySetInnerHTML={{
         __html: props.t
       }}
