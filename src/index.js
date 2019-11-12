@@ -8,6 +8,7 @@ import { ThemeProvider } from "styled-components";
 import { theme } from "./theme/Theme";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { store } from "./store/reducers/rootReducer";
+import { setCurrentUser } from "./store/actions/usersActions";
 
 const firebase = require("firebase");
 require("firebase/firestore");
@@ -21,17 +22,17 @@ firebase.initializeApp({
   appId: "1:14333994731:web:6b71c6fe3b41042c4a80ae"
 });
 
-// firebase.auth().onAuthStateChanged(user => {
-//   if (user) {
-//     // User is signed in.
-//     console.log("logged as", user.email);
-//     // store.dispatch(setCurrentUser(user.mail));
-//   } else {
-//     console.log("User logged out");
-//     // User is signed out.
-//     // store.dispatch(setCurrentUser({}));
-//   }
-// });
+firebase.auth().onAuthStateChanged(user => {
+  if (user) {
+    // User is signed in.
+    console.log("logged as = ", user);
+    store.dispatch(setCurrentUser(user));
+  } else {
+    console.log("User logged out");
+    // User is signed out.
+    // store.dispatch(setCurrentUser({}));
+  }
+});
 
 ReactDOM.render(
   <Provider store={store}>
