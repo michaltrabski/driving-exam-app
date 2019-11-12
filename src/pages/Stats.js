@@ -13,11 +13,10 @@ const Stats = props => {
   const allQuestions = useSelector(
     state => state.questionsReducer.allQuestions
   );
-  const userData = useSelector(state => state.userReducer);
 
-  const all = allGivenAnswerArr(allQuestions, userData).length;
-  const good = rightAnswerArr(allQuestions, userData).length;
-  const bad = wrongAnswerArr(allQuestions, userData).length;
+  const all = allGivenAnswerArr(allQuestions, allQuestions).length;
+  const good = rightAnswerArr(allQuestions, allQuestions).length;
+  const bad = wrongAnswerArr(allQuestions, allQuestions).length;
 
   const handleGood = () => {
     console.log("set filter with goog questions and redirect to learn page");
@@ -28,7 +27,6 @@ const Stats = props => {
       <Row>
         <Col>
           <p>stats</p>
-          <div>userData = {JSON.stringify(userData)}</div>
           <div>Wszystkie pytania = {allQuestions.length}</div>
           <p>
             Mamy {allQuestions.length} pytań testowych na kategorię X w naszej

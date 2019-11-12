@@ -1,5 +1,5 @@
 import { createStore, combineReducers, applyMiddleware } from "redux";
-import { userReducer } from "./userReducer";
+import { usersReducer } from "./usersReducer";
 import { settingsReducer } from "./settingsReducer";
 import { questionsReducer } from "./questionsReducer";
 import thunk from "redux-thunk";
@@ -12,7 +12,7 @@ import thunk from "redux-thunk";
 // };
 
 export const store = createStore(
-  combineReducers({ questionsReducer, userReducer, settingsReducer }),
+  combineReducers({ questionsReducer, usersReducer, settingsReducer }),
   {},
   applyMiddleware(thunk)
 );

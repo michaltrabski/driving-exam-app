@@ -24,6 +24,7 @@ const initialState = {
 
 export const questionsReducer = (state = initialState, actions) => {
   const { perPage, cqi, kat, lang } = state;
+  const name = `kat_${kat}_${lang}`;
   switch (actions.type) {
     case GET_QUESTIONS:
       state = {
@@ -42,7 +43,7 @@ export const questionsReducer = (state = initialState, actions) => {
           return q;
         })
       };
-      storage(`user_kat_${kat}_${lang}`, state);
+      storage(name, state.allQuestions);
 
       console.log("2", state);
       console.log("3", state.allQuestions[0]);

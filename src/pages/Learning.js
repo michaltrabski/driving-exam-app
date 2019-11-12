@@ -1,16 +1,14 @@
 import React from "react";
 import Question from "../components/learning/Question";
-import { connect, useSelector } from "react-redux";
+import { connect } from "react-redux";
 import Settings from "../components/learning/Settings";
 import NextPage from "../components/learning/NextPage";
 import SearchForm from "../components/learning/SearchForm";
 import { Container, Row, Col } from "../elements/elements";
 import Filters from "./../components/learning/Filters";
 import SearchInfo from "../components/learning/SearchInfo";
-import { rightAnswerArr } from "../functions/functions";
 
 const Learning = props => {
-  const userData = useSelector(state => state.userReducer);
   const { cqi, perPage } = props;
 
   let { allQuestions } = props;
@@ -32,7 +30,6 @@ const Learning = props => {
 
   return (
     <>
-      {/* userData = {JSON.stringify(userData)} */}
       <Container>
         <SearchInfo amount={amount} />
         <Row mb>

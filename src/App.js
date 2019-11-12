@@ -14,7 +14,6 @@ import SignUp from "./pages/SignUp";
 import Stats from "./pages/Stats";
 import { useSelector, useDispatch } from "react-redux";
 import { getQuestions } from "./store/actions/questionsActions";
-import { getUserData } from "./store/actions/userActions";
 
 function App() {
   const kat = useSelector(state => state.questionsReducer.kat);
@@ -24,10 +23,6 @@ function App() {
   useEffect(() => {
     dispatch(getQuestions(kat, lang)); // automaticaly get allQuestions when component is mounted
   }, [kat, lang]);
-
-  useEffect(() => {
-    dispatch(getUserData()); // automaticaly get user data from (local/session)storage or firebase
-  }, []);
 
   return (
     <>

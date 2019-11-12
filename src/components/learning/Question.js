@@ -18,7 +18,6 @@ const Question = ({
   const [showExplanation, setShowExplanation] = useState(false);
   const kat = useSelector(state => state.questionsReducer.kat);
   const search = useSelector(state => state.questionsReducer.search);
-  const userDataQuestion = useSelector(state => state.userReducer[`id_${id}`]);
 
   return (
     <Container>
@@ -36,12 +35,7 @@ const Question = ({
           {search === "" ? (
             <Text className={questionAnswerTextColor(r, userAns)}>{t}</Text>
           ) : (
-            <TextRegExp
-              t={replaceRegEx(t, search)}
-              r={r}
-              userAns={userAns}
-              userDataQuestion={userDataQuestion}
-            />
+            <TextRegExp t={replaceRegEx(t, search)} r={r} userAns={userAns} />
           )}
           <Answer {...question} />
           <Actions
