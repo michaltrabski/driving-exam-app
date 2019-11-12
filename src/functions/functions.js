@@ -12,6 +12,17 @@ export const storage = (key, value) => {
   }
 };
 
+//Filtering questions
+export const filterRightAnswers = question => {
+  return question.r === question.userAns ? true : false;
+};
+
+export const filterWrongAnswers = question => {
+  return question.r !== question.userAns && question.userAns !== false
+    ? true
+    : false;
+};
+
 export const questionAnswerTextColor = (right_answer, userAns) => {
   let color = "";
   if (right_answer === userAns) color = "text-success";

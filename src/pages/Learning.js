@@ -7,6 +7,8 @@ import SearchForm from "../components/learning/SearchForm";
 import { Container, Row, Col } from "../elements/elements";
 import Filters from "./../components/learning/Filters";
 import SearchInfo from "../components/learning/SearchInfo";
+import { filterRightAnswers } from "../functions/functions";
+import { filterWrongAnswers } from "./../functions/functions";
 
 const Learning = props => {
   const { cqi, perPage } = props;
@@ -14,17 +16,15 @@ const Learning = props => {
   let { allQuestions } = props;
 
   // filter array based on search result
-  allQuestions = allQuestions.filter(item =>
-    item.t.includes(props.search.toLowerCase())
+  allQuestions = allQuestions.filter(question =>
+    question.t.includes(props.search.toLowerCase())
   );
 
   // filter array based on filter that user choose
-  // console.log("userData", userData);
-  // allQuestions = allQuestions.slice(0, 1).filter(item => {
-  //   console.log("item", item);
-  //   console.log("userData", userData[`id_${item.id}`]);
-  //   return true;
-  // });
+
+  // allQuestions = allQuestions;
+  // .filter(filterRightAnswers)
+  // .filter(filterWrongAnswers);
 
   let amount = allQuestions.length;
 

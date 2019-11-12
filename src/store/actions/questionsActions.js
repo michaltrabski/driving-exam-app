@@ -15,11 +15,7 @@ export const getQuestions = (kat, lang) => {
   const name = `kat_${kat}_${lang}`;
 
   if (storage(name)) {
-    // console.log(
-    //   "questionsActions.js => getQuestions() => questions got from Storage()"
-    // );
-    // console.log(storage(name)[0]);
-    // retriev questions from sessionStorage
+    // retriev questions from Storage
     return dispatch => {
       dispatch({
         type: GET_QUESTIONS,
@@ -27,9 +23,6 @@ export const getQuestions = (kat, lang) => {
       });
     };
   } else {
-    // console.log(
-    //   "questionsActions.js => getQuestions() => questions got from firebase"
-    // );
     // retriev questions from firebase
     return dispatch => {
       firebase
