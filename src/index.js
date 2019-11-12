@@ -24,13 +24,8 @@ firebase.initializeApp({
 
 firebase.auth().onAuthStateChanged(user => {
   if (user) {
-    // User is signed in.
-    console.log("logged as = ", user);
+    console.log("wyslano onAuthStateChanged setCurrentUser");
     store.dispatch(setCurrentUser(user));
-  } else {
-    console.log("User logged out");
-    // User is signed out.
-    // store.dispatch(setCurrentUser({}));
   }
 });
 
