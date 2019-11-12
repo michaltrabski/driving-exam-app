@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Button } from "react-bootstrap";
 import { connect } from "react-redux";
-import { saveAnswer } from "./../store/actions/userActions";
+import { saveAnswer } from "./../store/actions/questionsActions";
 import styled from "styled-components";
 
 const colors = {
@@ -29,18 +29,18 @@ const Answer = props => {
     setcolor(newColors);
   }, [showAnswerNow]);
 
-  const handleAnswer = user_answer => {
-    if (user_answer === props.r) {
-      setcolor({ ...color, [user_answer]: "success" });
+  const handleAnswer = userAns => {
+    if (userAns === props.r) {
+      setcolor({ ...color, [userAns]: "success" });
     } else {
       setcolor({
         ...color,
         [props.r]: "success",
-        [user_answer]: "danger"
+        [userAns]: "danger"
       });
     }
     // props.setShowExplanation(true);
-    props.saveAnswer(props.id, user_answer);
+    props.saveAnswer(props.id, userAns);
   };
 
   const yesNo = (
@@ -91,8 +91,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    saveAnswer: (question_id, user_answer) => {
-      dispatch(saveAnswer(question_id, user_answer));
+    saveAnswer: (question_id, userAns) => {
+      dispatch(saveAnswer(question_id, userAns));
     }
   };
 };

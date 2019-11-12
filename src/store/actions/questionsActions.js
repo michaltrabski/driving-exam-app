@@ -7,6 +7,7 @@ export const NEXT_PAGE = "NEXT_PAGE";
 export const PREVIES_PAGE = "PREVIES_PAGE";
 export const GO_TO_QUESTION_NR = "GO_TO_QUESTION_NR";
 export const CHANGE_PER_PAGE = "CHANGE_PER_PAGE";
+export const SAVE_ANSWER = "SAVE_ANSWER";
 
 const firebase = require("firebase");
 
@@ -14,7 +15,10 @@ export const getQuestions = (kat, lang) => {
   const name = `kat_${kat}_${lang}`;
 
   if (storage(name)) {
-    // console.log("pobrano z sessionStorage");
+    console.log(
+      "questionsActions.js => getQuestions() => questions got from Storage()"
+    );
+    console.log(storage(name)[0]);
     // retriev questions from sessionStorage
     return dispatch => {
       dispatch({
@@ -23,7 +27,9 @@ export const getQuestions = (kat, lang) => {
       });
     };
   } else {
-    // console.log("pobrano z firebase", sessionStorage.getItem(name));
+    console.log(
+      "questionsActions.js => getQuestions() => questions got from firebase"
+    );
     // retriev questions from firebase
     return dispatch => {
       firebase
@@ -39,6 +45,7 @@ export const getQuestions = (kat, lang) => {
               newItem.nr = i + 1;
               newItem.m = newItem.m === "" ? "empty.jpg" : newItem.m;
               newItem.v = item.m.indexOf(".mp4") > 0 ? true : false;
+              newItem.userAns = false;
               return newItem;
             });
             storage(name, allQuestions);
@@ -57,6 +64,14 @@ export const getQuestions = (kat, lang) => {
   }
 };
 
+export const saveAnswer = (question_id, userAns) => {
+  console.log(question_id, userAns);
+  return {
+    type: SAVE_ANSWER,
+    question_id,
+    userAns
+  };
+};
 export const changeKategory = kat => {
   return {
     type: CHANGE_KATEGORY,

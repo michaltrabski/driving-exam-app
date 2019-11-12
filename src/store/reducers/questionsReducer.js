@@ -6,29 +6,46 @@ import {
   NEXT_PAGE,
   PREVIES_PAGE,
   GO_TO_QUESTION_NR,
-  CHANGE_PER_PAGE
+  CHANGE_PER_PAGE,
+  SAVE_ANSWER
 } from "./../actions/questionsActions";
 
 const initialState = {
   allQuestions: [],
-  katList: ["a", "b", "c", "d"], //awaylable kategory that I have questions
-  langList: ["pl", "eng", "de"], //awaylable kategory that I have questions
+  katList: ["a", "b", "c", "d"], //awaylable kategory list that I have questions in
+  langList: ["pl", "eng", "de"], //awaylable language list that I have questions in
   kat: storage("kat") ? storage("kat") : "b", //default category when you load page first time
   lang: "pl", //default language when you load page first time
-  perPage: storage("perPage") ? storage("perPage") : 1,
+  perPage: storage("perPage") ? storage("perPage") : 1, //default how many questions are dispayd on page
   cqi: 0, // current question index
   perPageOptions: [1, 2, 5, 10, 25],
-  search: ""
+  search: "" // default search string - this is a string that user type into a search form
 };
 
 export const questionsReducer = (state = initialState, actions) => {
-  const { perPage, cqi } = state;
+  const { perPage, cqi, kat, lang } = state;
   switch (actions.type) {
     case GET_QUESTIONS:
       state = {
         ...state,
         allQuestions: actions.allQuestions
       };
+      return state;
+    //------------------------------------------------------------
+    case SAVE_ANSWER:
+      console.log("1", state);
+      state = {
+        ...state,
+        allQuestions: state.allQuestions.map(q => {
+          q.userAns =
+            q.id === actions.question_id ? actions.userAns : q.userAns;
+          return q;
+        })
+      };
+      storage(`user_kat_${kat}_${lang}`, state);
+
+      console.log("2", state);
+      console.log("3", state.allQuestions[0]);
       return state;
     //------------------------------------------------------------
     case NEXT_PAGE:
@@ -64,13 +81,12 @@ export const questionsReducer = (state = initialState, actions) => {
       return state;
     //------------------------------------------------------------
     case GO_TO_QUESTION_NR:
-      console.log("1", state);
       state = {
         ...state,
         cqi: actions.nr - 1,
         search: ""
       };
-      console.log("2", state);
+
       return state;
     //------------------------------------------------------------
     case CHANGE_PER_PAGE:

@@ -12,15 +12,13 @@ export const storage = (key, value) => {
   }
 };
 
-export const getTextColor = (right_answer, userDataQuestion) => {
-  if (typeof userDataQuestion !== "undefined") {
-    if (typeof userDataQuestion.userAnswer !== "undefined") {
-      return right_answer === userDataQuestion.userAnswer
-        ? "text-success"
-        : "text-danger";
-    }
-  }
-  return;
+export const questionAnswerTextColor = (right_answer, userAns) => {
+  let color = "";
+  if (right_answer === userAns) color = "text-success";
+  if (right_answer !== userAns) color = "text-danger";
+  if (!userAns) color = "";
+
+  return color;
 };
 
 export const replaceRegEx = (text, search) => {

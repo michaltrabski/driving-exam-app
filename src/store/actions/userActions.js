@@ -1,7 +1,6 @@
 import { storage } from "./../../functions/functions";
 
 export const GET_USER_DATA = "GET_USER_DATA";
-export const SAVE_ANSWER = "SAVE_ANSWER";
 export const TOOGLE_LIKE = "TOOGLE_LIKE";
 
 export const toogleLike = question_id => {
@@ -29,12 +28,4 @@ export const getUserData = () => {
         userData: {}
       });
   }
-};
-
-export const saveAnswer = (question_id, user_answer) => {
-  return {
-    type: SAVE_ANSWER,
-    question_id,
-    user_answer
-  };
 };

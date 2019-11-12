@@ -1,8 +1,4 @@
-import {
-  SAVE_ANSWER,
-  GET_USER_DATA,
-  TOOGLE_LIKE
-} from "./../actions/userActions";
+import { GET_USER_DATA, TOOGLE_LIKE } from "./../actions/userActions";
 import { storage } from "./../../functions/functions";
 
 export const userReducer = (state = {}, actions) => {
@@ -16,17 +12,7 @@ export const userReducer = (state = {}, actions) => {
       };
       return state;
     //------------------------------------------------------------
-    case SAVE_ANSWER:
-      state = {
-        ...state,
-        [id]: {
-          ...state[id],
-          userAnswer: actions.user_answer
-        }
-      };
-      storage("userData", state);
-      return state;
-    //------------------------------------------------------------
+
     case TOOGLE_LIKE:
       state = {
         ...state,
