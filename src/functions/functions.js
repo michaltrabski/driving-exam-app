@@ -13,14 +13,22 @@ export const storage = (key, value) => {
 };
 
 //Filtering questions
-export const filterRightAnswers = question => {
-  return question.r === question.userAns ? true : false;
-};
-
-export const filterWrongAnswers = question => {
-  return question.r !== question.userAns && question.userAns !== false
-    ? true
-    : false;
+export const filterQuestions = (question, filter) => {
+  switch (filter) {
+    case "SHOW_ALL":
+      return true;
+    //--------------------------------------------------------------
+    case "SHOW_GOOD":
+      return question.r === question.userAns ? true : false;
+    //--------------------------------------------------------------
+    case "SHOW_BAD":
+      return question.r !== question.userAns && question.userAns !== false
+        ? true
+        : false;
+    //--------------------------------------------------------------
+    default:
+      return true;
+  }
 };
 
 export const questionAnswerTextColor = (right_answer, userAns) => {

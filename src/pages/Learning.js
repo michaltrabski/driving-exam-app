@@ -7,8 +7,7 @@ import SearchForm from "../components/learning/SearchForm";
 import { Container, Row, Col } from "../elements/elements";
 import Filters from "./../components/learning/Filters";
 import SearchInfo from "../components/learning/SearchInfo";
-import { filterRightAnswers } from "../functions/functions";
-import { filterWrongAnswers } from "./../functions/functions";
+import { filterQuestions } from "../functions/functions";
 
 const Learning = props => {
   const { cqi, perPage } = props;
@@ -21,16 +20,19 @@ const Learning = props => {
   );
 
   // filter array based on filter that user choose
-
-  // allQuestions = allQuestions;
-  // .filter(filterRightAnswers)
-  // .filter(filterWrongAnswers);
+  let filter = "SHOW_ALL";
+  if (filter !== "SHOW_ALL") {
+    allQuestions = allQuestions.filter(question =>
+      filterQuestions(question, filter)
+    );
+  }
 
   let amount = allQuestions.length;
 
   return (
     <>
       <Container>
+        {props.whatFilter}
         <SearchInfo amount={amount} />
         <Row mb>
           <Col pr>
@@ -60,7 +62,8 @@ const mapStateToProps = state => {
     allQuestions: state.questionsReducer.allQuestions,
     cqi: state.questionsReducer.cqi,
     perPage: state.questionsReducer.perPage,
-    search: state.questionsReducer.search
+    search: state.questionsReducer.search,
+    whatFilter: state.questionsReducer.whatFilter
   };
 };
 

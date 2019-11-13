@@ -19,7 +19,8 @@ const initialState = {
   perPage: storage("perPage") ? storage("perPage") : 1, //default how many questions are dispayd on page
   cqi: 0, // current question index
   perPageOptions: [1, 2, 5, 10, 25],
-  search: "" // default search string - this is a string that user type into a search form
+  search: "", // default search string - this is a string that user type into a search form
+  whatFilter: "nofilter"
 };
 
 export const questionsReducer = (state = initialState, actions) => {
