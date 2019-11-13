@@ -8,6 +8,7 @@ export const PREVIES_PAGE = "PREVIES_PAGE";
 export const GO_TO_QUESTION_NR = "GO_TO_QUESTION_NR";
 export const CHANGE_PER_PAGE = "CHANGE_PER_PAGE";
 export const SAVE_ANSWER = "SAVE_ANSWER";
+export const CHANGE_FILTER_OPTION = "CHANGE_FILTER_OPTION";
 
 const firebase = require("firebase");
 
@@ -57,6 +58,13 @@ export const getQuestions = (kat, lang) => {
   }
 };
 
+export const changeFilterOption = filterOption => {
+  return {
+    type: CHANGE_FILTER_OPTION,
+    filterOption
+  };
+};
+
 export const saveAnswer = (question_id, userAns) => {
   console.log(question_id, userAns);
   return {
@@ -65,6 +73,7 @@ export const saveAnswer = (question_id, userAns) => {
     userAns
   };
 };
+
 export const changeKategory = kat => {
   return {
     type: CHANGE_KATEGORY,

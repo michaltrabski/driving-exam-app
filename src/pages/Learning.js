@@ -1,6 +1,6 @@
 import React from "react";
 import Question from "../components/learning/Question";
-import { connect } from "react-redux";
+import { connect, useSelector } from "react-redux";
 import Settings from "../components/learning/Settings";
 import NextPage from "../components/learning/NextPage";
 import SearchForm from "../components/learning/SearchForm";
@@ -10,6 +10,10 @@ import SearchInfo from "../components/learning/SearchInfo";
 import { filterQuestions } from "../functions/functions";
 
 const Learning = props => {
+  const filterOption = useSelector(
+    state => state.questionsReducer.filterOption
+  );
+
   const { cqi, perPage } = props;
 
   let { allQuestions } = props;
@@ -20,10 +24,9 @@ const Learning = props => {
   );
 
   // filter array based on filter that user choose
-  let filter = "SHOW_ALL";
-  if (filter !== "SHOW_ALL") {
+  if (filterOption !== "SHOW_ALL") {
     allQuestions = allQuestions.filter(question =>
-      filterQuestions(question, filter)
+      filterQuestions(question, filterOption)
     );
   }
 

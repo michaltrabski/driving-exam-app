@@ -7,7 +7,8 @@ import {
   PREVIES_PAGE,
   GO_TO_QUESTION_NR,
   CHANGE_PER_PAGE,
-  SAVE_ANSWER
+  SAVE_ANSWER,
+  CHANGE_FILTER_OPTION
 } from "./../actions/questionsActions";
 
 const initialState = {
@@ -20,7 +21,24 @@ const initialState = {
   cqi: 0, // current question index
   perPageOptions: [1, 2, 5, 10, 25],
   search: "", // default search string - this is a string that user type into a search form
-  whatFilter: "nofilter"
+  filterOption: "SHOW_ALL",
+  filterOptions: [
+    { option: "FILTR 1: Pokaż wszystkie pytania", value: "SHOW_ALL" },
+    {
+      option: "FILTR 2: Pokaż pytania, na które odpowiedziałeś dobrze",
+      value: "SHOW_GOOD"
+    },
+    {
+      option: "FILTR 3: Pokaż pytania, na które odpowiedziałeś źle",
+      value: "SHOW_BAD"
+    },
+    { option: "DZIAŁ 1: Pierwsza pomoc", value: "Pierwsza pomoc" },
+    { option: "DZIAŁ 2: Znaki drogowe", value: "Znaki drogowe" },
+    {
+      option: "DZIAŁ 3: Pierwszeństwo przejazdu",
+      value: "Pierwszeństwo przejazdu"
+    }
+  ]
 };
 
 export const questionsReducer = (state = initialState, actions) => {
@@ -35,7 +53,6 @@ export const questionsReducer = (state = initialState, actions) => {
       return state;
     //------------------------------------------------------------
     case SAVE_ANSWER:
-      console.log("1", state);
       state = {
         ...state,
         allQuestions: state.allQuestions.map(q => {
@@ -45,9 +62,13 @@ export const questionsReducer = (state = initialState, actions) => {
         })
       };
       storage(name, state.allQuestions);
-
-      console.log("2", state);
-      console.log("3", state.allQuestions[0]);
+      return state;
+    //------------------------------------------------------------
+    case CHANGE_FILTER_OPTION:
+      state = {
+        ...state,
+        filterOption: actions.filterOption
+      };
       return state;
     //------------------------------------------------------------
     case NEXT_PAGE:
