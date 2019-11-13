@@ -32,6 +32,10 @@ const initialState = {
       option: "FILTR 3: Pokaż pytania, na które odpowiedziałeś źle",
       value: "SHOW_BAD"
     },
+    {
+      option: "FILTR 4: Pokaż pytania bez odpowiedzi",
+      value: "SHOW_WITHOUT"
+    },
     { option: "DZIAŁ 1: Pierwsza pomoc", value: "Pierwsza pomoc" },
     { option: "DZIAŁ 2: Znaki drogowe", value: "Znaki drogowe" },
     {
@@ -67,6 +71,7 @@ export const questionsReducer = (state = initialState, actions) => {
     case CHANGE_FILTER_OPTION:
       state = {
         ...state,
+        search: "",
         filterOption: actions.filterOption
       };
       return state;
@@ -89,7 +94,8 @@ export const questionsReducer = (state = initialState, actions) => {
       state = {
         ...state,
         cqi: 0,
-        search: actions.search
+        search: actions.search,
+        filterOption: "SHOW_ALL"
       };
       return state;
     //------------------------------------------------------------

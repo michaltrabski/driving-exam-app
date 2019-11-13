@@ -26,6 +26,9 @@ export const filterQuestions = (question, filter) => {
         ? true
         : false;
     //--------------------------------------------------------------
+    case "SHOW_WITHOUT":
+      return question.userAns === false ? true : false;
+    //--------------------------------------------------------------
     default:
       return true;
   }

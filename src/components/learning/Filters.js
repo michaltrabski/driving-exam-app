@@ -15,7 +15,8 @@ const Filters = () => {
       <select
         value={filterOption}
         onChange={e => dispatch(changeFilterOption(e.target.value))}
-        className="form-control mb-1 mr-1"
+        className={`form-control mb-1 mr-1 ${filterOption === "SHOW_ALL" ||
+          "bg-success text-light"}`}
         type="select"
       >
         {filterOptions.map(option => (

@@ -16,7 +16,8 @@ const SearchForm = props => {
     <>
       <form onSubmit={handleSubmit} className="form-inline">
         <input
-          className="form-control mb-1"
+          className={`form-control mb-1 ${search === "" ||
+            "bg-success text-light"}`}
           style={{ width: "calc(100% - 115px)" }}
           type="text"
           id="search"
