@@ -16,7 +16,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { getQuestions } from "./store/actions/questionsActions";
 
 function App() {
-  const user = useSelector(state => state.usersReducer);
   const kat = useSelector(state => state.questionsReducer.kat);
   const lang = useSelector(state => state.questionsReducer.lang);
   const dispatch = useDispatch();
@@ -29,7 +28,6 @@ function App() {
     <>
       <BrowserRouter>
         <Nav />
-        {JSON.stringify(user)}
         <PageBackground>
           <Switch>
             <Route exact path="/" component={Home} />
