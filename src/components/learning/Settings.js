@@ -1,5 +1,4 @@
 import React from "react";
-import { Form, Button } from "react-bootstrap";
 import { Container, Row, Col } from "../../elements/elements";
 import { connect } from "react-redux";
 import { toogleShowAnswerNow } from "../../store/actions/settingsActions";
@@ -31,53 +30,54 @@ const Settings = props => {
 
       <Row>
         <Col>
-          <Form>
-            <Form.Check
-              className="mb-3 success"
-              custom
-              type="checkbox"
-              id="njgkrefd"
-              label="Czy pokazywać odpowiedzi od razu?"
-              onChange={() => props.toogleShowAnswerNow()}
-              checked={props.settings.showAnswerNow}
-            />
-          </Form>
+          <form className="mb-3">
+            <div className="custom-control custom-checkbox">
+              <input
+                type="checkbox"
+                className="custom-control-input"
+                id="njgkrefd"
+                onChange={() => props.toogleShowAnswerNow()}
+                checked={props.settings.showAnswerNow}
+              />
+              <label className="custom-control-label" htmlFor="njgkrefd">
+                Czy pokazywać odpowiedzi od razu?
+              </label>
+            </div>
+          </form>
         </Col>
       </Row>
       <GoToQuestionNumber />
       <Row>
         <Col>
-          <Form>
-            <Form.Group controlId="exampleForm.ControlSelect1">
-              <Form.Label>Ile pytań pokazywać na jednej stronie?</Form.Label>
-              <Form.Control
-                value={props.perPage}
-                as="select"
-                className="d-inline w-auto mr-1"
-                onChange={e => handleChangePerPage(e)}
-              >
-                {props.perPageOptions.map(opt => (
-                  <option key={opt} value={opt}>
-                    {opt}
-                  </option>
-                ))}
-              </Form.Control>
-            </Form.Group>
-          </Form>
+          <form className="form-inline">
+            <label htmlFor="">Ile pytań pokazywać na jednej stronie?</label>
+            <select
+              value={props.perPage}
+              className="d-inline w-auto mr-1"
+              onChange={e => handleChangePerPage(e)}
+            >
+              {props.perPageOptions.map(opt => (
+                <option key={opt} value={opt}>
+                  {opt}
+                </option>
+              ))}
+            </select>
+          </form>
         </Col>
       </Row>
       <Row>
         <Col>
           <span>Zmień kategorię prawa jazdy</span>
           {props.katList.map(kat => (
-            <Button
+            <button
               key={kat}
-              variant={kat === props.kat ? "success" : "light"}
               onClick={e => handleChangeKategory(e, kat)}
-              className="mr-3"
+              className={`btn btn-${
+                kat === props.kat ? "success" : "light"
+              } mr-3`}
             >
               {kat.toUpperCase()}
-            </Button>
+            </button>
           ))}
         </Col>
       </Row>
@@ -108,7 +108,4 @@ const mapDispatchToProps = dispatch => {
     }
   };
 };
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Settings);
+export default connect(mapStateToProps, mapDispatchToProps)(Settings);

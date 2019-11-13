@@ -1,6 +1,5 @@
 import React from "react";
 import { Row, Col } from "../../elements/elements";
-import { Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { connect } from "react-redux";
@@ -21,24 +20,24 @@ const NextPage = props => {
   return (
     <Row>
       <Col flex between>
-        <Button
-          variant={props.cqi === 0 ? "light" : "primary"}
+        <button
+          className={`btn btn-${props.cqi === 0 ? "light" : "primary"}`}
           disabled={props.cqi === 0 ? true : false}
           onClick={handlepreviesPage}
         >
           <FontAwesomeIcon icon={faArrowLeft} />
           {width > 700 && <span> poprzednia strona</span>}
-        </Button>
-        <Button
-          variant={
+        </button>
+        <button
+          className={`btn btn-${
             props.cqi + props.perPage >= props.amount ? "light" : "primary"
-          }
+          }`}
           disabled={props.cqi + props.perPage >= props.amount ? true : false}
           onClick={handleNextPage}
         >
           {width > 700 && <span>Następna strona </span>}
           <FontAwesomeIcon icon={faArrowRight} />
-        </Button>
+        </button>
       </Col>
     </Row>
   );
@@ -62,7 +61,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(NextPage);
+export default connect(mapStateToProps, mapDispatchToProps)(NextPage);

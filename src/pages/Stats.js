@@ -6,7 +6,6 @@ import {
   wrongAnswerArr
 } from "../functions/functions";
 import { Container, Row, Col } from "../elements/elements";
-import { Button } from "react-bootstrap";
 import path from "./../config/path";
 
 const Stats = props => {
@@ -40,9 +39,9 @@ const Stats = props => {
       </Row>
       <Row mb>
         <Col>
-          <Button variant="success" className="mr-1" onClick={handleGood}>
+          <button className="btn btn-success mr-1" onClick={handleGood}>
             Zobacz pytania bez błędów
-          </Button>
+          </button>
           <span>
             <strong className="text-success">Udzieliłeś {good}</strong>{" "}
             prawidłowych opowiedzi!
@@ -51,9 +50,9 @@ const Stats = props => {
       </Row>
       <Row mb>
         <Col>
-          <Button variant="danger" className="mr-1">
+          <button className="btn btn-danger mr-1">
             Zobacz pytania z błędami
-          </Button>
+          </button>
           <span>
             <strong className="text-danger">Udzieliłeś {bad}</strong>{" "}
             nieprawidłowych opowiedzi!

@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import PrevievDataTable from "../components/superAdmin/PrevievDataTable";
-import { Form, Button } from "react-bootstrap";
 import { Container, Row, Col } from "../elements/elements";
 
 const SuperAdmin = () => {
@@ -29,20 +28,15 @@ const SuperAdmin = () => {
       <Container>
         <Row>
           <Col pr>
-            <Form onSubmit={handleSubmit}>
-              <Form.Group controlId="exampleForm.ControlTextarea1">
-                <Form.Label>Wklej object ze wszystkimi pytaniami</Form.Label>
-                <Form.Control
-                  value={str}
-                  onChange={handleChange}
-                  as="textarea"
-                  rows="3"
-                />
-              </Form.Group>
-              <Button variant="primary" type="submit">
+            <form onSubmit={handleSubmit}>
+              <div controlId="exampleForm.ControlTextarea1">
+                <label>Wklej object ze wszystkimi pytaniami</label>
+                <textarea value={str} onChange={handleChange} rows="3" />
+              </div>
+              <button className="btn btn-primary" type="submit">
                 Sprawdź dane (parse object wth data)
-              </Button>
-            </Form>
+              </button>
+            </form>
           </Col>
           <Col left pl>
             <p>

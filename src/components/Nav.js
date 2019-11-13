@@ -1,44 +1,92 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavLink, Link } from "react-router-dom";
 import path from "../config/path";
-import { Navbar } from "react-bootstrap";
 
 const Nav = () => {
+  const [collapse, setCollapse] = useState(true);
+  const handleNavLinkClick = () => {
+    setCollapse(true);
+  };
+
   return (
-    <Navbar bg="dark" variant="dark" expand="lg" className="shadow">
-      <Link className="navbar-brand" to="/">
-        poznajTesty.pl{" "}
-        <span className="text-primary font-weight-bolder">App</span>
-      </Link>
-      <Navbar.Toggle aria-controls="basic-navbar-nav" />
-      <Navbar.Collapse id="basic-navbar-nav">
-        <ul className="navbar-nav ml-auto mr-auto">
-          <NavLink className="nav-link" to={path.learn}>
-            Nauka Pytań
-          </NavLink>
-          <NavLink className="nav-link" to={path.exam}>
-            Wykonaj Egzamin
-          </NavLink>
-          <NavLink className="nav-link" to={path.exam_reviev}>
-            Przeglądaj wyniki egzaminów
-          </NavLink>
-          <NavLink className="nav-link" to={path.blog}>
-            Blog
-          </NavLink>
-          <NavLink className="nav-link" to={path.stats}>
-            Statystyki
-          </NavLink>
-        </ul>
-        <ul className="navbar-nav">
-          <NavLink className="nav-link" to={path.sign_up}>
-            Rejestracja
-          </NavLink>
-          <NavLink className="nav-link" to={path.sign_in}>
-            Logowanie
-          </NavLink>
-        </ul>
-      </Navbar.Collapse>
-    </Navbar>
+    <>
+      <nav className="shadow navbar navbar-expand-lg navbar-dark bg-dark">
+        <Link className="navbar-brand" to="/">
+          poznajTesty.pl{" "}
+          <span className="text-primary font-weight-bolder">App</span>
+        </Link>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+          onClick={() => setCollapse(!collapse)}
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div
+          class={`navbar-collapse ${collapse && "collapse"}`}
+          id="navbarSupportedContent"
+        >
+          <ul className="navbar-nav ml-auto mr-auto">
+            <NavLink
+              className="nav-link"
+              to={path.learn}
+              onClick={handleNavLinkClick}
+            >
+              Nauka Pytań
+            </NavLink>
+            <NavLink
+              className="nav-link"
+              to={path.exam}
+              onClick={handleNavLinkClick}
+            >
+              Wykonaj Egzamin
+            </NavLink>
+            <NavLink
+              className="nav-link"
+              to={path.exam_reviev}
+              onClick={handleNavLinkClick}
+            >
+              Przeglądaj wyniki egzaminów
+            </NavLink>
+            <NavLink
+              className="nav-link"
+              to={path.blog}
+              onClick={handleNavLinkClick}
+            >
+              Blog
+            </NavLink>
+            <NavLink
+              className="nav-link"
+              to={path.stats}
+              onClick={handleNavLinkClick}
+            >
+              Statystyki
+            </NavLink>
+          </ul>
+          <ul className="navbar-nav">
+            <NavLink
+              className="nav-link"
+              to={path.sign_up}
+              onClick={handleNavLinkClick}
+            >
+              Rejestracja
+            </NavLink>
+            <NavLink
+              className="nav-link"
+              to={path.sign_in}
+              onClick={handleNavLinkClick}
+            >
+              Logowanie
+            </NavLink>
+          </ul>
+        </div>
+      </nav>
+    </>
   );
 };
 

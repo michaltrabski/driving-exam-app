@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { Button } from "react-bootstrap";
 import { connect } from "react-redux";
 import { saveAnswer } from "./../store/actions/questionsActions";
 import styled from "styled-components";
@@ -39,41 +38,36 @@ const Answer = props => {
         [userAns]: "danger"
       });
     }
-    // props.setShowExplanation(true);
     props.saveAnswer(props.id, userAns);
   };
 
   const yesNo = (
     <div>
-      <Button
-        className="mr-2"
+      <button
+        className={`btn btn-${color.t} mr-2`}
         onClick={() => handleAnswer("t")}
-        variant={color.t}
       >
         Tak
-      </Button>
-      <Button
-        className="ml-2"
+      </button>
+      <button
+        className={`btn btn-${color.n} ml-2`}
         onClick={() => handleAnswer("n")}
-        variant={color.n}
       >
-        Nie
-      </Button>
+        Tak
+      </button>
     </div>
   );
 
   const abc = (
     <div>
       {["a", "b", "c"].map(item => (
-        <Button
+        <button
           key={item}
           onClick={() => handleAnswer(item)}
-          className="text-left"
-          variant={color[item]}
-          block
+          className={`btn btn-${color[item]} btn-block text-left`}
         >
           {item}) {props[item]}
-        </Button>
+        </button>
       ))}
     </div>
   );
@@ -96,7 +90,4 @@ const mapDispatchToProps = dispatch => {
     }
   };
 };
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Answer);
+export default connect(mapStateToProps, mapDispatchToProps)(Answer);

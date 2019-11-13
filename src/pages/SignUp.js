@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Form, Button } from "react-bootstrap";
 import { Container, Row, Col } from "../elements/elements";
 import { useSelector } from "react-redux";
 const firebase = require("firebase");
@@ -103,9 +102,9 @@ const SignUp = () => {
                   value={cred.passwordRepeat}
                 />
               </div>
-              <Button type="submit" variant="primary">
+              <button type="submit" className="btn btn-primary">
                 Zarejestruj się
-              </Button>
+              </button>
               {/* {this.props.authError} */}
             </form>
           </div>

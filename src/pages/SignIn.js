@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Form, Button } from "react-bootstrap";
 import { Container, Row, Col } from "../elements/elements";
 const firebase = require("firebase");
 
@@ -54,9 +53,9 @@ const SignIn = () => {
                   value={cred.password}
                 />
               </div>
-              <Button type="submit" variant="primary">
+              <button type="submit" className="btn btn-primary">
                 Zaloguj się
-              </Button>
+              </button>
               {/* {this.props.authError} */}
             </form>
           </div>
