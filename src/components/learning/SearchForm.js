@@ -25,15 +25,17 @@ const SearchForm = props => {
           value={search}
           placeholder="Szukaj pytania..."
         />
-        <button className="btn btn-primary mb-1 ml-1" type="submit">
-          Szukaj
-        </button>
         <button
-          className="btn btn-danger mb-1 ml-1"
+          className={`btn mb-1 ml-1 ${
+            search === "" ? "btn-light" : "btn-danger"
+          }`}
           type="text"
           onClick={e => dispatch(searchQuestions(""))}
         >
           X
+        </button>
+        <button className="btn btn-primary mb-1 ml-1" type="submit">
+          Szukaj
         </button>
       </form>
     </>
