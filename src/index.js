@@ -6,7 +6,6 @@ import { Provider } from "react-redux";
 import GlobalStyle from "./theme/GlobalStyle";
 import { ThemeProvider } from "styled-components";
 import { theme } from "./theme/Theme";
-import "bootstrap/dist/css/bootstrap.min.css";
 import { store } from "./store/reducers/rootReducer";
 import { setCurrentUser } from "./store/actions/usersActions";
 

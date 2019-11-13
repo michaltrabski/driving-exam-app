@@ -16,7 +16,7 @@ const Nav = () => {
           <span className="text-primary font-weight-bolder">App</span>
         </Link>
         <button
-          class="navbar-toggler"
+          className="navbar-toggler"
           type="button"
           data-toggle="collapse"
           data-target="#navbarSupportedContent"
@@ -25,10 +25,10 @@ const Nav = () => {
           aria-label="Toggle navigation"
           onClick={() => setCollapse(!collapse)}
         >
-          <span class="navbar-toggler-icon"></span>
+          <span className="navbar-toggler-icon"></span>
         </button>
         <div
-          class={`navbar-collapse ${collapse && "collapse"}`}
+          className={`navbar-collapse ${collapse && "collapse"}`}
           id="navbarSupportedContent"
         >
           <ul className="navbar-nav ml-auto mr-auto">

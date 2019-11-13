@@ -1,5 +1,4 @@
 import React from "react";
-import { Table } from "react-bootstrap";
 const firebase = require("firebase");
 
 const numer_pytania = "Numer pytania";
@@ -90,7 +89,7 @@ const PrevievDataTable = ({ obj }) => {
   return (
     <div>
       <button onClick={dataToFirebase}>updateFirebase</button>
-      <Table striped bordered hover>
+      <table className="table table-striped table-bordered table-hover">
         <thead>
           <tr>
             <th>id</th>
@@ -138,7 +137,7 @@ const PrevievDataTable = ({ obj }) => {
               </tr>
             ))}
         </tbody>
-      </Table>
+      </table>
     </div>
   );
 };
