@@ -51,7 +51,7 @@ export const Col = styled.div`
   flex-grow: 1;
   max-width: 100%;
   background-color: ${({ light }) => light && "lightgray"};
-  text-align: ${({ right }) => right && "right"};
+  text-align: ${({ right }) => (right ? "right" : "center")};
   text-align: ${({ left }) => left && "left"};
 
   @media (${({ theme }) => theme.tablet}) {
