@@ -4,7 +4,7 @@ import Media from "../Media";
 import styled from "styled-components";
 import Answer from "../Answer";
 import Explanation from "../Explanation";
-import Actions from "./question/Actions";
+import Actions from "./Actions";
 import { useSelector } from "react-redux";
 import {
   replaceRegEx,

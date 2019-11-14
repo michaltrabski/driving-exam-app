@@ -1,5 +1,5 @@
 import React from "react";
-import { Row, Col } from "../../../elements/elements";
+import { Row, Col } from "../../elements/elements";
 
 const Actions = props => {
   return (

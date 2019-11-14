@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import PrevievDataTable from "../components/superAdmin/PrevievDataTable";
+import PrevievDataTable from "../superAdmin/PrevievDataTable";
 import { Container, Row, Col } from "../elements/elements";
 
 const SuperAdmin = () => {
