@@ -15,12 +15,18 @@ const Filters = () => {
       <select
         value={filterOption}
         onChange={e => dispatch(changeFilterOption(e.target.value))}
-        className={`form-control mb-1 mr-1 ${filterOption === "SHOW_ALL" ||
-          "bg-success text-light"}`}
+        className="form-control mb-1 mr-1"
         type="select"
+        style={filterOption !== "SHOW_ALL" ? { fontWeight: "bolder" } : {}}
       >
         {filterOptions.map(option => (
-          <option key={option.value} value={option.value}>
+          <option
+            key={option.value}
+            value={option.value}
+            style={
+              filterOption === option.value ? { fontWeight: "bolder" } : {}
+            }
+          >
             {option.option}
           </option>
         ))}
