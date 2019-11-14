@@ -3,7 +3,7 @@ import { Row, Col } from "../elements/elements";
 import axios from "axios";
 const url = "https://poznaj-testy.pl/wp-json/wp/v2/posts?slug=";
 
-const Explanation = ({ id, t }) => {
+const Explanation = ({ id, t, e }) => {
   // console.log("Explanation", id, t);
   const [expl, setExpl] = useState("loading...");
 
@@ -18,6 +18,7 @@ const Explanation = ({ id, t }) => {
     <Row>
       <Col left>
         <h5>Wyjaśnienie</h5>
+        <div>{e}</div>
         <div
           dangerouslySetInnerHTML={{
             __html: expl

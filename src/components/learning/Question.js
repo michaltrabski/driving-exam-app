@@ -13,7 +13,7 @@ import {
 
 const Question = ({
   question,
-  question: { id, t, m, v, nr, p, r, userAns }
+  question: { id, t, m, v, nr, p, r, userAns, e }
 }) => {
   const [showExplanation, setShowExplanation] = useState(false);
   const kat = useSelector(state => state.questionsReducer.kat);

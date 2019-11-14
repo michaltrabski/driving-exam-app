@@ -30,8 +30,39 @@ export const filterQuestions = (question, filter) => {
       return question.userAns === false ? true : false;
     //--------------------------------------------------------------
     default:
-      return true;
+      return false;
   }
+};
+
+export const textToSlug = text => {
+  // console.log(text);
+  text = text.toLowerCase();
+  text = text.replace(/  /g, " ");
+
+  text = text.replace(/\"/g, "");
+  text = text.replace(/\'/g, "");
+
+  text = text.replace(/\,/g, "");
+  text = text.replace(/\./g, "");
+  text = text.replace(/\!/g, "");
+  text = text.replace(/\(/g, "");
+  text = text.replace(/\)/g, "");
+
+  text = text.replace(/ą/g, "a");
+  text = text.replace(/ę/g, "e");
+  text = text.replace(/ó/g, "o");
+  text = text.replace(/ł/g, "l");
+  text = text.replace(/ż/g, "z");
+  text = text.replace(/ź/g, "z");
+  text = text.replace(/ć/g, "c");
+  text = text.replace(/ś/g, "s");
+  text = text.replace(/ó/g, "o");
+
+  text = text.replace(/ /g, "-");
+  text = text.replace(/\?/g, "");
+  // console.log(`${text}-${id}`);
+
+  return text;
 };
 
 export const questionAnswerTextColor = (right_answer, userAns) => {
