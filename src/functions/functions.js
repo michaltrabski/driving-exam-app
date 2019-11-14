@@ -30,7 +30,7 @@ export const filterQuestions = (question, filter) => {
       return question.userAns === false ? true : false;
     //--------------------------------------------------------------
     default:
-      return false;
+      return question.th === filter ? true : false;
   }
 };
 

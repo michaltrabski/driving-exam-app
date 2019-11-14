@@ -1,4 +1,5 @@
 import React from "react";
+import { textToSlug } from "./../functions/functions";
 const firebase = require("firebase");
 
 const numer_pytania = "Numer pytania";
@@ -51,13 +52,22 @@ const PrevievDataTable = ({ obj }) => {
       option: "FILTR 4: Pokaż pytania bez odpowiedzi",
       value: "SHOW_WITHOUT"
     },
-    { option: "Wyprzedzanie (13)", value: " Wyprzedzanie" },
-    { option: "Pierwsza pomoc (42)", value: " Pierwsza pomoc" },
-    { option: "Bezpieczeństwo (77)", value: " Bezpieczeństwo" },
-    { option: "Znaki informacyjne", value: " Znaki informacyjne" },
-    { option: "Znaki drogowe poziome", value: " Znaki drogowe poziome" },
-    { option: "Ograniczenia prędkości", value: " Ograniczenia prędkości" },
-    { option: "Pole widzenia kierowcy", value: " Pole widzenia kierowcy" },
+    { option: "Wyprzedzanie (13)", value: textToSlug("Wyprzedzanie") },
+    { option: "Pierwsza pomoc (42)", value: textToSlug("Pierwsza pomoc") },
+    { option: "Bezpieczeństwo (77)", value: textToSlug("Bezpieczeństwo") },
+    { option: "Znaki informacyjne", value: textToSlug("Znaki informacyjne") },
+    {
+      option: "Znaki drogowe poziome",
+      value: textToSlug("Znaki drogowe poziome")
+    },
+    {
+      option: "Ograniczenia prędkości",
+      value: textToSlug("Ograniczenia prędkości")
+    },
+    {
+      option: "Pole widzenia kierowcy",
+      value: textToSlug("Pole widzenia kierowcy")
+    },
     {
       option: "Zachowanie wobec pieszego (134)",
       value: " Zachowanie wobec pieszego"
@@ -195,7 +205,7 @@ const PrevievDataTable = ({ obj }) => {
                 ? item[media].replace(".wmv", ".mp4")
                 : item[media];
             data.p = item[liczba_punktow];
-            data.th = getThemat(item[numer_pytania]);
+            data.th = textToSlug(getThemat(item[numer_pytania]));
             data.e = getExplanation(item[numer_pytania]);
             return data;
           });
