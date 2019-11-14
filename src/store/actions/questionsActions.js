@@ -1,4 +1,5 @@
 import { storage } from "./../../functions/functions";
+import _ from "lodash";
 
 export const GET_QUESTIONS = "GET_QUESTIONS";
 export const SEARCH_QUESTIONS = "SEARCH_QUESTIONS";
@@ -14,6 +15,7 @@ const firebase = require("firebase");
 
 export const getQuestions = (kat, lang) => {
   const name = `kat_${kat}_${lang}`;
+
   if (storage(name)) {
     // retriev questions from Storage
     const { allQuestions, katList, langList, filterOptions } = storage(name);
@@ -39,13 +41,24 @@ export const getQuestions = (kat, lang) => {
             const data = doc.data();
             let allQuestions = data.allQuestions.map((item, i) => {
               let newItem = item;
-              newItem.nr = i + 1;
               newItem.m = newItem.m === "" ? "empty.jpg" : newItem.m;
               newItem.v = item.m.indexOf(".mp4") > 0 ? true : false;
               newItem.userAns = false;
               return newItem;
             });
-            storage(name, data);
+            // shuffle array once get from firebase
+            allQuestions = _.shuffle(allQuestions).map((item, i) => {
+              let newItem = item;
+              newItem.nr = i + 1;
+              return newItem;
+            });
+
+            storage(name, {
+              allQuestions,
+              katList: data.katList,
+              langList: data.langList,
+              filterOptions: data.filterOptions
+            });
             dispatch({
               type: GET_QUESTIONS,
               allQuestions,
