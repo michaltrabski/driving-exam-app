@@ -6,14 +6,17 @@ import { connect } from "react-redux";
 import { nextPage, previesPage } from "./../../store/actions/questionsActions";
 import Resize from "./../Resize";
 
-const NextPage = props => {
+const NextPage = ({ cqi, perPage, amount, nextPage, previesPage }) => {
+  const pages = Math.floor(amount / perPage) + 1;
+  const page = Math.floor(cqi / perPage) + 1;
+
   const handleNextPage = () => {
-    window.scrollTo(0, 0);
-    props.nextPage();
+    perPage !== 1 && window.scrollTo(0, 0);
+    nextPage();
   };
   const handlepreviesPage = () => {
-    window.scrollTo(0, 0);
-    props.previesPage();
+    perPage !== 1 && window.scrollTo(0, 0);
+    previesPage();
   };
   const width = Resize();
 
@@ -21,18 +24,19 @@ const NextPage = props => {
     <Row>
       <Col flex between>
         <button
-          className={`btn btn-${props.cqi === 0 ? "light" : "primary"}`}
-          disabled={props.cqi === 0 ? true : false}
+          className={`btn btn-${cqi === 0 ? "light" : "primary"}`}
+          disabled={cqi === 0 ? true : false}
           onClick={handlepreviesPage}
         >
           <FontAwesomeIcon icon={faArrowLeft} />
           {width > 700 && <span> poprzednia strona</span>}
         </button>
+        <div>
+          {page} z {pages} stron, {amount} pytań.
+        </div>
         <button
-          className={`btn btn-${
-            props.cqi + props.perPage >= props.amount ? "light" : "primary"
-          }`}
-          disabled={props.cqi + props.perPage >= props.amount ? true : false}
+          className={`btn btn-${cqi + perPage >= amount ? "light" : "primary"}`}
+          disabled={cqi + perPage >= amount ? true : false}
           onClick={handleNextPage}
         >
           {width > 700 && <span>Następna strona </span>}

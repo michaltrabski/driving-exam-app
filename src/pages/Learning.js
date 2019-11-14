@@ -13,7 +13,6 @@ const Learning = props => {
   const filterOption = useSelector(
     state => state.questionsReducer.filterOption
   );
-
   const { cqi, perPage } = props;
 
   let { allQuestions } = props;
@@ -35,8 +34,6 @@ const Learning = props => {
   return (
     <>
       <Container>
-        {props.whatFilter}
-        <SearchInfo amount={amount} />
         <Row mb>
           <Col pr>
             <Filters />
@@ -47,9 +44,17 @@ const Learning = props => {
         </Row>
         <NextPage amount={amount} />
       </Container>
+      <SearchInfo amount={amount} />
       {allQuestions.slice(cqi, cqi + perPage).map(question => (
         <Question key={question.id} question={question} />
       ))}
+
+      {/* <Container>
+        <Row mb>
+          <Col pr>ostatnie pytanie</Col>
+        </Row>
+      </Container> */}
+
       {amount > 0 && (
         <Container>
           <NextPage amount={amount} />
@@ -65,8 +70,7 @@ const mapStateToProps = state => {
     allQuestions: state.questionsReducer.allQuestions,
     cqi: state.questionsReducer.cqi,
     perPage: state.questionsReducer.perPage,
-    search: state.questionsReducer.search,
-    whatFilter: state.questionsReducer.whatFilter
+    search: state.questionsReducer.search
   };
 };
 

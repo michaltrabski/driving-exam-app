@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
+import { Container, Row, Col } from "../../elements/elements";
 
 const SearchInfo = ({ amount }) => {
   const max = useSelector(state => state.questionsReducer.allQuestions.length);
@@ -14,15 +15,21 @@ const SearchInfo = ({ amount }) => {
 
   return (
     search !== "" && (
-      <Info className="bg-warning">
-        Znaleziono <strong>{amount}</strong> {question} z {max}
-      </Info>
+      <Container>
+        <Row>
+          <Col>
+            <Info className="bg-warning">
+              Znaleziono <strong>{amount}</strong> {question} z {max}
+            </Info>
+          </Col>
+        </Row>
+      </Container>
     )
   );
 };
 
 const Info = styled.p`
-  text-align: center;
+  margin: 0px;
   @media (${({ theme }) => theme.tablet}) {
     font-size: 2.5rem;
   }
