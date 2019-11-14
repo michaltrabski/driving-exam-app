@@ -36,12 +36,112 @@ const initialState = {
       option: "FILTR 4: Pokaż pytania bez odpowiedzi",
       value: "SHOW_WITHOUT"
     },
-    { option: "DZIAŁ 1: Pierwsza pomoc", value: "Pierwsza pomoc" },
-    { option: "DZIAŁ 2: Znaki drogowe", value: "Znaki drogowe" },
+    { option: "Wyprzedzanie (13)", value: " Wyprzedzanie" },
+    { option: "Pierwsza pomoc (42)", value: " Pierwsza pomoc" },
+    { option: "Bezpieczeństwo (77)", value: " Bezpieczeństwo" },
+    { option: "Znaki informacyjne", value: " Znaki informacyjne" },
+    { option: "Znaki drogowe poziome", value: " Znaki drogowe poziome" },
+    { option: "Ograniczenia prędkości", value: " Ograniczenia prędkości" },
+    { option: "Pole widzenia kierowcy", value: " Pole widzenia kierowcy" },
     {
-      option: "DZIAŁ 3: Pierwszeństwo przejazdu",
-      value: "Pierwszeństwo przejazdu"
-    }
+      option: "Zachowanie wobec pieszego (134)",
+      value: " Zachowanie wobec pieszego"
+    },
+    {
+      option: "Znaki drogowe ostrzegawcze (97)",
+      value: " Znaki drogowe ostrzegawcze"
+    },
+    {
+      option: "Odstępy i hamowanie pojazdu (17)",
+      value: " Odstępy i hamowanie pojazdu"
+    },
+    {
+      option: "Zachowanie wobec rowerzysty",
+      value: " Zachowanie wobec rowerzysty"
+    },
+    {
+      option: "Technika kierowania pojazdem",
+      value: " Technika kierowania pojazdem"
+    },
+    {
+      option: "Znaki drogowe nakazu i zakazu",
+      value: " Znaki drogowe nakazu i zakazu"
+    },
+    {
+      option: "Zachowywanie szczególnej ostrożności",
+      value: " Zachowywanie szczególnej ostrożności"
+    },
+    {
+      option: "Skrzyżowania z sygnalizacją świetlną",
+      value: " Skrzyżowania z sygnalizacją świetlną"
+    },
+    {
+      option: "Manewr wymijania, omijania i cofania",
+      value: " Manewr wymijania, omijania i cofania"
+    },
+    {
+      option: "Zmiana pasa ruchu, zmiana kierunku jazdy",
+      value: " Zmiana pasa ruchu, zmiana kierunku jazdy"
+    },
+    {
+      option: "Używanie świateł zewnętrznych i sygnałów pojazdu",
+      value: " Używanie świateł zewnętrznych i sygnałów pojazdu"
+    },
+    {
+      option: "Włączanie się do ruchu, skrzyżowania równorzędne",
+      value: " Włączanie się do ruchu, skrzyżowania równorzędne"
+    },
+    {
+      option: "Zachowanie na przejazdach kolejowych i tramwajowych",
+      value: " Zachowanie na przejazdach kolejowych i tramwajowych"
+    },
+    {
+      option: "Wpływ alkoholu i innych używek na prowadzenie pojazdu",
+      value: " Wpływ alkoholu i innych używek na prowadzenie pojazdu"
+    },
+    {
+      option: "Wpływ warunków atmosferycznych na prowadzenie pojazdu",
+      value: " Wpływ warunków atmosferycznych na prowadzenie pojazdu"
+    },
+    {
+      option: "Sygnały świetlne, sygnały dawane przez kierującego ruchem",
+      value: " Sygnały świetlne, sygnały dawane przez kierującego ruchem"
+    },
+    {
+      option: "Skrzyżowania ze znakami określającymi pierwszeństwo przejazdu",
+      value: " Skrzyżowania ze znakami określającymi pierwszeństwo przejazdu"
+    },
+    {
+      option:
+        "Aspekty mechaniczne związane z zachowaniem bezpieczeństwa na drodze",
+      value:
+        " Aspekty mechaniczne związane z zachowaniem bezpieczeństwa na drodze"
+    },
+    {
+      option:
+        "Obowiązki właściciela/posiadacza pojazdu, ubezpieczenia, wymagane dokumenty",
+      value:
+        " Obowiązki właściciela/posiadacza pojazdu, ubezpieczenia, wymagane dokumenty"
+    },
+    {
+      option:
+        "Pozycja pojazdu na drodze, wjazd i zjazd ze skrzyżowania, zatrzymanie i postój",
+      value:
+        " Pozycja pojazdu na drodze, wjazd i zjazd ze skrzyżowania, zatrzymanie i postój"
+    },
+    {
+      option:
+        "Wyposażenie pojazdu związane z bezpieczeństwem, korzystanie z pasów, zagłówków i fotelików",
+      value:
+        " Wyposażenie pojazdu związane z bezpieczeństwem, korzystanie z pasów, zagłówków i fotelików"
+    },
+    {
+      option:
+        "Skrzyżowania lub przejścia dla pieszych z kierujących ruchem, miejsca przystanków komunikacji public...",
+      value:
+        " Skrzyżowania lub przejścia dla pieszych z kierujących ruchem, miejsca przystanków komunikacji public..."
+    },
+    { option: "Pozostałe", value: " Pozostałe" }
   ]
 };
 
