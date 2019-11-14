@@ -14,13 +14,16 @@ const firebase = require("firebase");
 
 export const getQuestions = (kat, lang) => {
   const name = `kat_${kat}_${lang}`;
-
   if (storage(name)) {
     // retriev questions from Storage
+    const { allQuestions, katList, langList, filterOptions } = storage(name);
     return dispatch => {
       dispatch({
         type: GET_QUESTIONS,
-        allQuestions: storage(name)
+        allQuestions,
+        katList,
+        langList,
+        filterOptions
       });
     };
   } else {
@@ -42,10 +45,13 @@ export const getQuestions = (kat, lang) => {
               newItem.userAns = false;
               return newItem;
             });
-            storage(name, allQuestions);
+            storage(name, data);
             dispatch({
               type: GET_QUESTIONS,
-              allQuestions
+              allQuestions,
+              katList: data.katList,
+              langList: data.langList,
+              filterOptions: data.filterOptions
             });
           } else {
             console.log("No such document!");
