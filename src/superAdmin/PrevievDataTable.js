@@ -22,10 +22,31 @@ const odpowiedz_de_b = "Odpowiedź DE B";
 const odpowiedz_de_c = "Odpowiedź DE C";
 
 const PrevievDataTable = ({ obj }) => {
+  let {
+    questions_from_gov,
+    thematic_category,
+    michal_info,
+    question_explanations
+  } = obj;
+
+  let katList = [
+    "a",
+    "a1",
+    "b",
+    "b1",
+    "c",
+    "c1",
+    "d",
+    "d1",
+    "a2",
+    "am",
+    "t",
+    "pt"
+  ]; //awaylable kategory list that I have questions in
+  let langList = ["pl", "eng", "de"];
+  // katList = ["b"];
+  // langList = ["pl"];
   const dataToFirebase = () => {
-    let { questions_from_gov } = obj;
-    let katList = ["a", "b", "c", "d"];
-    let langList = ["pl", "eng", "de"];
     langList.map(lang => {
       katList.map(kat => {
         let kat_x_lang = questions_from_gov
@@ -62,16 +83,32 @@ const PrevievDataTable = ({ obj }) => {
                 ? item[media].replace(".wmv", ".mp4")
                 : item[media];
             data.p = item[liczba_punktow];
+            data.th = getThemat(item[numer_pytania]);
+            data.e = getExplanation(item[numer_pytania]);
             return data;
           });
         console.log(`kat_${kat}_${lang} = `, kat_x_lang);
-        updateFirebase(`kat_${kat}_${lang}`, kat_x_lang);
+        updateFirebaseQuestions(`kat_${kat}_${lang}`, kat_x_lang);
       });
     });
   };
 
-  const updateFirebase = (name, kat_x_lang) => {
-    // console.log("updateFirebase = ", name, kat_x_lang);
+  const getThemat = id => {
+    let themat = thematic_category.find(item => item.mt_id === id);
+    themat = themat === undefined ? "Pozostałe" : themat.mt_themat;
+    return themat;
+  };
+
+  const getExplanation = id => {
+    let default_expl = "Potrzebujesz wyjaśnienia? Napisz do mnie!";
+    let expl = question_explanations.find(item => item.mt_id === id);
+    expl = expl === undefined ? default_expl : expl.mt_explanation;
+    expl = expl === "" ? default_expl : expl;
+    return expl;
+  };
+
+  const updateFirebaseQuestions = (name, kat_x_lang) => {
+    // console.log("updateFirebaseQuestions = ", name, kat_x_lang);
     firebase
       .firestore()
       .collection("questions")
@@ -86,9 +123,10 @@ const PrevievDataTable = ({ obj }) => {
         console.log(`NOT saved in firebase = ${name}`, err);
       });
   };
+
   return (
     <div>
-      <button onClick={dataToFirebase}>updateFirebase</button>
+      <button onClick={dataToFirebase}>updateFirebaseQuestions</button>
       <table className="table table-striped table-bordered table-hover">
         <thead>
           <tr>

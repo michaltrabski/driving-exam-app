@@ -51,6 +51,10 @@ const SuperAdmin = () => {
               {obj.michal_info &&
                 `obj.michal_info.length = ${obj.michal_info.length}`}
             </p>
+            <p>
+              {obj.question_explanations &&
+                `obj.question_explanations.length = ${obj.question_explanations.length}`}
+            </p>
           </Col>
         </Row>
       </Container>

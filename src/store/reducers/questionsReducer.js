@@ -13,7 +13,7 @@ import {
 
 const initialState = {
   allQuestions: [],
-  katList: ["a", "b", "c", "d"], //awaylable kategory list that I have questions in
+  katList: ["a", "a1", "b", "b1", "c", "c1", "d", "d1", "a2", "am", "t", "pt"], //awaylable kategory list that I have questions in
   langList: ["pl", "eng", "de"], //awaylable language list that I have questions in
   kat: storage("kat") ? storage("kat") : "b", //default category when you load page first time
   lang: "pl", //default language when you load page first time
