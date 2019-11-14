@@ -7,7 +7,9 @@ import { nextPage, previesPage } from "./../../store/actions/questionsActions";
 import Resize from "./../Resize";
 
 const NextPage = ({ cqi, perPage, amount, nextPage, previesPage }) => {
-  const pages = Math.floor(amount / perPage) + 1;
+  const pages = Number.isInteger(amount / perPage)
+    ? Math.floor(amount / perPage)
+    : Math.floor(amount / perPage) + 1;
   const page = Math.floor(cqi / perPage) + 1;
 
   const handleNextPage = () => {

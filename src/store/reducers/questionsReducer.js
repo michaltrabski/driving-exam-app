@@ -50,15 +50,23 @@ export const questionsReducer = (state = initialState, actions) => {
           return q;
         })
       };
-      storage(name, state.allQuestions);
+      storage(name, {
+        allQuestions: state.allQuestions,
+        katList: state.katList,
+        langList: state.langList,
+        filterOptions: state.filterOptions
+      });
       return state;
     //------------------------------------------------------------
     case CHANGE_FILTER_OPTION:
+      console.log("1", state);
       state = {
         ...state,
         search: "",
+        cqi: 0,
         filterOption: actions.filterOption
       };
+      console.log("2", state);
       return state;
     //------------------------------------------------------------
     case NEXT_PAGE:
@@ -89,7 +97,8 @@ export const questionsReducer = (state = initialState, actions) => {
         ...state,
         cqi: 0,
         kat: actions.kat,
-        search: ""
+        search: "",
+        filterOption: "SHOW_ALL"
       };
       storage("kat", state.kat);
       return state;

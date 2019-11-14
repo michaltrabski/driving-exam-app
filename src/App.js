@@ -24,6 +24,15 @@ function App() {
     dispatch(getQuestions(kat, lang)); // automaticaly get allQuestions when component is mounted
   }, [kat, lang]);
 
+  useEffect(() => {
+    console.log("mounted");
+
+    return () => {
+      localStorage.setItem("unmounted", "tak");
+      console.log("unmounted");
+    };
+  });
+
   return (
     <>
       <BrowserRouter>

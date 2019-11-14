@@ -13,7 +13,6 @@ export const setCurrentUser = user => {
       .get()
       .then(doc => {
         if (doc.exists) {
-          console.log("xxxxxxx pobrano dane z dokumentu = ", doc.data());
           dispatch({
             type: SET_CURRENT_USER,
             userData: doc.data()
