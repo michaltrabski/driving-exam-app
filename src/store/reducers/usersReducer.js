@@ -12,14 +12,14 @@ const initialState = {
 export const usersReducer = (state = initialState, actions) => {
   switch (actions.type) {
     case SET_CURRENT_USER:
-      console.log("1 usersReducer state = ", state);
-      console.log("1 userData = ", actions.userData);
+      // console.log("1 usersReducer state = ", state);
+      // console.log("1 userData = ", actions.userData);
       state = {
         ...state,
         isLoggedIn: true,
         userData: { ...state.userData, ...actions.userData }
       };
-      console.log("2 usersReducer state = ", state);
+      // console.log("2 usersReducer state = ", state);
       return state;
     //------------------------------------------------------------
     default:
