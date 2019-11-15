@@ -1,0 +1,88 @@
+[33m53e2ffb[m[33m ([m[1;36mHEAD -> [m[1;32msuper-admin[m[33m, [m[1;31morigin/production[m[33m, [m[1;31morigin/master[m[33m, [m[1;32mproduction[m[33m, [m[1;32mmaster[m[33m)[m added some text to Home
+[33m08d62ec[m[33m ([m[1;32mremember-user-results[m[33m)[m search form reset button added
+[33me4b3885[m fixed bug with couting pages in NextPage
+[33m95d1c44[m fixed question to localstorage
+[33med301d8[m added redirect poznajtesty.netlify.com to poznajtesty.pl
+[33md806e3c[m changed filter and searchForm
+[33mc3abbcb[m[33m ([m[1;32msuper-admin-1[m[33m)[m fixed filter question by themat
+[33md267620[m function textToSlug added
+[33m7bb3312[m now katList,langList,filterOptions are stored in firebase
+[33m11f8d8b[m added manualy thematic list to filter
+[33m82cef9c[m added question themat and explanation in SuperAdmin import to firebase
+[33mfee895c[m moved files
+[33m5d69b92[m user removed from App.js
+[33m8bda1ab[m[33m ([m[1;32mremove-react-bootstrap[m[33m)[m bootstrap removed and temporarely added with cdn to index.html
+[33m151570d[m all react-bootstrap components removed from files
+[33m0aae524[m changed SearchForm reset button color
+[33mf489244[m[33m ([m[1;32mcollect-user-results[m[33m)[m change filters change colors and reset searcForm
+[33mc79c61b[m change filterOption is working with 3 first filterOptions
+[33m89668c8[m[33m ([m[1;31morigin/collect-user-results[m[33m)[m added filterQuestions function with param that describe what question to be filtered
+[33m9ee177e[m added filter questions functionality
+[33m7de9e95[m user signUp with email and password created
+[33m13ab692[m created usersReducer to manage current user data
+[33me2a757e[m userReducer removed, will be replaced with usersReducer dealing with user profile data
+[33m481426e[m keep user results inside allQuestions array
+[33mab48b7b[m[33m ([m[1;32mlearning-filters[m[33m)[m working on filtering questions
+[33mea8e0ce[m added Filters component
+[33m992d67e[m question/Actions.js modified
+[33m670eb52[m fixed css
+[33m86f6716[m getTextColor return question text color in user already answer or not
+[33m7fae020[m moved replaceRegEx function to functions.js
+[33m8304be7[m Questions, SearchInfo code just visually refactored
+[33m4c74664[m Search maxwidth set up
+[33m1d2894d[m[33m ([m[1;32mstatystyki[m[33m)[m private user setting saved in localstorage now
+[33md4c1ce0[m redirect to learn when user click button on Stats component
+[33m726a9c0[m calculate statistics in Stat component
+[33mb2e9b27[m userReducer now save userData in storage
+[33md409728[m getQuestions action moved to App to initialize it as soon as any page of app is entered by user
+[33maf71912[m data/DlobalData changed to config/path.js
+[33mcdc5a73[m fixed Nav
+[33m11091e5[m fixed GoToQuestionNr component
+[33m8d61c44[m learning/Settings component styled
+[33m8c00f88[m[33m ([m[1;32mvisual-styling[m[33m)[m fixed bugs
+[33mc09fe79[m made search case insensitive
+[33m56f7f8e[m[33m ([m[1;32mmove-state-to-reducers[m[33m)[m added regex to replace rearch in question text
+[33m5316942[m changed icons color
+[33mcbddc9e[m added SearchForm, GoToQuestionsNumber components
+[33m0f103c5[m fixed changePerPage action
+[33mf8a2da0[m issue with changePerPage action
+[33m63f59da[m LearningSettings connected to redux store
+[33m76bbae8[m added search form to search frought questions
+[33m6fe51de[m questionsReducer added NEXT_PAGE
+[33mfbd0a97[m working on questionsReducer
+[33m20b44ae[m step 1
+[33mb12c977[m added search form
+[33me5bf900[m changed answer color
+[33m7a0da91[m working on pagination
+[33mb14c608[m pagination changed to go to exact question number
+[33m7e6cfa3[m added page pagination in Learning component
+[33m7434579[m Merge branch 'authentication'
+[33m657cb41[m changed perPage
+[33m7b238da[m[33m ([m[1;32mauthentication[m[33m)[m added SignUp component
+[33m8b8f21c[m SignIn component with form is done
+[33m142b790[m[33m ([m[1;32mquestion-explanation-api[m[33m)[m show answer when user click button from wp rest api
+[33m1f57a8d[m fixed conflict in GlobalData.js
+[33m5660c01[m super-admin functionality to parse object and set data in firebase
+[33md4e8f7a[m get questions from firebase once then from sessionStorage
+[33mfd89edb[m changed perPage
+[33m0fe09a2[m working on update firebase
+[33m352b4bf[m added super-admin section
+[33m00f17e2[m[33m ([m[1;32madd-firebase[m[33m)[m questionsAll loads async automatycaly based on kat,lang defined inside questionsReducer.js
+[33mb82756d[m added action getQuestions from firebase with redux-thunk
+[33m8dbe83b[m added redux-thunk
+[33m3649a6b[m start working with paginations
+[33mfb68087[m added rootReducer
+[33m738ad45[m added next,prev questions functionality
+[33m1e3205b[m dynamicaly change current kat that user learn
+[33m080ac68[m work with different kat, lang, example kat_b_pl, kat_a_eng
+[33mff586ee[m changed readme
+[33m93784d1[m Navigation converted to react-bootstrap menu
+[33m5bb72ae[m Answer.js useEffect listen for showAnswerNow change
+[33me425b96[m[33m ([m[1;32madd-blog[m[33m)[m settingReducer.js created
+[33m54ba629[m added blog route and fetch data with axios
+[33m205a24a[m added Theme
+[33me7064e7[m[33m ([m[1;32mset-some-components[m[33m)[m set up ugly Navigation with styled components
+[33m8ba506e[m added ThemeProvider from styled components
+[33maa5efe3[m[33m ([m[1;31morigin/set-some-components[m[33m)[m Learning.js connected with redux, Question.js display sinle question
+[33md7ec094[m added react-router and pages folder
+[33ma286bec[m Initial commit, started app made with create-react-app

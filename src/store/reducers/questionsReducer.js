@@ -17,7 +17,7 @@ const initialState = {
   langList: [], // from firebase
   kat: storage("kat") ? storage("kat") : "b", //default category when you load page first time
   lang: "pl", //default language when you load page first time
-  perPage: storage("perPage") ? storage("perPage") : 1, //default how many questions are dispayd on page
+  perPage: storage("perPage") ? storage("perPage") : 10, //default how many questions are dispayd on page
   cqi: 0, // current question index
   perPageOptions: [1, 2, 5, 10, 25],
   search: "", // default search string - this is a string that user type into a search form
@@ -30,7 +30,7 @@ export const questionsReducer = (state = initialState, actions) => {
   const name = `kat_${kat}_${lang}`;
   switch (actions.type) {
     case GET_QUESTIONS:
-      console.log("1", state);
+      // console.log("1", state);
       state = {
         ...state,
         allQuestions: actions.allQuestions,
@@ -38,7 +38,7 @@ export const questionsReducer = (state = initialState, actions) => {
         langList: actions.langList,
         filterOptions: actions.filterOptions
       };
-      console.log("2", state);
+      // console.log("2", state);
       return state;
     //------------------------------------------------------------
     case SAVE_ANSWER:
@@ -59,14 +59,14 @@ export const questionsReducer = (state = initialState, actions) => {
       return state;
     //------------------------------------------------------------
     case CHANGE_FILTER_OPTION:
-      console.log("1", state);
+      // console.log("1", state);
       state = {
         ...state,
         search: "",
         cqi: 0,
         filterOption: actions.filterOption
       };
-      console.log("2", state);
+      // console.log("2", state);
       return state;
     //------------------------------------------------------------
     case NEXT_PAGE:

@@ -21,7 +21,7 @@ const Home = () => {
               return `${kat.toUpperCase()}, `;
             })}
           </p>
-          <Link className="navbar-brand" to={path.learn}>
+          <Link to={path.learn}>
             <button className="btn btn-primary">Baza pytań</button>
           </Link>
         </Col>

@@ -23,7 +23,7 @@ firebase.initializeApp({
 
 firebase.auth().onAuthStateChanged(user => {
   if (user) {
-    console.log("wyslano onAuthStateChanged setCurrentUser");
+    // console.log("wyslano onAuthStateChanged setCurrentUser");
     store.dispatch(setCurrentUser(user));
   }
 });

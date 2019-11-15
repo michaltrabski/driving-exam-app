@@ -11,7 +11,7 @@ const Nav = () => {
   return (
     <>
       <nav className="shadow navbar navbar-expand-lg navbar-dark bg-dark">
-        <Link className="navbar-brand" to="/">
+        <Link className="navbar-brand" to="/" onClick={handleNavLinkClick}>
           poznajTesty.pl{" "}
           <span className="text-primary font-weight-bolder">App</span>
         </Link>
@@ -39,7 +39,7 @@ const Nav = () => {
             >
               Nauka Pytań
             </NavLink>
-            <NavLink
+            {/* <NavLink
               className="nav-link"
               to={path.exam}
               onClick={handleNavLinkClick}
@@ -66,7 +66,7 @@ const Nav = () => {
               onClick={handleNavLinkClick}
             >
               Statystyki
-            </NavLink>
+            </NavLink> */}
           </ul>
           <ul className="navbar-nav">
             <NavLink
