@@ -1,6 +1,6 @@
 import React from "react";
 import Question from "../components/learning/Question";
-import { connect, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import Settings from "../components/learning/Settings";
 import NextPage from "../components/learning/NextPage";
 import SearchForm from "../components/learning/SearchForm";
@@ -9,17 +9,15 @@ import Filters from "./../components/learning/Filters";
 import SearchInfo from "../components/learning/SearchInfo";
 import { filterQuestions } from "../functions/functions";
 
-const Learning = props => {
-  const filterOption = useSelector(
-    state => state.questionsReducer.filterOption
+const Learning = () => {
+  const { got, cqi, perPage, search, filterOption } = useSelector(
+    state => state.questionsReducer
   );
-  const { cqi, perPage } = props;
-
-  let { allQuestions } = props;
+  let { allQuestions } = useSelector(state => state.questionsReducer);
 
   // filter array based on search result
   allQuestions = allQuestions.filter(question =>
-    question.t.includes(props.search.toLowerCase())
+    question.t.includes(search.toLowerCase())
   );
 
   // filter array based on filter that user choose
@@ -33,6 +31,8 @@ const Learning = props => {
 
   return (
     <>
+      {/* <h1>{got.a ? "pobrane" : "NIEpobrane"}</h1>
+      <h1>{amount}</h1> */}
       <Container>
         <Row mb>
           <Col pr>
@@ -65,13 +65,4 @@ const Learning = props => {
   );
 };
 
-const mapStateToProps = state => {
-  return {
-    allQuestions: state.questionsReducer.allQuestions,
-    cqi: state.questionsReducer.cqi,
-    perPage: state.questionsReducer.perPage,
-    search: state.questionsReducer.search
-  };
-};
-
-export default connect(mapStateToProps)(Learning);
+export default Learning;

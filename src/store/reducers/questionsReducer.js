@@ -12,6 +12,7 @@ import {
 } from "./../actions/questionsActions";
 
 const initialState = {
+  got: { a: false, b: false, c: false }, //allQuestionsAleadyDownloadedFromFirebase
   allQuestions: [], // from firebase
   katList: [], // from firebase
   langList: [], // from firebase
@@ -30,15 +31,16 @@ export const questionsReducer = (state = initialState, actions) => {
   const name = `kat_${kat}_${lang}`;
   switch (actions.type) {
     case GET_QUESTIONS:
-      // console.log("1", state);
+      console.log("1", state);
       state = {
         ...state,
+        // got: true,
         allQuestions: actions.allQuestions,
         katList: actions.katList,
         langList: actions.langList,
         filterOptions: actions.filterOptions
       };
-      // console.log("2", state);
+      console.log("2", state);
       return state;
     //------------------------------------------------------------
     case SAVE_ANSWER:

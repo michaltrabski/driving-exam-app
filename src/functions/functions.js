@@ -5,7 +5,7 @@ export const storage = (key, value) => {
       return JSON.parse(localStorage.getItem(key));
     } else {
       // sessionStorage.setItem(key, JSON.stringify(value));
-      localStorage.setItem(key, JSON.stringify(value));
+      // localStorage.setItem(key, JSON.stringify(value));
     }
   } catch (err) {
     console.log(err);

@@ -33,8 +33,10 @@ const NextPage = ({ cqi, perPage, amount, nextPage, previesPage }) => {
           <FontAwesomeIcon icon={faArrowLeft} />
           {width > 700 && <span> poprzednia strona</span>}
         </button>
-        <div>
-          {page} z {pages} stron, {amount} pytań.
+        <div className="d-flex align-items-center">
+          <span>
+            {page} z {pages} stron, {amount} pytań.
+          </span>
         </div>
         <button
           className={`btn btn-${cqi + perPage >= amount ? "light" : "primary"}`}
