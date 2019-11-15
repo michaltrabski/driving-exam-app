@@ -61,6 +61,7 @@ export const getQuestions = (kat, lang) => {
             });
             dispatch({
               type: GET_QUESTIONS,
+              got: { [kat]: true },
               allQuestions,
               katList: data.katList,
               langList: data.langList,
