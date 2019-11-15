@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { Container, Row, Col } from "../elements/elements";
+import path from "./../config/path";
 const firebase = require("firebase");
 
-const SignIn = () => {
+const SignIn = props => {
   const [cred, setCred] = useState({ email: "", password: "" });
 
   const handleChange = e => {
@@ -12,19 +13,25 @@ const SignIn = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    console.log(cred);
-
     firebase
       .auth()
       .signInWithEmailAndPassword(cred.email, cred.password)
       .then(() => {
         console.log("zalogowano");
+        props.history.push(path.user_profile);
         // dispatch({ type: "LOGIN_SUCCESS" });
       })
       .catch(err => {
         console.log("NIE zalogowano", err);
         // dispatch({ type: "LOGIN_ERROR", err });
       });
+
+    // firebase
+    //   .auth()
+    //   .signOut()
+    //   .then(() => {
+    //     // dispatch({ type: "SIGNOUT_SUCCESS" });
+    //   });
   };
   return (
     <Container>
