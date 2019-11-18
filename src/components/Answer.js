@@ -53,7 +53,7 @@ const Answer = props => {
         className={`btn btn-${color.n} ml-2`}
         onClick={() => handleAnswer("n")}
       >
-        Tak
+        Nie
       </button>
     </div>
   );
