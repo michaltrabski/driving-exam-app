@@ -8,6 +8,8 @@ import { Container, Row, Col } from "../elements/elements";
 import Filters from "./../components/learning/Filters";
 import SearchInfo from "../components/learning/SearchInfo";
 import { filterQuestions } from "../functions/functions";
+import Add from "../components/Add";
+import Loading from "../components/learning/Loading";
 
 const Learning = () => {
   const { got, cqi, perPage, search, filterOption } = useSelector(
@@ -45,9 +47,19 @@ const Learning = () => {
         <NextPage amount={amount} />
       </Container>
       <SearchInfo amount={amount} />
-      {allQuestions.slice(cqi, cqi + perPage).map(question => (
-        <Question key={question.id} question={question} />
-      ))}
+
+      <Loading />
+
+      {allQuestions.slice(cqi, cqi + perPage).map((question, i) => {
+        return (
+          <>
+            <Question key={question.id} question={question} />
+            {i === 2 && <Add />}
+            {i === 5 && <Add />}
+            {i === perPage - 1 && <Add />}
+          </>
+        );
+      })}
 
       {/* <Container>
         <Row mb>

@@ -2,24 +2,17 @@ import React from "react";
 import { Container, Row, Col } from "../elements/elements";
 import { Link } from "react-router-dom";
 import path from "../config/path";
-import { useSelector } from "react-redux";
+import { getYear } from "../functions/functions";
 
 const Home = () => {
-  const katList = useSelector(state => state.questionsReducer.katList);
-  const getYear = () => {
-    let d = new Date();
-    return d.getFullYear();
-  };
   return (
     <Container transparent>
       <Row>
         <Col>
           <h1>Testy na prawo jazdy {getYear()}</h1>
           <p>
-            Wszystkie kategorie prawa jazdy{" "}
-            {katList.map(kat => {
-              return `${kat.toUpperCase()}, `;
-            })}
+            Wszystkie kategorie prawa jazdy <br />
+            <span>A, A1, A2, AM, B, B1, C, C1, D, D1, T, PT</span>
           </p>
           <Link to={path.learn}>
             <button className="btn btn-primary">Baza pytań</button>

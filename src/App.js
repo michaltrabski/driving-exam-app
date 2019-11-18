@@ -14,6 +14,7 @@ import SignUp from "./pages/SignUp";
 import Stats from "./pages/Stats";
 import { useSelector, useDispatch } from "react-redux";
 import { getQuestions } from "./store/actions/questionsActions";
+import UserProfile from "./pages/UserProfile";
 
 function App() {
   const kat = useSelector(state => state.questionsReducer.kat);
@@ -48,6 +49,7 @@ function App() {
             <Route path={path.super_admin} component={SuperAdmin} />
             <Route path={path.sign_up} component={SignUp} />
             <Route path={path.sign_in} component={SignIn} />
+            <Route path={path.user_profile} component={UserProfile} />
           </Switch>
         </PageBackground>
       </BrowserRouter>

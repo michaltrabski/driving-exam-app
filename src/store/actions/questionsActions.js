@@ -1,6 +1,8 @@
 import { storage } from "./../../functions/functions";
 import _ from "lodash";
+import firebase from "./../../config/firebase";
 
+export const LOADING = "LOADING";
 export const GET_QUESTIONS = "GET_QUESTIONS";
 export const SEARCH_QUESTIONS = "SEARCH_QUESTIONS";
 export const CHANGE_KATEGORY = "CHANGE_KATEGORY";
@@ -10,8 +12,6 @@ export const GO_TO_QUESTION_NR = "GO_TO_QUESTION_NR";
 export const CHANGE_PER_PAGE = "CHANGE_PER_PAGE";
 export const SAVE_ANSWER = "SAVE_ANSWER";
 export const CHANGE_FILTER_OPTION = "CHANGE_FILTER_OPTION";
-
-const firebase = require("firebase");
 
 export const getQuestions = (kat, lang) => {
   const name = `kat_${kat}_${lang}`;
@@ -31,6 +31,8 @@ export const getQuestions = (kat, lang) => {
   } else {
     // retriev questions from firebase
     return dispatch => {
+      dispatch({ type: LOADING });
+
       firebase
         .firestore()
         .collection("questions")
@@ -61,6 +63,7 @@ export const getQuestions = (kat, lang) => {
             });
             dispatch({
               type: GET_QUESTIONS,
+              got: { [kat]: true },
               allQuestions,
               katList: data.katList,
               langList: data.langList,

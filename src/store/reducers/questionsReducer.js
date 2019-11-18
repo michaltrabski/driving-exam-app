@@ -1,5 +1,6 @@
 import { storage } from "./../../functions/functions";
 import {
+  LOADING,
   GET_QUESTIONS,
   CHANGE_KATEGORY,
   SEARCH_QUESTIONS,
@@ -12,7 +13,7 @@ import {
 } from "./../actions/questionsActions";
 
 const initialState = {
-  got: { a: false, b: false, c: false }, //allQuestionsAleadyDownloadedFromFirebase
+  loading: true, //allQuestionsAleadyDownloadedFromFirebase
   allQuestions: [], // from firebase
   katList: [], // from firebase
   langList: [], // from firebase
@@ -30,11 +31,22 @@ export const questionsReducer = (state = initialState, actions) => {
   const { perPage, cqi, kat, lang } = state;
   const name = `kat_${kat}_${lang}`;
   switch (actions.type) {
-    case GET_QUESTIONS:
+    case LOADING:
       console.log("1", state);
+      console.log("actions", actions);
       state = {
         ...state,
-        // got: true,
+        loading: true
+      };
+      console.log("2", state);
+      return state;
+    //------------------------------------------------------------
+    case GET_QUESTIONS:
+      console.log("1", state);
+      console.log("actions", actions);
+      state = {
+        ...state,
+        loading: false,
         allQuestions: actions.allQuestions,
         katList: actions.katList,
         langList: actions.langList,

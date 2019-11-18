@@ -1,15 +1,18 @@
 export const storage = (key, value) => {
   try {
     if (!value) {
-      // return JSON.parse(sessionStorage.getItem(key));
       return JSON.parse(localStorage.getItem(key));
     } else {
-      // sessionStorage.setItem(key, JSON.stringify(value));
       // localStorage.setItem(key, JSON.stringify(value));
     }
   } catch (err) {
     console.log(err);
   }
+};
+
+export const getYear = () => {
+  let d = new Date();
+  return d.getFullYear();
 };
 
 //Filtering questions

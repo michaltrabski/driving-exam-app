@@ -1,7 +1,15 @@
 import React from "react";
 
-const Home = () => {
-  return "HOME";
+import { Container, Row, Col } from "../elements/elements";
+
+const ExamReview = () => {
+  return (
+    <Container>
+      <Row>
+        <Col>w krótce</Col>
+      </Row>
+    </Container>
+  );
 };
 
-export default Home;
+export default ExamReview;

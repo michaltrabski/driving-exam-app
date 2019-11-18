@@ -1,22 +1,14 @@
-import React, { useEffect } from "react";
-import axios from "axios";
+import React from "react";
+import { Container, Row, Col } from "../elements/elements";
 
 const Exam = () => {
-  useEffect(() => {
-    axios
-      .post("http://localhost/poznaj-testy/wp-admin/admin-ajax.php", {
-        data: {
-          action: "get_user_info"
-        }
-      })
-      .then(function(response) {
-        console.log(response);
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
-  });
-  return "Exam";
+  return (
+    <Container>
+      <Row>
+        <Col>w krótce</Col>
+      </Row>
+    </Container>
+  );
 };
 
 export default Exam;
