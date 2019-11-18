@@ -7,7 +7,7 @@ import { getYear } from "../functions/functions";
 const Home = () => {
   return (
     <Container transparent>
-      <Row>
+      <Row center>
         <Col>
           <h1>Testy na prawo jazdy {getYear()}</h1>
           <p>

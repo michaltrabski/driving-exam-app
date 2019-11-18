@@ -1,31 +1,43 @@
 import React, { useState, useEffect } from "react";
 import { Row, Col } from "../elements/elements";
 import axios from "axios";
+import { useSelector } from "react-redux";
+import Add from "./Add";
 const url = "https://poznaj-testy.pl/wp-json/wp/v2/posts?slug=";
 
-const Explanation = ({ id, t, e }) => {
-  // console.log("Explanation", id, t);
+const Explanation = ({ id, t }) => {
+  const { poznajTestyHasAccess } = useSelector(
+    state => state.usersReducer.userData
+  );
   const [expl, setExpl] = useState("loading...");
 
   useEffect(() => {
-    console.log(`${url}${urlToSlug(id, t)}`);
-    axios
-      .get(`${url}${urlToSlug(id, t)}`)
-      .then(res => res.data[0].content.rendered)
-      .then(res => setExpl(res));
-  });
+    poznajTestyHasAccess
+      ? axios
+          .get(`${url}${urlToSlug(id, t)}`)
+          .then(res => res.data[0].content.rendered)
+          .then(res => setExpl(res))
+      : setExpl("Wyjaśnienia pytań dostępne są dla płatnych kont");
+  }, []);
+
   return (
-    <Row>
-      <Col left>
-        <h5>Wyjaśnienie</h5>
-        <div>{e}</div>
-        <div
-          dangerouslySetInnerHTML={{
-            __html: expl
-          }}
-        ></div>
-      </Col>
-    </Row>
+    <>
+      <Row>
+        <Col>
+          <h5 className="mt-3">Wyjaśnienie</h5>
+          <div
+            dangerouslySetInnerHTML={{
+              __html: expl
+            }}
+          ></div>
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <Add />
+        </Col>
+      </Row>
+    </>
   );
 };
 

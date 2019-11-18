@@ -22,13 +22,13 @@ const Settings = props => {
 
   return (
     <Container transparent>
-      <Row>
+      <Row mb>
         <Col>
           <h1>Ustawienia:</h1>
         </Col>
       </Row>
 
-      <Row>
+      <Row mb>
         <Col>
           <form className="mb-3">
             <div className="custom-control custom-checkbox">
@@ -46,8 +46,10 @@ const Settings = props => {
           </form>
         </Col>
       </Row>
+
       <GoToQuestionNumber />
-      <Row>
+
+      <Row mb>
         <Col>
           <form className="form-inline">
             <label htmlFor="">Ile pytań pokazywać na jednej stronie?</label>
@@ -65,7 +67,8 @@ const Settings = props => {
           </form>
         </Col>
       </Row>
-      <Row>
+
+      <Row mb>
         <Col>
           <span>Zmień kategorię prawa jazdy</span>
           {props.katList.map(kat => (

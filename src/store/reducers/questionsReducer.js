@@ -1,4 +1,4 @@
-import { storage } from "./../../functions/functions";
+import { storage, SHOW_ALL } from "./../../functions/functions";
 import {
   LOADING,
   GET_QUESTIONS,
@@ -13,7 +13,7 @@ import {
 } from "./../actions/questionsActions";
 
 const initialState = {
-  loading: true, //allQuestionsAleadyDownloadedFromFirebase
+  loading: true, // questions are loading from firebase
   allQuestions: [], // from firebase
   katList: [], // from firebase
   langList: [], // from firebase
@@ -30,20 +30,17 @@ const initialState = {
 export const questionsReducer = (state = initialState, actions) => {
   const { perPage, cqi, kat, lang } = state;
   const name = `kat_${kat}_${lang}`;
+
   switch (actions.type) {
     case LOADING:
-      console.log("1", state);
-      console.log("actions", actions);
       state = {
         ...state,
-        loading: true
+        loading: true,
+        allQuestions: []
       };
-      console.log("2", state);
       return state;
     //------------------------------------------------------------
     case GET_QUESTIONS:
-      console.log("1", state);
-      console.log("actions", actions);
       state = {
         ...state,
         loading: false,
@@ -52,7 +49,6 @@ export const questionsReducer = (state = initialState, actions) => {
         langList: actions.langList,
         filterOptions: actions.filterOptions
       };
-      console.log("2", state);
       return state;
     //------------------------------------------------------------
     case SAVE_ANSWER:
@@ -73,14 +69,12 @@ export const questionsReducer = (state = initialState, actions) => {
       return state;
     //------------------------------------------------------------
     case CHANGE_FILTER_OPTION:
-      // console.log("1", state);
       state = {
         ...state,
         search: "",
         cqi: 0,
         filterOption: actions.filterOption
       };
-      // console.log("2", state);
       return state;
     //------------------------------------------------------------
     case NEXT_PAGE:
@@ -102,7 +96,7 @@ export const questionsReducer = (state = initialState, actions) => {
         ...state,
         cqi: 0,
         search: actions.search,
-        filterOption: "SHOW_ALL"
+        filterOption: SHOW_ALL
       };
       return state;
     //------------------------------------------------------------
@@ -112,7 +106,7 @@ export const questionsReducer = (state = initialState, actions) => {
         cqi: 0,
         kat: actions.kat,
         search: "",
-        filterOption: "SHOW_ALL"
+        filterOption: SHOW_ALL
       };
       storage("kat", state.kat);
       return state;

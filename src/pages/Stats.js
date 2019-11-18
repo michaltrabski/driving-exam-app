@@ -24,7 +24,7 @@ const Stats = props => {
 
   return (
     <Container>
-      <Row>
+      <Row center>
         <Col>w krótce</Col>
       </Row>
     </Container>

@@ -31,7 +31,7 @@ const add2 = (
       target="_blank"
       rel="noopener noreferrer"
     >
-      Zobacz fil wideo!
+      Zobacz film wideo!
     </a>
   </div>
 );

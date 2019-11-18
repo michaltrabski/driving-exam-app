@@ -16,20 +16,24 @@ export const getYear = () => {
 };
 
 //Filtering questions
+export const SHOW_ALL = "SHOW_ALL";
+export const SHOW_GOOD = "SHOW_GOOD";
+export const SHOW_BAD = "SHOW_BAD";
+export const SHOW_WITHOUT = "SHOW_WITHOUT";
 export const filterQuestions = (question, filter) => {
   switch (filter) {
-    case "SHOW_ALL":
+    case SHOW_ALL:
       return true;
     //--------------------------------------------------------------
-    case "SHOW_GOOD":
+    case SHOW_GOOD:
       return question.r === question.userAns ? true : false;
     //--------------------------------------------------------------
-    case "SHOW_BAD":
+    case SHOW_BAD:
       return question.r !== question.userAns && question.userAns !== false
         ? true
         : false;
     //--------------------------------------------------------------
-    case "SHOW_WITHOUT":
+    case SHOW_WITHOUT:
       return question.userAns === false ? true : false;
     //--------------------------------------------------------------
     default:

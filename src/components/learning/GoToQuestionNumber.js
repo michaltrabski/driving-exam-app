@@ -20,7 +20,7 @@ const GoToQuestionNumber = () => {
   };
 
   return (
-    <Row>
+    <Row mb>
       <Col>
         <form onSubmit={handleSubmit} className="form-inline">
           <label htmlFor="gtqnr">Idź do pytania nr: </label>

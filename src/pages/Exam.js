@@ -4,7 +4,7 @@ import { Container, Row, Col } from "../elements/elements";
 const Exam = () => {
   return (
     <Container>
-      <Row>
+      <Row center>
         <Col>w krótce</Col>
       </Row>
     </Container>

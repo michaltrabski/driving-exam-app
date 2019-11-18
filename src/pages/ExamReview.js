@@ -5,7 +5,7 @@ import { Container, Row, Col } from "../elements/elements";
 const ExamReview = () => {
   return (
     <Container>
-      <Row>
+      <Row center>
         <Col>w krótce</Col>
       </Row>
     </Container>
