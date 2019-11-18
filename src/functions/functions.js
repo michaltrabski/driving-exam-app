@@ -10,6 +10,11 @@ export const storage = (key, value) => {
   }
 };
 
+export const getYear = () => {
+  let d = new Date();
+  return d.getFullYear();
+};
+
 //Filtering questions
 export const filterQuestions = (question, filter) => {
   switch (filter) {

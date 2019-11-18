@@ -23,14 +23,23 @@ const UserProfile = () => {
         </Row>
       </Container>
     );
+
   return (
     <Container>
       <Row>
-        <Col>Witaj {user.userData.email}</Col>
-        <Col> {JSON.stringify(user)}</Col>
+        <Col>w krótce</Col>
       </Row>
     </Container>
   );
+
+  // return (
+  //   <Container>
+  //     <Row>
+  //       <Col>Witaj {user.userData.email}</Col>
+  //       <Col> {JSON.stringify(user)}</Col>
+  //     </Row>
+  //   </Container>
+  // );
 };
 
 export default UserProfile;
