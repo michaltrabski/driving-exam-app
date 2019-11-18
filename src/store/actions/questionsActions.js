@@ -1,6 +1,7 @@
 import { storage } from "./../../functions/functions";
 import _ from "lodash";
 
+export const LOADING = "LOADING";
 export const GET_QUESTIONS = "GET_QUESTIONS";
 export const SEARCH_QUESTIONS = "SEARCH_QUESTIONS";
 export const CHANGE_KATEGORY = "CHANGE_KATEGORY";
@@ -31,6 +32,8 @@ export const getQuestions = (kat, lang) => {
   } else {
     // retriev questions from firebase
     return dispatch => {
+      dispatch({ type: LOADING });
+
       firebase
         .firestore()
         .collection("questions")

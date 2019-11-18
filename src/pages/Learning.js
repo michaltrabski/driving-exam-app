@@ -9,6 +9,7 @@ import Filters from "./../components/learning/Filters";
 import SearchInfo from "../components/learning/SearchInfo";
 import { filterQuestions } from "../functions/functions";
 import Add from "../components/Add";
+import Loading from "../components/learning/Loading";
 
 const Learning = () => {
   const { got, cqi, perPage, search, filterOption } = useSelector(
@@ -46,6 +47,9 @@ const Learning = () => {
         <NextPage amount={amount} />
       </Container>
       <SearchInfo amount={amount} />
+
+      <Loading />
+
       {allQuestions.slice(cqi, cqi + perPage).map((question, i) => {
         return (
           <>
