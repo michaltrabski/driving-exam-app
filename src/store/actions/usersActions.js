@@ -1,8 +1,8 @@
-import { storage } from "../../functions/functions";
-const firebase = require("firebase");
+import firebase from "./../../config/firebase";
 
 export const IS_USER_LOGGED_IN = "IS_USER_LOGGED_IN";
 export const SET_CURRENT_USER = "SET_CURRENT_USER";
+export const SIGNOUT_SUCCESS = "SIGNOUT_SUCCESS";
 
 export const setCurrentUser = user => {
   return dispatch => {
@@ -23,6 +23,17 @@ export const setCurrentUser = user => {
       })
       .catch(function(error) {
         console.log("Error getting document:", error);
+      });
+  };
+};
+
+export const signOut = user => {
+  return dispatch => {
+    firebase
+      .auth()
+      .signOut()
+      .then(() => {
+        dispatch({ type: SIGNOUT_SUCCESS });
       });
   };
 };

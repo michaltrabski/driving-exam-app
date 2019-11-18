@@ -1,5 +1,6 @@
 import { storage } from "./../../functions/functions";
 import _ from "lodash";
+import firebase from "./../../config/firebase";
 
 export const LOADING = "LOADING";
 export const GET_QUESTIONS = "GET_QUESTIONS";
@@ -11,8 +12,6 @@ export const GO_TO_QUESTION_NR = "GO_TO_QUESTION_NR";
 export const CHANGE_PER_PAGE = "CHANGE_PER_PAGE";
 export const SAVE_ANSWER = "SAVE_ANSWER";
 export const CHANGE_FILTER_OPTION = "CHANGE_FILTER_OPTION";
-
-const firebase = require("firebase");
 
 export const getQuestions = (kat, lang) => {
   const name = `kat_${kat}_${lang}`;

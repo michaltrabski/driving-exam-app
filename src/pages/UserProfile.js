@@ -1,11 +1,13 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Container, Row, Col } from "../elements/elements";
 import { Link } from "react-router-dom";
 import path from "./../config/path";
+import { signOut } from "./../store/actions/usersActions";
 
 const UserProfile = () => {
   const user = useSelector(state => state.usersReducer);
+  const dispatch = useDispatch();
 
   if (!user.isLoggedIn)
     return (
@@ -27,19 +29,21 @@ const UserProfile = () => {
   return (
     <Container>
       <Row>
-        <Col>w krótce</Col>
+        <Col>Witaj {user.userData.email}</Col>
+        {/* <Col> {JSON.stringify(user)}</Col> */}
+      </Row>
+      <Row>
+        <Col>
+          <button
+            className="btn btn-danger"
+            onClick={() => dispatch(signOut())}
+          >
+            Wyloguj się
+          </button>
+        </Col>
       </Row>
     </Container>
   );
-
-  // return (
-  //   <Container>
-  //     <Row>
-  //       <Col>Witaj {user.userData.email}</Col>
-  //       <Col> {JSON.stringify(user)}</Col>
-  //     </Row>
-  //   </Container>
-  // );
 };
 
 export default UserProfile;

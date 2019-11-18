@@ -8,18 +8,7 @@ import { ThemeProvider } from "styled-components";
 import { theme } from "./theme/Theme";
 import { store } from "./store/reducers/rootReducer";
 import { setCurrentUser } from "./store/actions/usersActions";
-
-const firebase = require("firebase");
-require("firebase/firestore");
-firebase.initializeApp({
-  apiKey: "AIzaSyA8exKm3Jq4xQRhCKz62SXeOEAf1VWBaXI",
-  authDomain: "poznajtesty-ad2ca.firebaseapp.com",
-  databaseURL: "https://poznajtesty-ad2ca.firebaseio.com",
-  projectId: "poznajtesty-ad2ca",
-  storageBucket: "poznajtesty-ad2ca.appspot.com",
-  messagingSenderId: "14333994731",
-  appId: "1:14333994731:web:6b71c6fe3b41042c4a80ae"
-});
+import firebase from "./config/firebase";
 
 firebase.auth().onAuthStateChanged(user => {
   if (user) {

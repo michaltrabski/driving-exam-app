@@ -1,5 +1,4 @@
-import { storage } from "../../functions/functions";
-import { SET_CURRENT_USER } from "./../actions/usersActions";
+import { SET_CURRENT_USER, SIGNOUT_SUCCESS } from "./../actions/usersActions";
 
 const initialState = {
   isLoggedIn: false,
@@ -20,6 +19,16 @@ export const usersReducer = (state = initialState, actions) => {
         userData: { ...state.userData, ...actions.userData }
       };
       // console.log("2 usersReducer state = ", state);
+      return state;
+    //------------------------------------------------------------
+    case SIGNOUT_SUCCESS:
+      console.log("1 usersReducer state = ", state);
+      state = {
+        ...state,
+        isLoggedIn: false,
+        signOutMessage: "poprawnie wylogowano"
+      };
+      console.log("2 usersReducer state = ", state);
       return state;
     //------------------------------------------------------------
     default:
