@@ -1,5 +1,5 @@
 const path = {
-  learn: "/nauka",
+  learn: "/pytania",
   exam: "/egzamin",
   exam_reviev: "/wyniki-egzaminow",
   blog: "/blog",

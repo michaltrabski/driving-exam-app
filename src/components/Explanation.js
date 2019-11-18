@@ -24,7 +24,7 @@ const Explanation = ({ id, t }) => {
     <>
       <Row>
         <Col>
-          <h5 className="mt-3">Wyjaśnienie</h5>
+          <h5 className="mt-1">Wyjaśnienie</h5>
           <div
             dangerouslySetInnerHTML={{
               __html: expl

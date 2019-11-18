@@ -12,7 +12,7 @@ const Nav = () => {
 
   return (
     <nav className="shadow navbar navbar-expand-lg navbar-dark bg-dark">
-      <Link className="navbar-brand" to="/">
+      <Link className="navbar-brand" to="/" onClick={() => setCollapse(true)}>
         poznajTesty.pl{" "}
         <span className="text-primary font-weight-bolder">App</span>
       </Link>
@@ -38,28 +38,35 @@ const Nav = () => {
             to={path.learn}
             onClick={handleNavLinkClick}
           >
-            Nauka Pytań
+            Pytania
           </NavLink>
           <NavLink
             className="nav-link"
             to={path.exam}
             onClick={handleNavLinkClick}
           >
-            Wykonaj Egzamin
+            Egzamin
           </NavLink>
           <NavLink
             className="nav-link"
-            to={path.exam_reviev}
+            to={path.exam}
             onClick={handleNavLinkClick}
           >
-            Przeglądaj wyniki egzaminów
+            Szkolenia wideo
           </NavLink>
           <NavLink
-            className="nav-link"
-            to={path.blog}
+            className="nav-link ml-3 nav-link-video-course"
+            to={path.exam}
             onClick={handleNavLinkClick}
           >
-            Blog
+            Kompendium wiedzy
+          </NavLink>
+          <NavLink
+            className="nav-link ml-3 nav-link-video-course"
+            to={path.exam}
+            onClick={handleNavLinkClick}
+          >
+            Sytuacje i Niespodzianki na drodze!
           </NavLink>
           <NavLink
             className="nav-link"
@@ -67,6 +74,13 @@ const Nav = () => {
             onClick={handleNavLinkClick}
           >
             Statystyki
+          </NavLink>
+          <NavLink
+            className="nav-link"
+            to={path.blog}
+            onClick={handleNavLinkClick}
+          >
+            Blog
           </NavLink>
         </ul>
         <ul className="navbar-nav">
