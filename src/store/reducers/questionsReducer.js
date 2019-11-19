@@ -33,13 +33,13 @@ export const questionsReducer = (state = initialState, actions) => {
 
   switch (actions.type) {
     case LOADING:
-      console.log("1", state);
+      console.log("LOADING 1", state);
       state = {
         ...state,
         loading: true,
         allQuestions: []
       };
-      console.log("2", state);
+      console.log("LOADING 2", state);
       return state;
     //------------------------------------------------------------
     case GET_QUESTIONS:

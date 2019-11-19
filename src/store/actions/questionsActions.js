@@ -31,7 +31,10 @@ export const getQuestions = (kat, lang) => {
   } else {
     // retriev questions from firebase
     return dispatch => {
+      console.log("1 LOADING dispatch");
       dispatch({ type: LOADING });
+      console.log("2 LOADING dispatch");
+      console.log("name = ", name);
 
       firebase
         .firestore()
@@ -63,7 +66,6 @@ export const getQuestions = (kat, lang) => {
             });
             dispatch({
               type: GET_QUESTIONS,
-              got: { [kat]: true },
               allQuestions,
               katList: data.katList,
               langList: data.langList,
