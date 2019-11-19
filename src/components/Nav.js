@@ -38,45 +38,52 @@ const Nav = () => {
         className={`navbar-collapse ${collapse && "collapse"}`}
         id="navbarSupportedContent"
       >
-        <ul className="navbar-nav mr-auto">
-          <NavLink
-            className="nav-link"
-            to={path.learn}
-            onClick={handleNavLinkClick}
-          >
-            Cennik
-          </NavLink>
-        </ul>
-
         <ul className="navbar-nav ml-auto mr-auto">
-          <NavLink
-            className="nav-link"
-            to={path.learn}
-            onClick={handleNavLinkClick}
-          >
-            Nauka pytań
-          </NavLink>
-          <NavLink
-            className="nav-link"
-            to={path.exam}
-            onClick={handleNavLinkClick}
-          >
-            Wykonaj egzamin
-          </NavLink>
-          <NavLink
-            className="nav-link"
-            to={path.exam_reviev}
-            onClick={handleNavLinkClick}
-          >
-            Przeglądaj wyniki egzaminów
-          </NavLink>
-          <NavLink
-            className="nav-link"
-            to={path.exam}
-            onClick={handleNavLinkClick}
-          >
-            Szkolenia wideo
-          </NavLink>
+          <li className="nav-item">
+            <NavLink
+              className="nav-link"
+              to={path.learn}
+              onClick={handleNavLinkClick}
+            >
+              Nauka pytań
+            </NavLink>
+          </li>
+          <li className="nav-item">
+            <NavLink
+              className="nav-link"
+              to={path.exam}
+              onClick={handleNavLinkClick}
+            >
+              Wykonaj egzamin
+            </NavLink>
+          </li>
+          <li className="nav-item">
+            <NavLink
+              className="nav-link"
+              to={path.learn}
+              onClick={handleNavLinkClick}
+            >
+              Cennik
+            </NavLink>
+          </li>
+          <li className="nav-item">
+            <NavLink
+              className="nav-link"
+              to={path.exam_reviev}
+              onClick={handleNavLinkClick}
+            >
+              Przeglądaj wyniki egzaminów
+            </NavLink>
+          </li>
+          <li className="nav-item">
+            <NavLink
+              className="nav-link"
+              to={path.exam}
+              onClick={handleNavLinkClick}
+            >
+              Szkolenia wideo
+            </NavLink>
+          </li>
           <a
             className="nav-link ml-3 nav-link-video-course"
             href={link_outside.kompendium_wiedzy}
@@ -93,20 +100,24 @@ const Nav = () => {
           >
             Sytuacje i Niespodzianki na drodze!
           </a>
-          <NavLink
-            className="nav-link"
-            to={path.stats}
-            onClick={handleNavLinkClick}
-          >
-            Statystyki
-          </NavLink>
-          <NavLink
-            className="nav-link"
-            to={path.blog}
-            onClick={handleNavLinkClick}
-          >
-            Blog
-          </NavLink>
+          <li className="nav-item">
+            <NavLink
+              className="nav-link"
+              to={path.stats}
+              onClick={handleNavLinkClick}
+            >
+              Statystyki
+            </NavLink>
+          </li>
+          <li className="nav-item">
+            <NavLink
+              className="nav-link"
+              to={path.blog}
+              onClick={handleNavLinkClick}
+            >
+              Blog
+            </NavLink>
+          </li>
         </ul>
         <ul className="navbar-nav">
           {isLoggedIn ? (
