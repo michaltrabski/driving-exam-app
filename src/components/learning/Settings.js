@@ -10,6 +10,7 @@ import GoToQuestionNumber from "./GoToQuestionNumber";
 
 const Settings = props => {
   const handleChangeKategory = (e, kat) => {
+    console.log(e, kat);
     e.preventDefault();
     window.scrollTo(0, 0);
     props.changeKategory(kat);
@@ -22,7 +23,7 @@ const Settings = props => {
 
   return (
     <Container transparent>
-      <Row mb>
+      <Row mb center>
         <Col>
           <h1>Ustawienia:</h1>
         </Col>
@@ -30,7 +31,7 @@ const Settings = props => {
 
       <Row mb>
         <Col>
-          <form className="mb-3">
+          <form>
             <div className="custom-control custom-checkbox">
               <input
                 type="checkbox"
@@ -40,7 +41,7 @@ const Settings = props => {
                 checked={props.settings.showAnswerNow}
               />
               <label className="custom-control-label" htmlFor="njgkrefd">
-                Czy pokazywać odpowiedzi od razu?
+                Pokazuj odpowiedzi od razu
               </label>
             </div>
           </form>
@@ -52,10 +53,10 @@ const Settings = props => {
       <Row mb>
         <Col>
           <form className="form-inline">
-            <label htmlFor="">Ile pytań pokazywać na jednej stronie?</label>
             <select
+              id="perpage"
               value={props.perPage}
-              className="d-inline w-auto mr-1"
+              className="form-control d-inline w-auto mr-1"
               onChange={e => handleChangePerPage(e)}
             >
               {props.perPageOptions.map(opt => (
@@ -64,24 +65,28 @@ const Settings = props => {
                 </option>
               ))}
             </select>
+            <label htmlFor="perpage">Pytań na stronie</label>
           </form>
         </Col>
       </Row>
 
       <Row mb>
         <Col>
-          <span>Zmień kategorię prawa jazdy</span>
-          {props.katList.map(kat => (
-            <button
-              key={kat}
-              onClick={e => handleChangeKategory(e, kat)}
-              className={`btn btn-${
-                kat === props.kat ? "success" : "light"
-              } mr-3`}
+          <form className="form-inline">
+            <label htmlFor="changekat">Zmień kategorię prawa jazdy</label>
+            <select
+              id="changekat"
+              value={props.kat}
+              className="form-control d-inline w-auto mr-1"
+              onChange={e => handleChangeKategory(e, e.target.value)}
             >
-              {kat.toUpperCase()}
-            </button>
-          ))}
+              {props.katList.map(kat => (
+                <option key={kat} value={kat}>
+                  {kat.toUpperCase()}
+                </option>
+              ))}
+            </select>
+          </form>
         </Col>
       </Row>
     </Container>

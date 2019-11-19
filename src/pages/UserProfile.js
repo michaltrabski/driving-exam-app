@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Container, Row, Col } from "../elements/elements";
 import { Link } from "react-router-dom";
-import path from "./../config/path";
+import { path } from "./../config/path";
 import { signOut } from "./../store/actions/usersActions";
 
 const UserProfile = () => {

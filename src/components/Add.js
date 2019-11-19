@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Row, Col } from "../elements/elements";
 import { getYear } from "../functions/functions";
-import styled from "styled-components";
+import { link_outside } from "../config/path";
 
 const add1 = (
   <div>
@@ -11,7 +11,7 @@ const add1 = (
       wiedzieć przed egzaminem państwowym na prawo jazdy w {getYear()} roku!
     </p>
     <a
-      href="https://poznaj-testy.pl/filmy/kompendium-wiedzy/"
+      href={link_outside.kompendium_wiedzy}
       target="_blank"
       rel="noopener noreferrer"
     >
@@ -27,7 +27,7 @@ const add2 = (
       egzamin na prawo jazdy!
     </p>
     <a
-      href="https://poznaj-testy.pl/filmy/sytuacje-i-niespodzianki/"
+      href={link_outside.syt_i_niesp}
       target="_blank"
       rel="noopener noreferrer"
     >
@@ -42,7 +42,7 @@ const Add = () => {
 
   return (
     <Container transparent>
-      <Row>
+      <Row center>
         <Col>{adds[index]}</Col>
       </Row>
     </Container>

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { NavLink, Link } from "react-router-dom";
-import path from "../config/path";
+import { path, link_outside } from "../config/path";
 import { useSelector } from "react-redux";
 
 const Nav = () => {
@@ -14,7 +14,13 @@ const Nav = () => {
     <nav className="shadow navbar navbar-expand-lg navbar-dark bg-dark">
       <Link className="navbar-brand" to="/" onClick={() => setCollapse(true)}>
         poznajTesty.pl{" "}
-        <span className="text-primary font-weight-bolder">App</span>
+        <span
+          className={`${
+            isLoggedIn ? "text-success" : "text-primary"
+          } font-weight-bolder`}
+        >
+          App
+        </span>
       </Link>
       <button
         className="navbar-toggler"
@@ -38,14 +44,21 @@ const Nav = () => {
             to={path.learn}
             onClick={handleNavLinkClick}
           >
-            Pytania
+            Nauka pytań
           </NavLink>
           <NavLink
             className="nav-link"
             to={path.exam}
             onClick={handleNavLinkClick}
           >
-            Egzamin
+            Wykonaj egzamin
+          </NavLink>
+          <NavLink
+            className="nav-link"
+            to={path.exam_reviev}
+            onClick={handleNavLinkClick}
+          >
+            Przeglądaj wyniki egzaminów
           </NavLink>
           <NavLink
             className="nav-link"
@@ -54,20 +67,22 @@ const Nav = () => {
           >
             Szkolenia wideo
           </NavLink>
-          <NavLink
+          <a
             className="nav-link ml-3 nav-link-video-course"
-            to={path.exam}
-            onClick={handleNavLinkClick}
+            href={link_outside.kompendium_wiedzy}
+            target="_blank"
+            rel="noopener noreferrer"
           >
             Kompendium wiedzy
-          </NavLink>
-          <NavLink
+          </a>
+          <a
             className="nav-link ml-3 nav-link-video-course"
-            to={path.exam}
-            onClick={handleNavLinkClick}
+            href={link_outside.syt_i_niesp}
+            target="_blank"
+            rel="noopener noreferrer"
           >
             Sytuacje i Niespodzianki na drodze!
-          </NavLink>
+          </a>
           <NavLink
             className="nav-link"
             to={path.stats}
@@ -90,7 +105,7 @@ const Nav = () => {
               to={path.user_profile}
               onClick={handleNavLinkClick}
             >
-              <button class="btn btn-outline-success" type="submit">
+              <button className="btn btn-outline-success" type="submit">
                 Twój profil
               </button>
             </NavLink>

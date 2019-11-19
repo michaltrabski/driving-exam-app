@@ -6,7 +6,7 @@ import Home from "./pages/Home";
 import Learning from "./pages/Learning";
 import Exam from "./pages/Exam";
 import ExamReview from "./pages/ExamReview";
-import path from "./config/path";
+import { path } from "./config/path";
 import Blog from "./pages/Blog";
 import SuperAdmin from "./pages/SuperAdmin";
 import SignIn from "./pages/SignIn";

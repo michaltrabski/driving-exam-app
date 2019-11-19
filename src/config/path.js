@@ -1,6 +1,6 @@
-const path = {
-  learn: "/pytania",
-  exam: "/egzamin",
+export const path = {
+  learn: "/nauka-pytan",
+  exam: "/wykonaj-egzamin",
   exam_reviev: "/wyniki-egzaminow",
   blog: "/blog",
   stats: "/statystyki",
@@ -10,4 +10,7 @@ const path = {
   user_profile: "/twoj-profil"
 };
 
-export default path;
+export const link_outside = {
+  kompendium_wiedzy: "https://poznajtesty.blogspot.com/p/kompendium.html",
+  syt_i_niesp: "https://poznajtesty.blogspot.com/p/kompendium.html"
+};

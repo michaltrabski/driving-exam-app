@@ -6,7 +6,7 @@ import {
   wrongAnswerArr
 } from "../functions/functions";
 import { Container, Row, Col } from "../elements/elements";
-import path from "./../config/path";
+import { path } from "./../config/path";
 
 const Stats = props => {
   const allQuestions = useSelector(

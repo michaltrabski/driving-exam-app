@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Container, Row, Col } from "../elements/elements";
-import path from "./../config/path";
+import { path } from "./../config/path";
 const firebase = require("firebase");
 
 const SignIn = props => {

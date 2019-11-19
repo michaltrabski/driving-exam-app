@@ -23,7 +23,7 @@ const initialState = {
   cqi: 0, // current question index
   perPageOptions: [1, 2, 5, 10, 25],
   search: "", // default search string - this is a string that user type into a search form
-  filterOption: "SHOW_ALL",
+  filterOption: SHOW_ALL,
   filterOptions: [] // from firebase
 };
 
@@ -33,14 +33,17 @@ export const questionsReducer = (state = initialState, actions) => {
 
   switch (actions.type) {
     case LOADING:
+      console.log("1", state);
       state = {
         ...state,
         loading: true,
         allQuestions: []
       };
+      console.log("2", state);
       return state;
     //------------------------------------------------------------
     case GET_QUESTIONS:
+      console.log("1", state);
       state = {
         ...state,
         loading: false,
@@ -49,6 +52,7 @@ export const questionsReducer = (state = initialState, actions) => {
         langList: actions.langList,
         filterOptions: actions.filterOptions
       };
+      console.log("2", state);
       return state;
     //------------------------------------------------------------
     case SAVE_ANSWER:

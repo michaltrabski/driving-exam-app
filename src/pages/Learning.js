@@ -12,7 +12,7 @@ import Add from "../components/Add";
 import Loading from "../components/learning/Loading";
 
 const Learning = () => {
-  const { got, cqi, perPage, search, filterOption } = useSelector(
+  const { cqi, perPage, search, filterOption } = useSelector(
     state => state.questionsReducer
   );
   let { allQuestions } = useSelector(state => state.questionsReducer);
@@ -33,8 +33,6 @@ const Learning = () => {
 
   return (
     <>
-      {/* <h1>{got.a ? "pobrane" : "NIEpobrane"}</h1>
-      <h1>{amount}</h1> */}
       <Container>
         <Row mb>
           <Col pr>
@@ -52,20 +50,14 @@ const Learning = () => {
 
       {allQuestions.slice(cqi, cqi + perPage).map((question, i) => {
         return (
-          <>
-            <Question key={question.id} question={question} />
+          <React.Fragment key={question.id}>
+            <Question question={question} />
             {i === 2 && <Add />}
             {i === 5 && <Add />}
             {i === perPage - 1 && <Add />}
-          </>
+          </React.Fragment>
         );
       })}
-
-      {/* <Container>
-        <Row mb>
-          <Col pr>ostatnie pytanie</Col>
-        </Row>
-      </Container> */}
 
       {amount > 0 && (
         <Container>
