@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Container, Row, Col } from "../elements/elements";
 import { Link } from "react-router-dom";
-import path from "./../config/path";
+import { path } from "./../config/path";
 import { signOut } from "./../store/actions/usersActions";
 
 const UserProfile = () => {
@@ -12,7 +12,7 @@ const UserProfile = () => {
   if (!user.isLoggedIn)
     return (
       <Container transparent>
-        <Row>
+        <Row center>
           <Col>
             <h1>Jesteś niezalogowany!!!</h1>
             <Link className="navbar-brand" to={path.sign_in}>
@@ -28,11 +28,11 @@ const UserProfile = () => {
 
   return (
     <Container>
-      <Row>
+      <Row center>
         <Col>Witaj {user.userData.email}</Col>
         {/* <Col> {JSON.stringify(user)}</Col> */}
       </Row>
-      <Row>
+      <Row center>
         <Col>
           <button
             className="btn btn-danger"

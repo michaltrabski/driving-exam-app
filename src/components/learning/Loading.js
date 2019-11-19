@@ -8,7 +8,7 @@ const Loading = () => {
   return (
     loading && (
       <Container transparent>
-        <Row>
+        <Row center>
           <Col>
             <h1 className="text-secondary">Pobieram pytania</h1>
             <div className="spinner-border text-secondary" role="status">

@@ -1,9 +1,8 @@
 import styled, { css } from "styled-components";
-import { lighten } from "polished";
 
 export const PageBackground = styled.div`
   background: ${({ theme }) => theme.light};
-  padding-top: 50px;
+  padding-top: 40px;
   padding-bottom: 150px;
   padding-right: 5px;
   padding-left: 5px;
@@ -33,17 +32,15 @@ export const Container = styled.div`
 export const Row = styled.div`
   display: flex;
   flex-wrap: wrap;
-  /* margin-bottom: 5px; */
   flex-direction: column;
-
   @media (${({ theme }) => theme.tablet}) {
     flex-direction: row;
   }
-
+  ${({ center }) => center && "text-align: center;"}
+  ${({ right }) => right && "text-align: right;"}
   ${({ mt10 }) => mt10 && "margin-top: 100px;"};
-
   ${({ mtAuto }) => mtAuto && "margin-top: auto;"};
-  ${props => props.mb && "margin-bottom: 15px;"};
+  ${({ mb }) => mb && "margin-bottom: 15px;"};
 `;
 
 export const Col = styled.div`
@@ -51,8 +48,9 @@ export const Col = styled.div`
   flex-grow: 1;
   max-width: 100%;
   background-color: ${({ light }) => light && "lightgray"};
-  text-align: ${({ right }) => (right ? "right" : "center")};
-  text-align: ${({ left }) => left && "left"};
+
+  ${({ center }) => center && "text-align: center;"}
+  ${({ right }) => right && "text-align: right;"}
 
   @media (${({ theme }) => theme.tablet}) {
     padding-right: ${({ pr }) => pr && "5px"};

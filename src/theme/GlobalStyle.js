@@ -9,6 +9,11 @@ const GlobalStyle = createGlobalStyle`
     -moz-osx-font-smoothing: grayscale;
   }
 
+ .collapse .nav-link-video-course {
+   display: none;
+ }
+
+
 /* make strong explanations from poznaj-testy.pl  */
  .mt-strong {
    font-weight: 700;
