@@ -19,6 +19,10 @@ const Home = () => {
               Nauka pytań / Baza pytań
             </button>
           </Link>
+          <p className="m-3">albo</p>
+          <Link to={path.exam}>
+            <button className="btn btn-primary">Wykonaj egzamin</button>
+          </Link>
         </Col>
       </Row>
     </Container>

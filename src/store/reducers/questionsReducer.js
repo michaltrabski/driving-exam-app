@@ -33,17 +33,14 @@ export const questionsReducer = (state = initialState, actions) => {
 
   switch (actions.type) {
     case LOADING:
-      console.log("LOADING 1", state);
       state = {
         ...state,
         loading: true,
         allQuestions: []
       };
-      console.log("LOADING 2", state);
       return state;
     //------------------------------------------------------------
     case GET_QUESTIONS:
-      console.log("1", state);
       state = {
         ...state,
         loading: false,
@@ -52,7 +49,6 @@ export const questionsReducer = (state = initialState, actions) => {
         langList: actions.langList,
         filterOptions: actions.filterOptions
       };
-      console.log("2", state);
       return state;
     //------------------------------------------------------------
     case SAVE_ANSWER:

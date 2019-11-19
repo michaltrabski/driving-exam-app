@@ -16,7 +16,7 @@ export const CHANGE_FILTER_OPTION = "CHANGE_FILTER_OPTION";
 export const getQuestions = (kat, lang) => {
   const name = `kat_${kat}_${lang}`;
 
-  if (storage(name)) {
+  if (storage(name) && 1 === 2) {
     // retriev questions from Storage
     const { allQuestions, katList, langList, filterOptions } = storage(name);
     return dispatch => {
@@ -31,10 +31,7 @@ export const getQuestions = (kat, lang) => {
   } else {
     // retriev questions from firebase
     return dispatch => {
-      console.log("1 LOADING dispatch");
       dispatch({ type: LOADING });
-      console.log("2 LOADING dispatch");
-      console.log("name = ", name);
 
       firebase
         .firestore()
