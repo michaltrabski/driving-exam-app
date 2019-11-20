@@ -60,7 +60,7 @@ const Nav = () => {
           <li className="nav-item">
             <NavLink
               className="nav-link"
-              to={path.learn}
+              to={path.pricing}
               onClick={handleNavLinkClick}
             >
               Cennik

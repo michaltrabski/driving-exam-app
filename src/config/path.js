@@ -1,13 +1,14 @@
 export const path = {
   learn: "/nauka-pytan",
   exam: "/wykonaj-egzamin",
-  exam_reviev: "/wyniki-egzaminow",
+  exam_reviev: "/przegladaj-wyniki-egzaminow",
   blog: "/blog",
   stats: "/statystyki",
   super_admin: "/super-admin",
   sign_in: "/logowanie",
   sign_up: "/rejestracja",
-  user_profile: "/twoj-profil"
+  user_profile: "/twoj-profil",
+  pricing: "/cennik"
 };
 
 export const link_outside = {

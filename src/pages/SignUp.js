@@ -70,7 +70,7 @@ const SignUp = () => {
       <Row>
         <Col left>
           <div style={{ maxWidth: "300px" }}>
-            <h5 className="grey-text text-darken-3">Rejestracja</h5>
+            <h5 className="grey-text text-darken-3">Darmowa rejestracja</h5>
             <form onSubmit={handleSubmit}>
               <div className="form-group">
                 <label htmlFor="email">Email</label>

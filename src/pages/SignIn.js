@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Container, Row, Col } from "../elements/elements";
 import { path } from "./../config/path";
+import { Link } from "react-router-dom";
 const firebase = require("firebase");
 
 const SignIn = props => {
@@ -63,8 +64,12 @@ const SignIn = props => {
               <button type="submit" className="btn btn-primary">
                 Zaloguj się
               </button>
+
               {/* {this.props.authError} */}
             </form>
+            <p>
+              Nie masz konta? <Link to={path.sign_up}>Darmowa rejestracja</Link>
+            </p>
           </div>
         </Col>
       </Row>

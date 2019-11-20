@@ -12,10 +12,9 @@ import Add from "../components/Add";
 import Loading from "../components/learning/Loading";
 
 const Learning = () => {
-  const { cqi, perPage, search, filterOption } = useSelector(
+  let { allQuestions, cqi, perPage, search, filterOption } = useSelector(
     state => state.questionsReducer
   );
-  let { allQuestions } = useSelector(state => state.questionsReducer);
 
   // filter array based on search result
   allQuestions = allQuestions.filter(question =>

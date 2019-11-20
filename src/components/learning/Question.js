@@ -11,13 +11,9 @@ import {
   questionAnswerTextColor
 } from "../../functions/functions";
 
-const Question = ({
-  question,
-  question: { id, t, m, v, nr, p, r, userAns, e }
-}) => {
+const Question = ({ question, question: { t, m, v, nr, p, r, userAns } }) => {
   const [showExplanation, setShowExplanation] = useState(false);
-  const kat = useSelector(state => state.questionsReducer.kat);
-  const search = useSelector(state => state.questionsReducer.search);
+  const { kat, search } = useSelector(state => state.questionsReducer);
 
   return (
     <Container>

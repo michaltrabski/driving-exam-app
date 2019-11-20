@@ -15,6 +15,7 @@ import Stats from "./pages/Stats";
 import { useSelector, useDispatch } from "react-redux";
 import { getQuestions } from "./store/actions/questionsActions";
 import UserProfile from "./pages/UserProfile";
+import Pricing from "./pages/Pricing";
 
 function App() {
   const kat = useSelector(state => state.questionsReducer.kat);
@@ -41,6 +42,7 @@ function App() {
             <Route path={path.sign_up} component={SignUp} />
             <Route path={path.sign_in} component={SignIn} />
             <Route path={path.user_profile} component={UserProfile} />
+            <Route path={path.pricing} component={Pricing} />
           </Switch>
         </PageBackground>
       </BrowserRouter>
