@@ -20,10 +20,13 @@ import Pricing from "./pages/Pricing";
 function App() {
   const kat = useSelector(state => state.questionsReducer.kat);
   const lang = useSelector(state => state.questionsReducer.lang);
+  const { poznajTestyHasAccess } = useSelector(
+    state => state.usersReducer.userData
+  );
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getQuestions(kat, lang)); // automaticaly get allQuestions when component is mounted
+    dispatch(getQuestions(kat, lang, poznajTestyHasAccess)); // automaticaly get allQuestions when component is mounted
   }, [kat, lang]);
 
   return (

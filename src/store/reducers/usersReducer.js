@@ -12,25 +12,26 @@ const initialState = {
     role: "user",
     poznajTestyHasAccess: false
   },
-  signUpErr: ""
+  signUpMessage: "",
+  signUpErr: "",
+  signOutMessage: ""
 };
 export const usersReducer = (state = initialState, actions) => {
   switch (actions.type) {
     case SET_CURRENT_USER:
-      console.log("1 usersReducer state = ", state);
+      console.log("1 SET_CURRENT_USER state = ", state);
       state = {
         ...state,
         isLoggedIn: true,
         userData: { ...state.userData, ...actions.userData }
       };
-      console.log("2 usersReducer state = ", state);
+      console.log("2 SET_CURRENT_USER state = ", state);
       return state;
     //------------------------------------------------------------
     case SIGNOUT_SUCCESS:
       console.log("1 usersReducer state = ", state);
       state = {
-        ...state,
-        isLoggedIn: false,
+        ...initialState,
         signOutMessage: "poprawnie wylogowano"
       };
       console.log("2 usersReducer state = ", state);
@@ -39,7 +40,8 @@ export const usersReducer = (state = initialState, actions) => {
     case SIGN_UP_SUCCESS:
       console.log("1 usersReducer state = ", state);
       state = {
-        ...state
+        ...state,
+        signUpMessage: "poprawnie zalogowano"
       };
       console.log("2 usersReducer state = ", state);
       return state;

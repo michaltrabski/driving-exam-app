@@ -12,8 +12,10 @@ import firebase from "./config/firebase";
 
 firebase.auth().onAuthStateChanged(user => {
   if (user) {
-    // console.log("wyslano onAuthStateChanged setCurrentUser");
+    console.log("onAuthStateChanged zalogowany");
     store.dispatch(setCurrentUser(user));
+  } else {
+    console.log("onAuthStateChanged NIE zalogowany");
   }
 });
 

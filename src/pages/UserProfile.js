@@ -5,44 +5,45 @@ import { Link } from "react-router-dom";
 import { path } from "./../config/path";
 import { signOut } from "./../store/actions/usersActions";
 
-const UserProfile = () => {
+const UserProfile = props => {
   const user = useSelector(state => state.usersReducer);
   const dispatch = useDispatch();
 
-  if (!user.isLoggedIn)
-    return (
-      <Container transparent>
-        <Row center>
-          <Col>
-            <h1>Jesteś niezalogowany!!!</h1>
-            <Link className="navbar-brand" to={path.sign_in}>
-              <button className="btn btn-primary">Logowanie</button>
-            </Link>
-            <Link className="navbar-brand" to={path.sign_up}>
-              <button className="btn btn-primary">Rejestracja</button>
-            </Link>
-          </Col>
-        </Row>
-      </Container>
-    );
+  const obj1 = { x: 1, y: 2 };
+  const obj2 = { x: 1, y: "y" };
 
   return (
-    <Container>
-      <Row center>
-        <Col>Witaj {user.userData.email}</Col>
-        {/* <Col> {JSON.stringify(user)}</Col> */}
-      </Row>
-      <Row center>
-        <Col>
-          <button
-            className="btn btn-danger"
-            onClick={() => dispatch(signOut())}
-          >
-            Wyloguj się
-          </button>
-        </Col>
-      </Row>
-    </Container>
+    <>
+      <Container>
+        <Row center>
+          <Col>{JSON.stringify(obj1)}</Col>
+          <Col>{JSON.stringify(obj2)}</Col>
+          <Col>{JSON.stringify(obj2)}</Col>
+        </Row>
+      </Container>
+      <Container>
+        <Row center>
+          <Col>
+            Witaj:{" "}
+            {user.userData.email
+              ? user.userData.email
+              : "Nie jesteś zalogowany"}
+          </Col>
+        </Row>
+        {user.isLoggedIn && (
+          <Row center>
+            <Col>
+              <button
+                className="btn btn-danger"
+                onClick={() => dispatch(signOut())}
+              >
+                Wyloguj się
+              </button>
+            </Col>
+          </Row>
+        )}
+      </Container>
+    </>
   );
 };
 

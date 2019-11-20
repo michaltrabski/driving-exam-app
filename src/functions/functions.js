@@ -10,6 +10,10 @@ export const storage = (key, value) => {
   }
 };
 
+export const mergeObj = (obj1, obj2) => {
+  return obj2;
+};
+
 export const getYear = () => {
   let d = new Date();
   return d.getFullYear();
