@@ -18,19 +18,24 @@ import UserProfile from "./pages/UserProfile";
 import Pricing from "./pages/Pricing";
 
 function App() {
-  const kat = useSelector(state => state.questionsReducer.kat);
-  const lang = useSelector(state => state.questionsReducer.lang);
-  const { poznajTestyHasAccess } = useSelector(
-    state => state.usersReducer.userData
-  );
+  const { kat, lang } = useSelector(state => state.questionsReducer);
+  const {
+    isLoggedIn,
+    userData: { poznajTestyHasAccess }
+  } = useSelector(state => state.usersReducer);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getQuestions(kat, lang, poznajTestyHasAccess)); // automaticaly get allQuestions when component is mounted
-  }, [kat, lang]);
+    if (isLoggedIn !== "checking") {
+      dispatch(getQuestions(kat, lang, poznajTestyHasAccess));
+    }
+  }, [kat, lang, isLoggedIn]);
 
   return (
     <>
+      isLoggedIn = {JSON.stringify(isLoggedIn)}
+      <br />
+      poznajTestyHasAccess = {JSON.stringify(poznajTestyHasAccess)}
       <BrowserRouter>
         <Nav />
         <PageBackground>

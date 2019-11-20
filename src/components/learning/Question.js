@@ -11,12 +11,16 @@ import {
   questionAnswerTextColor
 } from "../../functions/functions";
 
-const Question = ({ question, question: { t, m, v, nr, p, r, userAns } }) => {
+const Question = ({
+  question,
+  question: { id, t, m, v, nr, p, r, userAns }
+}) => {
   const [showExplanation, setShowExplanation] = useState(false);
   const { kat, search } = useSelector(state => state.questionsReducer);
 
   return (
     <Container>
+      {id}
       <Row>
         <Info>
           <strong>{nr}</strong> kat. {kat.toUpperCase()}, pkt {p}

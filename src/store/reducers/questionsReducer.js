@@ -49,6 +49,7 @@ export const questionsReducer = (state = initialState, actions) => {
         langList: actions.langList,
         filterOptions: actions.filterOptions
       };
+      console.log("GET_QUESTIONS", state);
       return state;
     //------------------------------------------------------------
     case SAVE_ANSWER:
@@ -60,12 +61,15 @@ export const questionsReducer = (state = initialState, actions) => {
           return q;
         })
       };
+
+      // this overides user data - marge first ??
       storage(name, {
         allQuestions: state.allQuestions,
         katList: state.katList,
         langList: state.langList,
         filterOptions: state.filterOptions
       });
+      console.log("SAVE_ANSWER", state);
       return state;
     //------------------------------------------------------------
     case CHANGE_FILTER_OPTION:

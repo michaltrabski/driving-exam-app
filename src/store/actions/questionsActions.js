@@ -13,10 +13,10 @@ export const CHANGE_PER_PAGE = "CHANGE_PER_PAGE";
 export const SAVE_ANSWER = "SAVE_ANSWER";
 export const CHANGE_FILTER_OPTION = "CHANGE_FILTER_OPTION";
 
-export const getQuestions = (kat, lang) => {
+export const getQuestions = (kat, lang, poznajTestyHasAccess) => {
   const name = `kat_${kat}_${lang}`;
 
-  if (storage(name) && 1 === 2) {
+  if (storage(name) && poznajTestyHasAccess === "yes") {
     // retriev questions from Storage
     const { allQuestions, katList, langList, filterOptions } = storage(name);
     return dispatch => {
@@ -55,18 +55,16 @@ export const getQuestions = (kat, lang) => {
               return newItem;
             });
 
-            storage(name, {
+            const obj1 = {
               allQuestions,
               katList: data.katList,
               langList: data.langList,
               filterOptions: data.filterOptions
-            });
+            };
+            poznajTestyHasAccess === "yes" && storage(name, obj1);
             dispatch({
               type: GET_QUESTIONS,
-              allQuestions,
-              katList: data.katList,
-              langList: data.langList,
-              filterOptions: data.filterOptions
+              ...obj1
             });
           } else {
             console.log("No such document!");

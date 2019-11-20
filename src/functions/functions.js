@@ -1,3 +1,5 @@
+import _ from "lodash";
+
 export const storage = (key, value) => {
   try {
     if (!value) {
@@ -11,7 +13,7 @@ export const storage = (key, value) => {
 };
 
 export const mergeObj = (obj1, obj2) => {
-  return obj2;
+  return _.merge(obj1, obj2);
 };
 
 export const getYear = () => {

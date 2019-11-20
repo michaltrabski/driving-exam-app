@@ -7,16 +7,13 @@ import GlobalStyle from "./theme/GlobalStyle";
 import { ThemeProvider } from "styled-components";
 import { theme } from "./theme/Theme";
 import { store } from "./store/reducers/rootReducer";
-import { setCurrentUser } from "./store/actions/usersActions";
+import { setCurrentUser, setUserNotLogged } from "./store/actions/usersActions";
 import firebase from "./config/firebase";
 
 firebase.auth().onAuthStateChanged(user => {
-  if (user) {
-    console.log("onAuthStateChanged zalogowany");
-    store.dispatch(setCurrentUser(user));
-  } else {
-    console.log("onAuthStateChanged NIE zalogowany");
-  }
+  user
+    ? store.dispatch(setCurrentUser(user))
+    : store.dispatch(setUserNotLogged());
 });
 
 ReactDOM.render(

@@ -22,7 +22,7 @@ const Nav = () => {
           poznajTesty.pl{" "}
           <span
             className={`${
-              isLoggedIn ? "text-success" : "text-primary"
+              isLoggedIn === "yes" ? "text-success" : "text-primary"
             } font-weight-bolder`}
           >
             App
@@ -130,7 +130,7 @@ const Nav = () => {
             </li>
           </ul>
           <ul className="navbar-nav">
-            {isLoggedIn ? (
+            {isLoggedIn === "yes" ? (
               <li className="nav-item">
                 <NavLink
                   className="nav-link text-success"
