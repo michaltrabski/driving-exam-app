@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Container, Row, Col } from "../elements/elements";
 import { path } from "./../config/path";
 import { Link } from "react-router-dom";
-const firebase = require("firebase");
+import firebase from "./../config/firebase";
 
 const SignIn = props => {
   const [cred, setCred] = useState({ email: "", password: "" });
@@ -67,7 +67,7 @@ const SignIn = props => {
 
               {/* {this.props.authError} */}
             </form>
-            <p>
+            <p className="mt-3">
               Nie masz konta? <Link to={path.sign_up}>Darmowa rejestracja</Link>
             </p>
           </div>

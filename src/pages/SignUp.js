@@ -1,32 +1,32 @@
 import React, { useState } from "react";
 import { Container, Row, Col } from "../elements/elements";
-import { useSelector } from "react-redux";
-const firebase = require("firebase");
+import { useSelector, useDispatch } from "react-redux";
+import firebase from "./../config/firebase";
+import { SIGN_UP_ERR, SIGN_UP_SUCCESS } from "../store/actions/usersActions";
+import { path } from "./../config/path";
+import { Link } from "react-router-dom";
 
-const SignUp = () => {
+const SignUp = props => {
   const [cred, setCred] = useState({
     email: "",
     password: "",
     passwordRepeat: ""
   });
 
-  const userData = useSelector(state => state.usersReducer.userData);
+  const { userData, signUpErr } = useSelector(state => state.usersReducer);
+  const dispatch = useDispatch();
 
   const handleChange = e => {
-    // console.log(e.target.value);
     setCred({ ...cred, [e.target.id]: e.target.value });
   };
 
   const handleSubmit = e => {
     e.preventDefault();
-    console.log("SignUp handleSubmit cred = ", cred);
-
     firebase
       .auth()
       .createUserWithEmailAndPassword(cred.email, cred.password)
       .then(res => {
-        console.log("createUserWithEmailAndPassword = ", res);
-        return firebase
+        firebase
           .firestore()
           .collection("users")
           .doc(res.user.uid)
@@ -36,34 +36,13 @@ const SignUp = () => {
           });
       })
       .then(() => {
-        console.log("zalogowano");
-        // dispatch({ type: "LOGIN_SUCCESS" });
+        dispatch({ type: SIGN_UP_SUCCESS });
+        props.history.push(path.user_profile);
       })
       .catch(err => {
-        console.log("NIE zalogowano", err);
-        // dispatch({ type: "LOGIN_ERROR", err });
+        dispatch({ type: SIGN_UP_ERR, err });
       });
   };
-
-  // firebase
-  // .auth()
-  // .createUserWithEmailAndPassword(newUser.email, newUser.password)
-  // .then(resp => {
-  //   return firestore
-  //     .collection("users")
-  //     .doc(resp.user.uid)
-  //     .set({
-  //       firstName: newUser.firstName,
-  //       lastName: newUser.lastName,
-  //       initials: newUser.firstName[0] + newUser.lastName[0]
-  //     });
-  // })
-  // .then(() => {
-  //   dispatch({ type: "SIGNUP_SUCCESS" });
-  // })
-  // .catch(err => {
-  //   dispatch({ type: "SIGNUP_ERROR", err });
-  // });
 
   return (
     <Container>
@@ -102,11 +81,16 @@ const SignUp = () => {
                   value={cred.passwordRepeat}
                 />
               </div>
+              {signUpErr !== "" && (
+                <p className="text-danger">{JSON.stringify(signUpErr)}</p>
+              )}
               <button type="submit" className="btn btn-primary">
                 Zarejestruj się
               </button>
-              {/* {this.props.authError} */}
             </form>
+            <p className="mt-3">
+              Masz już konto? <Link to={path.sign_in}>Zaloguj się</Link>
+            </p>
           </div>
         </Col>
       </Row>
