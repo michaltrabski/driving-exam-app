@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { PageBackground } from "./elements/elements";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Nav from "./components/Nav";
@@ -12,24 +12,17 @@ import SuperAdmin from "./pages/SuperAdmin";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import Stats from "./pages/Stats";
-import { useSelector, useDispatch } from "react-redux";
-import { getQuestions } from "./store/actions/questionsActions";
+import { useSelector } from "react-redux";
 import UserProfile from "./pages/UserProfile";
 import Pricing from "./pages/Pricing";
+import TestyNotPaidInfo from "./components/TestyNotPaidInfo";
+import { yes } from "./store/reducers/usersReducer";
 
 function App() {
-  // const { kat, lang } = useSelector(state => state.questionsReducer);
   const {
     isLoggedIn,
     userData: { poznajTestyHasAccess }
   } = useSelector(state => state.usersReducer);
-  // const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //   if (isLoggedIn !== "checking") {
-  //     dispatch(getQuestions(kat, lang, poznajTestyHasAccess));
-  //   }
-  // }, [kat, lang, isLoggedIn]);
 
   return (
     <>
@@ -38,6 +31,7 @@ function App() {
       poznajTestyHasAccess = {JSON.stringify(poznajTestyHasAccess)}
       <BrowserRouter>
         <Nav />
+        {poznajTestyHasAccess !== yes && <TestyNotPaidInfo />}
         <PageBackground>
           <Switch>
             <Route exact path="/" component={Home} />

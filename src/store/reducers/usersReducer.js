@@ -6,12 +6,18 @@ import {
   SET_USER_NOT_LOGGED
 } from "./../actions/usersActions";
 
+export const yes = "yes";
+export const no = "no";
+export const checking = "checking";
+
+export const role = { user: "user" };
+
 const initialState = {
-  isLoggedIn: "checking", // yes,no,checking
+  isLoggedIn: checking, // yes,no,checking
   userData: {
     email: "",
-    role: "user",
-    poznajTestyHasAccess: "no" // yes,no
+    role: role.user,
+    poznajTestyHasAccess: checking // yes,no,checking
   },
   signUpMessage: "",
   signUpErr: "",
@@ -22,7 +28,7 @@ export const usersReducer = (state = initialState, actions) => {
     case SET_CURRENT_USER:
       state = {
         ...state,
-        isLoggedIn: "yes",
+        isLoggedIn: yes,
         userData: { ...state.userData, ...actions.userData }
       };
       return state;
@@ -30,15 +36,15 @@ export const usersReducer = (state = initialState, actions) => {
     case SET_USER_NOT_LOGGED:
       state = {
         ...initialState,
-        isLoggedIn: "no",
-        userData: { ...state.userData, poznajTestyHasAccess: "no" }
+        isLoggedIn: no,
+        userData: { ...state.userData, poznajTestyHasAccess: no }
       };
       return state;
     //------------------------------------------------------------
     case SIGN_UP_SUCCESS:
       state = {
         ...state,
-        isLoggedIn: "yes",
+        isLoggedIn: yes,
         signUpMessage: "poprawnie zalogowano"
       };
       return state;

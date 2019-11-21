@@ -2,13 +2,14 @@ import React, { useState } from "react";
 import { NavLink, Link } from "react-router-dom";
 import { path, link_outside } from "../config/path";
 import { useSelector } from "react-redux";
+import { yes } from "./../store/reducers/usersReducer";
 
 const Nav = () => {
-  const { isLoggedIn } = useSelector(state => state.usersReducer);
-  const { poznajTestyHasAccess } = useSelector(
-    state => state.usersReducer.userData
-  );
-  const user = useSelector(state => state.usersReducer);
+  const {
+    isLoggedIn,
+    userData: { poznajTestyHasAccess }
+  } = useSelector(state => state.usersReducer);
+
   const [collapse, setCollapse] = useState(true);
   const handleNavLinkClick = () => {
     setCollapse(true);
@@ -20,7 +21,7 @@ const Nav = () => {
         poznajTesty.pl{" "}
         <span
           className={`${
-            isLoggedIn === "yes" ? "text-success" : "text-primary"
+            poznajTestyHasAccess === yes ? "text-success" : "text-primary"
           } font-weight-bolder`}
         >
           App
@@ -52,7 +53,7 @@ const Nav = () => {
               Nauka pytań
             </NavLink>
           </li>
-          <li className="nav-item">
+          {/* <li className="nav-item">
             <NavLink
               className="nav-link"
               to={path.exam}
@@ -60,7 +61,7 @@ const Nav = () => {
             >
               Wykonaj egzamin
             </NavLink>
-          </li>
+          </li> */}
           <li className="nav-item">
             <NavLink
               className="nav-link"
@@ -70,7 +71,7 @@ const Nav = () => {
               Cennik
             </NavLink>
           </li>
-          <li className="nav-item">
+          {/* <li className="nav-item">
             <NavLink
               className="nav-link"
               to={path.exam_reviev}
@@ -87,7 +88,7 @@ const Nav = () => {
             >
               Szkolenia wideo
             </NavLink>
-          </li>
+          </li> */}
           <a
             className="nav-link ml-3 nav-link-video-course"
             href={link_outside.kompendium_wiedzy}
@@ -104,7 +105,7 @@ const Nav = () => {
           >
             Sytuacje i Niespodzianki na drodze!
           </a>
-          <li className="nav-item">
+          {/* <li className="nav-item">
             <NavLink
               className="nav-link"
               to={path.stats}
@@ -112,22 +113,25 @@ const Nav = () => {
             >
               Statystyki
             </NavLink>
-          </li>
+          </li> */}
           <li className="nav-item">
-            <NavLink
+            <a
               className="nav-link"
-              to={path.blog}
-              onClick={handleNavLinkClick}
+              href={link_outside.blog}
+              target="_blank"
+              rel="noopener noreferrer"
             >
               Blog
-            </NavLink>
+            </a>
           </li>
         </ul>
         <ul className="navbar-nav">
-          {isLoggedIn === "yes" ? (
+          {isLoggedIn === yes ? (
             <li className="nav-item">
               <NavLink
-                className="nav-link text-success"
+                className={`nav-link ${
+                  poznajTestyHasAccess === yes ? "text-success" : "text-primary"
+                }`}
                 to={path.user_profile}
                 onClick={handleNavLinkClick}
               >
