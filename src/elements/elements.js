@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 
 export const PageBackground = styled.div`
-  background: ${({ theme }) => theme.light};
+  background-color: ${({ theme }) => theme.light};
   padding-top: 40px;
   padding-bottom: 150px;
   padding-right: 5px;

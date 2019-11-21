@@ -20,7 +20,6 @@ const Question = ({
 
   return (
     <Container>
-      {id}
       <Row>
         <Info>
           <strong>{nr}</strong> kat. {kat.toUpperCase()}, pkt {p}
@@ -31,7 +30,6 @@ const Question = ({
           <Media m={m} v={v} />
         </Col>
         <Col pl left flex column>
-          {/* {id} */}
           {search === "" ? (
             <Text className={questionAnswerTextColor(r, userAns)}>{t}</Text>
           ) : (

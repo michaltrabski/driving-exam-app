@@ -9,6 +9,10 @@ const GlobalStyle = createGlobalStyle`
     -moz-osx-font-smoothing: grayscale;
   }
 
+  body {
+    min-height: 100vh;
+    background-color: ${({ theme }) => theme.light};
+  }
  .collapse .nav-link-video-course {
    display: none;
  }

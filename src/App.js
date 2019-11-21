@@ -16,7 +16,7 @@ import { useSelector } from "react-redux";
 import UserProfile from "./pages/UserProfile";
 import Pricing from "./pages/Pricing";
 import TestyNotPaidInfo from "./components/TestyNotPaidInfo";
-import { yes } from "./store/reducers/usersReducer";
+import { no } from "./store/reducers/usersReducer";
 
 function App() {
   const {
@@ -26,12 +26,12 @@ function App() {
 
   return (
     <>
-      isLoggedIn = {JSON.stringify(isLoggedIn)}
+      {/* isLoggedIn = {JSON.stringify(isLoggedIn)}
       <br />
-      poznajTestyHasAccess = {JSON.stringify(poznajTestyHasAccess)}
+      poznajTestyHasAccess = {JSON.stringify(poznajTestyHasAccess)} */}
       <BrowserRouter>
         <Nav />
-        {poznajTestyHasAccess !== yes && <TestyNotPaidInfo />}
+        {poznajTestyHasAccess === no && <TestyNotPaidInfo />}
         <PageBackground>
           <Switch>
             <Route exact path="/" component={Home} />
