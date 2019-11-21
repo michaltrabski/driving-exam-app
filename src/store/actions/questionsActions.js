@@ -14,6 +14,7 @@ export const SAVE_ANSWER = "SAVE_ANSWER";
 export const CHANGE_FILTER_OPTION = "CHANGE_FILTER_OPTION";
 
 export const getQuestions = (kat, lang, poznajTestyHasAccess) => {
+  console.log("fired", kat, lang, poznajTestyHasAccess);
   const name = `kat_${kat}_${lang}`;
 
   if (storage(name) && poznajTestyHasAccess === "yes") {

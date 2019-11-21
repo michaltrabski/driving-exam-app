@@ -18,18 +18,18 @@ import UserProfile from "./pages/UserProfile";
 import Pricing from "./pages/Pricing";
 
 function App() {
-  const { kat, lang } = useSelector(state => state.questionsReducer);
+  // const { kat, lang } = useSelector(state => state.questionsReducer);
   const {
     isLoggedIn,
     userData: { poznajTestyHasAccess }
   } = useSelector(state => state.usersReducer);
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
-  useEffect(() => {
-    if (isLoggedIn !== "checking") {
-      dispatch(getQuestions(kat, lang, poznajTestyHasAccess));
-    }
-  }, [kat, lang, isLoggedIn]);
+  // useEffect(() => {
+  //   if (isLoggedIn !== "checking") {
+  //     dispatch(getQuestions(kat, lang, poznajTestyHasAccess));
+  //   }
+  // }, [kat, lang, isLoggedIn]);
 
   return (
     <>

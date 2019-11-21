@@ -41,6 +41,7 @@ export const questionsReducer = (state = initialState, actions) => {
       return state;
     //------------------------------------------------------------
     case GET_QUESTIONS:
+      console.log("1 GET_QUESTIONS", state);
       state = {
         ...state,
         loading: false,
@@ -49,7 +50,7 @@ export const questionsReducer = (state = initialState, actions) => {
         langList: actions.langList,
         filterOptions: actions.filterOptions
       };
-      console.log("GET_QUESTIONS", state);
+      console.log("2 GET_QUESTIONS", state);
       return state;
     //------------------------------------------------------------
     case SAVE_ANSWER:

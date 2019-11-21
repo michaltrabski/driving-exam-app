@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Question from "../components/learning/Question";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import Settings from "../components/learning/Settings";
 import NextPage from "../components/learning/NextPage";
 import SearchForm from "../components/learning/SearchForm";
@@ -10,11 +10,30 @@ import SearchInfo from "../components/learning/SearchInfo";
 import { filterQuestions } from "../functions/functions";
 import Add from "../components/Add";
 import Loading from "../components/learning/Loading";
+import { getQuestions } from "../store/actions/questionsActions";
 
 const Learning = () => {
-  let { allQuestions, cqi, perPage, search, filterOption } = useSelector(
-    state => state.questionsReducer
-  );
+  let {
+    allQuestions,
+    cqi,
+    perPage,
+    search,
+    filterOption,
+    kat,
+    lang
+  } = useSelector(state => state.questionsReducer);
+  const {
+    isLoggedIn,
+    userData: { poznajTestyHasAccess }
+  } = useSelector(state => state.usersReducer);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (isLoggedIn !== "checking" && allQuestions.length === 0) {
+      console.log(allQuestions, allQuestions.length);
+      dispatch(getQuestions(kat, lang, poznajTestyHasAccess));
+    }
+  }, [kat, lang, isLoggedIn]);
 
   // filter array based on search result
   allQuestions = allQuestions.filter(question =>
