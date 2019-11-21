@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { connect } from "react-redux";
+import { connect, useSelector } from "react-redux";
 import { saveAnswer } from "./../store/actions/questionsActions";
 import styled from "styled-components";
 
@@ -18,6 +18,11 @@ const AnswersWrapper = styled.div`
 `;
 
 const Answer = props => {
+  const {
+    isLoggedIn,
+    userData: { poznajTestyHasAccess }
+  } = useSelector(state => state.usersReducer);
+
   const [color, setcolor] = useState(colors);
   const { showAnswerNow } = props.settings;
 
@@ -38,7 +43,8 @@ const Answer = props => {
         [userAns]: "danger"
       });
     }
-    props.saveAnswer(props.id, userAns);
+    console.log("sssss", props.id, userAns, poznajTestyHasAccess);
+    props.saveAnswer(props.id, userAns, poznajTestyHasAccess);
   };
 
   const yesNo = (
@@ -85,8 +91,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    saveAnswer: (question_id, userAns) => {
-      dispatch(saveAnswer(question_id, userAns));
+    saveAnswer: (question_id, userAns, poznajTestyHasAccess) => {
+      dispatch(saveAnswer(question_id, userAns, poznajTestyHasAccess));
     }
   };
 };

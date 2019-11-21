@@ -1,4 +1,4 @@
-import { storage, SHOW_ALL } from "./../../functions/functions";
+import { storage, SHOW_ALL, mergeObj } from "./../../functions/functions";
 import {
   LOADING,
   GET_QUESTIONS,
@@ -54,6 +54,7 @@ export const questionsReducer = (state = initialState, actions) => {
       return state;
     //------------------------------------------------------------
     case SAVE_ANSWER:
+      console.log("1 SAVE_ANSWER", state);
       state = {
         ...state,
         allQuestions: state.allQuestions.map(q => {
@@ -64,13 +65,15 @@ export const questionsReducer = (state = initialState, actions) => {
       };
 
       // this overides user data - marge first ??
-      storage(name, {
-        allQuestions: state.allQuestions,
-        katList: state.katList,
-        langList: state.langList,
-        filterOptions: state.filterOptions
-      });
-      console.log("SAVE_ANSWER", state);
+      console.log("accec?", actions);
+      if (actions.poznajTestyHasAccess === "yes")
+        storage(name, {
+          allQuestions: state.allQuestions,
+          katList: state.katList,
+          langList: state.langList,
+          filterOptions: state.filterOptions
+        });
+      console.log("2 SAVE_ANSWER", state);
       return state;
     //------------------------------------------------------------
     case CHANGE_FILTER_OPTION:

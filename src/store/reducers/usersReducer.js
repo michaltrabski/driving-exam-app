@@ -11,7 +11,7 @@ const initialState = {
   userData: {
     email: "",
     role: "user",
-    poznajTestyHasAccess: "checking" // yes,no,checking
+    poznajTestyHasAccess: "no" // yes,no
   },
   signUpMessage: "",
   signUpErr: "",
@@ -30,7 +30,8 @@ export const usersReducer = (state = initialState, actions) => {
     case SET_USER_NOT_LOGGED:
       state = {
         ...initialState,
-        isLoggedIn: "no"
+        isLoggedIn: "no",
+        userData: { ...state.userData, poznajTestyHasAccess: "no" }
       };
       return state;
     //------------------------------------------------------------

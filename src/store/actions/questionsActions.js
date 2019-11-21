@@ -1,4 +1,4 @@
-import { storage } from "./../../functions/functions";
+import { storage, mergeObj } from "./../../functions/functions";
 import _ from "lodash";
 import firebase from "./../../config/firebase";
 
@@ -18,6 +18,7 @@ export const getQuestions = (kat, lang, poznajTestyHasAccess) => {
   const name = `kat_${kat}_${lang}`;
 
   if (storage(name) && poznajTestyHasAccess === "yes") {
+    console.log("question from storage");
     // retriev questions from Storage
     const { allQuestions, katList, langList, filterOptions } = storage(name);
     return dispatch => {
@@ -56,16 +57,18 @@ export const getQuestions = (kat, lang, poznajTestyHasAccess) => {
               return newItem;
             });
 
-            const obj1 = {
+            let obj_new = {
               allQuestions,
               katList: data.katList,
               langList: data.langList,
               filterOptions: data.filterOptions
             };
-            poznajTestyHasAccess === "yes" && storage(name, obj1);
+
+            poznajTestyHasAccess === "yes" && storage(name, obj_new);
+
             dispatch({
               type: GET_QUESTIONS,
-              ...obj1
+              ...obj_new
             });
           } else {
             console.log("No such document!");
@@ -85,12 +88,13 @@ export const changeFilterOption = filterOption => {
   };
 };
 
-export const saveAnswer = (question_id, userAns) => {
-  console.log(question_id, userAns);
+export const saveAnswer = (question_id, userAns, poznajTestyHasAccess) => {
+  console.log("yyyy", question_id, userAns, poznajTestyHasAccess);
   return {
     type: SAVE_ANSWER,
     question_id,
-    userAns
+    userAns,
+    poznajTestyHasAccess
   };
 };
 
