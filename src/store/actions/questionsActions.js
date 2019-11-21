@@ -12,6 +12,7 @@ export const GO_TO_QUESTION_NR = "GO_TO_QUESTION_NR";
 export const CHANGE_PER_PAGE = "CHANGE_PER_PAGE";
 export const SAVE_ANSWER = "SAVE_ANSWER";
 export const CHANGE_FILTER_OPTION = "CHANGE_FILTER_OPTION";
+export const RESET_ALL_QUESTIONS = "RESET_ALL_QUESTIONS";
 
 export const getQuestions = (kat, lang, poznajTestyHasAccess) => {
   console.log("fired", kat, lang, poznajTestyHasAccess);
@@ -129,4 +130,8 @@ export const nextPage = () => {
 
 export const previesPage = () => {
   return { type: PREVIES_PAGE };
+};
+
+export const resetAllQuestions = () => {
+  return { type: RESET_ALL_QUESTIONS };
 };

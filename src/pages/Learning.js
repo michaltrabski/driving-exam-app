@@ -29,10 +29,7 @@ const Learning = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (
-      (isLoggedIn !== "checking" && allQuestions.length === 0) ||
-      poznajTestyHasAccess === "yes"
-    ) {
+    if (isLoggedIn !== "checking" && allQuestions.length === 0) {
       console.log(allQuestions, allQuestions.length);
       dispatch(getQuestions(kat, lang, poznajTestyHasAccess));
     }

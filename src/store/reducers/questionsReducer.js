@@ -9,7 +9,8 @@ import {
   GO_TO_QUESTION_NR,
   CHANGE_PER_PAGE,
   SAVE_ANSWER,
-  CHANGE_FILTER_OPTION
+  CHANGE_FILTER_OPTION,
+  RESET_ALL_QUESTIONS
 } from "./../actions/questionsActions";
 
 const initialState = {
@@ -136,6 +137,14 @@ export const questionsReducer = (state = initialState, actions) => {
         perPage: actions.perPage
       };
       storage("perPage", state.perPage);
+      return state;
+    //------------------------------------------------------------
+    case RESET_ALL_QUESTIONS:
+      state = {
+        ...initialState,
+        kat: storage("kat") ? storage("kat") : "b",
+        perPage: storage("perPage") ? storage("perPage") : 10
+      };
       return state;
     //------------------------------------------------------------
     default:

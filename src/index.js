@@ -9,8 +9,10 @@ import { theme } from "./theme/Theme";
 import { store } from "./store/reducers/rootReducer";
 import { setCurrentUser, setUserNotLogged } from "./store/actions/usersActions";
 import firebase from "./config/firebase";
+import { resetAllQuestions } from "./store/actions/questionsActions";
 
 firebase.auth().onAuthStateChanged(user => {
+  store.dispatch(resetAllQuestions());
   user
     ? store.dispatch(setCurrentUser(user))
     : store.dispatch(setUserNotLogged());
