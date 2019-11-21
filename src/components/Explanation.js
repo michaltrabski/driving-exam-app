@@ -3,6 +3,10 @@ import { Row, Col } from "../elements/elements";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import Add from "./Add";
+import { yes } from "./../store/reducers/usersReducer";
+import { Link } from "react-router-dom";
+import { path } from "./../config/path";
+
 const url = "https://poznaj-testy.pl/wp-json/wp/v2/posts?slug=";
 
 const Explanation = ({ id, t }) => {
@@ -12,12 +16,14 @@ const Explanation = ({ id, t }) => {
   const [expl, setExpl] = useState("loading...");
 
   useEffect(() => {
-    poznajTestyHasAccess
-      ? axios
-          .get(`${url}${urlToSlug(id, t)}`)
-          .then(res => res.data[0].content.rendered)
-          .then(res => setExpl(res))
-      : setExpl("Wyjaśnienia pytań dostępne są dla płatnych kont");
+    if (poznajTestyHasAccess === yes) {
+      axios
+        .get(`${url}${urlToSlug(id, t)}`)
+        .then(res => res.data[0].content.rendered)
+        .then(res => setExpl(res));
+    } else {
+      setExpl("");
+    }
   }, []);
 
   return (
@@ -25,6 +31,17 @@ const Explanation = ({ id, t }) => {
       <Row>
         <Col>
           <h5 className="mt-1">Wyjaśnienie</h5>
+          {poznajTestyHasAccess !== yes && (
+            <div>
+              <span>
+                Wyjaśnienia pytań testowych dostępne są dla płatnych kont{" "}
+              </span>
+              <Link to={path.pricing} className="alert-link">
+                Cennik
+              </Link>
+            </div>
+          )}
+
           <div
             dangerouslySetInnerHTML={{
               __html: expl
