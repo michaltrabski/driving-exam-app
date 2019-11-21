@@ -11,6 +11,7 @@ import { filterQuestions } from "../functions/functions";
 import Add from "../components/Add";
 import Loading from "../components/learning/Loading";
 import { getQuestions } from "../store/actions/questionsActions";
+import { checking } from "./../store/reducers/usersReducer";
 
 const Learning = () => {
   let {
@@ -29,8 +30,7 @@ const Learning = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (isLoggedIn !== "checking" && allQuestions.length === 0) {
-      console.log(allQuestions, allQuestions.length);
+    if (isLoggedIn !== checking && allQuestions.length === 0) {
       dispatch(getQuestions(kat, lang, poznajTestyHasAccess));
     }
   }, [kat, lang, isLoggedIn]);

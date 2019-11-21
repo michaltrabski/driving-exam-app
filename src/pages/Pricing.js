@@ -5,8 +5,15 @@ import { faThumbsUp, faTimesCircle } from "@fortawesome/free-solid-svg-icons";
 import { getYear } from "./../functions/functions";
 import { Link } from "react-router-dom";
 import { path, link_outside } from "./../config/path";
+import { useLocation } from "react-router-dom";
 
 const Pricing = () => {
+  const x = useLocation();
+  console.log(x);
+  // useEffect(() => {
+  //   console.log("xxxxxxxxxx");
+  // }, [pathname]);
+
   const common = (
     <>
       <T>Dostęp do wszystkich oficjalnych pytań testowych {getYear()}</T>

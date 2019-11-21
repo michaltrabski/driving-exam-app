@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { PageBackground } from "./elements/elements";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Nav from "./components/Nav";
 import Home from "./pages/Home";
 import Learning from "./pages/Learning";
@@ -29,7 +29,7 @@ function App() {
       {/* isLoggedIn = {JSON.stringify(isLoggedIn)}
       <br />
       poznajTestyHasAccess = {JSON.stringify(poznajTestyHasAccess)} */}
-      <BrowserRouter>
+      <Router>
         <Nav />
         {poznajTestyHasAccess === no && <TestyNotPaidInfo />}
         <PageBackground>
@@ -47,7 +47,7 @@ function App() {
             <Route path={path.pricing} component={Pricing} />
           </Switch>
         </PageBackground>
-      </BrowserRouter>
+      </Router>
     </>
   );
 }

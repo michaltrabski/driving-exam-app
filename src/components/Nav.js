@@ -105,7 +105,7 @@ const Nav = () => {
           >
             Sytuacje i Niespodzianki na drodze!
           </a>
-          {/* <li className="nav-item">
+          <li className="nav-item">
             <NavLink
               className="nav-link"
               to={path.stats}
@@ -113,7 +113,7 @@ const Nav = () => {
             >
               Statystyki
             </NavLink>
-          </li> */}
+          </li>
           <li className="nav-item">
             <a
               className="nav-link"
