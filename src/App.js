@@ -25,9 +25,9 @@ function App() {
 
   return (
     <>
-      isLoggedIn = {JSON.stringify(isLoggedIn)}
+      {/* isLoggedIn = {JSON.stringify(isLoggedIn)}
       <br />
-      poznajTestyHasAccess = {JSON.stringify(poznajTestyHasAccess)}
+      poznajTestyHasAccess = {JSON.stringify(poznajTestyHasAccess)} */}
       <Router>
         <Nav />
         <PageBackground>

@@ -35,6 +35,7 @@ export const getQuestions = (kat, lang, poznajTestyHasAccess) => {
     // retriev questions from firebase
     return dispatch => {
       dispatch({ type: LOADING });
+      console.log("ttttttttttttt");
 
       firebase
         .firestore()

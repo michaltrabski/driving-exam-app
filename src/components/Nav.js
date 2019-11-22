@@ -93,16 +93,16 @@ const Nav = () => {
             >
               Przeglądaj wyniki egzaminów
             </NavLink>
-          </li>
-          <li className="nav-item">
-            <NavLink
-              className="nav-link"
-              to={path.exam}
-              onClick={handleNavLinkClick}
-            >
-              Szkolenia wideo
-            </NavLink>
           </li> */}
+            <li className="nav-item">
+              <NavLink
+                className="nav-link"
+                to={path.exam}
+                onClick={handleNavLinkClick}
+              >
+                Szkolenia wideo
+              </NavLink>
+            </li>
             <a
               className="nav-link ml-3 nav-link-video-course"
               href={link_outside.kompendium_wiedzy}

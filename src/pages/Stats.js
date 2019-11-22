@@ -5,11 +5,16 @@ import { Container, Row, Col } from "../elements/elements";
 import { path } from "./../config/path";
 import { getQuestions } from "../store/actions/questionsActions";
 import { checking } from "./../store/reducers/usersReducer";
-import { SHOW_GOOD, SHOW_BAD, SHOW_WITHOUT } from "./../functions/functions";
+import {
+  SHOW_ALL,
+  SHOW_GOOD,
+  SHOW_BAD,
+  SHOW_WITHOUT
+} from "./../functions/functions";
 import { changeFilterOption } from "./../store/actions/questionsActions";
 
 const Stats = props => {
-  let { allQuestions, kat, lang } = useSelector(
+  let { allQuestions, kat, lang, filterOption } = useSelector(
     state => state.questionsReducer
   );
   const {
@@ -19,7 +24,13 @@ const Stats = props => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (isLoggedIn !== checking && allQuestions.length === 0) {
+    console.log("1", isLoggedIn, allQuestions.length, filterOption);
+    if (
+      isLoggedIn !== checking &&
+      allQuestions.length === 0 &&
+      filterOption === SHOW_ALL
+    ) {
+      console.log("2", isLoggedIn, allQuestions.length, filterOption);
       dispatch(getQuestions(kat, lang, poznajTestyHasAccess));
     }
   }, [kat, lang, isLoggedIn]);
@@ -30,6 +41,13 @@ const Stats = props => {
   };
 
   const [good, bad, all, rest] = getStatistics(allQuestions);
+  console.log(good, bad, all, rest);
+
+  let good_width = Math.floor((good / (good + bad)) * 100);
+  good_width = isNaN(good_width) ? 0 : good_width;
+  let bad_width = 100 - good_width;
+  bad_width = isNaN(bad_width) ? 0 : bad_width;
+  bad_width = bad_width === 100 && bad + good === 0 ? 0 : bad_width;
 
   return (
     <Container>
@@ -39,60 +57,75 @@ const Stats = props => {
           <p>
             Oficjalnych pytań kategorii {kat.toUpperCase()} jest {all}
           </p>
-          <p>Udzieliłeś odpowiedzi na {good + bad} pytań.</p>
-        </Col>
-      </Row>
-      <Row>
-        <Col>
           <p>
-            <button
-              className="btn btn-success btn-sm mr-3"
-              onClick={() => handleClick(SHOW_GOOD)}
-            >
-              Zobacz pytania
-            </button>
-            <span>Dobrze odpowiedziałeś na {good} pytań.</span>
-          </p>
-        </Col>
-        <Col>
-          <p>
-            {" "}
-            <button
-              className="btn btn-danger btn-sm mr-3"
-              onClick={() => handleClick(SHOW_BAD)}
-            >
-              Zobacz pytania
-            </button>
-            Źle odpowiedziałeś na {bad} pytań.
+            Udzieliłeś odpowiedzi na <strong>{good + bad}</strong> pytań.
           </p>
         </Col>
       </Row>
-
+      <Row mb>
+        <Col>
+          <button
+            className="btn btn-success btn-sm mr-3"
+            onClick={() => handleClick(SHOW_GOOD)}
+          >
+            Zobacz pytania
+          </button>
+          <span>
+            Dobrze odpowiedziałeś na <strong>{good}</strong> pytań.
+          </span>
+        </Col>
+      </Row>
+      <Row mb>
+        <Col>
+          <button
+            className="btn btn-danger btn-sm mr-3"
+            onClick={() => handleClick(SHOW_BAD)}
+          >
+            Zobacz pytania
+          </button>
+          <span>
+            Źle odpowiedziałeś na <strong>{bad}</strong> pytań.
+          </span>
+        </Col>
+      </Row>
       <Row mb>
         <Col>
           <div className="progress">
             <div
-              className="progress-bar"
+              className="progress-bar bg-success"
               role="progressbar"
-              style={{ width: "25%" }}
-              aria-valuenow="25"
+              style={{ width: `${good_width}%` }}
+              aria-valuenow={good_width}
               aria-valuemin="0"
               aria-valuemax="100"
-            ></div>
+            >
+              {good_width}% dobrych odpowiedzi
+            </div>
+            <div
+              className="progress-bar bg-danger"
+              role="progressbar"
+              style={{ width: `${bad_width}%` }}
+              aria-valuenow={bad_width}
+              aria-valuemin="0"
+              aria-valuemax="100"
+            >
+              {bad_width}% złych odpowiedzi
+            </div>
           </div>
         </Col>
       </Row>
+      <br />
       <Row mb>
         <Col>
           <p>
-            {" "}
             <button
               className="btn btn-secondary btn-sm mr-3"
               onClick={() => handleClick(SHOW_WITHOUT)}
             >
               Zobacz pytania
             </button>
-            Pytań, na które nie udzieliłeś odpowiedzi pozostało {rest}.
+            Pytań, na które nie udzieliłeś żadnej odpowiedzi pozostało{" "}
+            <strong>{rest}</strong> (z {all}).
           </p>
         </Col>
       </Row>

@@ -7,11 +7,12 @@ import SearchForm from "../components/learning/SearchForm";
 import { Container, Row, Col } from "../elements/elements";
 import Filters from "./../components/learning/Filters";
 import SearchInfo from "../components/learning/SearchInfo";
-import { filterQuestions } from "../functions/functions";
+import { filterQuestions, SHOW_ALL } from "../functions/functions";
 import Add from "../components/Add";
 import Loading from "../components/learning/Loading";
 import { getQuestions } from "../store/actions/questionsActions";
 import { checking } from "./../store/reducers/usersReducer";
+import FilteresOutInfo from "../components/learning/FilteredOutInfo";
 
 const Learning = () => {
   let {
@@ -30,7 +31,13 @@ const Learning = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (isLoggedIn !== checking && allQuestions.length === 0) {
+    console.log("1", isLoggedIn, allQuestions.length, filterOption);
+    if (
+      isLoggedIn !== checking &&
+      allQuestions.length === 0 &&
+      filterOption === SHOW_ALL
+    ) {
+      console.log("2", isLoggedIn, allQuestions.length, filterOption);
       dispatch(getQuestions(kat, lang, poznajTestyHasAccess));
     }
   }, [kat, lang, isLoggedIn]);
@@ -41,7 +48,7 @@ const Learning = () => {
   );
 
   // filter array based on filter that user choose
-  if (filterOption !== "SHOW_ALL") {
+  if (filterOption !== SHOW_ALL) {
     allQuestions = allQuestions.filter(question =>
       filterQuestions(question, filterOption)
     );
@@ -63,9 +70,8 @@ const Learning = () => {
         <NextPage amount={amount} />
       </Container>
       <SearchInfo amount={amount} />
-
       <Loading />
-
+      <FilteresOutInfo amount={amount} />
       {allQuestions.slice(cqi, cqi + perPage).map((question, i) => {
         return (
           <React.Fragment key={question.id}>
@@ -76,7 +82,6 @@ const Learning = () => {
           </React.Fragment>
         );
       })}
-
       {amount > 0 && (
         <Container>
           <NextPage amount={amount} />

@@ -40,6 +40,7 @@ export const Row = styled.div`
   ${({ right }) => right && "text-align: right;"}
   ${({ mt10 }) => mt10 && "margin-top: 100px;"};
   ${({ mtAuto }) => mtAuto && "margin-top: auto;"};
+  ${({ mt }) => mt && "margin-top: 15px;"};
   ${({ mb }) => mb && "margin-bottom: 15px;"};
 `;
 
