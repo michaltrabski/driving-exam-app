@@ -55,17 +55,6 @@ const Stats = props => {
         <Col>
           <h1>Twoje statystyki:</h1>
           <p>
-            <span>
-              Oficjalnych pytań kategorii {kat.toUpperCase()} jest {all}
-            </span>
-            <button
-              className="btn btn-primary btn-sm ml-3"
-              onClick={() => handleClick(SHOW_ALL)}
-            >
-              Zobacz wszystkie {all} pytań
-            </button>
-          </p>
-          <p>
             Udzieliłeś odpowiedzi na <strong>{good + bad}</strong> pytania.
           </p>
         </Col>
@@ -129,16 +118,29 @@ const Stats = props => {
       <br />
       <Row mb>
         <Col>
-          <p>
-            <button
-              className="btn btn-secondary btn-sm mr-3"
-              onClick={() => handleClick(SHOW_WITHOUT)}
-            >
-              Zobacz pozostałe {rest} pytań bez odpowiedzi
-            </button>
+          <button
+            className="btn btn-primary btn-sm mr-3"
+            onClick={() => handleClick(SHOW_ALL)}
+          >
+            Zobacz wszystkie {all} pytania
+          </button>
+          <span>
+            Oficjalnych pytań kategorii {kat.toUpperCase()} jest {all}
+          </span>
+        </Col>
+      </Row>
+      <Row mb>
+        <Col>
+          <button
+            className="btn btn-secondary btn-sm mr-3"
+            onClick={() => handleClick(SHOW_WITHOUT)}
+          >
+            Zobacz pozostałe {rest} pytań bez odpowiedzi
+          </button>
+          <span>
             Pytań, na które nie udzieliłeś żadnej odpowiedzi pozostało{" "}
             <strong>{rest}</strong> (z {all}).
-          </p>
+          </span>
         </Col>
       </Row>
     </Container>
