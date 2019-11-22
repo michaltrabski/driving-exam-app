@@ -93,44 +93,16 @@ export const replaceRegEx = (text, search) => {
   return text.replace(regex, `<span class="bg-warning">${found}</span>`);
 };
 
-export const rightAnswerArr = (allQuestions, userData) => {
-  let x = allQuestions.filter(item => {
-    let result = false;
-    if (typeof userData[`id_${item.id}`] !== "undefined") {
-      if (item.r === userData[`id_${item.id}`].userAnswer) {
-        result = true;
-      }
-    }
-    return result;
-  });
-  return x;
-};
-export const wrongAnswerArr = (allQuestions, userData) => {
-  let x = allQuestions.filter(item => {
-    let result = false;
-    if (
-      typeof userData[`id_${item.id}`] !== "undefined" &&
-      typeof userData[`id_${item.id}`].userAnswer !== "undefined"
-    ) {
-      if (item.r !== userData[`id_${item.id}`].userAnswer) {
-        result = true;
-      }
-    }
-    return result;
-  });
-  return x;
-};
+export const getStatistics = allQuestions => {
+  let good = 0;
+  let bad = 0;
 
-export const allGivenAnswerArr = (allQuestions, userData) => {
-  let x = allQuestions.filter(item => {
-    let result = false;
-    if (
-      typeof userData[`id_${item.id}`] !== "undefined" &&
-      typeof userData[`id_${item.id}`].userAnswer !== "undefined"
-    ) {
-      result = true;
-    }
-    return result;
+  allQuestions.forEach(item => {
+    if (item.r === item.userAns) good++;
+    if (item.r !== item.userAns && item.userAns !== "") bad++;
   });
-  return x;
+
+  let all = allQuestions.length;
+  let rest = all - good - bad;
+  return [good, bad, all, rest];
 };

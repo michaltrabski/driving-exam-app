@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { changeFilterOption } from "./../../store/actions/questionsActions";
+import { SHOW_ALL } from "../../functions/functions";
 
 const Filters = () => {
   const filterOptions = useSelector(
@@ -17,7 +18,7 @@ const Filters = () => {
         onChange={e => dispatch(changeFilterOption(e.target.value))}
         className="form-control mb-1 mr-1"
         type="select"
-        style={filterOption !== "SHOW_ALL" ? { fontWeight: "bolder" } : {}}
+        style={filterOption !== SHOW_ALL ? { fontWeight: "bolder" } : {}}
       >
         {filterOptions.map(option => (
           <option

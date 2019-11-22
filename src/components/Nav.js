@@ -4,6 +4,8 @@ import { path, link_outside } from "../config/path";
 import { useSelector } from "react-redux";
 import { yes } from "./../store/reducers/usersReducer";
 import TestyNotPaidInfo from "./TestyNotPaidInfo";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faDungeon } from "@fortawesome/free-solid-svg-icons";
 
 const Nav = () => {
   const [collapse, setCollapse] = useState(true);
@@ -29,19 +31,28 @@ const Nav = () => {
           >
             App
           </span>
+          <NavLink
+            className="nav-link d-inline"
+            to={path.fast}
+            onClick={handleNavLinkClick}
+          >
+            <FontAwesomeIcon icon={faDungeon} />
+          </NavLink>
         </Link>
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-          onClick={() => setCollapse(!collapse)}
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
+        <div>
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+            onClick={() => setCollapse(!collapse)}
+          >
+            <span className="navbar-toggler-icon"></span>
+          </button>
+        </div>
         <div
           className={`navbar-collapse ${collapse && "collapse"}`}
           id="navbarSupportedContent"
@@ -135,7 +146,7 @@ const Nav = () => {
                 to={path.fast}
                 onClick={handleNavLinkClick}
               >
-                [!!!]
+                <FontAwesomeIcon icon={faDungeon} />
               </NavLink>
             </li>
             {isLoggedIn === yes ? (

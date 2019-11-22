@@ -124,7 +124,8 @@ export const questionsReducer = (state = initialState, actions) => {
       state = {
         ...state,
         cqi: actions.nr - 1,
-        search: ""
+        search: "",
+        filterOption: SHOW_ALL
       };
 
       return state;

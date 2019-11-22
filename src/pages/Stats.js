@@ -1,14 +1,12 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  allGivenAnswerArr,
-  rightAnswerArr,
-  wrongAnswerArr
-} from "../functions/functions";
+import { getStatistics } from "../functions/functions";
 import { Container, Row, Col } from "../elements/elements";
 import { path } from "./../config/path";
 import { getQuestions } from "../store/actions/questionsActions";
 import { checking } from "./../store/reducers/usersReducer";
+import { SHOW_GOOD, SHOW_BAD, SHOW_WITHOUT } from "./../functions/functions";
+import { changeFilterOption } from "./../store/actions/questionsActions";
 
 const Stats = props => {
   let { allQuestions, kat, lang } = useSelector(
@@ -26,77 +24,78 @@ const Stats = props => {
     }
   }, [kat, lang, isLoggedIn]);
 
-  const stat = allQuestions => {
-    let good = 0;
-    let bad = 0;
-
-    allQuestions.forEach(item => {
-      if (item.r === item.userAns) good++;
-      if (item.r !== item.userAns && item.userAns !== "") bad++;
-    });
-
-    let all = allQuestions.length;
-    let rest = all - good - bad;
-    return [good, bad, all, rest];
+  const handleClick = filter => {
+    dispatch(changeFilterOption(filter));
+    props.history.push(path.learn);
   };
 
-  let [good, bad, all, rest] = stat(allQuestions);
-  // const handleGood = () => {
-  //   console.log("set filter with goog questions and redirect to learn page");
-  //   props.history.push(path.learn);
-  // };
-
-  // return (
-  //   <Container>
-  //     <Row center>
-  //       <Col>w krótce</Col>
-  //     </Row>
-  //   </Container>
-  // );
+  const [good, bad, all, rest] = getStatistics(allQuestions);
 
   return (
     <Container>
-      <Row>
+      <Row mb>
         <Col>
-          <p>good = {good}</p>
-          <p>bad = {bad}</p>
-          <p>all = {all}</p>
-          <p>rest = {rest}</p>
-
-          {/* <p>stats</p>
-          <div>Wszystkie pytania = {allQuestions.length}</div>
+          <h1>Twoje statystyki:</h1>
           <p>
-            Mamy {allQuestions.length} pytań testowych na kategorię X w naszej
-            bazie!
+            Oficjalnych pytań kategorii {kat.toUpperCase()} jest {all}
           </p>
-          <p>
-            Udzieliłeś odpowiedzi na <strong>{all}</strong> pytań testowych
-            kategori X.
-          </p> */}
+          <p>Udzieliłeś odpowiedzi na {good + bad} pytań.</p>
         </Col>
       </Row>
-      {/* <Row mb>
+      <Row>
         <Col>
-          <button className="btn btn-success mr-1" onClick={handleGood}>
-            Zobacz pytania bez błędów
-          </button>
-          <span>
-            <strong className="text-success">Udzieliłeś {good}</strong>{" "}
-            prawidłowych opowiedzi!
-          </span>
+          <p>
+            <button
+              className="btn btn-success btn-sm mr-3"
+              onClick={() => handleClick(SHOW_GOOD)}
+            >
+              Zobacz pytania
+            </button>
+            <span>Dobrze odpowiedziałeś na {good} pytań.</span>
+          </p>
         </Col>
-      </Row> */}
-      {/* <Row mb>
         <Col>
-          <button className="btn btn-danger mr-1">
-            Zobacz pytania z błędami
-          </button>
-          <span>
-            <strong className="text-danger">Udzieliłeś {bad}</strong>{" "}
-            nieprawidłowych opowiedzi!
-          </span>
+          <p>
+            {" "}
+            <button
+              className="btn btn-danger btn-sm mr-3"
+              onClick={() => handleClick(SHOW_BAD)}
+            >
+              Zobacz pytania
+            </button>
+            Źle odpowiedziałeś na {bad} pytań.
+          </p>
         </Col>
-      </Row> */}
+      </Row>
+
+      <Row mb>
+        <Col>
+          <div className="progress">
+            <div
+              className="progress-bar"
+              role="progressbar"
+              style={{ width: "25%" }}
+              aria-valuenow="25"
+              aria-valuemin="0"
+              aria-valuemax="100"
+            ></div>
+          </div>
+        </Col>
+      </Row>
+      <Row mb>
+        <Col>
+          <p>
+            {" "}
+            <button
+              className="btn btn-secondary btn-sm mr-3"
+              onClick={() => handleClick(SHOW_WITHOUT)}
+            >
+              Zobacz pytania
+            </button>
+            Pytań, na które nie udzieliłeś odpowiedzi pozostało {rest}.
+          </p>
+        </Col>
+      </Row>
     </Container>
   );
 };

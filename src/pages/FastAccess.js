@@ -1,12 +1,29 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Container, Row, Col } from "../elements/elements";
 import { useSelector, useDispatch } from "react-redux";
-import { goToQuestionNr } from "../store/actions/questionsActions";
+import {
+  goToQuestionNr,
+  getQuestions
+} from "../store/actions/questionsActions";
 import { path } from "./../config/path";
+import { checking } from "./../store/reducers/usersReducer";
 
 const FastAccess = props => {
-  const { allQuestions, kat } = useSelector(state => state.questionsReducer);
+  let { allQuestions, kat, lang } = useSelector(
+    state => state.questionsReducer
+  );
+  const {
+    isLoggedIn,
+    userData: { poznajTestyHasAccess }
+  } = useSelector(state => state.usersReducer);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (isLoggedIn !== checking && allQuestions.length === 0) {
+      dispatch(getQuestions(kat, lang, poznajTestyHasAccess));
+    }
+  }, [kat, lang, isLoggedIn]);
+
   const handleClick = nr => {
     dispatch(goToQuestionNr(nr));
     props.history.push(path.learn);
