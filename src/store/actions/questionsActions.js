@@ -48,7 +48,7 @@ export const getQuestions = (kat, lang, poznajTestyHasAccess) => {
               let newItem = item;
               newItem.m = newItem.m === "" ? "empty.jpg" : newItem.m;
               newItem.v = item.m.indexOf(".mp4") > 0 ? true : false;
-              newItem.userAns = false;
+              newItem.userAns = "";
               return newItem;
             });
             // shuffle array once get from firebase

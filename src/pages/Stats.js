@@ -32,7 +32,7 @@ const Stats = props => {
 
     allQuestions.forEach(item => {
       if (item.r === item.userAns) good++;
-      if (item.r !== item.userAns && item.userAns !== false) bad++;
+      if (item.r !== item.userAns && item.userAns !== "") bad++;
     });
 
     let all = allQuestions.length;

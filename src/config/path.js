@@ -8,7 +8,8 @@ export const path = {
   sign_in: "/logowanie",
   sign_up: "/rejestracja",
   user_profile: "/twoj-profil",
-  pricing: "/cennik"
+  pricing: "/cennik",
+  fast: "/szybkie-menu"
 };
 
 export const link_outside = {

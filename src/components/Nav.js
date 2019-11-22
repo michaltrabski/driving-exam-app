@@ -1,59 +1,62 @@
 import React, { useState } from "react";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, useLocation } from "react-router-dom";
 import { path, link_outside } from "../config/path";
 import { useSelector } from "react-redux";
 import { yes } from "./../store/reducers/usersReducer";
+import TestyNotPaidInfo from "./TestyNotPaidInfo";
 
 const Nav = () => {
+  const [collapse, setCollapse] = useState(true);
   const {
     isLoggedIn,
     userData: { poznajTestyHasAccess }
   } = useSelector(state => state.usersReducer);
+  const { pathname } = useLocation();
 
-  const [collapse, setCollapse] = useState(true);
   const handleNavLinkClick = () => {
     setCollapse(true);
   };
 
   return (
-    <nav className="shadow navbar navbar-expand-lg navbar-dark bg-dark">
-      <Link className="navbar-brand" to="/" onClick={() => setCollapse(true)}>
-        poznajTesty.pl{" "}
-        <span
-          className={`${
-            poznajTestyHasAccess === yes ? "text-success" : "text-primary"
-          } font-weight-bolder`}
+    <>
+      <nav className="shadow navbar navbar-expand-lg navbar-dark bg-dark">
+        <Link className="navbar-brand" to="/" onClick={() => setCollapse(true)}>
+          poznajTesty.pl{" "}
+          <span
+            className={`${
+              poznajTestyHasAccess === yes ? "text-success" : "text-primary"
+            } font-weight-bolder`}
+          >
+            App
+          </span>
+        </Link>
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+          onClick={() => setCollapse(!collapse)}
         >
-          App
-        </span>
-      </Link>
-      <button
-        className="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-        onClick={() => setCollapse(!collapse)}
-      >
-        <span className="navbar-toggler-icon"></span>
-      </button>
-      <div
-        className={`navbar-collapse ${collapse && "collapse"}`}
-        id="navbarSupportedContent"
-      >
-        <ul className="navbar-nav ml-auto mr-auto">
-          <li className="nav-item">
-            <NavLink
-              className="nav-link"
-              to={path.learn}
-              onClick={handleNavLinkClick}
-            >
-              Nauka pytań
-            </NavLink>
-          </li>
-          {/* <li className="nav-item">
+          <span className="navbar-toggler-icon"></span>
+        </button>
+        <div
+          className={`navbar-collapse ${collapse && "collapse"}`}
+          id="navbarSupportedContent"
+        >
+          <ul className="navbar-nav ml-auto mr-auto">
+            <li className="nav-item">
+              <NavLink
+                className="nav-link"
+                to={path.learn}
+                onClick={handleNavLinkClick}
+              >
+                Nauka pytań
+              </NavLink>
+            </li>
+            {/* <li className="nav-item">
             <NavLink
               className="nav-link"
               to={path.exam}
@@ -62,16 +65,16 @@ const Nav = () => {
               Wykonaj egzamin
             </NavLink>
           </li> */}
-          <li className="nav-item">
-            <NavLink
-              className="nav-link"
-              to={path.pricing}
-              onClick={handleNavLinkClick}
-            >
-              Cennik
-            </NavLink>
-          </li>
-          {/* <li className="nav-item">
+            <li className="nav-item">
+              <NavLink
+                className="nav-link"
+                to={path.pricing}
+                onClick={handleNavLinkClick}
+              >
+                Cennik
+              </NavLink>
+            </li>
+            {/* <li className="nav-item">
             <NavLink
               className="nav-link"
               to={path.exam_reviev}
@@ -89,80 +92,95 @@ const Nav = () => {
               Szkolenia wideo
             </NavLink>
           </li> */}
-          <a
-            className="nav-link ml-3 nav-link-video-course"
-            href={link_outside.kompendium_wiedzy}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Kompendium wiedzy
-          </a>
-          <a
-            className="nav-link ml-3 nav-link-video-course"
-            href={link_outside.syt_i_niesp}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Sytuacje i Niespodzianki na drodze!
-          </a>
-          <li className="nav-item">
-            <NavLink
-              className="nav-link"
-              to={path.stats}
-              onClick={handleNavLinkClick}
-            >
-              Statystyki
-            </NavLink>
-          </li>
-          <li className="nav-item">
             <a
-              className="nav-link"
-              href={link_outside.blog}
+              className="nav-link ml-3 nav-link-video-course"
+              href={link_outside.kompendium_wiedzy}
               target="_blank"
               rel="noopener noreferrer"
             >
-              Blog
+              Kompendium wiedzy
             </a>
-          </li>
-        </ul>
-        <ul className="navbar-nav">
-          {isLoggedIn === yes ? (
+            <a
+              className="nav-link ml-3 nav-link-video-course"
+              href={link_outside.syt_i_niesp}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Sytuacje i Niespodzianki na drodze!
+            </a>
             <li className="nav-item">
               <NavLink
-                className={`nav-link ${
-                  poznajTestyHasAccess === yes ? "text-success" : "text-primary"
-                }`}
-                to={path.user_profile}
+                className="nav-link"
+                to={path.stats}
                 onClick={handleNavLinkClick}
               >
-                Twój profil
+                Statystyki
               </NavLink>
             </li>
-          ) : (
-            <>
+            <li className="nav-item">
+              <a
+                className="nav-link"
+                href={link_outside.blog}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Blog
+              </a>
+            </li>
+          </ul>
+          <ul className="navbar-nav">
+            <li className="nav-item">
+              <NavLink
+                className="nav-link"
+                to={path.fast}
+                onClick={handleNavLinkClick}
+              >
+                [!!!]
+              </NavLink>
+            </li>
+            {isLoggedIn === yes ? (
               <li className="nav-item">
                 <NavLink
-                  className="nav-link"
-                  to={path.sign_up}
+                  className={`nav-link ${
+                    poznajTestyHasAccess === yes
+                      ? "text-success"
+                      : "text-primary"
+                  }`}
+                  to={path.user_profile}
                   onClick={handleNavLinkClick}
                 >
-                  Rejestracja
+                  Twój profil
                 </NavLink>
               </li>
-              <li className="nav-item">
-                <NavLink
-                  className="nav-link"
-                  to={path.sign_in}
-                  onClick={handleNavLinkClick}
-                >
-                  Logowanie
-                </NavLink>
-              </li>
-            </>
-          )}
-        </ul>
-      </div>
-    </nav>
+            ) : (
+              <>
+                <li className="nav-item">
+                  <NavLink
+                    className="nav-link"
+                    to={path.sign_up}
+                    onClick={handleNavLinkClick}
+                  >
+                    Rejestracja
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink
+                    className="nav-link"
+                    to={path.sign_in}
+                    onClick={handleNavLinkClick}
+                  >
+                    Logowanie
+                  </NavLink>
+                </li>
+              </>
+            )}
+          </ul>
+        </div>
+      </nav>
+      {(pathname === path.learn || pathname === path.stats) && (
+        <TestyNotPaidInfo />
+      )}
+    </>
   );
 };
 

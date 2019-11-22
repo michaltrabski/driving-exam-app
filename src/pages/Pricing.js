@@ -17,7 +17,10 @@ const Pricing = () => {
   const common = (
     <>
       <T>Dostęp do wszystkich oficjalnych pytań testowych {getYear()}</T>
-      <T>Wszystkie kategorie prawo jazdy: A,B,C,D...</T>
+      <T>
+        Wszystkie kategorie prawo jazdy: A, A1, A2, AM, B, B1, C, C1, D, D1, T,
+        PT
+      </T>
       <T>Darmowa aktualizacja bazy pytań!</T>
     </>
   );
@@ -28,7 +31,7 @@ const Pricing = () => {
           <div className="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
             <h1 className="display-4">Cennik</h1>
             <p className="lead">
-              Ofizjalne i zawsze aktualne testy na prawo jazdy {getYear()}!!!
+              Oficjalne i zawsze aktualne testy na prawo jazdy {getYear()}!!!
               <br />
               <span className="bg-warning">
                 <strong>Pytania są identyczne</strong> jak te, które będą na

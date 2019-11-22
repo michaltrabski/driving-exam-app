@@ -35,12 +35,12 @@ export const filterQuestions = (question, filter) => {
       return question.r === question.userAns ? true : false;
     //--------------------------------------------------------------
     case SHOW_BAD:
-      return question.r !== question.userAns && question.userAns !== false
+      return question.r !== question.userAns && question.userAns !== ""
         ? true
         : false;
     //--------------------------------------------------------------
-    case SHOW_WITHOUT:
-      return question.userAns === false ? true : false;
+    case SHOW_WITHOUT: // CHANGE TO rest = rest questions
+      return question.userAns === "" ? true : false;
     //--------------------------------------------------------------
     default:
       return question.th === filter ? true : false;
