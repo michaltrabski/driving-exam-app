@@ -52,7 +52,7 @@ const SignIn = props => {
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="password">Password</label>
+                <label htmlFor="password">Hasło</label>
                 <input
                   className="form-control"
                   type="password"

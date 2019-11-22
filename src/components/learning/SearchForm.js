@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
 const SearchForm = props => {
-  const search = useSelector(state => state.questionsReducer.search);
+  const { search } = useSelector(state => state.questionsReducer);
   const dispatch = useDispatch();
 
   const handleSubmit = e => {

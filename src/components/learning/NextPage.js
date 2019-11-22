@@ -1,10 +1,16 @@
 import React from "react";
 import { Row, Col } from "../../elements/elements";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowRight, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import {
+  faArrowRight,
+  faArrowLeft,
+  faDungeon
+} from "@fortawesome/free-solid-svg-icons";
 import { connect } from "react-redux";
 import { nextPage, previesPage } from "./../../store/actions/questionsActions";
 import Resize from "./../Resize";
+import { path } from "./../../config/path";
+import { Link } from "react-router-dom";
 
 const NextPage = ({ cqi, perPage, amount, nextPage, previesPage }) => {
   const pages = Number.isInteger(amount / perPage)
@@ -35,17 +41,27 @@ const NextPage = ({ cqi, perPage, amount, nextPage, previesPage }) => {
         </button>
         <div className="d-flex align-items-center">
           <span>
-            {page} z {pages} stron, {amount} pytań.
+            {page}/{pages} stron - {amount} pytania
           </span>
         </div>
-        <button
-          className={`btn btn-${cqi + perPage >= amount ? "light" : "primary"}`}
-          disabled={cqi + perPage >= amount ? true : false}
-          onClick={handleNextPage}
-        >
-          {width > 700 && <span>Następna strona </span>}
-          <FontAwesomeIcon icon={faArrowRight} />
-        </button>
+
+        <div>
+          <Link to={path.fast}>
+            <button className="mr-3 btn btn-primary">
+              <FontAwesomeIcon icon={faDungeon} />
+            </button>
+          </Link>
+          <button
+            className={`btn btn-${
+              cqi + perPage >= amount ? "light" : "primary"
+            }`}
+            disabled={cqi + perPage >= amount ? true : false}
+            onClick={handleNextPage}
+          >
+            {width > 700 && <span>Następna strona </span>}
+            <FontAwesomeIcon icon={faArrowRight} />
+          </button>
+        </div>
       </Col>
     </Row>
   );

@@ -62,7 +62,7 @@ const SignUp = props => {
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="password">Password</label>
+                <label htmlFor="password">Hasło</label>
                 <input
                   className="form-control"
                   type="password"
@@ -72,7 +72,7 @@ const SignUp = props => {
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="password">Password</label>
+                <label htmlFor="password">Powtórz hasło</label>
                 <input
                   className="form-control"
                   type="password"

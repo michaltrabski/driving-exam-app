@@ -4,8 +4,8 @@ import { path, link_outside } from "../config/path";
 import { useSelector } from "react-redux";
 import { yes } from "./../store/reducers/usersReducer";
 import TestyNotPaidInfo from "./TestyNotPaidInfo";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faDungeon } from "@fortawesome/free-solid-svg-icons";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faDungeon } from "@fortawesome/free-solid-svg-icons";
 
 const Nav = () => {
   const [collapse, setCollapse] = useState(true);
@@ -31,13 +31,13 @@ const Nav = () => {
           >
             App
           </span>
-          <NavLink
+          {/* <NavLink
             className="nav-link d-inline"
             to={path.fast}
             onClick={handleNavLinkClick}
           >
             <FontAwesomeIcon icon={faDungeon} />
-          </NavLink>
+          </NavLink> */}
         </Link>
         <div>
           <button
@@ -140,7 +140,7 @@ const Nav = () => {
             </li>
           </ul>
           <ul className="navbar-nav">
-            <li className="nav-item">
+            {/* <li className="nav-item">
               <NavLink
                 className="nav-link"
                 to={path.fast}
@@ -148,7 +148,7 @@ const Nav = () => {
               >
                 <FontAwesomeIcon icon={faDungeon} />
               </NavLink>
-            </li>
+            </li> */}
             {isLoggedIn === yes ? (
               <li className="nav-item">
                 <NavLink
