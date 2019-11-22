@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { searchQuestions } from "../../store/actions/questionsActions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTimes } from "@fortawesome/free-solid-svg-icons";
+import { faTimes, faSearch } from "@fortawesome/free-solid-svg-icons";
 
 const SearchForm = props => {
   const { search } = useSelector(state => state.questionsReducer);
@@ -40,6 +40,13 @@ const SearchForm = props => {
         }
         onClick={() => dispatch(searchQuestions(""))}
       />
+      <span
+        className="position-absolute text-secondary"
+        style={{ right: "0", transform: "translateX(-100%)" }}
+        onClick={() => document.getElementById("search").focus()}
+      >
+        <FontAwesomeIcon icon={faSearch} />
+      </span>
       <button
         className="btn btn-primary position-absolute"
         type="submit"

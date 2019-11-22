@@ -37,7 +37,6 @@ const Filters = () => {
           filterOption !== SHOW_ALL
             ? {
                 right: "0",
-                transform: " translate(-60%)",
                 top: "0px"
               }
             : { visibility: "hidden" }

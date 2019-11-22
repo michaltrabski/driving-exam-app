@@ -125,7 +125,8 @@ const Stats = props => {
             Zobacz wszystkie {all} pytania
           </button>
           <span>
-            Oficjalnych pytań kategorii {kat.toUpperCase()} jest {all}
+            Oficjalnych pytań na prawo jazdy kategorii {kat.toUpperCase()} jest{" "}
+            <strong>{all}</strong>
           </span>
         </Col>
       </Row>
@@ -138,7 +139,7 @@ const Stats = props => {
             Zobacz pozostałe {rest} pytań bez odpowiedzi
           </button>
           <span>
-            Pytań, na które nie udzieliłeś żadnej odpowiedzi pozostało{" "}
+            Pytania, na które nie udzieliłeś żadnej odpowiedzi{" "}
             <strong>{rest}</strong> (z {all}).
           </span>
         </Col>
