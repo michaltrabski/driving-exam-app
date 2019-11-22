@@ -112,6 +112,7 @@ export const questionsReducer = (state = initialState, actions) => {
     case CHANGE_KATEGORY:
       state = {
         ...state,
+        allQuestions: [],
         cqi: 0,
         kat: actions.kat,
         search: "",

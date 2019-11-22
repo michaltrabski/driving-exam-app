@@ -39,15 +39,16 @@ const NextPage = ({ cqi, perPage, amount, nextPage, previesPage }) => {
           <FontAwesomeIcon icon={faArrowLeft} />
           {width > 700 && <span> poprzednia strona</span>}
         </button>
-        <div className="d-flex align-items-center">
-          <span>
-            {page}/{pages} stron - {amount} pytania
+        <div className="mx-2 d-flex flex-wrap align-items-center">
+          <span className="mr-1">
+            {page}/{pages} stron -
           </span>
+          <span>{amount} pytania</span>
         </div>
 
-        <div>
+        <div className="d-flex flex-nowrap">
           <Link to={path.fast}>
-            <button className="mr-3 btn btn-primary">
+            <button className="btn btn-primary h-100 mr-2">
               <FontAwesomeIcon icon={faDungeon} />
             </button>
           </Link>
