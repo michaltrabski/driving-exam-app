@@ -16,6 +16,7 @@ import { useSelector } from "react-redux";
 import UserProfile from "./pages/UserProfile";
 import Pricing from "./pages/Pricing";
 import FastAccess from "./pages/FastAccess";
+import ScrollTopOnRouteChange from "./functions/hooks";
 
 function App() {
   const {
@@ -29,6 +30,7 @@ function App() {
       <br />
       poznajTestyHasAccess = {JSON.stringify(poznajTestyHasAccess)} */}
       <Router>
+        <ScrollTopOnRouteChange />
         <Nav />
         <PageBackground>
           <Switch>

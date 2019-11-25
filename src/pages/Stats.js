@@ -140,7 +140,7 @@ const Stats = props => {
           </button>
           <span>
             Pytania, na które nie udzieliłeś żadnej odpowiedzi{" "}
-            <strong>{rest}</strong> (z {all}).
+            <strong>{rest}</strong> (z {all})
           </span>
         </Col>
       </Row>
