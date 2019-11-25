@@ -1,24 +1,35 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Container, Row, Col } from "../elements/elements";
 import { useSelector } from "react-redux";
 import QuestionSingle from "./../components/learning/QuestionSingle";
 import { GetQuestions } from "../functions/functionalComponents";
+import { randomExam } from "../functions/functions";
 
 const Exam = () => {
   const { allQuestions } = useSelector(state => state.questionsReducer);
   const [current, setCurrent] = useState(0);
-  const exam = allQuestions.slice(0, 32);
+  const [exam, setExam] = useState([]);
+
+  const handleStartExam = () => {
+    setExam(randomExam(allQuestions));
+  };
 
   return (
     <>
       <GetQuestions />
       <Container>
         <Row center>
-          <Col>w krótce</Col>
+          <Col>
+            <button onClick={() => handleStartExam()}>
+              Rozpocznij egzamin
+            </button>
+          </Col>
         </Row>
       </Container>
-      {1 === 2 && (
+      {1 === 1 && (
         <>
+          {JSON.stringify(exam[0])}
+
           <Container>
             <Row center>
               <Col>
@@ -53,11 +64,8 @@ const Exam = () => {
 
 const getColor = (question, i, current) => {
   let color = question.r === question.userAns ? "success" : "danger";
-  color =
-    question.r !== question.userAns && question.userAns !== ""
-      ? "secondary"
-      : color;
-  color = i === current ? `outline-${color}` : color;
+  if (question.userAns === "") color = "secondary";
+
   return color;
 };
 

@@ -2,12 +2,17 @@ import React, { useState } from "react";
 import { Row, Col } from "../../elements/elements";
 import { useSelector, useDispatch } from "react-redux";
 import { goToQuestionNr } from "../../store/actions/questionsActions";
+import { useLocation } from "react-router-dom";
+import { path } from "./../../config/path";
 
-const GoToQuestionNumber = () => {
+const GoToQuestionNumber = props => {
+  console.log(props);
   const max = useSelector(state => state.questionsReducer.allQuestions.length);
   let [nr, setNr] = useState("");
   const dispatch = useDispatch();
+  const { pathname } = useLocation();
 
+  // console.log(props, pathname);
   const handleSubmit = e => {
     e.preventDefault();
     window.scrollTo(0, 0);
@@ -17,6 +22,8 @@ const GoToQuestionNumber = () => {
     if (nr > max) nr = max;
     dispatch(goToQuestionNr(nr));
     setNr("");
+
+    // if (pathname !== path.learn) props.history.push(path.learn);
   };
 
   return (

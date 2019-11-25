@@ -18,11 +18,6 @@ const AnswersWrapper = styled.div`
 `;
 
 const Answer = props => {
-  const {
-    isLoggedIn,
-    userData: { poznajTestyHasAccess }
-  } = useSelector(state => state.usersReducer);
-
   const [color, setcolor] = useState(colors);
   const { showAnswerNow } = props.settings;
 
@@ -43,8 +38,8 @@ const Answer = props => {
         [userAns]: "danger"
       });
     }
-    console.log("sssss", props.id, userAns, poznajTestyHasAccess);
-    props.saveAnswer(props.id, userAns, poznajTestyHasAccess);
+    // console.log("sssss", props.id, userAns, poznajTestyHasAccess);
+    props.saveAnswer(props.id, userAns);
   };
 
   const yesNo = (
@@ -91,8 +86,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    saveAnswer: (question_id, userAns, poznajTestyHasAccess) => {
-      dispatch(saveAnswer(question_id, userAns, poznajTestyHasAccess));
+    saveAnswer: (question_id, userAns) => {
+      dispatch(saveAnswer(question_id, userAns));
     }
   };
 };

@@ -1,7 +1,6 @@
 import { storage, mergeObj } from "./../../functions/functions";
 import _ from "lodash";
 import firebase from "./../../config/firebase";
-import { yes } from "./../reducers/usersReducer";
 
 export const LOADING = "LOADING";
 export const GET_QUESTIONS = "GET_QUESTIONS";
@@ -15,15 +14,12 @@ export const SAVE_ANSWER = "SAVE_ANSWER";
 export const CHANGE_FILTER_OPTION = "CHANGE_FILTER_OPTION";
 export const RESET_ALL_QUESTIONS = "RESET_ALL_QUESTIONS";
 
-export const getQuestions = (kat, lang) => {
+export const getQuestions = (kat, lang, poznajTestyHasAccess) => {
   const name = `kat_${kat}_${lang}`;
 
-  return (dispatch, getState) => {
-    const { poznajTestyHasAccess } = getState().usersReducer.userData;
-
-    if (storage(name) && poznajTestyHasAccess === yes) {
-      const { allQuestions, katList, langList, filterOptions } = storage(name);
-      // return dispatch => {
+  if (storage(name) && poznajTestyHasAccess === "yes") {
+    const { allQuestions, katList, langList, filterOptions } = storage(name);
+    return dispatch => {
       dispatch({
         type: GET_QUESTIONS,
         allQuestions,
@@ -31,10 +27,10 @@ export const getQuestions = (kat, lang) => {
         langList,
         filterOptions
       });
-      // };
-    } else {
-      // retriev questions from firebase
-      // return dispatch => {
+    };
+  } else {
+    // retriev questions from firebase
+    return dispatch => {
       dispatch({ type: LOADING });
 
       firebase
@@ -66,7 +62,7 @@ export const getQuestions = (kat, lang) => {
               filterOptions: data.filterOptions
             };
 
-            poznajTestyHasAccess === yes && storage(name, obj_new);
+            poznajTestyHasAccess === "yes" && storage(name, obj_new);
 
             dispatch({
               type: GET_QUESTIONS,
@@ -79,9 +75,8 @@ export const getQuestions = (kat, lang) => {
         .catch(function(error) {
           console.log("Error getting document:", error);
         });
-      // };
-    }
-  };
+    };
+  }
 };
 
 export const changeFilterOption = filterOption => {
@@ -93,7 +88,12 @@ export const changeFilterOption = filterOption => {
 
 export const saveAnswer = (question_id, userAns) => {
   return (dispatch, getState) => {
-    const { poznajTestyHasAccess } = getState().usersReducer.userData;
+    // console.log(getState());
+    let {
+      usersReducer: {
+        userData: { poznajTestyHasAccess }
+      }
+    } = getState();
 
     dispatch({
       type: SAVE_ANSWER,

@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { goToQuestionNr } from "../store/actions/questionsActions";
 import { path } from "./../config/path";
 import { GetQuestions } from "../functions/functionalComponents";
+import GoToQuestionNumber from "./../components/learning/GoToQuestionNumber";
 
 const FastAccess = props => {
   let { allQuestions, kat } = useSelector(state => state.questionsReducer);
@@ -21,6 +22,15 @@ const FastAccess = props => {
         <Row>
           <Col>
             <p>Szybki dostęp do twoich pytań (kat {kat.toUpperCase()})</p>
+          </Col>
+        </Row>
+        {/* <Row>
+          <Col>
+            <GoToQuestionNumber />
+          </Col>
+        </Row> */}
+        <Row>
+          <Col>
             {allQuestions.map(item => (
               <button
                 className={`btn btn-sm mr-1 mb-1 btn-${getBtnColor(item)}`}

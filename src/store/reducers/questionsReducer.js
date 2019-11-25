@@ -1,4 +1,4 @@
-import { storage, SHOW_ALL, mergeObj } from "./../../functions/functions";
+import { storage, SHOW_ALL } from "./../../functions/functions";
 import {
   LOADING,
   GET_QUESTIONS,
@@ -12,11 +12,13 @@ import {
   CHANGE_FILTER_OPTION,
   RESET_ALL_QUESTIONS
 } from "./../actions/questionsActions";
+import { yes } from "./usersReducer";
 
 const initialState = {
   loading: true, // questions are loading from firebase
   allQuestions: [], // from firebase
   allExams: [],
+  exam: [],
   katList: [], // from firebase
   langList: [], // from firebase
   kat: storage("kat") ? storage("kat") : "b", //default category when you load page first time
@@ -43,7 +45,6 @@ export const questionsReducer = (state = initialState, actions) => {
       return state;
     //------------------------------------------------------------
     case GET_QUESTIONS:
-      console.log("1 GET_QUESTIONS", state);
       state = {
         ...state,
         loading: false,
@@ -52,11 +53,9 @@ export const questionsReducer = (state = initialState, actions) => {
         langList: actions.langList,
         filterOptions: actions.filterOptions
       };
-      console.log("2 GET_QUESTIONS", state);
       return state;
     //------------------------------------------------------------
     case SAVE_ANSWER:
-      console.log("1 SAVE_ANSWER", state);
       state = {
         ...state,
         allQuestions: state.allQuestions.map(q => {
@@ -66,16 +65,14 @@ export const questionsReducer = (state = initialState, actions) => {
         })
       };
 
-      // this overides user data - marge first ??
-      console.log("accec?", actions);
-      if (actions.poznajTestyHasAccess === "yes")
+      if (actions.poznajTestyHasAccess === yes)
         storage(name, {
           allQuestions: state.allQuestions,
           katList: state.katList,
           langList: state.langList,
           filterOptions: state.filterOptions
         });
-      console.log("2 SAVE_ANSWER", state);
+
       return state;
     //------------------------------------------------------------
     case CHANGE_FILTER_OPTION:
