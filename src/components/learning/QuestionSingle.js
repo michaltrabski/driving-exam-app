@@ -7,9 +7,11 @@ import Explanation from "../Explanation";
 import { useSelector } from "react-redux";
 
 const QuestionSingle = ({
+  exam,
+  setExam,
   mode,
-  current,
-  setCurrent,
+  cnr,
+  setCnr,
   question,
   question: { id, t, m, v, nr, p, r, userAns }
 }) => {
@@ -29,10 +31,7 @@ const QuestionSingle = ({
         </Col>
         <Col pl flex column>
           <div className="d-flex mt-auto justify-content-end">
-            <button
-              className="btn btn-primary"
-              onClick={() => setCurrent(current + 1)}
-            >
+            <button className="btn btn-primary" onClick={() => setCnr(cnr + 1)}>
               Następne
             </button>
           </div>
@@ -41,7 +40,13 @@ const QuestionSingle = ({
       <Row mt>
         <Col>
           <Text>{t}</Text>
-          <Answer {...question} mode={mode} current={current} />
+          <Answer
+            {...question}
+            mode={mode}
+            cnr={cnr}
+            exam={exam}
+            setExam={setExam}
+          />
         </Col>
       </Row>
       {showExplanation && <Explanation {...question} />}

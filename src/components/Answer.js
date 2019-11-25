@@ -18,24 +18,16 @@ const AnswersWrapper = styled.div`
 `;
 
 const Answer = props => {
-  const { mode, current } = props;
+  const { mode, cnr } = props;
   const { showAnswerNow } = useSelector(state => state.settingsReducer);
   const [color, setColor] = useState(colors);
-
-  useEffect(() => {
-    console.log("xxxxxxxxxxxxxx");
-    console.log(color);
-    return () => {
-      console.log("clean up", color);
-    };
-  });
 
   useEffect(() => {
     let newColors = showAnswerNow
       ? { ...colors, [props.r]: "success" }
       : colors;
     setColor(newColors);
-  }, [showAnswerNow, current]);
+  }, [showAnswerNow, cnr]);
 
   const handleAnswer = userAns => {
     mode !== "exam"
@@ -47,7 +39,6 @@ const Answer = props => {
             [userAns]: "danger"
           })
       : setColor({ ...colors, [userAns]: "secondary" });
-
     props.saveAnswer(props.id, userAns);
   };
 
@@ -84,15 +75,7 @@ const Answer = props => {
 
   let ans = props.a !== "" ? abc : yesNo;
 
-  return (
-    <AnswersWrapper>
-      {typeof mode}
-      {mode}
-      <br />
-      <br />
-      {ans}
-    </AnswersWrapper>
-  );
+  return <AnswersWrapper>{ans}</AnswersWrapper>;
 };
 
 // const mapStateToProps = state => {

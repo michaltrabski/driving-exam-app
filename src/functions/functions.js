@@ -12,14 +12,6 @@ export const storage = (key, value) => {
   }
 };
 
-export const randomExam = allQuestions => {
-  let exam = allQuestions.slice(0, 32);
-  exam = exam.map(item => {
-    return { ...item, userAns: "" };
-  });
-  return exam;
-};
-
 export const mergeObj = (obj1, obj2) => {
   return _.merge(obj1, obj2);
 };

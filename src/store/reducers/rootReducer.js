@@ -3,6 +3,7 @@ import { usersReducer } from "./usersReducer";
 import { settingsReducer } from "./settingsReducer";
 import { questionsReducer } from "./questionsReducer";
 import thunk from "redux-thunk";
+import { examReducer } from "./examReducer";
 
 // const michalMiddleware = store => next => action => {
 //   console.log("dispatching", action);
@@ -12,7 +13,12 @@ import thunk from "redux-thunk";
 // };
 
 export const store = createStore(
-  combineReducers({ questionsReducer, usersReducer, settingsReducer }),
+  combineReducers({
+    questionsReducer,
+    usersReducer,
+    settingsReducer,
+    examReducer
+  }),
   {},
   applyMiddleware(thunk)
 );
