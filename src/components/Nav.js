@@ -31,13 +31,6 @@ const Nav = () => {
           >
             App
           </span>
-          {/* <NavLink
-            className="nav-link d-inline"
-            to={path.fast}
-            onClick={handleNavLinkClick}
-          >
-            <FontAwesomeIcon icon={faDungeon} />
-          </NavLink> */}
         </Link>
         <div>
           <button
@@ -67,15 +60,15 @@ const Nav = () => {
                 Nauka pytań
               </NavLink>
             </li>
-            {/* <li className="nav-item">
-            <NavLink
-              className="nav-link"
-              to={path.exam}
-              onClick={handleNavLinkClick}
-            >
-              Wykonaj egzamin
-            </NavLink>
-          </li> */}
+            <li className="nav-item">
+              <NavLink
+                className="nav-link"
+                to={path.exam}
+                onClick={handleNavLinkClick}
+              >
+                Wykonaj egzamin
+              </NavLink>
+            </li>
             <li className="nav-item">
               <NavLink
                 className="nav-link"
