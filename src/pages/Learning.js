@@ -13,6 +13,7 @@ import Loading from "../components/learning/Loading";
 import { getQuestions } from "../store/actions/questionsActions";
 import { checking } from "./../store/reducers/usersReducer";
 import FilteresOutInfo from "../components/learning/FilteredOutInfo";
+import { GetQuestions } from "../functions/hooks";
 
 const Learning = () => {
   let {
@@ -30,18 +31,6 @@ const Learning = () => {
   } = useSelector(state => state.usersReducer);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    console.log("1", isLoggedIn, allQuestions.length, filterOption);
-    if (
-      isLoggedIn !== checking &&
-      allQuestions.length === 0 &&
-      filterOption === SHOW_ALL
-    ) {
-      console.log("2", isLoggedIn, allQuestions.length, filterOption);
-      dispatch(getQuestions(kat, lang, poznajTestyHasAccess));
-    }
-  }, [kat, lang, isLoggedIn]);
-
   // filter array based on search result
   allQuestions = allQuestions.filter(question =>
     question.t.includes(search.toLowerCase())
@@ -58,6 +47,7 @@ const Learning = () => {
 
   return (
     <>
+      <GetQuestions />
       <Container>
         <Row mb>
           <Col pr>
