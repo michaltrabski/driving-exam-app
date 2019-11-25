@@ -10,10 +10,8 @@ import SearchInfo from "../components/learning/SearchInfo";
 import { filterQuestions, SHOW_ALL } from "../functions/functions";
 import Add from "../components/Add";
 import Loading from "../components/learning/Loading";
-import { getQuestions } from "../store/actions/questionsActions";
-import { checking } from "./../store/reducers/usersReducer";
 import FilteresOutInfo from "../components/learning/FilteredOutInfo";
-import { GetQuestions } from "../functions/hooks";
+import { GetQuestions } from "../functions/functionalComponents";
 
 const Learning = () => {
   let {

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { checking } from "./../store/reducers/usersReducer";
+import { checking } from "../store/reducers/usersReducer";
 import { SHOW_ALL } from "./functions";
 import { getQuestions } from "../store/actions/questionsActions";
 

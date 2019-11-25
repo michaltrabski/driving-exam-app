@@ -16,6 +16,7 @@ import {
 const initialState = {
   loading: true, // questions are loading from firebase
   allQuestions: [], // from firebase
+  allExams: [],
   katList: [], // from firebase
   langList: [], // from firebase
   kat: storage("kat") ? storage("kat") : "b", //default category when you load page first time

@@ -8,6 +8,8 @@ import Actions from "./Actions";
 import { useSelector } from "react-redux";
 
 const QuestionSingle = ({
+  current,
+  setCurrent,
   question,
   question: { id, t, m, v, nr, p, r, userAns }
 }) => {
@@ -27,7 +29,12 @@ const QuestionSingle = ({
         </Col>
         <Col pl flex column>
           <div className="d-flex mt-auto justify-content-end">
-            <button className="btn btn-primary">Następne</button>
+            <button
+              className="btn btn-primary"
+              onClick={() => setCurrent(current + 1)}
+            >
+              Następne
+            </button>
           </div>
         </Col>
       </Row>
