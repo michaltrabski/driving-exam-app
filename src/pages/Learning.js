@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Question from "../components/learning/Question";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import Settings from "../components/learning/Settings";
 import NextPage from "../components/learning/NextPage";
 import SearchForm from "../components/learning/SearchForm";
@@ -14,20 +14,9 @@ import FilteresOutInfo from "../components/learning/FilteredOutInfo";
 import { GetQuestions } from "../functions/functionalComponents";
 
 const Learning = () => {
-  let {
-    allQuestions,
-    cqi,
-    perPage,
-    search,
-    filterOption,
-    kat,
-    lang
-  } = useSelector(state => state.questionsReducer);
-  const {
-    isLoggedIn,
-    userData: { poznajTestyHasAccess }
-  } = useSelector(state => state.usersReducer);
-  const dispatch = useDispatch();
+  let { allQuestions, cqi, perPage, search, filterOption } = useSelector(
+    state => state.questionsReducer
+  );
 
   // filter array based on search result
   allQuestions = allQuestions.filter(question =>

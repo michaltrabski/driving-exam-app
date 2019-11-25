@@ -8,55 +8,62 @@ import { randomExam } from "../functions/functions";
 const Exam = () => {
   const { allQuestions } = useSelector(state => state.questionsReducer);
   const [current, setCurrent] = useState(0);
+  const [examStarted, setExamStarted] = useState(false);
   const [exam, setExam] = useState([]);
 
   const handleStartExam = () => {
     setExam(randomExam(allQuestions));
+    setExamStarted(true);
   };
+
+  useEffect(() => {
+    console.log("exam", exam);
+  }, [exam]);
 
   return (
     <>
       <GetQuestions />
+      {allQuestions.length}
+      {!examStarted && allQuestions.length > 0 && (
+        <Container>
+          <Row center>
+            <Col>
+              <button onClick={() => handleStartExam()}>
+                Rozpocznij egzamin
+              </button>
+            </Col>
+          </Row>
+        </Container>
+      )}
+
+      {JSON.stringify(exam[0])}
+
       <Container>
         <Row center>
           <Col>
-            <button onClick={() => handleStartExam()}>
-              Rozpocznij egzamin
-            </button>
+            {exam.map((question, i) => {
+              return (
+                <button
+                  className={`btn mr-1 mb-1 btn-${getColor(
+                    question,
+                    i,
+                    current
+                  )}`}
+                >
+                  {i}
+                </button>
+              );
+            })}
           </Col>
         </Row>
       </Container>
-      {1 === 1 && (
-        <>
-          {JSON.stringify(exam[0])}
-
-          <Container>
-            <Row center>
-              <Col>
-                {exam.map((question, i) => {
-                  return (
-                    <button
-                      className={`btn mr-1 mb-1 btn-${getColor(
-                        question,
-                        i,
-                        current
-                      )}`}
-                    >
-                      {i}
-                    </button>
-                  );
-                })}
-              </Col>
-            </Row>
-          </Container>
-          {exam.length > 0 && (
-            <QuestionSingle
-              question={exam[current]}
-              current={current}
-              setCurrent={setCurrent}
-            />
-          )}
-        </>
+      {exam.length > 0 && (
+        <QuestionSingle
+          mode="exam"
+          question={exam[current]}
+          current={current}
+          setCurrent={setCurrent}
+        />
       )}
     </>
   );

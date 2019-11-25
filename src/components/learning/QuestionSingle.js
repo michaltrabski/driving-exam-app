@@ -4,10 +4,10 @@ import Media from "../Media";
 import styled from "styled-components";
 import Answer from "../Answer";
 import Explanation from "../Explanation";
-import Actions from "./Actions";
 import { useSelector } from "react-redux";
 
 const QuestionSingle = ({
+  mode,
   current,
   setCurrent,
   question,
@@ -41,7 +41,7 @@ const QuestionSingle = ({
       <Row mt>
         <Col>
           <Text>{t}</Text>
-          <Answer {...question} />
+          <Answer {...question} mode={mode} current={current} />
         </Col>
       </Row>
       {showExplanation && <Explanation {...question} />}

@@ -18,27 +18,36 @@ const AnswersWrapper = styled.div`
 `;
 
 const Answer = props => {
-  const [color, setcolor] = useState(colors);
-  const { showAnswerNow } = props.settings;
+  const { mode, current } = props;
+  const { showAnswerNow } = useSelector(state => state.settingsReducer);
+  const [color, setColor] = useState(colors);
+
+  useEffect(() => {
+    console.log("xxxxxxxxxxxxxx");
+    console.log(color);
+    return () => {
+      console.log("clean up", color);
+    };
+  });
 
   useEffect(() => {
     let newColors = showAnswerNow
       ? { ...colors, [props.r]: "success" }
       : colors;
-    setcolor(newColors);
-  }, [showAnswerNow]);
+    setColor(newColors);
+  }, [showAnswerNow, current]);
 
   const handleAnswer = userAns => {
-    if (userAns === props.r) {
-      setcolor({ ...color, [userAns]: "success" });
-    } else {
-      setcolor({
-        ...color,
-        [props.r]: "success",
-        [userAns]: "danger"
-      });
-    }
-    // console.log("sssss", props.id, userAns, poznajTestyHasAccess);
+    mode !== "exam"
+      ? userAns === props.r
+        ? setColor({ ...color, [userAns]: "success" })
+        : setColor({
+            ...color,
+            [props.r]: "success",
+            [userAns]: "danger"
+          })
+      : setColor({ ...colors, [userAns]: "secondary" });
+
     props.saveAnswer(props.id, userAns);
   };
 
@@ -75,14 +84,22 @@ const Answer = props => {
 
   let ans = props.a !== "" ? abc : yesNo;
 
-  return <AnswersWrapper>{ans}</AnswersWrapper>;
+  return (
+    <AnswersWrapper>
+      {typeof mode}
+      {mode}
+      <br />
+      <br />
+      {ans}
+    </AnswersWrapper>
+  );
 };
 
-const mapStateToProps = state => {
-  return {
-    settings: state.settingsReducer
-  };
-};
+// const mapStateToProps = state => {
+//   return {
+//     settings: state.settingsReducer
+//   };
+// };
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -91,4 +108,4 @@ const mapDispatchToProps = dispatch => {
     }
   };
 };
-export default connect(mapStateToProps, mapDispatchToProps)(Answer);
+export default connect(null, mapDispatchToProps)(Answer);
