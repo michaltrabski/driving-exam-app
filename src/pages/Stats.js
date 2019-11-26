@@ -87,31 +87,34 @@ const Stats = props => {
           </span>
         </Col>
       </Row>
-      <Row mb>
+      <Row mb center>
         <Col>
           {good + bad > 0 && (
-            <div className="progress">
-              <div
-                className="progress-bar bg-success"
-                role="progressbar"
-                style={{ width: `${good_width}%` }}
-                aria-valuenow={good_width}
-                aria-valuemin="0"
-                aria-valuemax="100"
-              >
-                {good_width}% dobrych odpowiedzi
+            <>
+              <p>Proporcja dobrych i złych odpowiedzi:</p>
+              <div className="progress" style={{ height: "2rem" }}>
+                <div
+                  className="progress-bar bg-success"
+                  role="progressbar"
+                  style={{ width: `${good_width}%` }}
+                  aria-valuenow={good_width}
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                >
+                  {good_width}%
+                </div>
+                <div
+                  className="progress-bar bg-danger"
+                  role="progressbar"
+                  style={{ width: `${bad_width}%` }}
+                  aria-valuenow={bad_width}
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                >
+                  {bad_width}%
+                </div>
               </div>
-              <div
-                className="progress-bar bg-danger"
-                role="progressbar"
-                style={{ width: `${bad_width}%` }}
-                aria-valuenow={bad_width}
-                aria-valuemin="0"
-                aria-valuemax="100"
-              >
-                {bad_width}% złych odpowiedzi
-              </div>
-            </div>
+            </>
           )}
         </Col>
       </Row>
@@ -122,7 +125,7 @@ const Stats = props => {
             className="btn btn-primary btn-sm mr-3"
             onClick={() => handleClick(SHOW_ALL)}
           >
-            Zobacz wszystkie {all} pytania
+            Zobacz {all} pytania
           </button>
           <span>
             Oficjalnych pytań na prawo jazdy kategorii {kat.toUpperCase()} jest{" "}
@@ -136,7 +139,7 @@ const Stats = props => {
             className="btn btn-secondary btn-sm mr-3"
             onClick={() => handleClick(SHOW_WITHOUT)}
           >
-            Zobacz pozostałe {rest} pytań bez odpowiedzi
+            Zobacz {rest} pytań
           </button>
           <span>
             Pytania, na które nie udzieliłeś żadnej odpowiedzi{" "}

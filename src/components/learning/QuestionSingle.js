@@ -28,20 +28,65 @@ const QuestionSingle = ({
           <Media m={m} v={v} />
         </Col>
         <Col pl flex column>
-          <div className="d-flex mt-auto justify-content-end">
-            <button
-              className="btn btn-primary"
-              onClick={() => dispatch(examDisplayQuestionByIndex(qIndex + 1))}
-            >
-              Następne
-            </button>
-          </div>
+          <Row center>
+            <Col pr>
+              <p>Pytania podstawowe</p>
+              <p>1/20</p>
+            </Col>
+            <Col pl>
+              <p>Pytania specialistyczne</p>
+              <p>0/12</p>
+            </Col>
+          </Row>
+
+          <Row className="mt-auto d-none d-md-flex">
+            <Col>
+              <div
+                className="progress position-relative"
+                style={{ height: "1.5rem" }}
+              >
+                <div
+                  className="progress-bar bg-success"
+                  role="progressbar"
+                  style={{ width: `20%` }}
+                  aria-valuenow="20%"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                ></div>
+                <div className="position-absolute w-100 h-100 text-center">
+                  <span>14s</span>
+                </div>
+              </div>
+            </Col>
+          </Row>
+
+          <Row mt className="d-none d-md-flex">
+            <Col className="d-flex justify-content-end">
+              <button
+                className="btn btn-primary btn-lg"
+                onClick={() => dispatch(examDisplayQuestionByIndex(qIndex + 1))}
+              >
+                Następne
+              </button>
+            </Col>
+          </Row>
         </Col>
       </Row>
+
       <Row mt>
         <Col>
           <Text>{t}</Text>
           <Answer {...question} mode="exam" />
+        </Col>
+      </Row>
+      <Row mt className="d-md-none">
+        <Col>
+          <button
+            className="btn btn-primary btn-block"
+            onClick={() => dispatch(examDisplayQuestionByIndex(qIndex + 1))}
+          >
+            Następne
+          </button>
         </Col>
       </Row>
       {showExplanation && <Explanation {...question} />}

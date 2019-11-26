@@ -16,21 +16,23 @@ import { useSelector } from "react-redux";
 import UserProfile from "./pages/UserProfile";
 import Pricing from "./pages/Pricing";
 import FastAccess from "./pages/FastAccess";
-import { ScrollTopOnRouteChange } from "./functions/functionalComponents";
+import { OnRouteChange } from "./functions/functionalComponents";
 
 function App() {
   const {
     isLoggedIn,
     userData: { poznajTestyHasAccess }
   } = useSelector(state => state.usersReducer);
-
+  const { mode } = useSelector(state => state.settingsReducer);
   return (
     <>
-      {/* isLoggedIn = {JSON.stringify(isLoggedIn)}
+      isLoggedIn = {JSON.stringify(isLoggedIn)}
       <br />
-      poznajTestyHasAccess = {JSON.stringify(poznajTestyHasAccess)} */}
+      poznajTestyHasAccess = {JSON.stringify(poznajTestyHasAccess)}
+      <br />
+      mode = {JSON.stringify(mode)}
       <Router>
-        <ScrollTopOnRouteChange />
+        <OnRouteChange />
         <Nav />
         <PageBackground>
           <Switch>

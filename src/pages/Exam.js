@@ -14,38 +14,33 @@ const Exam = () => {
 
   const dispatch = useDispatch();
 
-  useEffect(() => {});
-
-  // return (
-  //   <Container>
-  //     <Row center>
-  //       <Col>w krótce</Col>
-  //     </Row>
-  //   </Container>
-  // );
   return (
     <>
       <GetQuestions />
 
-      <Container>
-        <Row center>
-          <Col>
-            {JSON.stringify(allQuestions.length)}
-            <button onClick={() => dispatch(randomExam(allQuestions))}>
-              Rozpocznij egzamin
-            </button>
-          </Col>
-        </Row>
-        <Row center>
-          <Col>{ready ? "exam ready true" : "exam ready false"}</Col>
-        </Row>
-      </Container>
+      {ready || (
+        <Container>
+          <Row center>
+            <Col>
+              {/* {JSON.stringify(allQuestions.length)} */}
 
-      <Container>
-        <Row center>
-          <Col>
-            {ready &&
-              exam.map((question, i) => (
+              <button
+                className="btn btn-primary btn-lg"
+                onClick={() => dispatch(randomExam(allQuestions))}
+                disabled={allQuestions.length === 0 ? true : false}
+              >
+                Rozpocznij egzamin
+              </button>
+            </Col>
+          </Row>
+        </Container>
+      )}
+
+      {ready && (
+        <Container>
+          <Row center>
+            <Col>
+              {exam.map((question, i) => (
                 <button
                   className={`btn mr-1 mb-1 btn-${getColor(question, i)}`}
                   onClick={() => dispatch(examDisplayQuestionByIndex(i))}
@@ -53,16 +48,15 @@ const Exam = () => {
                   {i + 1}
                 </button>
               ))}
-          </Col>
-        </Row>
-      </Container>
+            </Col>
+          </Row>
+        </Container>
+      )}
 
       {ready &&
         exam
           .slice(qIndex, qIndex + 1)
           .map(question => <QuestionSingle question={question} />)}
-
-      {JSON.stringify(exam)}
     </>
   );
 };

@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { connect, useSelector, useDispatch } from "react-redux";
 import { saveAnswer } from "./../store/actions/questionsActions";
 import styled from "styled-components";
 import { examSaveAnswer } from "../store/actions/examActions";
-import { exam_mode } from "../store/actions/settingsActions";
 
 const colors = {
   t: "light",
@@ -21,7 +20,8 @@ const AnswersWrapper = styled.div`
 
 const Answer = props => {
   const { ready, exam, qIndex } = useSelector(state => state.examReducer);
-  const { showAnswerNow, mode } = useSelector(state => state.settingsReducer);
+  const { mode } = props;
+  const { showAnswerNow } = useSelector(state => state.settingsReducer);
   const [color, setColor] = useState(colors);
 
   const dispatch = useDispatch();
@@ -34,7 +34,7 @@ const Answer = props => {
   }, [showAnswerNow, qIndex]);
 
   const handleAnswer = userAns => {
-    mode !== exam_mode
+    mode !== "exam"
       ? userAns === props.r
         ? setColor({ ...color, [userAns]: "success" })
         : setColor({
@@ -44,8 +44,8 @@ const Answer = props => {
           })
       : setColor({ ...colors, [userAns]: "secondary" });
 
-    if (mode === exam_mode) dispatch(examSaveAnswer(props.id, userAns));
-    dispatch(saveAnswer(props.id, userAns));
+    if (mode === "exam") dispatch(examSaveAnswer(props.id, userAns));
+    props.saveAnswer(props.id, userAns);
   };
 
   const yesNo = (
@@ -84,4 +84,17 @@ const Answer = props => {
   return <AnswersWrapper>{ans}</AnswersWrapper>;
 };
 
-export default Answer;
+// const mapStateToProps = state => {
+//   return {
+//     settings: state.settingsReducer
+//   };
+// };
+
+const mapDispatchToProps = dispatch => {
+  return {
+    saveAnswer: (question_id, userAns) => {
+      dispatch(saveAnswer(question_id, userAns));
+    }
+  };
+};
+export default connect(null, mapDispatchToProps)(Answer);

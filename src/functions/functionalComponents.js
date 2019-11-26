@@ -4,6 +4,13 @@ import { useSelector, useDispatch } from "react-redux";
 import { checking } from "../store/reducers/usersReducer";
 import { SHOW_ALL } from "./functions";
 import { getQuestions } from "../store/actions/questionsActions";
+import { path } from "./../config/path";
+import { changeMode } from "../store/actions/settingsActions";
+import {
+  learn_mode,
+  exam_mode,
+  reviev_mode
+} from "./../store/actions/settingsActions";
 
 export const GetQuestions = () => {
   let { allQuestions, filterOption, kat, lang } = useSelector(
@@ -25,12 +32,18 @@ export const GetQuestions = () => {
   return null;
 };
 
-export const ScrollTopOnRouteChange = () => {
+export const OnRouteChange = () => {
   const { pathname } = useLocation();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     window.scrollTo(0, 0);
+
+    //change mode on route change
+    if (pathname === path.learn) dispatch(changeMode(learn_mode));
+    if (pathname === path.exam) dispatch(changeMode(exam_mode));
+    if (pathname === path.exam_reviev) dispatch(changeMode(reviev_mode));
   }, [pathname]);
 
-  return null;
+  return <p>{JSON.stringify(pathname)}</p>;
 };
