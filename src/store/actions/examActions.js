@@ -1,4 +1,4 @@
-import { changeMode, reviev_mode } from "./settingsActions";
+import { changeMode, reviev_mode, exam_mode } from "./settingsActions";
 
 export const RAND_EXAM = "RAND_EXAM";
 export const EXAM_DISPLAY_QUESTION_BY_INDEX = "EXAM_DISPLAY_QUESTION_BY_INDEX";
@@ -11,6 +11,8 @@ export const randomExam = allQuestions => {
     exam = exam.map(item => {
       return { ...item, userAns: "" };
     });
+
+    dispatch(changeMode(exam_mode));
 
     dispatch({
       type: RAND_EXAM,
@@ -36,23 +38,24 @@ export const examSaveAnswer = (question_id, userAns) => {
 
 export const examEnd = () => {
   return (dispatch, getState) => {
-    let { exam, maxScore, userScore } = getState().examReducer;
+    let { exam, ended, maxScore, userScore } = getState().examReducer;
 
-    console.log(exam);
-    exam.forEach(question => {
-      maxScore += parseInt(question.p);
+    if (!ended) {
+      exam.forEach(question => {
+        maxScore += parseInt(question.p);
 
-      if (question.r === question.userAns && question.userAns !== "")
-        userScore += parseInt(question.p);
+        if (question.r === question.userAns && question.userAns !== "")
+          userScore += parseInt(question.p);
 
-      return;
-    });
+        return;
+      });
+      dispatch(changeMode(reviev_mode));
 
-    dispatch(changeMode(reviev_mode));
-    dispatch({
-      type: EXAM_END,
-      maxScore,
-      userScore
-    });
+      dispatch({
+        type: EXAM_END,
+        maxScore,
+        userScore
+      });
+    }
   };
 };

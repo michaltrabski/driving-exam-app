@@ -69,12 +69,14 @@ const Answer = props => {
   const yesNo = (
     <div>
       <button
+        style={{ transition: "none" }}
         className={`btn btn-${color.t} mr-2`}
         onClick={() => handleAnswer("t")}
       >
         Tak
       </button>
       <button
+        style={{ transition: "none" }}
         className={`btn btn-${color.n} ml-2`}
         onClick={() => handleAnswer("n")}
       >
@@ -87,6 +89,7 @@ const Answer = props => {
     <div>
       {["a", "b", "c"].map(item => (
         <button
+          style={{ transition: "none" }}
           key={item}
           onClick={() => handleAnswer(item)}
           className={`btn btn-${color[item]} btn-block text-left`}

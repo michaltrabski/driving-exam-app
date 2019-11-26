@@ -20,6 +20,7 @@ export const examReducer = (state = initialState, actions) => {
     case RAND_EXAM:
       state = {
         ...state,
+        ...initialState,
         ready: true,
         exam: actions.exam
       };

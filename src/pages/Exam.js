@@ -53,6 +53,7 @@ const Exam = () => {
                   Wynik negatywny: {userScore}/{maxScore}pkt.
                 </h4>
               )}
+              <p>Kliknij na numer pytania aby je zobaczyć:</p>
             </Col>
           </Row>
           <Row center>
@@ -60,6 +61,7 @@ const Exam = () => {
               {exam.map((question, i) => (
                 <button
                   className={`btn mr-1 mb-1 btn-${getColor(question, i)}`}
+                  style={i === qIndex ? { border: "1px solid black" } : {}}
                   onClick={() => dispatch(examDisplayQuestionByIndex(i))}
                 >
                   {i + 1}
