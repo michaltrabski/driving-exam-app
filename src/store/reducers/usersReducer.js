@@ -19,6 +19,7 @@ const initialState = {
     role: role.user,
     poznajTestyHasAccess: checking // yes,no,checking
   },
+  createdOn: "",
   signUpMessage: "",
   signUpErr: "",
   signOutMessage: ""

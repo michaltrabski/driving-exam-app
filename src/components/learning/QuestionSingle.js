@@ -4,19 +4,17 @@ import Media from "../Media";
 import styled from "styled-components";
 import Answer from "../Answer";
 import Explanation from "../Explanation";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { examDisplayQuestionByIndex } from "../../store/actions/examActions";
 
 const QuestionSingle = ({
-  exam,
-  setExam,
-  mode,
-  cnr,
-  setCnr,
   question,
   question: { id, t, m, v, nr, p, r, userAns }
 }) => {
   const [showExplanation, setShowExplanation] = useState(false);
+  const { ready, exam, qIndex } = useSelector(state => state.examReducer);
   const { kat } = useSelector(state => state.questionsReducer);
+  const dispatch = useDispatch();
 
   return (
     <Container>
@@ -31,7 +29,10 @@ const QuestionSingle = ({
         </Col>
         <Col pl flex column>
           <div className="d-flex mt-auto justify-content-end">
-            <button className="btn btn-primary" onClick={() => setCnr(cnr + 1)}>
+            <button
+              className="btn btn-primary"
+              onClick={() => dispatch(examDisplayQuestionByIndex(qIndex + 1))}
+            >
               Następne
             </button>
           </div>
@@ -40,13 +41,7 @@ const QuestionSingle = ({
       <Row mt>
         <Col>
           <Text>{t}</Text>
-          <Answer
-            {...question}
-            mode={mode}
-            cnr={cnr}
-            exam={exam}
-            setExam={setExam}
-          />
+          <Answer {...question} mode="exam" />
         </Col>
       </Row>
       {showExplanation && <Explanation {...question} />}

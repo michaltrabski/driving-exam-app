@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { connect, useSelector } from "react-redux";
+import { connect, useSelector, useDispatch } from "react-redux";
 import { saveAnswer } from "./../store/actions/questionsActions";
 import styled from "styled-components";
+import { examSaveAnswer } from "../store/actions/examActions";
 
 const colors = {
   t: "light",
@@ -18,16 +19,19 @@ const AnswersWrapper = styled.div`
 `;
 
 const Answer = props => {
-  const { mode, cnr } = props;
+  const { ready, exam, qIndex } = useSelector(state => state.examReducer);
+  const { mode } = props;
   const { showAnswerNow } = useSelector(state => state.settingsReducer);
   const [color, setColor] = useState(colors);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     let newColors = showAnswerNow
       ? { ...colors, [props.r]: "success" }
       : colors;
     setColor(newColors);
-  }, [showAnswerNow, cnr]);
+  }, [showAnswerNow, qIndex]);
 
   const handleAnswer = userAns => {
     mode !== "exam"
@@ -39,6 +43,8 @@ const Answer = props => {
             [userAns]: "danger"
           })
       : setColor({ ...colors, [userAns]: "secondary" });
+
+    if (mode === "exam") dispatch(examSaveAnswer(props.id, userAns));
     props.saveAnswer(props.id, userAns);
   };
 
