@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Container, Row, Col } from "../elements/elements";
 import { useSelector, useDispatch } from "react-redux";
-import QuestionSingle from "./../components/learning/QuestionSingle";
+import QuestionExam from "../components/exam/QuestionExam";
 import { GetQuestions } from "../functions/functionalComponents";
+import { reviev_mode } from "./../store/actions/settingsActions";
 import {
   randomExam,
   examDisplayQuestionByIndex
@@ -10,8 +11,10 @@ import {
 
 const Exam = () => {
   const { allQuestions } = useSelector(state => state.questionsReducer);
-  const { ready, exam, qIndex } = useSelector(state => state.examReducer);
-
+  const { ready, exam, qIndex, maxScore, userScore } = useSelector(
+    state => state.examReducer
+  );
+  const { mode } = useSelector(state => state.settingsReducer);
   const dispatch = useDispatch();
 
   return (
@@ -36,8 +39,22 @@ const Exam = () => {
         </Container>
       )}
 
-      {ready && (
+      {ready && mode === reviev_mode && (
         <Container>
+          <Row center>
+            <Col>
+              <h1>Egzamin zakończony</h1>
+              {userScore > 0 ? (
+                <h4 className="text-success">
+                  Wynik pozytywny: {userScore}/{maxScore}pkt.
+                </h4>
+              ) : (
+                <h4 className="text-danger">
+                  Wynik negatywny: {userScore}/{maxScore}pkt.
+                </h4>
+              )}
+            </Col>
+          </Row>
           <Row center>
             <Col>
               {exam.map((question, i) => (
@@ -56,7 +73,7 @@ const Exam = () => {
       {ready &&
         exam
           .slice(qIndex, qIndex + 1)
-          .map(question => <QuestionSingle question={question} />)}
+          .map(question => <QuestionExam question={question} />)}
     </>
   );
 };

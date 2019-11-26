@@ -24,7 +24,7 @@ const Explanation = ({ id, t }) => {
     } else {
       setExpl("");
     }
-  }, []);
+  });
 
   return (
     <>

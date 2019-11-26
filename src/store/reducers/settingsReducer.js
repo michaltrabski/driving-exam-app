@@ -5,7 +5,7 @@ import {
 
 const initialState = {
   showAnswerNow: false,
-  mode: "kutt"
+  mode: ""
 };
 
 export const settingsReducer = (state = initialState, actions) => {

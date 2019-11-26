@@ -45,5 +45,6 @@ export const OnRouteChange = () => {
     if (pathname === path.exam_reviev) dispatch(changeMode(reviev_mode));
   }, [pathname]);
 
-  return <p>{JSON.stringify(pathname)}</p>;
+  // return <p>{JSON.stringify(pathname)}</p>;
+  return null;
 };

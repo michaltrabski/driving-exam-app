@@ -3,7 +3,11 @@ import { useSelector, useDispatch } from "react-redux";
 import { saveAnswer } from "./../store/actions/questionsActions";
 import styled from "styled-components";
 import { examSaveAnswer } from "../store/actions/examActions";
-import { exam_mode } from "../store/actions/settingsActions";
+import {
+  learn_mode,
+  exam_mode,
+  reviev_mode
+} from "../store/actions/settingsActions";
 
 const colors = {
   t: "light",
@@ -27,24 +31,38 @@ const Answer = props => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    let newColors = showAnswerNow
-      ? { ...colors, [props.r]: "success" }
-      : colors;
+    let newColors = colors;
+    if (showAnswerNow && mode === learn_mode) {
+      newColors = { ...colors, [props.r]: "success" };
+    }
+
+    if (mode === reviev_mode) {
+      newColors = {
+        ...colors,
+        [props.userAns]: "danger", //set userAns to danger but if it is correct then it will be overwrite
+        [props.r]: "success"
+      };
+    }
+
     setColor(newColors);
-  }, [showAnswerNow, qIndex]);
+  }, [showAnswerNow, qIndex, mode]);
 
   const handleAnswer = userAns => {
-    mode !== exam_mode
-      ? userAns === props.r
+    if (mode === learn_mode) {
+      userAns === props.r
         ? setColor({ ...color, [userAns]: "success" })
         : setColor({
             ...color,
             [props.r]: "success",
             [userAns]: "danger"
-          })
-      : setColor({ ...colors, [userAns]: "secondary" });
+          });
+    }
 
-    if (mode === exam_mode) dispatch(examSaveAnswer(props.id, userAns));
+    if (mode === exam_mode) {
+      setColor({ ...colors, [userAns]: "secondary" });
+      dispatch(examSaveAnswer(props.id, userAns));
+    }
+
     dispatch(saveAnswer(props.id, userAns));
   };
 
