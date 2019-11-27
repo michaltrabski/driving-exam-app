@@ -32,7 +32,7 @@ const QuestionExam = ({ question }) => {
 
         <Row mt>
           <Col>
-            {JSON.stringify(question)}
+            {/* {JSON.stringify(question)} */}
             <Text>{question.t}</Text>
             <Answer {...question} />
           </Col>
