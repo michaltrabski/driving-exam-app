@@ -17,9 +17,15 @@ const Timer = () => {
     };
   }, [time]);
 
+  const formatTime = () => {
+    let m = Math.floor(time / 60);
+    let s = time - m * 60;
+    return s > 9 ? `${m}:${s}` : `${m}:0${s}`;
+  };
+
   return (
     <div>
-      <span>{time}</span>
+      <span>{formatTime()}</span>
     </div>
   );
 };

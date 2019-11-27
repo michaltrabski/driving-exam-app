@@ -14,7 +14,7 @@ const initialState = {
   result: 0,
   maxScore: 0,
   userScore: 0,
-  time: 60
+  time: 1500
 };
 
 export const examReducer = (state = initialState, actions) => {
@@ -47,23 +47,19 @@ export const examReducer = (state = initialState, actions) => {
       return state;
     //------------------------------------------------------------
     case EXAM_END:
-      console.log("1", state);
       state = {
         ...state,
         ended: true,
         maxScore: actions.maxScore,
         userScore: actions.userScore
       };
-      console.log("2", state);
       return state;
     //------------------------------------------------------------
     case EXAM_TIMER_CHANGE:
-      console.log("1", state);
       state = {
         ...state,
         time: actions.time
       };
-      console.log("2", state);
       return state;
     //------------------------------------------------------------
     default:
