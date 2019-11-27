@@ -41,16 +41,14 @@ const QuestionExam = ({
           </Col>
         </Row>
         <ButtonNext mobile />
-      </Container>
 
-      {mode === reviev_mode && (
-        <>
-          <h1 className="text-center">Wyjaśnienie</h1>
-          <Container>
+        {mode === reviev_mode && (
+          <>
+            <h1 className="text-center">Wyjaśnienie</h1>
             <Explanation {...question} />
-          </Container>
-        </>
-      )}
+          </>
+        )}
+      </Container>
     </>
   );
 };

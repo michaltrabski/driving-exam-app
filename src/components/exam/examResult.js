@@ -5,14 +5,20 @@ import { examDisplayQuestionByIndex } from "./../../store/actions/examActions";
 import QuestionExam from "./QuestionExam";
 
 const ExamResult = props => {
+  const [show, setShow] = useState(props.show);
   const [qIndex, setQindex] = useState(0);
   let { exam, maxScore, userScore } = props.exam;
+
+  const handleClick = i => {
+    setShow(true);
+    setQindex(i);
+  };
   return (
     <>
       <Container>
-        <Row center>
+        <Row mb>
           <Col>
-            <h1>Egzamin zakończony</h1>
+            <h1>Egzamin nr {props.examNr} zakończony</h1>
             {userScore > 0 ? (
               <h4 className="text-success">
                 Wynik pozytywny: {userScore}/{maxScore}pkt.
@@ -25,21 +31,30 @@ const ExamResult = props => {
             <p>Kliknij na numer pytania aby je zobaczyć:</p>
           </Col>
         </Row>
-        <Row center>
+        <Row mb>
           <Col>
             {exam.map((question, i) => (
               <button
                 className={`btn mr-1 mb-1 btn-${getColor(question, i)}`}
-                style={i === qIndex ? { border: "1px solid black" } : {}}
-                onClick={() => setQindex(i)}
+                style={
+                  i === qIndex && show ? { border: "1px solid black" } : {}
+                }
+                onClick={() => handleClick(i)}
               >
                 {i + 1}
               </button>
             ))}
           </Col>
         </Row>
+
+        {show && (
+          <Row mb>
+            <Col>
+              <QuestionExam question={exam[qIndex]} showNow={props.showNow} />
+            </Col>
+          </Row>
+        )}
       </Container>
-      <QuestionExam question={exam[qIndex]} showNow={props.showNow} />
     </>
   );
 };

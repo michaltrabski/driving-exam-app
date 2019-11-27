@@ -6,7 +6,9 @@ import ExamResult from "../components/exam/examResult";
 const ExamReview = () => {
   const { exams } = useSelector(state => state.questionsReducer);
 
-  return exams.map(exam => <ExamResult exam={exam} showNow={false} />);
+  return exams.map((exam, examNr) => (
+    <ExamResult exam={exam} examNr={examNr + 1} show={false} />
+  ));
 };
 
 export default ExamReview;

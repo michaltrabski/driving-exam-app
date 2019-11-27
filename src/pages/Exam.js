@@ -35,7 +35,11 @@ const Exam = () => {
       )}
 
       {ready && mode === reviev_mode && (
-        <ExamResult exam={exams[exams.length - 1]} />
+        <ExamResult
+          exam={exams[exams.length - 1]}
+          examNr={exams.length}
+          show={true}
+        />
       )}
 
       {ready &&
