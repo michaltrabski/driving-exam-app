@@ -8,7 +8,7 @@ const ProgressBar = ({ mobile }) => {
   let _20 = 20;
   let _15 = 15;
   let _50 = 50;
-  let learn = "Czas na zapoznanie się z pytainem ";
+  let learn = "Czas na zapoznanie się z pytaniem ";
   let answer = "Czas na udzielenie odpowiedzi ";
 
   const dispatch = useDispatch();

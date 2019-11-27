@@ -19,7 +19,7 @@ const ExamResult = props => {
         <Row mb>
           <Col>
             <h1>Egzamin nr {props.examNr} zakończony</h1>
-            {userScore > 0 ? (
+            {userScore >= 68 ? (
               <h4 className="text-success">
                 Wynik pozytywny: {userScore}/{maxScore}pkt.
               </h4>
