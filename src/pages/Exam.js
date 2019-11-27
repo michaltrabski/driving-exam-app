@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Container, Row, Col } from "../elements/elements";
 import { useSelector, useDispatch } from "react-redux";
 import QuestionExam from "../components/exam/QuestionExam";
@@ -15,6 +15,9 @@ const Exam = () => {
   const { mode } = useSelector(state => state.settingsReducer);
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    console.log("exams", exams);
+  });
   return (
     <>
       <GetQuestions />
@@ -34,7 +37,7 @@ const Exam = () => {
         </Container>
       )}
 
-      {ready && mode === reviev_mode && (
+      {ready && mode === reviev_mode && exams.length > 0 && (
         <ExamResult
           exam={exams[exams.length - 1]}
           examNr={exams.length}

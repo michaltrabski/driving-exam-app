@@ -23,14 +23,17 @@ export const getQuestions = (kat, lang) => {
     const { poznajTestyHasAccess } = getState().usersReducer.userData;
 
     if (storage(name) && poznajTestyHasAccess === yes) {
-      const { allQuestions, katList, langList, filterOptions } = storage(name);
+      const { allQuestions, katList, langList, filterOptions, exams } = storage(
+        name
+      );
       // return dispatch => {
       dispatch({
         type: GET_QUESTIONS,
         allQuestions,
         katList,
         langList,
-        filterOptions
+        filterOptions,
+        exams
       });
       // };
     } else {
@@ -64,7 +67,8 @@ export const getQuestions = (kat, lang) => {
               allQuestions,
               katList: data.katList,
               langList: data.langList,
-              filterOptions: data.filterOptions
+              filterOptions: data.filterOptions,
+              exams: []
             };
 
             poznajTestyHasAccess === yes && storage(name, obj_new);
@@ -142,6 +146,10 @@ export const resetAllQuestions = () => {
   return { type: RESET_ALL_QUESTIONS };
 };
 
-export const addExam = (exam, random_id) => {
-  return { type: ADD_EXAM, exam, random_id };
+export const addExam = exam => {
+  return (dispatch, getState) => {
+    const { poznajTestyHasAccess } = getState().usersReducer.userData;
+
+    dispatch({ type: ADD_EXAM, exam, poznajTestyHasAccess });
+  };
 };

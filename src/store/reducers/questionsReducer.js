@@ -18,7 +18,6 @@ import { yes } from "./usersReducer";
 const initialState = {
   loading: true, // questions are loading from firebase
   allQuestions: [], // from firebase
-  allExams: [],
   exams: [],
   katList: [], // from firebase
   langList: [], // from firebase
@@ -46,14 +45,17 @@ export const questionsReducer = (state = initialState, actions) => {
       return state;
     //------------------------------------------------------------
     case GET_QUESTIONS:
+      console.log("1", state, actions);
       state = {
         ...state,
         loading: false,
         allQuestions: actions.allQuestions,
         katList: actions.katList,
         langList: actions.langList,
-        filterOptions: actions.filterOptions
+        filterOptions: actions.filterOptions,
+        exams: actions.exams
       };
+      console.log("2", state, actions);
       return state;
     //------------------------------------------------------------
     case SAVE_ANSWER:
@@ -71,7 +73,8 @@ export const questionsReducer = (state = initialState, actions) => {
           allQuestions: state.allQuestions,
           katList: state.katList,
           langList: state.langList,
-          filterOptions: state.filterOptions
+          filterOptions: state.filterOptions,
+          exams: state.exams
         });
 
       return state;
@@ -149,13 +152,22 @@ export const questionsReducer = (state = initialState, actions) => {
       return state;
     //------------------------------------------------------------
     case ADD_EXAM:
-      // console.log("1", state, actions);
+      console.log("1", state, actions);
       state = {
         ...state,
         exams: [...state.exams, actions.exam]
       };
       console.log("2", state, actions);
-      console.log("3", state.exams);
+      // console.log("3", state.exams);
+
+      if (actions.poznajTestyHasAccess === yes)
+        storage(name, {
+          allQuestions: state.allQuestions,
+          katList: state.katList,
+          langList: state.langList,
+          filterOptions: state.filterOptions,
+          exams: state.exams
+        });
       return state;
     //------------------------------------------------------------
     default:
