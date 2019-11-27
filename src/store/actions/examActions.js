@@ -1,6 +1,9 @@
 import { changeMode, reviev_mode, exam_mode } from "./settingsActions";
+import { addExam } from "./questionsActions";
+import { randomId } from "../../functions/functions";
 
 export const RAND_EXAM = "RAND_EXAM";
+export const EXAM_RESET = "EXAM_RESET";
 export const EXAM_DISPLAY_QUESTION_BY_INDEX = "EXAM_DISPLAY_QUESTION_BY_INDEX";
 export const EXAM_SAVE_ANSWER = "EXAM_SAVE_ANSWER";
 export const EXAM_END = "EXAM_END";
@@ -44,19 +47,17 @@ export const examEnd = () => {
     if (!ended) {
       exam.forEach(question => {
         maxScore += parseInt(question.p);
-
         if (question.r === question.userAns && question.userAns !== "")
           userScore += parseInt(question.p);
-
         return;
       });
       dispatch(changeMode(reviev_mode));
-
       dispatch({
         type: EXAM_END,
         maxScore,
         userScore
       });
+      dispatch(addExam({ exam, ended, maxScore, userScore }));
     }
   };
 };
@@ -65,5 +66,11 @@ export const examTimerChange = time => {
   return {
     type: EXAM_TIMER_CHANGE,
     time
+  };
+};
+
+export const examReset = () => {
+  return {
+    type: EXAM_RESET
   };
 };

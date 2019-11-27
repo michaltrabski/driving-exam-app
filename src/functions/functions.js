@@ -12,6 +12,13 @@ export const storage = (key, value) => {
   }
 };
 
+export const randomId = length => {
+  return Math.random()
+    .toString(36)
+    .replace(/[^a-z]+/g, "")
+    .substr(2, length);
+};
+
 export const mergeObj = (obj1, obj2) => {
   return _.merge(obj1, obj2);
 };

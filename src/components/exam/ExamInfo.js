@@ -26,7 +26,7 @@ const ExamInfo = () => {
         </div>
         <Timer />
         <button
-          className="btn btn-light"
+          className="btn btn-secondary"
           onClick={
             mode === reviev_mode
               ? () => dispatch(randomExam(allQuestions))

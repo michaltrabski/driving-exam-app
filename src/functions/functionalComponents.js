@@ -11,6 +11,7 @@ import {
   exam_mode,
   reviev_mode
 } from "./../store/actions/settingsActions";
+import { examReset } from "../store/actions/examActions";
 
 export const GetQuestions = () => {
   let { allQuestions, filterOption, kat, lang } = useSelector(
@@ -41,8 +42,11 @@ export const OnRouteChange = () => {
 
     //change mode on route change
     if (pathname === path.learn) dispatch(changeMode(learn_mode));
-    if (pathname === path.exam) dispatch(changeMode(exam_mode));
     if (pathname === path.exam_reviev) dispatch(changeMode(reviev_mode));
+    if (pathname === path.exam) {
+      dispatch(changeMode(exam_mode));
+      dispatch(examReset());
+    }
   }, [pathname]);
 
   // return <p>{JSON.stringify(pathname)}</p>;

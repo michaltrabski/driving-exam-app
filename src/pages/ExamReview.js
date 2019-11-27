@@ -1,15 +1,12 @@
 import React from "react";
 
-import { Container, Row, Col } from "../elements/elements";
+import { useSelector } from "react-redux";
+import ExamResult from "../components/exam/examResult";
 
 const ExamReview = () => {
-  return (
-    <Container>
-      <Row center>
-        <Col>w krótce</Col>
-      </Row>
-    </Container>
-  );
+  const { exams } = useSelector(state => state.questionsReducer);
+
+  return exams.map(exam => <ExamResult exam={exam} showNow={false} />);
 };
 
 export default ExamReview;

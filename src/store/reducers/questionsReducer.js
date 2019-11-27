@@ -10,7 +10,8 @@ import {
   CHANGE_PER_PAGE,
   SAVE_ANSWER,
   CHANGE_FILTER_OPTION,
-  RESET_ALL_QUESTIONS
+  RESET_ALL_QUESTIONS,
+  ADD_EXAM
 } from "./../actions/questionsActions";
 import { yes } from "./usersReducer";
 
@@ -18,7 +19,7 @@ const initialState = {
   loading: true, // questions are loading from firebase
   allQuestions: [], // from firebase
   allExams: [],
-  exam: [],
+  exams: [],
   katList: [], // from firebase
   langList: [], // from firebase
   kat: storage("kat") ? storage("kat") : "b", //default category when you load page first time
@@ -145,6 +146,16 @@ export const questionsReducer = (state = initialState, actions) => {
         kat: storage("kat") ? storage("kat") : "b",
         perPage: storage("perPage") ? storage("perPage") : 10
       };
+      return state;
+    //------------------------------------------------------------
+    case ADD_EXAM:
+      // console.log("1", state, actions);
+      state = {
+        ...state,
+        exams: [...state.exams, actions.exam]
+      };
+      console.log("2", state, actions);
+      console.log("3", state.exams);
       return state;
     //------------------------------------------------------------
     default:

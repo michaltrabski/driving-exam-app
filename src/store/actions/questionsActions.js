@@ -14,6 +14,7 @@ export const CHANGE_PER_PAGE = "CHANGE_PER_PAGE";
 export const SAVE_ANSWER = "SAVE_ANSWER";
 export const CHANGE_FILTER_OPTION = "CHANGE_FILTER_OPTION";
 export const RESET_ALL_QUESTIONS = "RESET_ALL_QUESTIONS";
+export const ADD_EXAM = "ADD_EXAM";
 
 export const getQuestions = (kat, lang) => {
   const name = `kat_${kat}_${lang}`;
@@ -139,4 +140,8 @@ export const previesPage = () => {
 
 export const resetAllQuestions = () => {
   return { type: RESET_ALL_QUESTIONS };
+};
+
+export const addExam = (exam, random_id) => {
+  return { type: ADD_EXAM, exam, random_id };
 };

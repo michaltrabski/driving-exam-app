@@ -3,7 +3,8 @@ import {
   EXAM_END,
   EXAM_DISPLAY_QUESTION_BY_INDEX,
   EXAM_SAVE_ANSWER,
-  EXAM_TIMER_CHANGE
+  EXAM_TIMER_CHANGE,
+  EXAM_RESET
 } from "./../actions/examActions";
 
 const initialState = {
@@ -25,6 +26,12 @@ export const examReducer = (state = initialState, actions) => {
         ...initialState,
         ready: true,
         exam: actions.exam
+      };
+      return state;
+    //------------------------------------------------------------
+    case EXAM_RESET:
+      state = {
+        ...initialState
       };
       return state;
     //------------------------------------------------------------

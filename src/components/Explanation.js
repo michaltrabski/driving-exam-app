@@ -15,16 +15,16 @@ const Explanation = ({ id, t }) => {
   );
   const [expl, setExpl] = useState("loading...");
 
-  useEffect(() => {
-    if (poznajTestyHasAccess === yes) {
-      axios
-        .get(`${url}${urlToSlug(id, t)}`)
-        .then(res => res.data[0].content.rendered)
-        .then(res => setExpl(res));
-    } else {
-      setExpl("");
-    }
-  });
+  // useEffect(() => {
+  //   if (poznajTestyHasAccess === yes) {
+  //     axios
+  //       .get(`${url}${urlToSlug(id, t)}`)
+  //       .then(res => res.data[0].content.rendered)
+  //       .then(res => setExpl(res));
+  //   } else {
+  //     setExpl("");
+  //   }
+  // });
 
   return (
     <>
