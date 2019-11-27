@@ -12,7 +12,7 @@ const ExamInfo = () => {
   const { exam, qIndex } = useSelector(state => state.examReducer);
   const dispatch = useDispatch();
 
-  return (
+  return mode === reviev_mode ? null : (
     <Row mb>
       <Col flex between className="align-items-center">
         <BaseSpec mobile />

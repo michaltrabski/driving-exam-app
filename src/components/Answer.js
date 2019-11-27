@@ -24,7 +24,7 @@ const AnswersWrapper = styled.div`
 `;
 
 const Answer = props => {
-  const { ready, exam, qIndex } = useSelector(state => state.examReducer);
+  const { qIndex } = useSelector(state => state.examReducer);
   const { showAnswerNow, mode } = useSelector(state => state.settingsReducer);
   const [color, setColor] = useState(colors);
 
@@ -45,7 +45,7 @@ const Answer = props => {
     }
 
     setColor(newColors);
-  }, [showAnswerNow, qIndex, mode]);
+  }, [showAnswerNow, qIndex, mode, props.id]);
 
   const handleAnswer = userAns => {
     if (mode === learn_mode) {

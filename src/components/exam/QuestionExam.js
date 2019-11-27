@@ -8,35 +8,32 @@ import { useSelector } from "react-redux";
 import ButtonNext from "./ButtonNext";
 import ProgressBar from "./ProgressBar";
 import BaseSpec from "./BaseSpec";
-import { reviev_mode } from "../../store/actions/settingsActions";
+import { reviev_mode, exam_mode } from "../../store/actions/settingsActions";
 import ExamInfo from "./ExamInfo";
 
-const QuestionExam = ({
-  question,
-  question: { id, t, m, v, nr, p, r, userAns }
-}) => {
+const QuestionExam = ({ question }) => {
   const { mode } = useSelector(state => state.settingsReducer);
 
   return (
     <>
       <Container>
         <ExamInfo />
-        <ProgressBar mobile />
+        {mode === exam_mode && <ProgressBar mobile />}
         <Row>
           <Col pr>
-            <Media m={m} v={v} />
+            <Media m={question.m} v={question.v} />
           </Col>
           <Col pl flex column>
-            <BaseSpec />
-            <ProgressBar />
+            {mode === exam_mode && <BaseSpec />}
+            {mode === exam_mode && <ProgressBar />}
             <ButtonNext />
           </Col>
         </Row>
 
         <Row mt>
           <Col>
-            {/* {JSON.stringify(question)} */}
-            <Text>{t}</Text>
+            {JSON.stringify(question)}
+            <Text>{question.t}</Text>
             <Answer {...question} />
           </Col>
         </Row>
