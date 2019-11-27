@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { examEnd, randomExam } from "../../store/actions/examActions";
 import BaseSpec from "./BaseSpec";
 import { reviev_mode, exam_mode } from "../../store/actions/settingsActions";
+import Timer from "./Timer";
 
 const ExamInfo = () => {
   const { mode } = useSelector(state => state.settingsReducer);
@@ -23,7 +24,7 @@ const ExamInfo = () => {
           <span>Kategoria </span>
           <span>{kat.toUpperCase()}</span>
         </div>
-        <div>{mode === exam_mode && <span>23:19</span>}</div>
+        <Timer />
         <button
           className="btn btn-light"
           onClick={

@@ -69,6 +69,17 @@ const Nav = () => {
                 Wykonaj egzamin
               </NavLink>
             </li>
+
+            <li className="nav-item">
+              <NavLink
+                className="nav-link"
+                to={path.exam_reviev}
+                onClick={handleNavLinkClick}
+              >
+                Wyniki egzaminów
+              </NavLink>
+            </li>
+
             <li className="nav-item">
               <NavLink
                 className="nav-link"
@@ -78,19 +89,11 @@ const Nav = () => {
                 Cennik
               </NavLink>
             </li>
-            {/* <li className="nav-item">
-            <NavLink
-              className="nav-link"
-              to={path.exam_reviev}
-              onClick={handleNavLinkClick}
-            >
-              Przeglądaj wyniki egzaminów
-            </NavLink>
-          </li> */}
+
             <li className="nav-item">
               <NavLink
                 className="nav-link"
-                to={path.exam}
+                to={path.courses}
                 onClick={handleNavLinkClick}
               >
                 Szkolenia wideo

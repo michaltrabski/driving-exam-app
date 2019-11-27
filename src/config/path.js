@@ -1,7 +1,7 @@
 export const path = {
   learn: "/nauka-pytan",
   exam: "/wykonaj-egzamin",
-  exam_reviev: "/przegladaj-wyniki-egzaminow",
+  exam_reviev: "/wyniki-egzaminow",
   blog: "/blog",
   stats: "/statystyki",
   super_admin: "/super-admin",
@@ -9,7 +9,8 @@ export const path = {
   sign_up: "/rejestracja",
   user_profile: "/twoj-profil",
   pricing: "/cennik",
-  fast: "/szybkie-menu"
+  fast: "/szybkie-menu",
+  courses: "/szkolenia-wideo"
 };
 
 export const link_outside = {

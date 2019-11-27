@@ -2,7 +2,8 @@ import {
   RAND_EXAM,
   EXAM_END,
   EXAM_DISPLAY_QUESTION_BY_INDEX,
-  EXAM_SAVE_ANSWER
+  EXAM_SAVE_ANSWER,
+  EXAM_TIMER_CHANGE
 } from "./../actions/examActions";
 
 const initialState = {
@@ -12,7 +13,8 @@ const initialState = {
   qIndex: 0,
   result: 0,
   maxScore: 0,
-  userScore: 0
+  userScore: 0,
+  time: 60
 };
 
 export const examReducer = (state = initialState, actions) => {
@@ -51,6 +53,15 @@ export const examReducer = (state = initialState, actions) => {
         ended: true,
         maxScore: actions.maxScore,
         userScore: actions.userScore
+      };
+      console.log("2", state);
+      return state;
+    //------------------------------------------------------------
+    case EXAM_TIMER_CHANGE:
+      console.log("1", state);
+      state = {
+        ...state,
+        time: actions.time
       };
       console.log("2", state);
       return state;

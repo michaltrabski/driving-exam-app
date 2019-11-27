@@ -4,6 +4,7 @@ export const RAND_EXAM = "RAND_EXAM";
 export const EXAM_DISPLAY_QUESTION_BY_INDEX = "EXAM_DISPLAY_QUESTION_BY_INDEX";
 export const EXAM_SAVE_ANSWER = "EXAM_SAVE_ANSWER";
 export const EXAM_END = "EXAM_END";
+export const EXAM_TIMER_CHANGE = "EXAM_TIMER_CHANGE";
 
 export const randomExam = allQuestions => {
   return dispatch => {
@@ -57,5 +58,12 @@ export const examEnd = () => {
         userScore
       });
     }
+  };
+};
+
+export const examTimerChange = time => {
+  return {
+    type: EXAM_TIMER_CHANGE,
+    time
   };
 };

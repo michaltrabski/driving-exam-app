@@ -17,6 +17,7 @@ import UserProfile from "./pages/UserProfile";
 import Pricing from "./pages/Pricing";
 import FastAccess from "./pages/FastAccess";
 import { OnRouteChange } from "./functions/functionalComponents";
+import Courses from "./pages/ExamReview";
 
 function App() {
   const {
@@ -48,6 +49,7 @@ function App() {
             <Route path={path.user_profile} component={UserProfile} />
             <Route path={path.pricing} component={Pricing} />
             <Route path={path.fast} component={FastAccess} />
+            <Route path={path.courses} component={Courses} />
           </Switch>
         </PageBackground>
       </Router>
