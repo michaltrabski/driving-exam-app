@@ -37,8 +37,6 @@ const QuestionExam = ({ question }) => {
 
         <Row mt>
           <Col>
-            {/* {JSON.stringify(question)} */}
-            {question.nr}
             <Text>{question.t}</Text>
             <Answer {...question} />
           </Col>

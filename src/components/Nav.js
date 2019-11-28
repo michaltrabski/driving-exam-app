@@ -147,9 +147,10 @@ const Nav = () => {
           </ul>
         </div>
       </nav>
-      {(pathname === path.learn || pathname === path.stats) && (
-        <TestyNotPaidInfo />
-      )}
+      {(pathname === path.learn ||
+        pathname === path.stats ||
+        pathname === path.exam ||
+        pathname === path.exam_reviev) && <TestyNotPaidInfo />}
     </>
   );
 };
