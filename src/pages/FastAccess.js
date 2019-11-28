@@ -24,11 +24,11 @@ const FastAccess = props => {
             <p>Szybki dostęp do twoich pytań (kat {kat.toUpperCase()})</p>
           </Col>
         </Row>
-        {/* <Row>
+        <Row>
           <Col>
             <GoToQuestionNumber />
           </Col>
-        </Row> */}
+        </Row>
         <Row>
           <Col>
             {allQuestions.map(item => (

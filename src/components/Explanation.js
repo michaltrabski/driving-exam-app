@@ -13,18 +13,22 @@ const Explanation = ({ id, t }) => {
   const { poznajTestyHasAccess } = useSelector(
     state => state.usersReducer.userData
   );
-  const [expl, setExpl] = useState("loading...");
+  const [expl, setExpl] = useState("Pobieram...");
 
-  // useEffect(() => {
-  //   if (poznajTestyHasAccess === yes) {
-  //     axios
-  //       .get(`${url}${urlToSlug(id, t)}`)
-  //       .then(res => res.data[0].content.rendered)
-  //       .then(res => setExpl(res));
-  //   } else {
-  //     setExpl("");
-  //   }
-  // });
+  useEffect(() => {
+    if (poznajTestyHasAccess === yes) {
+      axios
+        .get(`${url}${urlToSlug(id, t)}`)
+        .then(res => res.data[0].content.rendered)
+        .then(res => setExpl(res))
+        .catch(err => {
+          console.log("catch", err);
+          setExpl("");
+        });
+    } else {
+      setExpl("");
+    }
+  });
 
   return (
     <>

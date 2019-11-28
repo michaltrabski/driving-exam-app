@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Container, Row, Col } from "../elements/elements";
 import { useSelector, useDispatch } from "react-redux";
 import QuestionExam from "../components/exam/QuestionExam";
@@ -15,9 +15,6 @@ const Exam = () => {
   const { mode } = useSelector(state => state.settingsReducer);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    console.log("exams", exams);
-  });
   return (
     <>
       <GetQuestions />

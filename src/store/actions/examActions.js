@@ -13,10 +13,6 @@ export const randomExam = allQuestions => {
   return dispatch => {
     let exam = getRandom32Questions(allQuestions);
 
-    exam = exam.map(item => {
-      return { ...item, userAns: "" };
-    });
-
     dispatch(changeMode(exam_mode));
 
     dispatch({

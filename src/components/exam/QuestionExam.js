@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Container, Row, Col } from "../../elements/elements";
 import Media from "../Media";
 import styled from "styled-components";
@@ -10,10 +10,15 @@ import ProgressBar from "./ProgressBar";
 import BaseSpec from "./BaseSpec";
 import { reviev_mode, exam_mode } from "../../store/actions/settingsActions";
 import ExamInfo from "./ExamInfo";
+import Actions from "../learning/Actions";
 
 const QuestionExam = ({ question }) => {
   const { mode } = useSelector(state => state.settingsReducer);
+  const [showExplanation, setShowExplanation] = useState(false);
 
+  useEffect(() => {
+    setShowExplanation(false);
+  }, [question]);
   return (
     <>
       <Container>
@@ -33,6 +38,7 @@ const QuestionExam = ({ question }) => {
         <Row mt>
           <Col>
             {/* {JSON.stringify(question)} */}
+            {question.nr}
             <Text>{question.t}</Text>
             <Answer {...question} />
           </Col>
@@ -41,8 +47,12 @@ const QuestionExam = ({ question }) => {
 
         {mode === reviev_mode && (
           <>
-            <h1 className="text-center">Wyjaśnienie</h1>
-            <Explanation {...question} />
+            <Actions
+              id={question.id}
+              setShowExplanation={setShowExplanation}
+              showExplanation={showExplanation}
+            />
+            {showExplanation && <Explanation {...question} />}
           </>
         )}
       </Container>

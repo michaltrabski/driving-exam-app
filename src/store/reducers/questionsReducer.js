@@ -45,7 +45,6 @@ export const questionsReducer = (state = initialState, actions) => {
       return state;
     //------------------------------------------------------------
     case GET_QUESTIONS:
-      console.log("1", state, actions);
       state = {
         ...state,
         loading: false,
@@ -55,10 +54,11 @@ export const questionsReducer = (state = initialState, actions) => {
         filterOptions: actions.filterOptions,
         exams: actions.exams
       };
-      console.log("2", state, actions);
+
       return state;
     //------------------------------------------------------------
     case SAVE_ANSWER:
+      console.log("1", state, actions);
       state = {
         ...state,
         allQuestions: state.allQuestions.map(q => {
@@ -67,7 +67,7 @@ export const questionsReducer = (state = initialState, actions) => {
           return q;
         })
       };
-
+      console.log("2", state, actions);
       if (actions.poznajTestyHasAccess === yes)
         storage(name, {
           allQuestions: state.allQuestions,

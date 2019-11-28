@@ -173,5 +173,10 @@ export const getRandom32Questions = allQuestions => {
     questions32 = [...questions32, questionsListShuffled[findQuestion]];
     questionsListShuffled = _.slice(questionsListShuffled, findQuestion + 1);
   }
+
+  questions32 = questions32.map(item => {
+    return { ...item, userAns: "" };
+  });
+
   return questions32;
 };

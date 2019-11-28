@@ -35,6 +35,7 @@ const ExamResult = props => {
           <Col>
             {exam.map((question, i) => (
               <button
+                key={i}
                 className={`btn mr-1 mb-1 btn-${getColor(question, i)}`}
                 style={
                   i === qIndex && show ? { border: "1px solid black" } : {}

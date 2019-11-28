@@ -12,7 +12,9 @@ const ExamReview = () => {
       <GetQuestions />
       {examsReversed.map(exam => {
         counter--;
-        return <ExamResult exam={exam} examNr={counter} show={false} />;
+        return (
+          <ExamResult key={counter} exam={exam} examNr={counter} show={false} />
+        );
       })}
     </>
   );
