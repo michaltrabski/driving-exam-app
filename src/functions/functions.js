@@ -122,8 +122,9 @@ export const getStatistics = allQuestions => {
 export const getRandom32Questions = allQuestions => {
   let shuffled = _.shuffle(allQuestions);
   let questions32 = [];
-  const arrWithPktToEgzam = [
-    // sum must be equal 74
+
+  //I should shuffle arrWithPktToEgzam as well!!!
+  const arrWithPktToEgzam20 = _.shuffle([
     3,
     3,
     3,
@@ -142,23 +143,14 @@ export const getRandom32Questions = allQuestions => {
     2,
     1,
     1,
-    1,
-    1,
-    3,
-    3,
-    3,
-    3,
-    3,
-    3,
-    2,
-    2,
-    2,
-    2,
     1,
     1
-  ];
+  ]);
+  const arrWithPktToEgzam12 = _.shuffle([3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 1, 1]);
 
-  // console.log(shuffled);
+  // sum must be equal 74
+  const arrWithPktToEgzam = [...arrWithPktToEgzam20, ...arrWithPktToEgzam12];
+
   for (let i = 0; i < arrWithPktToEgzam.length; i++) {
     let findQuestion = shuffled.findIndex(
       item =>

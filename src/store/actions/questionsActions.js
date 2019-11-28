@@ -1,4 +1,4 @@
-import { storage, mergeObj } from "./../../functions/functions";
+import { storage } from "./../../functions/functions";
 import _ from "lodash";
 import firebase from "./../../config/firebase";
 import { yes } from "./../reducers/usersReducer";
