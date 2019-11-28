@@ -49,6 +49,6 @@ export const OnRouteChange = () => {
     }
   }, [pathname]);
 
-  return <p>{JSON.stringify(pathname)}</p>;
+  // return <p>{JSON.stringify(pathname)}</p>;
   return null;
 };

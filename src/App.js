@@ -28,11 +28,11 @@ function App() {
   const { mode } = useSelector(state => state.settingsReducer);
   return (
     <>
-      isLoggedIn = {JSON.stringify(isLoggedIn)}
+      {/* isLoggedIn = {JSON.stringify(isLoggedIn)}
       <br />
       poznajTestyHasAccess = {JSON.stringify(poznajTestyHasAccess)}
       <br />
-      mode = {JSON.stringify(mode)}
+      mode = {JSON.stringify(mode)} */}
       <Router>
         <OnRouteChange />
         <PageContainer>

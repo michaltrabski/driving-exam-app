@@ -120,7 +120,7 @@ export const getStatistics = allQuestions => {
 };
 
 export const getRandom32Questions = allQuestions => {
-  let questionsListShuffled = _.shuffle(allQuestions);
+  let shuffled = _.shuffle(allQuestions);
   let questions32 = [];
   const arrWithPktToEgzam = [
     // sum must be equal 74
@@ -158,9 +158,9 @@ export const getRandom32Questions = allQuestions => {
     1
   ];
 
-  console.log(questionsListShuffled);
+  // console.log(shuffled);
   for (let i = 0; i < arrWithPktToEgzam.length; i++) {
-    let findQuestion = questionsListShuffled.findIndex(
+    let findQuestion = shuffled.findIndex(
       item =>
         (i < 20 &&
           parseInt(item.p) === arrWithPktToEgzam[i] &&
@@ -169,13 +169,12 @@ export const getRandom32Questions = allQuestions => {
           parseInt(item.p) === arrWithPktToEgzam[i] &&
           (item.r === "a" || item.r === "b" || item.r === "c"))
     );
-    questionsListShuffled[findQuestion].nr = i + 1;
-    questions32 = [...questions32, questionsListShuffled[findQuestion]];
-    questionsListShuffled = _.slice(questionsListShuffled, findQuestion + 1);
+    questions32 = [...questions32, shuffled[findQuestion]];
+    shuffled = _.slice(shuffled, findQuestion + 1);
   }
 
-  questions32 = questions32.map(item => {
-    return { ...item, userAns: "" };
+  questions32 = questions32.map((item, i) => {
+    return { ...item, userAns: "", nr: i + 1 };
   });
 
   return questions32;

@@ -45,6 +45,7 @@ export const questionsReducer = (state = initialState, actions) => {
       return state;
     //------------------------------------------------------------
     case GET_QUESTIONS:
+      console.log("GET_QUESTIONS");
       state = {
         ...state,
         loading: false,
@@ -58,7 +59,12 @@ export const questionsReducer = (state = initialState, actions) => {
       return state;
     //------------------------------------------------------------
     case SAVE_ANSWER:
-      console.log("1", state, actions);
+      console.log(
+        "1",
+        state,
+        actions,
+        state.allQuestions.find(x => x.id === actions.question_id)
+      );
       state = {
         ...state,
         allQuestions: state.allQuestions.map(q => {
