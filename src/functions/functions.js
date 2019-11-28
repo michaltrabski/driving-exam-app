@@ -28,6 +28,11 @@ export const getYear = () => {
   return d.getFullYear();
 };
 
+export const timeStamp = () => {
+  let d = new Date();
+  return d.getTime();
+};
+
 //Filtering questions
 export const SHOW_ALL = "SHOW_ALL";
 export const SHOW_GOOD = "SHOW_GOOD";
@@ -112,4 +117,61 @@ export const getStatistics = allQuestions => {
   let all = allQuestions.length;
   let rest = all - good - bad;
   return [good, bad, all, rest];
+};
+
+export const getRandom32Questions = allQuestions => {
+  let questionsListShuffled = _.shuffle(allQuestions);
+  let questions32 = [];
+  const arrWithPktToEgzam = [
+    // sum must be equal 74
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    1,
+    1,
+    1,
+    1,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    2,
+    2,
+    2,
+    2,
+    1,
+    1
+  ];
+
+  console.log(questionsListShuffled);
+  for (let i = 0; i < arrWithPktToEgzam.length; i++) {
+    let findQuestion = questionsListShuffled.findIndex(
+      item =>
+        (i < 20 &&
+          parseInt(item.p) === arrWithPktToEgzam[i] &&
+          (item.r === "t" || item.r === "n")) ||
+        (i >= 20 &&
+          parseInt(item.p) === arrWithPktToEgzam[i] &&
+          (item.r === "a" || item.r === "b" || item.r === "c"))
+    );
+    questionsListShuffled[findQuestion].nr = i + 1;
+    questions32 = [...questions32, questionsListShuffled[findQuestion]];
+    questionsListShuffled = _.slice(questionsListShuffled, findQuestion + 1);
+  }
+  return questions32;
 };

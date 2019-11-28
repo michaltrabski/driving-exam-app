@@ -1,6 +1,6 @@
 import { changeMode, reviev_mode, exam_mode } from "./settingsActions";
 import { addExam } from "./questionsActions";
-import { randomId } from "../../functions/functions";
+import { getRandom32Questions } from "./../../functions/functions";
 
 export const RAND_EXAM = "RAND_EXAM";
 export const EXAM_RESET = "EXAM_RESET";
@@ -11,7 +11,8 @@ export const EXAM_TIMER_CHANGE = "EXAM_TIMER_CHANGE";
 
 export const randomExam = allQuestions => {
   return dispatch => {
-    let exam = allQuestions.slice(0, 32);
+    let exam = getRandom32Questions(allQuestions);
+
     exam = exam.map(item => {
       return { ...item, userAns: "" };
     });

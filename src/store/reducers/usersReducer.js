@@ -17,7 +17,11 @@ const initialState = {
   userData: {
     email: "",
     role: role.user,
-    poznajTestyHasAccess: checking // yes,no,checking
+    poznajTestyHasAccess: checking, // yes,no,checking
+    kompendiumHasAccess: checking, // yes,no,checking
+    sytiniespHasAccess: checking, // yes,no,checking
+    pulapkiHasAccess: checking, // yes,no,checking
+    przepisyHasAccess: checking // yes,no,checking
   },
   createdOn: "",
   signUpMessage: "",

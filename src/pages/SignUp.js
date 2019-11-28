@@ -5,6 +5,8 @@ import firebase from "./../config/firebase";
 import { SIGN_UP_ERR, SIGN_UP_SUCCESS } from "../store/actions/usersActions";
 import { path } from "./../config/path";
 import { Link } from "react-router-dom";
+import { role, no } from "../store/reducers/usersReducer";
+import { timeStamp } from "./../functions/functions";
 
 const SignUp = props => {
   const [cred, setCred] = useState({
@@ -13,7 +15,7 @@ const SignUp = props => {
     passwordRepeat: ""
   });
 
-  const { userData, signUpErr } = useSelector(state => state.usersReducer);
+  const { signUpErr } = useSelector(state => state.usersReducer);
   const dispatch = useDispatch();
 
   const handleChange = e => {
@@ -31,8 +33,14 @@ const SignUp = props => {
           .collection("users")
           .doc(res.user.uid)
           .set({
-            ...userData,
-            email: res.user.email
+            email: res.user.email,
+            role: role.user,
+            timeStamp: timeStamp(),
+            poznajTestyHasAccess: no, // yes,no,checking
+            kompendiumHasAccess: no, // yes,no,checking
+            sytiniespHasAccess: no, // yes,no,checking
+            pulapkiHasAccess: no, // yes,no,checking
+            przepisyHasAccess: no // yes,no,checking
           });
       })
       .then(() => {
