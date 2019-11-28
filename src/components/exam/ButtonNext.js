@@ -1,17 +1,24 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import {
   examDisplayQuestionByIndex,
   examEnd
 } from "../../store/actions/examActions";
-import { useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { Row, Col } from "../../elements/elements";
 import { exam_mode } from "../../store/actions/settingsActions";
+import { path } from "./../../config/path";
 
 const ButtonNext = ({ mobile }) => {
+  let history = useHistory();
   const { mode } = useSelector(state => state.settingsReducer);
   const { qIndex } = useSelector(state => state.examReducer);
   const dispatch = useDispatch();
+
+  const handleExamEnd = () => {
+    dispatch(examEnd());
+    history.push(path.exam_reviev);
+  };
 
   if (mode !== exam_mode) return null;
 
@@ -22,7 +29,7 @@ const ButtonNext = ({ mobile }) => {
           className={`btn btn-primary ${mobile ? "btn-block" : ""}`}
           onClick={
             qIndex >= 31
-              ? () => dispatch(examEnd())
+              ? () => handleExamEnd()
               : () => dispatch(examDisplayQuestionByIndex(qIndex + 1))
           }
         >

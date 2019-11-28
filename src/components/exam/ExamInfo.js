@@ -5,12 +5,20 @@ import { examEnd, randomExam } from "../../store/actions/examActions";
 import BaseSpec from "./BaseSpec";
 import { reviev_mode, exam_mode } from "../../store/actions/settingsActions";
 import Timer from "./Timer";
+import { useHistory } from "react-router-dom";
+import { path } from "./../../config/path";
 
 const ExamInfo = () => {
+  let history = useHistory();
   const { mode } = useSelector(state => state.settingsReducer);
   const { allQuestions, kat } = useSelector(state => state.questionsReducer);
   const { exam, qIndex } = useSelector(state => state.examReducer);
   const dispatch = useDispatch();
+
+  const handleExamEnd = () => {
+    dispatch(examEnd());
+    history.push(path.exam_reviev);
+  };
 
   return mode === reviev_mode ? null : (
     <Row mb>
@@ -30,7 +38,7 @@ const ExamInfo = () => {
           onClick={
             mode === reviev_mode
               ? () => dispatch(randomExam(allQuestions))
-              : () => dispatch(examEnd())
+              : () => handleExamEnd()
           }
         >
           {mode === reviev_mode ? "Rozpocznij nowy egzamin" : "Zakończ egzamin"}
