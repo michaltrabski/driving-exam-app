@@ -1,9 +1,21 @@
 import styled, { css } from "styled-components";
 
-export const PageBackground = styled.div`
+export const PageContainer = styled.div`
   background-color: ${({ theme }) => theme.light};
+  min-height: 100vh;
+`;
+
+export const StyledFooter = styled.footer`
+  /* position: absolute;
+  bottom: 0;
+  width: 100%; */
+`;
+
+export const PageBackground = styled.div`
+  /* background-color: ${({ theme }) => theme.light}; */
   padding-top: 40px;
-  padding-bottom: 150px;
+  min-height: 100vh;
+  /* padding-bottom: 150px; */
   padding-right: 5px;
   padding-left: 5px;
 `;

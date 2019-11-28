@@ -15,10 +15,6 @@ const Nav = () => {
   } = useSelector(state => state.usersReducer);
   const { pathname } = useLocation();
 
-  const handleNavLinkClick = () => {
-    setCollapse(true);
-  };
-
   return (
     <>
       <nav className="shadow navbar navbar-expand-lg navbar-dark bg-dark">
@@ -52,50 +48,30 @@ const Nav = () => {
         >
           <ul className="navbar-nav ml-auto mr-auto">
             <li className="nav-item">
-              <NavLink
-                className="nav-link"
-                to={path.learn}
-                onClick={handleNavLinkClick}
-              >
+              <NavLink className="nav-link" to={path.learn}>
                 Nauka pytań
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink
-                className="nav-link"
-                to={path.exam}
-                onClick={handleNavLinkClick}
-              >
+              <NavLink className="nav-link" to={path.exam}>
                 Wykonaj egzamin
               </NavLink>
             </li>
 
             <li className="nav-item">
-              <NavLink
-                className="nav-link"
-                to={path.exam_reviev}
-                onClick={handleNavLinkClick}
-              >
+              <NavLink className="nav-link" to={path.exam_reviev}>
                 Wyniki egzaminów
               </NavLink>
             </li>
 
             <li className="nav-item">
-              <NavLink
-                className="nav-link"
-                to={path.pricing}
-                onClick={handleNavLinkClick}
-              >
+              <NavLink className="nav-link" to={path.pricing}>
                 Cennik
               </NavLink>
             </li>
 
             <li className="nav-item">
-              <NavLink
-                className="nav-link"
-                to={path.courses}
-                onClick={handleNavLinkClick}
-              >
+              <NavLink className="nav-link" to={path.courses}>
                 Szkolenia wideo
               </NavLink>
             </li>
@@ -116,11 +92,7 @@ const Nav = () => {
               Sytuacje i Niespodzianki na drodze!
             </a>
             <li className="nav-item">
-              <NavLink
-                className="nav-link"
-                to={path.stats}
-                onClick={handleNavLinkClick}
-              >
+              <NavLink className="nav-link" to={path.stats}>
                 Statystyki
               </NavLink>
             </li>
@@ -140,7 +112,7 @@ const Nav = () => {
               <NavLink
                 className="nav-link"
                 to={path.fast}
-                onClick={handleNavLinkClick}
+                
               >
                 <FontAwesomeIcon icon={faDungeon} />
               </NavLink>
@@ -154,7 +126,6 @@ const Nav = () => {
                       : "text-primary"
                   }`}
                   to={path.user_profile}
-                  onClick={handleNavLinkClick}
                 >
                   Twój profil
                 </NavLink>
@@ -162,20 +133,12 @@ const Nav = () => {
             ) : (
               <>
                 <li className="nav-item">
-                  <NavLink
-                    className="nav-link"
-                    to={path.sign_up}
-                    onClick={handleNavLinkClick}
-                  >
+                  <NavLink className="nav-link" to={path.sign_up}>
                     Rejestracja
                   </NavLink>
                 </li>
                 <li className="nav-item">
-                  <NavLink
-                    className="nav-link"
-                    to={path.sign_in}
-                    onClick={handleNavLinkClick}
-                  >
+                  <NavLink className="nav-link" to={path.sign_in}>
                     Logowanie
                   </NavLink>
                 </li>

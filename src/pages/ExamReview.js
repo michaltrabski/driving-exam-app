@@ -1,22 +1,16 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 import ExamResult from "../components/exam/examResult";
 import { GetQuestions } from "../functions/functionalComponents";
-import _ from "lodash";
 
 const ExamReview = () => {
   let { exams } = useSelector(state => state.questionsReducer);
-  _.reverse(exams);
-
-  useEffect(() => {
-    _.reverse(exams);
-  }, [exams]);
-
+  let examsReversed = [...exams].reverse();
   let counter = exams.length + 1;
   return (
     <>
       <GetQuestions />
-      {exams.map(exam => {
+      {examsReversed.map(exam => {
         counter--;
         return <ExamResult exam={exam} examNr={counter} show={false} />;
       })}

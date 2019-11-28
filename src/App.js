@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { PageBackground } from "./elements/elements";
+import { PageBackground, PageContainer } from "./elements/elements";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Nav from "./components/Nav";
 import Home from "./pages/Home";
@@ -17,7 +17,8 @@ import UserProfile from "./pages/UserProfile";
 import Pricing from "./pages/Pricing";
 import FastAccess from "./pages/FastAccess";
 import { OnRouteChange } from "./functions/functionalComponents";
-import Courses from "./pages/ExamReview";
+import Courses from "./pages/Courses";
+import Footer from "./components/Footer";
 
 function App() {
   const {
@@ -27,31 +28,34 @@ function App() {
   const { mode } = useSelector(state => state.settingsReducer);
   return (
     <>
-      {/* isLoggedIn = {JSON.stringify(isLoggedIn)}
+      isLoggedIn = {JSON.stringify(isLoggedIn)}
       <br />
       poznajTestyHasAccess = {JSON.stringify(poznajTestyHasAccess)}
       <br />
-      mode = {JSON.stringify(mode)} */}
+      mode = {JSON.stringify(mode)}
       <Router>
         <OnRouteChange />
-        <Nav />
-        <PageBackground>
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route path={path.learn} component={Learning} />
-            <Route path={path.exam} component={Exam} />
-            <Route path={path.exam_reviev} component={ExamReview} />
-            <Route path={path.blog} component={Blog} />
-            <Route path={path.stats} component={Stats} />
-            <Route path={path.super_admin} component={SuperAdmin} />
-            <Route path={path.sign_up} component={SignUp} />
-            <Route path={path.sign_in} component={SignIn} />
-            <Route path={path.user_profile} component={UserProfile} />
-            <Route path={path.pricing} component={Pricing} />
-            <Route path={path.fast} component={FastAccess} />
-            <Route path={path.courses} component={Courses} />
-          </Switch>
-        </PageBackground>
+        <PageContainer>
+          <Nav />
+          <PageBackground>
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Route path={path.learn} component={Learning} />
+              <Route path={path.exam} component={Exam} />
+              <Route path={path.exam_reviev} component={ExamReview} />
+              <Route path={path.blog} component={Blog} />
+              <Route path={path.stats} component={Stats} />
+              <Route path={path.super_admin} component={SuperAdmin} />
+              <Route path={path.sign_up} component={SignUp} />
+              <Route path={path.sign_in} component={SignIn} />
+              <Route path={path.user_profile} component={UserProfile} />
+              <Route path={path.pricing} component={Pricing} />
+              <Route path={path.fast} component={FastAccess} />
+              <Route path={path.courses} component={Courses} />
+            </Switch>
+          </PageBackground>
+          <Footer />
+        </PageContainer>
       </Router>
     </>
   );
