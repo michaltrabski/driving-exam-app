@@ -5,7 +5,7 @@ import { checking } from "../store/reducers/usersReducer";
 import { SHOW_ALL } from "./functions";
 import { getQuestions } from "../store/actions/questionsActions";
 import { path } from "./../config/path";
-import { changeMode } from "../store/actions/settingsActions";
+import { changeMode, collapseNav } from "../store/actions/settingsActions";
 import {
   learn_mode,
   exam_mode,
@@ -39,6 +39,9 @@ export const OnRouteChange = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
+
+    //collapseNav on route change
+    dispatch(collapseNav());
 
     //change mode on route change
     if (pathname === path.learn) dispatch(changeMode(learn_mode));

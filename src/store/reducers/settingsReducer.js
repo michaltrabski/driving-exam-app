@@ -1,11 +1,14 @@
 import {
   TOOGLE_SHOW_ANSWER_NOW,
-  CHANGE_MODE
+  CHANGE_MODE,
+  TOGGLE_COLLAPSE,
+  COLLAPSE_NAV
 } from "./../actions/settingsActions";
 
 const initialState = {
   showAnswerNow: false,
-  mode: ""
+  mode: "",
+  collapse: true // inside nav top menu
 };
 
 export const settingsReducer = (state = initialState, actions) => {
@@ -21,6 +24,20 @@ export const settingsReducer = (state = initialState, actions) => {
       state = {
         ...state,
         mode: actions.mode
+      };
+      return state;
+    //------------------------------------------------------------
+    case TOGGLE_COLLAPSE:
+      state = {
+        ...state,
+        collapse: !state.collapse
+      };
+      return state;
+    //------------------------------------------------------------
+    case COLLAPSE_NAV:
+      state = {
+        ...state,
+        collapse: true
       };
       return state;
     //------------------------------------------------------------

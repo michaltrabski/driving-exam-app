@@ -1,24 +1,26 @@
 import React, { useState } from "react";
 import { NavLink, Link, useLocation } from "react-router-dom";
 import { path, link_outside } from "../config/path";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { yes } from "./../store/reducers/usersReducer";
 import TestyNotPaidInfo from "./TestyNotPaidInfo";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import { faDungeon } from "@fortawesome/free-solid-svg-icons";
+import { toogleCollapse } from "./../store/actions/settingsActions";
 
 const Nav = () => {
-  const [collapse, setCollapse] = useState(true);
+  const { collapse } = useSelector(state => state.settingsReducer);
   const {
     isLoggedIn,
     userData: { poznajTestyHasAccess }
   } = useSelector(state => state.usersReducer);
   const { pathname } = useLocation();
+  const dispatch = useDispatch();
 
   return (
     <>
       <nav className="shadow navbar navbar-expand-lg navbar-dark bg-dark">
-        <Link className="navbar-brand" to="/" onClick={() => setCollapse(true)}>
+        <Link className="navbar-brand" to="/">
           poznajTesty.pl{" "}
           <span
             className={`${
@@ -37,7 +39,7 @@ const Nav = () => {
             aria-controls="navbarSupportedContent"
             aria-expanded="false"
             aria-label="Toggle navigation"
-            onClick={() => setCollapse(!collapse)}
+            onClick={() => dispatch(toogleCollapse())}
           >
             <span className="navbar-toggler-icon"></span>
           </button>
