@@ -25,7 +25,7 @@ const GlobalStyle = createGlobalStyle`
    position: absolute;
    background-color: #343a40!important;
    padding-left: 0;
-   z-index:99999:
+   z-index:99999
  }
 
 /* make strong explanations from poznaj-testy.pl  */
