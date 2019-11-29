@@ -41,7 +41,7 @@ const Add = () => {
   const index = Math.floor(Math.random() * adds.length);
 
   return (
-    <Container transparent>
+    <Container>
       <Row center>
         <Col>{adds[index]}</Col>
       </Row>

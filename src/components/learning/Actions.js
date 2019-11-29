@@ -7,7 +7,7 @@ const Actions = props => {
       <Col left>
         <button
           size="sm"
-          className="btn btn-light mr-1"
+          className="btn btn-secondary mr-1"
           onClick={() => props.setShowExplanation(!props.showExplanation)}
         >
           {props.showExplanation ? "ukryj wyjaśnienie" : "Wyjaśnienie"}

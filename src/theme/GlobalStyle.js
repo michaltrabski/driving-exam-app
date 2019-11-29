@@ -13,10 +13,20 @@ const GlobalStyle = createGlobalStyle`
     min-height: 100vh;
     background-color: ${({ theme }) => theme.light};
   }
- .collapse .nav-link-video-course {
+ .video .video {
    display: none;
+   list-style:none
  }
-
+ .navbar-collapse.false .video .video {
+  display: block;
+ }
+ .navbar-collapse.collapse .video:hover .video {
+   display: block;
+   position: absolute;
+   background-color: #343a40!important;
+   padding-left: 0;
+   z-index:99999:
+ }
 
 /* make strong explanations from poznaj-testy.pl  */
  .mt-strong {

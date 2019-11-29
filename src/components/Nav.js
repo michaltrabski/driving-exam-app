@@ -49,56 +49,39 @@ const Nav = () => {
           id="navbarSupportedContent"
         >
           <ul className="navbar-nav ml-auto mr-auto">
-            <li className="nav-item">
-              <NavLink className="nav-link" to={path.learn}>
-                Nauka pytań
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to={path.exam}>
-                Wykonaj egzamin
-              </NavLink>
-            </li>
+            <MyLink to="learn" label="Nauka pytań" />
 
-            <li className="nav-item">
-              <NavLink className="nav-link" to={path.exam_reviev}>
-                Wyniki egzaminów
-              </NavLink>
-            </li>
+            <MyLink to="exam" label="Wykonaj egzamin" />
+            <MyLink to="exam_reviev" label="Wyniki egzaminów" />
+            <MyLink to="pricing" label="Cennik" />
+            <MyLink to="courses" label="Szkolenia wideo" video>
+              <ul className="video">
+                <li className="nav-item">
+                  <a
+                    className="nav-link"
+                    href={link_outside.kompendium_wiedzy}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Kompendium wiedzy
+                  </a>
+                </li>
+                <li className="nav-item">
+                  <a
+                    className="nav-link"
+                    href={link_outside.syt_i_niesp}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Sytuacje i Niespodzianki na drodze!
+                  </a>
+                </li>
+              </ul>
+            </MyLink>
 
-            <li className="nav-item">
-              <NavLink className="nav-link" to={path.pricing}>
-                Cennik
-              </NavLink>
-            </li>
+            <MyLink to="stats" label="Statystyki" />
 
-            <li className="nav-item">
-              <NavLink className="nav-link" to={path.courses}>
-                Szkolenia wideo
-              </NavLink>
-            </li>
-            <a
-              className="nav-link ml-3 nav-link-video-course"
-              href={link_outside.kompendium_wiedzy}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Kompendium wiedzy
-            </a>
-            <a
-              className="nav-link ml-3 nav-link-video-course"
-              href={link_outside.syt_i_niesp}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Sytuacje i Niespodzianki na drodze!
-            </a>
-            <li className="nav-item">
-              <NavLink className="nav-link" to={path.stats}>
-                Statystyki
-              </NavLink>
-            </li>
-            <li className="nav-item">
+            {/* <li className="nav-item">
               <a
                 className="nav-link"
                 href={link_outside.blog}
@@ -107,43 +90,15 @@ const Nav = () => {
               >
                 Blog
               </a>
-            </li>
+            </li> */}
           </ul>
           <ul className="navbar-nav">
-            {/* <li className="nav-item">
-              <NavLink
-                className="nav-link"
-                to={path.fast}
-                
-              >
-                <FontAwesomeIcon icon={faDungeon} />
-              </NavLink>
-            </li> */}
             {isLoggedIn === yes ? (
-              <li className="nav-item">
-                <NavLink
-                  className={`nav-link ${
-                    poznajTestyHasAccess === yes
-                      ? "text-success"
-                      : "text-primary"
-                  }`}
-                  to={path.user_profile}
-                >
-                  Twój profil
-                </NavLink>
-              </li>
+              <MyLink to="user_profile" label="Twój profil" green />
             ) : (
               <>
-                <li className="nav-item">
-                  <NavLink className="nav-link" to={path.sign_up}>
-                    Rejestracja
-                  </NavLink>
-                </li>
-                <li className="nav-item">
-                  <NavLink className="nav-link" to={path.sign_in}>
-                    Logowanie
-                  </NavLink>
-                </li>
+                <MyLink to="sign_up" label="Rejestracja" />
+                <MyLink to="sign_in" label="Logowanie" />
               </>
             )}
           </ul>
@@ -154,6 +109,29 @@ const Nav = () => {
         pathname === path.exam ||
         pathname === path.exam_reviev) && <TestyNotPaidInfo />}
     </>
+  );
+};
+
+const MyLink = ({ to, label, green, video, children }) => {
+  const {
+    isLoggedIn,
+    userData: { poznajTestyHasAccess }
+  } = useSelector(state => state.usersReducer);
+
+  const color = () => {
+    let color = "";
+    if (poznajTestyHasAccess === yes && green) color = "text-success";
+    if (isLoggedIn === yes && poznajTestyHasAccess !== yes && green)
+      color = "text-primary";
+    return color;
+  };
+  return (
+    <li className={`nav-item ${video ? "video" : ""}`}>
+      <NavLink className={`nav-link ${color()}`} to={path[to]}>
+        {label}
+      </NavLink>
+      {children}
+    </li>
   );
 };
 

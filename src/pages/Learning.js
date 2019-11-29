@@ -7,11 +7,12 @@ import SearchForm from "../components/learning/SearchForm";
 import { Container, Row, Col } from "../elements/elements";
 import Filters from "./../components/learning/Filters";
 import SearchInfo from "../components/learning/SearchInfo";
-import { filterQuestions, SHOW_ALL } from "../functions/functions";
+import { filterQuestions, SHOW_ALL, SHOW_BAD } from "../functions/functions";
 import Add from "../components/Add";
 import Loading from "../components/learning/Loading";
 import FilteresOutInfo from "../components/learning/FilteredOutInfo";
 import { GetQuestions } from "../functions/functionalComponents";
+import { storage } from "./../functions/functions";
 
 const Learning = () => {
   let { allQuestions, cqi, perPage, search, filterOption } = useSelector(
@@ -28,7 +29,9 @@ const Learning = () => {
     allQuestions = allQuestions.filter(question =>
       filterQuestions(question, filterOption)
     );
+    // if (filterOption === SHOW_BAD && !storage("t")) storage("t", allQuestions);
   }
+  // if (storage("t")) allQuestions = storage("t");
 
   let amount = allQuestions.length;
 
