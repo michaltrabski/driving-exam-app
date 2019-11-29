@@ -104,3 +104,6 @@ export const Img = styled.img`
   border: 4px solid gray;
   max-width: 100%;
 `;
+
+export const H1 = styled.h1``;
+export const H2 = styled.h2``;

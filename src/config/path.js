@@ -13,6 +13,19 @@ export const path = {
   courses: "/szkolenia-wideo"
 };
 
+export const coursesList = [
+  {
+    id: 1,
+    title: "Kompendium wiedzy",
+    slug: "kompendium-wiedzy"
+  },
+  {
+    id: 2,
+    title: "Sytuacje i niespodzianki na drodze",
+    slug: "sytuacje-i-niespodzianki"
+  }
+];
+
 export const link_outside = {
   poznaj_testy_premium_3_miesiace:
     "https://poznaj-testy.pl/koszyk/poznaj-testy-premium-3-miesiace/",

@@ -15,6 +15,7 @@ class Blog extends Component {
       // .then(res => console.log(res.data[0].content.rendered))
       // .then(res => console.log(res.data));
       .then(res => this.setState({ posts: res.data, isLoaded: true }));
+    //jeszcze catch!!!
   }
 
   render() {

@@ -19,6 +19,7 @@ import FastAccess from "./pages/FastAccess";
 import { OnRouteChange } from "./functions/functionalComponents";
 import Courses from "./pages/Courses";
 import Footer from "./components/Footer";
+import Course from "./pages/Course";
 
 function App() {
   const {
@@ -51,6 +52,8 @@ function App() {
               <Route path={path.user_profile} component={UserProfile} />
               <Route path={path.pricing} component={Pricing} />
               <Route path={path.fast} component={FastAccess} />
+
+              <Route path={`${path.courses}/:id`} component={Course} />
               <Route path={path.courses} component={Courses} />
             </Switch>
           </PageBackground>
