@@ -30,6 +30,6 @@ export const link_outside = {
   poznaj_testy_premium_3_miesiace:
     "https://poznaj-testy.pl/koszyk/poznaj-testy-premium-3-miesiace/",
   blog: "https://poznaj-testy.pl",
-  kompendium_wiedzy: "https://poznajtesty.blogspot.com/p/kompendium.html",
-  syt_i_niesp: "https://poznajtesty.blogspot.com/p/kompendium.html"
+  kompendium_wiedzy: "https://poznaj-testy.pl/kompendium-wiedzy/",
+  sytuacje_i_niespodzianki: "https://poznaj-testy.pl/sytuacje-i-niespodzianki/"
 };

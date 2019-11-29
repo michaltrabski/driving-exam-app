@@ -69,7 +69,7 @@ const Nav = () => {
                 <li className="nav-item">
                   <a
                     className="nav-link"
-                    href={link_outside.syt_i_niesp}
+                    href={link_outside.sytuacje_i_niespodzianki}
                     target="_blank"
                     rel="noopener noreferrer"
                   >

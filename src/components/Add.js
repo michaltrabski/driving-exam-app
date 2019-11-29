@@ -10,29 +10,18 @@ const add1 = (
       Poznaj <strong>kompendium wiedzy</strong> , czyli wszystko co musisz
       wiedzieć przed egzaminem państwowym na prawo jazdy w {getYear()} roku!
     </p>
-    <a
-      href={link_outside.kompendium_wiedzy}
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      Oglądaj film na moim blogu
-    </a>
+    <a href={link_outside.kompendium_wiedzy}>Oglądaj film na moim blogu</a>
   </div>
 );
 
 const add2 = (
   <div>
+    <p>Szkolenie wideo:</p>
     <p>
       Sytuacje i niespodzianki na drodze w {getYear()}roku, przez które oblejesz
       egzamin na prawo jazdy!
     </p>
-    <a
-      href={link_outside.syt_i_niesp}
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      Zobacz film wideo!
-    </a>
+    <a href={link_outside.sytuacje_i_niespodzianki}>Zobacz film wideo!</a>
   </div>
 );
 
