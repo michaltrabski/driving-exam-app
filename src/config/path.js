@@ -33,3 +33,10 @@ export const link_outside = {
   kompendium_wiedzy: "https://poznaj-testy.pl/kompendium-wiedzy/",
   sytuacje_i_niespodzianki: "https://poznaj-testy.pl/sytuacje-i-niespodzianki/"
 };
+
+export const add_img_link = {
+  kompendium_wiedzy_1:
+    "https://poznaj-testy.pl/wp-content/uploads/2019/12/kompendium-wiedzy-1.png",
+  sytuacje_i_niespodzianki_1:
+    "https://poznaj-testy.pl/wp-content/uploads/2019/12/sytuacje_i_niespodzianki_1.png"
+};

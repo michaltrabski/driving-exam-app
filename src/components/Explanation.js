@@ -53,11 +53,7 @@ const Explanation = ({ id, t }) => {
           ></div>
         </Col>
       </Row>
-      <Row>
-        <Col>
-          <Add />
-        </Col>
-      </Row>
+      <Add />
     </>
   );
 };
