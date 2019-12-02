@@ -1,5 +1,34 @@
 import _ from "lodash";
 
+export const saveGlobalUserAnswers = (
+  allQuestions,
+  question_id,
+  userAns,
+  rAns
+) => {
+  // let id = `id${question_id}`;
+  // if (!storage(id)) {
+  //   let r = allQuestions.find(q => q.id === question_id).r;
+  //   // save user answer in localstorage - so I can check most difficult qustions
+  //   // save only first answer
+  //   storage(id, { userAns, r });
+  // }
+  // // initialize answers
+  // let answers = allQuestions.map(item => {
+  //   let newItem = { id: item.id, g: 0, b: 0 };
+  //   return newItem;
+  // });
+  // storage("answers", answers);
+  // // update answers
+  // answers = storage("answers").map(item => {
+  //   let newItem = item;
+  //   newItem.g = newItem.g + 1;
+  //   return newItem;
+  // });
+  // storage("answers", answers);
+  // console.log(answers);
+};
+
 export const storage = (key, value) => {
   try {
     if (!value) {

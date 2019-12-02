@@ -4,8 +4,6 @@ import { path, link_outside } from "../config/path";
 import { useSelector, useDispatch } from "react-redux";
 import { yes } from "./../store/reducers/usersReducer";
 import TestyNotPaidInfo from "./TestyNotPaidInfo";
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import { faDungeon } from "@fortawesome/free-solid-svg-icons";
 import { toogleCollapse } from "./../store/actions/settingsActions";
 
 const Nav = () => {
@@ -50,47 +48,15 @@ const Nav = () => {
         >
           <ul className="navbar-nav ml-auto mr-auto">
             <MyLink to="learn" label="Nauka pytań" />
-
             <MyLink to="exam" label="Wykonaj egzamin" />
             <MyLink to="exam_reviev" label="Wyniki egzaminów" />
-            <MyLink to="pricing" label="Cennik" />
-            <MyLink to="courses" label="Szkolenia wideo" video>
-              <ul className="video">
-                <li className="nav-item">
-                  <a
-                    className="nav-link"
-                    href={link_outside.kompendium_wiedzy}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Kompendium wiedzy
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a
-                    className="nav-link"
-                    href={link_outside.sytuacje_i_niespodzianki}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Sytuacje i Niespodzianki na drodze!
-                  </a>
-                </li>
-              </ul>
-            </MyLink>
-
             <MyLink to="stats" label="Statystyki" />
 
-            {/* <li className="nav-item">
-              <a
-                className="nav-link"
-                href={link_outside.blog}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Blog
-              </a>
-            </li> */}
+            <MyLinkOut to="https://poznaj-testy.pl/cennik/" label="Cennik" />
+            <MyLinkOut
+              to="https://poznaj-testy.pl/szkolenia-wideo/"
+              label="Szkolenia wideo"
+            />
           </ul>
           <ul className="navbar-nav">
             {isLoggedIn === yes ? (
@@ -131,6 +97,16 @@ const MyLink = ({ to, label, green, video, children }) => {
         {label}
       </NavLink>
       {children}
+    </li>
+  );
+};
+
+const MyLinkOut = ({ to, label }) => {
+  return (
+    <li className="nav-item">
+      <a className="nav-link" href={to}>
+        {label}
+      </a>
     </li>
   );
 };
