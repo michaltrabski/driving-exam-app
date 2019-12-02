@@ -63,7 +63,7 @@ const Answer = props => {
       dispatch(examSaveAnswer(props.id, userAns));
     }
 
-    dispatch(saveAnswer(props.id, userAns));
+    dispatch(saveAnswer(props.id, userAns, props.r));
   };
 
   const yesNo = (

@@ -1,32 +1,73 @@
 import _ from "lodash";
+import firebase from "./../config/firebase";
 
 export const saveGlobalUserAnswers = (
   allQuestions,
   question_id,
   userAns,
-  rAns
+  r
 ) => {
-  // let id = `id${question_id}`;
-  // if (!storage(id)) {
-  //   let r = allQuestions.find(q => q.id === question_id).r;
-  //   // save user answer in localstorage - so I can check most difficult qustions
-  //   // save only first answer
-  //   storage(id, { userAns, r });
-  // }
-  // // initialize answers
-  // let answers = allQuestions.map(item => {
-  //   let newItem = { id: item.id, g: 0, b: 0 };
-  //   return newItem;
-  // });
-  // storage("answers", answers);
-  // // update answers
-  // answers = storage("answers").map(item => {
-  //   let newItem = item;
-  //   newItem.g = newItem.g + 1;
-  //   return newItem;
-  // });
-  // storage("answers", answers);
-  // console.log(answers);
+  let rand = Math.floor(Math.random() * 10 + 1);
+
+  if (rand === 10) {
+    firebase
+      .firestore()
+      .collection("usersAnswers")
+      .doc("usersAnswers")
+      .get()
+      .then(doc => {
+        if (doc.exists) {
+          const data = doc.data();
+          const { usersAnswers: arr } = data;
+
+          let newArr = arr.map(item => {
+            let x = "";
+            let id = `id${item.id}`;
+            if (storage(id)) {
+              x = storage(id);
+              if (x.ans === "good" && x.taken === false) {
+                item.good = item.good + 1;
+                storage(id, { ...x, taken: true });
+              }
+              if (x.ans === "bad" && x.taken === false) {
+                item.bad = item.bad + 1;
+                storage(id, { ...x, taken: true });
+              }
+            }
+            return item;
+          });
+
+          firebase
+            .firestore()
+            .collection("usersAnswers")
+            .doc("usersAnswers")
+            .set({
+              usersAnswers: newArr
+            });
+          console.log("newArr", newArr.length);
+        } else {
+          console.log("document usersAnswers not exist so create one");
+          firebase
+            .firestore()
+            .collection("usersAnswers")
+            .doc("usersAnswers")
+            .set({
+              usersAnswers: allQuestions.map(item => {
+                return { id: item.id, good: 0, bad: 0 };
+              })
+            });
+        }
+      })
+      .catch(function(error) {
+        console.log("Error getting document:", error);
+      });
+  }
+
+  // save userAns in localStorage
+  let id = `id${question_id}`;
+  if (!storage(id)) {
+    storage(id, { ans: userAns === r ? "good" : "bad", taken: false });
+  }
 };
 
 export const storage = (key, value) => {

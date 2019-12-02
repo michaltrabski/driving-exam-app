@@ -1,4 +1,4 @@
-import { storage } from "./../../functions/functions";
+import { storage, saveGlobalUserAnswers } from "./../../functions/functions";
 import _ from "lodash";
 import firebase from "./../../config/firebase";
 import { yes } from "./../reducers/usersReducer";
@@ -96,9 +96,12 @@ export const changeFilterOption = filterOption => {
   };
 };
 
-export const saveAnswer = (question_id, userAns) => {
+export const saveAnswer = (question_id, userAns, r) => {
   return (dispatch, getState) => {
     const { poznajTestyHasAccess } = getState().usersReducer.userData;
+    const { allQuestions } = getState().questionsReducer;
+
+    saveGlobalUserAnswers(allQuestions, question_id, userAns, r);
 
     dispatch({
       type: SAVE_ANSWER,
