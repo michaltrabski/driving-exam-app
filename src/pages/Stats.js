@@ -11,6 +11,7 @@ import {
 } from "./../functions/functions";
 import { changeFilterOption } from "./../store/actions/questionsActions";
 import { GetQuestions } from "../functions/functionalComponents";
+import UsersAnswers from "../components/UsersAnswers";
 
 const Stats = props => {
   let { allQuestions, kat } = useSelector(state => state.questionsReducer);
@@ -129,6 +130,7 @@ const Stats = props => {
             </span>
           </Col>
         </Row>
+        {/* <UsersAnswers /> */}
       </Container>
     </>
   );

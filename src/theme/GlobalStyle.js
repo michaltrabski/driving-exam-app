@@ -13,6 +13,8 @@ const GlobalStyle = createGlobalStyle`
     min-height: 100vh;
     background-color: ${({ theme }) => theme.light};
   }
+
+
  .video .video {
    display: none;
    list-style:none
