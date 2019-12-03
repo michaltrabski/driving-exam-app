@@ -105,5 +105,22 @@ export const Img = styled.img`
   max-width: 100%;
 `;
 
-export const H1 = styled.h1``;
-export const H2 = styled.h2``;
+export const H1 = styled.h1`
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  line-height: 1.2;
+  @media (${({ theme }) => theme.tablet}) {
+    font-size: 2.5rem;
+  }
+  font-size: 1.6rem;
+`;
+
+export const H2 = styled.h2`
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  line-height: 1.2;
+  @media (${({ theme }) => theme.tablet}) {
+    font-size: 2rem;
+  }
+  font-size: 1.4rem;
+`;

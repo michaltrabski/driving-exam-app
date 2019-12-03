@@ -20,6 +20,7 @@ import { OnRouteChange } from "./functions/functionalComponents";
 import Courses from "./pages/Courses";
 import Footer from "./components/Footer";
 import Course from "./pages/Course";
+import Page from "./pages/Page";
 
 function App() {
   const {
@@ -55,6 +56,9 @@ function App() {
 
               <Route path={`${path.courses}/:id`} component={Course} />
               <Route path={path.courses} component={Courses} />
+
+              <Route path={`${path.page}/:id`} component={Page} />
+              {/* <Route path={path.courses} component={Courses} /> */}
             </Switch>
           </PageBackground>
           <Footer />

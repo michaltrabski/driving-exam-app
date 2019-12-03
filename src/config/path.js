@@ -10,33 +10,42 @@ export const path = {
   user_profile: "/twoj-profil",
   pricing: "/cennik",
   fast: "/szybkie-menu",
-  courses: "/szkolenia-wideo"
+  courses: "/szkolenia-wideo",
+  page: "/strona"
+};
+
+const url = "https://poznaj-testy.pl/";
+
+export const link_outside = {
+  poznaj_testy_premium_3_miesiace:
+    url + "koszyk/poznaj-testy-premium-3-miesiace/",
+  blog: url,
+  kompendium_wiedzy: url + "kompendium-wiedzy/",
+  sytuacje_i_niespodzianki: url + "sytuacje-i-niespodzianki/"
 };
 
 export const coursesList = [
   {
     id: 1,
-    title: "Kompendium wiedzy",
-    slug: "kompendium-wiedzy"
+    title: "Kompendium wiedzy przed egzaminem na prawo jazdy.",
+    slug: "kompendium-wiedzy",
+    slugToPaidContent: "platne-kompendium-wiedzy",
+    hasAccess: "kompendiumHasAccess",
+    offerLinkOutside: link_outside.kompendium_wiedzy
   },
   {
     id: 2,
-    title: "Sytuacje i niespodzianki na drodze",
-    slug: "sytuacje-i-niespodzianki"
+    title: "Sytuacje i niespodzianki na drodze.",
+    slug: "sytuacje-i-niespodzianki",
+    slugToPaidContent: "platne-sytuacje-i-niespodzianki",
+    hasAccess: "sytiniespHasAccess",
+    offerLinkOutside: link_outside.sytuacje_i_niespodzianki
   }
 ];
 
-export const link_outside = {
-  poznaj_testy_premium_3_miesiace:
-    "https://poznaj-testy.pl/koszyk/poznaj-testy-premium-3-miesiace/",
-  blog: "https://poznaj-testy.pl",
-  kompendium_wiedzy: "https://poznaj-testy.pl/kompendium-wiedzy/",
-  sytuacje_i_niespodzianki: "https://poznaj-testy.pl/sytuacje-i-niespodzianki/"
-};
-
 export const add_img_link = {
   kompendium_wiedzy_1:
-    "https://poznaj-testy.pl/wp-content/uploads/2019/12/kompendium-wiedzy-1.png",
+    url + "wp-content/uploads/2019/12/kompendium-wiedzy-1.png",
   sytuacje_i_niespodzianki_1:
-    "https://poznaj-testy.pl/wp-content/uploads/2019/12/sytuacje_i_niespodzianki_1.png"
+    url + "wp-content/uploads/2019/12/sytuacje_i_niespodzianki_1.png"
 };
