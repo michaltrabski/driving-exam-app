@@ -36,11 +36,9 @@ const SignUp = props => {
             email: res.user.email,
             role: role.user,
             timeStamp: timeStamp(),
-            poznajTestyHasAccess: no, // yes,no,checking
-            kompendiumHasAccess: no, // yes,no,checking
-            sytiniespHasAccess: no, // yes,no,checking
-            pulapkiHasAccess: no, // yes,no,checking
-            przepisyHasAccess: no // yes,no,checking
+            poznajTestyHasAccess: no,
+            kompendium_wiedzy: no,
+            sytuacje_i_niespodzianki: no
           });
       })
       .then(() => {

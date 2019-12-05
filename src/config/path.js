@@ -11,7 +11,7 @@ export const path = {
   pricing: "/cennik",
   fast: "/szybkie-menu",
   courses: "/szkolenia-wideo",
-  page: "/strona"
+  pages: "/strony"
 };
 
 const url = "https://poznaj-testy.pl/";
@@ -29,16 +29,16 @@ export const coursesList = [
     id: 1,
     title: "Kompendium wiedzy przed egzaminem na prawo jazdy.",
     slug: "kompendium-wiedzy",
-    slugToPaidContent: "platne-kompendium-wiedzy",
-    hasAccess: "kompendiumHasAccess",
+    slugToPaidContent: "kompendium_wiedzy",
+    hasAccess: "kompendium_wiedzy",
     offerLinkOutside: link_outside.kompendium_wiedzy
   },
   {
     id: 2,
     title: "Sytuacje i niespodzianki na drodze.",
     slug: "sytuacje-i-niespodzianki",
-    slugToPaidContent: "platne-sytuacje-i-niespodzianki",
-    hasAccess: "sytiniespHasAccess",
+    slugToPaidContent: "sytuacje_i_niespodzianki",
+    hasAccess: "sytuacje_i_niespodzianki",
     offerLinkOutside: link_outside.sytuacje_i_niespodzianki
   }
 ];

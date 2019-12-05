@@ -71,10 +71,10 @@ const UserProfile = props => {
                   {userData[course.hasAccess] === yes && (
                     <>
                       <span className="text-success">
-                        Masz opłacony dostęp,{" "}
+                        Masz opłacony dostęp.{" "}
                       </span>
-                      <Link to={course.slugToPaidContent}>
-                        Oglądaj szkolenie
+                      <Link to={`${path.pages}/${course.slugToPaidContent}`}>
+                        Oglądaj szkolenie tutaj.
                       </Link>
                     </>
                   )}

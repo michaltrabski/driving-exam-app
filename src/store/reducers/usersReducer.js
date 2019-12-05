@@ -18,10 +18,8 @@ const initialState = {
     email: "",
     role: role.user,
     poznajTestyHasAccess: checking, // yes,no,checking
-    kompendiumHasAccess: checking, // yes,no,checking
-    sytiniespHasAccess: checking, // yes,no,checking
-    pulapkiHasAccess: checking, // yes,no,checking
-    przepisyHasAccess: checking // yes,no,checking
+    kompendium_wiedzy: checking, // yes,no,checking
+    sytuacje_i_niespodzianki: checking // yes,no,checking
   },
   createdOn: "",
   signUpMessage: "",

@@ -57,7 +57,7 @@ function App() {
               <Route path={`${path.courses}/:id`} component={Course} />
               <Route path={path.courses} component={Courses} />
 
-              <Route path={`${path.page}/:id`} component={Page} />
+              <Route path={`${path.pages}/:id`} component={Page} />
               {/* <Route path={path.courses} component={Courses} /> */}
             </Switch>
           </PageBackground>

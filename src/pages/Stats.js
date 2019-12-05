@@ -130,7 +130,7 @@ const Stats = props => {
             </span>
           </Col>
         </Row>
-        {/* <UsersAnswers /> */}
+        <UsersAnswers />
       </Container>
     </>
   );

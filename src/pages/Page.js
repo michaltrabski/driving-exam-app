@@ -1,13 +1,26 @@
 import React, { useState, useEffect } from "react";
 import { Container, Row, Col, H1 } from "../elements/elements";
 import axios from "axios";
+import { useSelector } from "react-redux";
+import { coursesList } from "../config/path";
 
 const url = "https://poznaj-testy.pl/wp-json/wp/v2/pages?slug=";
 
 const Page = props => {
-  const [post, setPost] = useState({ title: "xxxx", content: "" });
+  const [post, setPost] = useState({ title: "", content: "" });
+  const { userData } = useSelector(state => state.usersReducer);
 
   const slug = props.match.params.id;
+
+  console.log("slug", slug);
+  console.log("userData[slug]", userData[slug]);
+
+  // const { hasAccess } = coursesList.find(
+  //   item => item.slugToPaidContent === slug
+  // );
+
+  // if (typeof hasAccess !== undefined)
+  //   console.log("xxxxxxxxxx", hasAccess, slug, userData);
 
   useEffect(() => {
     axios
@@ -24,14 +37,18 @@ const Page = props => {
         console.log("catch", err);
         setPost({ title: "", content: "" });
       });
-  });
+  }, []);
 
   return (
     <Container>
+      {/* <p>{JSON.stringify(slug)}</p>
+      <p>{JSON.stringify(userData)}</p> */}
       <Row>
         <Col>
           <H1>{post.title}</H1>
+
           <div
+            className={`show-content ${userData[slug]}`}
             dangerouslySetInnerHTML={{
               __html: post.content
             }}

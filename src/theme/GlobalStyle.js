@@ -14,7 +14,9 @@ const GlobalStyle = createGlobalStyle`
     background-color: ${({ theme }) => theme.light};
   }
 
-
+.show-content.yes .d-none {
+  display: block !important;
+}
  .video .video {
    display: none;
    list-style:none

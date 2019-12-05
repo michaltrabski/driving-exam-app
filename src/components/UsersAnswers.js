@@ -18,8 +18,9 @@ const UsersAnswers = () => {
   useEffect(() => {
     console.log("UsersAnswers useEffect");
     if (storage("usersAnswers")) {
-      // order("sum", "desc");
-      setUa(storage("usersAnswers"));
+      let arrToSort = storage("usersAnswers");
+      order(arrToSort);
+      // setUa(storage("usersAnswers"));
     } else {
       firebase
         .firestore()
@@ -32,6 +33,7 @@ const UsersAnswers = () => {
             const data = doc.data();
             let { usersAnswers } = data;
             storage("usersAnswers", usersAnswers);
+
             setUa(usersAnswers);
           }
         })
@@ -41,9 +43,9 @@ const UsersAnswers = () => {
     }
   }, []);
 
-  const order = (good = "sum", asc = "desc") => {
+  const order = (arrToSort, col = "sum", order = "desc") => {
     let s = 0;
-    let arr = ua.map(item => {
+    let newArr = arrToSort.map(item => {
       let id = parseInt(item.id);
       let good = parseInt(item.good);
       let bad = parseInt(item.bad);
@@ -61,7 +63,7 @@ const UsersAnswers = () => {
       return item;
     });
 
-    setUa(_.orderBy(arr, [good], [asc]));
+    setUa(_.orderBy(newArr, [col], [order]));
     setCalculatedSum(s);
   };
 
@@ -71,11 +73,12 @@ const UsersAnswers = () => {
   };
 
   return (
-    allQuestions.length > 0 && (
+    allQuestions.length > 0 &&
+    ua.length > 0 && (
       <>
         <Row>
           <Col>
-            <button onClick={() => order("bad", "desc")}>sort</button>
+            <button onClick={() => order(ua, "bad", "desc")}>sort</button>
           </Col>
         </Row>
         <Row>
