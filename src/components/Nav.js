@@ -48,6 +48,7 @@ const Nav = () => {
         >
           <ul className="navbar-nav ml-auto mr-auto">
             <MyLink to="learn" label="Nauka pytań" />
+            <MyLink to="difficult" label="Trudne pytania" />
             <MyLink to="exam" label="Wykonaj egzamin" />
             <MyLink to="exam_reviev" label="Wyniki egzaminów" />
             <MyLink to="stats" label="Statystyki" />
@@ -91,6 +92,7 @@ const MyLink = ({ to, label, green, video, children }) => {
       color = "text-primary";
     return color;
   };
+
   return (
     <li className={`nav-item ${video ? "video" : ""}`}>
       <NavLink className={`nav-link ${color()}`} to={path[to]}>

@@ -8,14 +8,22 @@ import { useHistory } from "react-router-dom";
 import { path } from "../config/path";
 import { goToQuestionNr } from "../store/actions/questionsActions";
 import { GetQuestions } from "../functions/functionalComponents";
+import Question from "../components/learning/Question";
 
 const Difficult = () => {
   const [ready, setReady] = useState(false);
+  const [readyToSort, setReadyToSort] = useState(false);
   const [usersAnswers, setUsersAnswers] = useState([]);
+  const [calculatedSum, setCalculatedSum] = useState([]);
+
   const { allQuestions } = useSelector(state => state.questionsReducer);
 
   useEffect(() => {
-    console.log("UsersAnswers useEffect");
+    // console.log("xxxxxxxxxxx", usersAnswers);
+  });
+
+  useEffect(() => {
+    // console.log("UsersAnswers useEffect");
     const x = "usersAnswers";
     if (storage(x)) {
       setUsersAnswers(storage(x));
@@ -26,7 +34,7 @@ const Difficult = () => {
         .doc(x)
         .get()
         .then(doc => {
-          console.log("UsersAnswers useEffect firebase asked");
+          // console.log("UsersAnswers useEffect firebase asked");
           if (doc.exists) {
             const { usersAnswers } = doc.data();
             storage(x, usersAnswers);
@@ -41,16 +49,13 @@ const Difficult = () => {
 
   useEffect(() => {
     if (usersAnswers.length > 0 && allQuestions.length > 0) {
-      setReady(true);
+      setReadyToSort(true);
     }
   }, [usersAnswers, allQuestions]);
 
   useEffect(() => {
-    if (ready) {
-      sortData();
-      console.log("xxxxxxxxxxx", usersAnswers);
-    }
-  }, [ready]);
+    if (readyToSort) sortData();
+  }, [readyToSort]);
 
   const sortData = (col = "bad", order = "desc") => {
     let s = 0;
@@ -66,6 +71,7 @@ const Difficult = () => {
       item.bad = bad;
       item.sum = sum;
       item.baddevidedbysum = sum === 0 ? 0 : Math.floor((bad / sum) * 100);
+      item.show = false;
 
       let question = allQuestions.find(x => parseInt(x.id) === item.id);
       if (question) {
@@ -77,12 +83,17 @@ const Difficult = () => {
     });
 
     setUsersAnswers(_.orderBy(newArr, [col], [order]));
-    // setCalculatedSum(s);
+    setReady(true);
+    setCalculatedSum(s);
   };
 
-  const handleClick = nr => {
-    // dispatch(goToQuestionNr(nr));
-    // history.push(path.learn);
+  const toogleShow = nr => {
+    setUsersAnswers(
+      usersAnswers.map(item => {
+        if (item.id === nr) item.show = !item.show;
+        return item;
+      })
+    );
   };
 
   return (
@@ -92,13 +103,16 @@ const Difficult = () => {
         <Row center>
           <Col>
             <H1>Lista trudnych pytań testowych!</H1>
-            <P>to są stat</P>
+            <P>
+              Lista została przygotowana na podstawie{" "}
+              <strong>{calculatedSum}</strong> odpowiedzi udzielonych przez
+              kursantów.
+            </P>
           </Col>
         </Row>
         {ready && (
           <Row>
             <Col>
-              <p>Wyniki:</p>
               <div className="table-responsive">
                 <table className="table table-sm table-hover table-striped">
                   <thead>
@@ -106,28 +120,30 @@ const Difficult = () => {
                       <th>Nr pytania</th>
                       <th>Dobre odp</th>
                       <th>Złe odp</th>
-                      <th>Złe odp / suma</th>
-                      <th>Suma odp (sum)</th>
+                      <th>Złe odp/suma</th>
+                      <th>Suma odp</th>
                     </tr>
                   </thead>
                   <tbody>
                     {usersAnswers.map((x, i) => (
-                      <>
-                        <tr key={x.id}>
+                      <React.Fragment key={x.id}>
+                        <tr>
                           <td>
-                            <span
-                              className="text-primary"
-                              onClick={() => handleClick(x.nr)}
+                            <button
+                              className="btn btn-sm btn-secondary"
+                              onClick={() => toogleShow(x.id)}
                             >
+                              {x.show ? "Ukryj pytanie" : "Pokaż pytanie"}{" "}
                               {x.nr}
-                            </span>
+                            </button>
                           </td>
                           <td>{x.good}</td>
                           <td>{x.bad}</td>
                           <td>{x.baddevidedbysum}%</td>
                           <td>{x.sum}</td>
                         </tr>
-                      </>
+                        {x.show && <Tr question={x.question} />}
+                      </React.Fragment>
                     ))}
                   </tbody>
                 </table>
@@ -140,4 +156,13 @@ const Difficult = () => {
   );
 };
 
+const Tr = props => {
+  return (
+    <tr>
+      <td colSpan="5">
+        <Question question={props.question} />
+      </td>
+    </tr>
+  );
+};
 export default Difficult;

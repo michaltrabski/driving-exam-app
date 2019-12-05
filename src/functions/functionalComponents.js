@@ -50,6 +50,7 @@ export const OnRouteChange = () => {
       dispatch(changeMode(exam_mode));
       dispatch(examReset());
     }
+    if (pathname === path.difficult) dispatch(changeMode(learn_mode));
   }, [pathname]);
 
   // return <p>{JSON.stringify(pathname)}</p>;
