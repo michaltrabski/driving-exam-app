@@ -3,27 +3,22 @@ import { Row, Col, Container, H1, P } from "../elements/elements";
 import firebase from "../config/firebase";
 import _ from "lodash";
 import { storage } from "../functions/functions";
-import { useSelector, useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
-import { path } from "../config/path";
-import { goToQuestionNr } from "../store/actions/questionsActions";
+import { useSelector } from "react-redux";
 import { GetQuestions } from "../functions/functionalComponents";
 import Question from "../components/learning/Question";
+import { Link } from "react-router-dom";
+import { path } from "./../config/path";
 
 const Difficult = () => {
   const [ready, setReady] = useState(false);
   const [readyToSort, setReadyToSort] = useState(false);
   const [usersAnswers, setUsersAnswers] = useState([]);
   const [calculatedSum, setCalculatedSum] = useState([]);
-
   const { allQuestions } = useSelector(state => state.questionsReducer);
 
-  useEffect(() => {
-    // console.log("xxxxxxxxxxx", usersAnswers);
-  });
+  const limit = 10;
 
   useEffect(() => {
-    // console.log("UsersAnswers useEffect");
     const x = "usersAnswers";
     if (storage(x)) {
       setUsersAnswers(storage(x));
@@ -34,7 +29,6 @@ const Difficult = () => {
         .doc(x)
         .get()
         .then(doc => {
-          // console.log("UsersAnswers useEffect firebase asked");
           if (doc.exists) {
             const { usersAnswers } = doc.data();
             storage(x, usersAnswers);
@@ -48,9 +42,8 @@ const Difficult = () => {
   }, []);
 
   useEffect(() => {
-    if (usersAnswers.length > 0 && allQuestions.length > 0) {
+    if (usersAnswers.length > 0 && allQuestions.length > 0)
       setReadyToSort(true);
-    }
   }, [usersAnswers, allQuestions]);
 
   useEffect(() => {
@@ -87,13 +80,11 @@ const Difficult = () => {
     setCalculatedSum(s);
   };
 
-  const toogleShow = nr => {
-    setUsersAnswers(
-      usersAnswers.map(item => {
-        if (item.id === nr) item.show = !item.show;
-        return item;
-      })
-    );
+  const toogleShow = i => {
+    setUsersAnswers([
+      ...usersAnswers,
+      (usersAnswers[i].show = !usersAnswers[i].show)
+    ]);
   };
 
   return (
@@ -110,32 +101,37 @@ const Difficult = () => {
             </P>
           </Col>
         </Row>
-        {ready && (
-          <Row>
-            <Col>
-              <div className="table-responsive">
-                <table className="table table-sm table-hover table-striped">
-                  <thead>
-                    <tr>
-                      <th>Nr pytania</th>
-                      <th>Dobre odp</th>
-                      <th>Złe odp</th>
-                      <th>Złe odp/suma</th>
-                      <th>Suma odp</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {usersAnswers.map((x, i) => (
-                      <React.Fragment key={x.id}>
+        <Row>
+          <Col>
+            <div className="table-responsive">
+              <table className="table table-sm table-hover table-striped">
+                <thead>
+                  <tr>
+                    <th>Nr pytania</th>
+                    <th>Dobre odp</th>
+                    <th>Złe odp</th>
+                    <th>Złe odp/suma</th>
+                    <th>Suma odp</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {ready ? (
+                    usersAnswers.map((x, i) => (
+                      <React.Fragment key={x.id + " " + i}>
                         <tr>
                           <td>
-                            <button
-                              className="btn btn-sm btn-secondary"
-                              onClick={() => toogleShow(x.id)}
-                            >
-                              {x.show ? "Ukryj pytanie" : "Pokaż pytanie"}{" "}
-                              {x.nr}
-                            </button>
+                            {i < limit ? (
+                              <button
+                                className="btn btn-sm btn-secondary"
+                                // onClick={() => toogleShow(x.id)}
+                                onClick={() => toogleShow(i)}
+                              >
+                                {x.show ? "Ukryj pytanie" : "Pokaż pytanie"}{" "}
+                                {x.nr}
+                              </button>
+                            ) : (
+                              <Link to={path.pricing}>Kup dostęp</Link>
+                            )}
                           </td>
                           <td>{x.good}</td>
                           <td>{x.bad}</td>
@@ -144,13 +140,25 @@ const Difficult = () => {
                         </tr>
                         {x.show && <Tr question={x.question} />}
                       </React.Fragment>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </Col>
-          </Row>
-        )}
+                    ))
+                  ) : (
+                    <tr>
+                      <td colSpan="5" className="text-center">
+                        <P>Pobieram dane</P>
+                        <div
+                          className="spinner-border text-secondary"
+                          role="status"
+                        >
+                          <span className="sr-only">Loading...</span>
+                        </div>
+                      </td>
+                    </tr>
+                  )}
+                </tbody>
+              </table>
+            </div>
+          </Col>
+        </Row>
       </Container>
     </>
   );

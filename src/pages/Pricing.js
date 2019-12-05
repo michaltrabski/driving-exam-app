@@ -118,4 +118,4 @@ const N = props => {
     </li>
   );
 };
-export default Pricing;
+// export default Pricing;

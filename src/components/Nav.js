@@ -52,12 +52,8 @@ const Nav = () => {
             <MyLink to="exam" label="Wykonaj egzamin" />
             <MyLink to="exam_reviev" label="Wyniki egzaminów" />
             <MyLink to="stats" label="Statystyki" />
-
-            <MyLinkOut to="https://poznaj-testy.pl/cennik/" label="Cennik" />
-            <MyLinkOut
-              to="https://poznaj-testy.pl/szkolenia-wideo/"
-              label="Szkolenia wideo"
-            />
+            <MyLink to="pricing" label="Cennik" />
+            <MyLink to="courses" label="Szkolenia wideo" />
           </ul>
           <ul className="navbar-nav">
             {isLoggedIn === yes ? (

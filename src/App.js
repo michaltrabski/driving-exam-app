@@ -44,23 +44,19 @@ function App() {
             <Switch>
               <Route exact path="/" component={Home} />
               <Route path={path.learn} component={Learning} />
+              <Route path={path.difficult} component={Difficult} />
               <Route path={path.exam} component={Exam} />
               <Route path={path.exam_reviev} component={ExamReview} />
               <Route path={path.blog} component={Blog} />
               <Route path={path.stats} component={Stats} />
               <Route path={path.super_admin} component={SuperAdmin} />
+              <Route path={path.fast} component={FastAccess} />
+
               <Route path={path.sign_up} component={SignUp} />
               <Route path={path.sign_in} component={SignIn} />
               <Route path={path.user_profile} component={UserProfile} />
-              <Route path={path.pricing} component={Pricing} />
-              <Route path={path.fast} component={FastAccess} />
-              <Route path={path.difficult} component={Difficult} />
 
-              <Route path={`${path.courses}/:id`} component={Course} />
-              <Route path={path.courses} component={Courses} />
-
-              <Route path={`${path.pages}/:id`} component={Page} />
-              {/* <Route path={path.courses} component={Courses} /> */}
+              <Route path={`/:id`} component={Page} />
             </Switch>
           </PageBackground>
           <Footer />

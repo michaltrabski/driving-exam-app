@@ -5,24 +5,14 @@ import { useSelector } from "react-redux";
 import { coursesList } from "../config/path";
 
 const url = "https://poznaj-testy.pl/wp-json/wp/v2/pages?slug=";
-
+const empty = { title: "", content: "" };
 const Page = props => {
-  const [post, setPost] = useState({ title: "", content: "" });
+  const [post, setPost] = useState(empty);
   const { userData } = useSelector(state => state.usersReducer);
-
   const slug = props.match.params.id;
 
-  console.log("slug", slug);
-  console.log("userData[slug]", userData[slug]);
-
-  // const { hasAccess } = coursesList.find(
-  //   item => item.slugToPaidContent === slug
-  // );
-
-  // if (typeof hasAccess !== undefined)
-  //   console.log("xxxxxxxxxx", hasAccess, slug, userData);
-
   useEffect(() => {
+    setPost(empty);
     axios
       .get(url + slug)
       //   .then(res => console.log(res))
@@ -35,18 +25,14 @@ const Page = props => {
       .then(res => setPost({ title: res.title, content: res.content }))
       .catch(err => {
         console.log("catch", err);
-        setPost({ title: "", content: "" });
       });
-  }, []);
+  }, [slug]);
 
   return (
     <Container>
-      {/* <p>{JSON.stringify(slug)}</p>
-      <p>{JSON.stringify(userData)}</p> */}
       <Row>
         <Col>
           <H1>{post.title}</H1>
-
           <div
             className={`show-content ${userData[slug]}`}
             dangerouslySetInnerHTML={{
