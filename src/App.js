@@ -21,6 +21,7 @@ import Courses from "./pages/Courses";
 import Footer from "./components/Footer";
 import Course from "./pages/Course";
 import Page from "./pages/Page";
+import Difficult from "./pages/Difficult";
 
 function App() {
   const {
@@ -53,6 +54,7 @@ function App() {
               <Route path={path.user_profile} component={UserProfile} />
               <Route path={path.pricing} component={Pricing} />
               <Route path={path.fast} component={FastAccess} />
+              <Route path={path.difficult} component={Difficult} />
 
               <Route path={`${path.courses}/:id`} component={Course} />
               <Route path={path.courses} component={Courses} />

@@ -11,7 +11,8 @@ export const path = {
   pricing: "/cennik",
   fast: "/szybkie-menu",
   courses: "/szkolenia-wideo",
-  pages: "/strony"
+  pages: "/strony",
+  difficult: "/trudne"
 };
 
 const url = "https://poznaj-testy.pl/";
