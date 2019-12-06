@@ -38,6 +38,7 @@ p {
 }
 
 
+
 .poznajtesty-explanation .border {
   display: none;
 }
