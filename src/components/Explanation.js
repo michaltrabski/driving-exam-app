@@ -22,13 +22,12 @@ const Explanation = ({ id, t }) => {
         .then(res => res.data[0].content.rendered)
         .then(res => setExpl(res))
         .catch(err => {
-          console.log("catch", err);
           setExpl("");
         });
     } else {
       setExpl("");
     }
-  });
+  }, [id]);
 
   return (
     <>

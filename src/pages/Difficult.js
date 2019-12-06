@@ -141,7 +141,15 @@ const Difficult = () => {
                           </td>
                           <td>{x.good}</td>
                           <td>{x.bad}</td>
-                          <td>{x.baddevidedbysum}%</td>
+                          <td
+                            className={
+                              x.baddevidedbysum > 70
+                                ? "text-danger font-weight-bolder"
+                                : ""
+                            }
+                          >
+                            {x.baddevidedbysum}%
+                          </td>
                           <td>{x.sum}</td>
                         </tr>
                         {x.show && <Tr question={x.question} />}

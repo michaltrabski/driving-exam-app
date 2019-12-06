@@ -5,11 +5,7 @@ export const PageContainer = styled.div`
   min-height: 100vh;
 `;
 
-export const StyledFooter = styled.footer`
-  /* position: absolute;
-  bottom: 0;
-  width: 100%; */
-`;
+export const StyledFooter = styled.footer``;
 
 export const PageBackground = styled.div`
   /* background-color: ${({ theme }) => theme.light}; */

@@ -12,7 +12,7 @@ const Footer = () => {
           <Col mr>
             <H4>Szkolenia wideo:</H4>
             {coursesList.map(course => (
-              <P>
+              <P key={course.id}>
                 <Link to={`${path.blog}/${course.slug}`}>{course.title}</Link>
               </P>
             ))}
@@ -24,7 +24,7 @@ const Footer = () => {
             </P>
           </Col>
         </Row>
-        <Row center>
+        <Row center className="bg-dark">
           <Col>
             <span>Testy na prawo jazdy {getYear()}. </span>
             <Link to={path.terms}>Regulamin i polityka prywatności.</Link>{" "}
