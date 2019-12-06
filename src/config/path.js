@@ -12,7 +12,9 @@ export const path = {
   fast: "/szybkie-menu",
   courses: "/szkolenia-wideo",
   pages: "/strony",
-  difficult: "/trudne"
+  difficult: "/trudne",
+  terms: "/regulamin-i-polityka-prywatnosci",
+  contact: "/kontakt"
 };
 
 const url = "https://poznaj-testy.pl/";

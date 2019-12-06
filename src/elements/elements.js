@@ -22,6 +22,7 @@ export const PageBackground = styled.div`
 
 export const Container = styled.div`
   margin-bottom: 40px;
+  ${({ mb_0 }) => mb_0 && "margin-bottom: 0;"};
   width: 100%;
   max-width: ${({ theme }) => theme.pageMaxWidth};
   padding: 15px;
@@ -32,6 +33,7 @@ export const Container = styled.div`
   border: 1px solid ${({ theme }) => theme.gray400};
   box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
   text-align: left;
+  ${({ center }) => center && "text-align: center;"}
   ${props =>
     props.transparent &&
     css`
@@ -124,6 +126,27 @@ export const H2 = styled.h2`
   }
   font-size: 1.4rem;
 `;
+
+export const H3 = styled.h3`
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  line-height: 1.2;
+  @media (${({ theme }) => theme.tablet}) {
+    font-size: 1.75rem;
+  }
+  font-size: 1.3rem;
+`;
+
+export const H4 = styled.h4`
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  line-height: 1.2;
+  @media (${({ theme }) => theme.tablet}) {
+    font-size: 1.5rem;
+  }
+  font-size: 1.2rem;
+`;
+
 export const P = styled.p`
   margin-top: 0;
   margin-bottom: 1rem;

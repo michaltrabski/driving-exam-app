@@ -7,16 +7,16 @@ const url = "https://poznaj-testy.pl/wp-json/wp/v2/posts";
 class Blog extends Component {
   state = { posts: [], isLoaded: false };
 
-  componentDidMount() {
-    console.log("Blog componentDidMount");
+  // componentDidMount() {
+  //   console.log("Blog componentDidMount");
 
-    axios
-      .get(url)
-      // .then(res => console.log(res.data[0].content.rendered))
-      // .then(res => console.log(res.data));
-      .then(res => this.setState({ posts: res.data, isLoaded: true }));
-    //jeszcze catch!!!
-  }
+  //   axios
+  //     .get(url)
+  //     // .then(res => console.log(res.data[0].content.rendered))
+  //     // .then(res => console.log(res.data));
+  //     .then(res => this.setState({ posts: res.data, isLoaded: true }));
+  //   //jeszcze catch!!!
+  // }
 
   render() {
     const { posts, isLoaded } = this.state;
