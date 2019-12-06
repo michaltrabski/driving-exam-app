@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Row, Col, Container, H1, P } from "../elements/elements";
 import firebase from "../config/firebase";
 import _ from "lodash";
-import { storage } from "../functions/functions";
+import { storage, timeStampHour } from "../functions/functions";
 import { useSelector } from "react-redux";
 import { GetQuestions } from "../functions/functionalComponents";
 import Question from "../components/learning/Question";
@@ -20,13 +20,13 @@ const Difficult = () => {
   const {
     userData: { poznajTestyHasAccess }
   } = useSelector(state => state.usersReducer);
-  let limit = 10; // for free accounst
-
-  if (poznajTestyHasAccess === yes) limit = 1000000;
+  let limit = poznajTestyHasAccess === yes ? 1000000 : 10; // for free accounst
 
   useEffect(() => {
     const x = "usersAnswers";
-    if (storage(x)) {
+    const time = "timeStamp";
+
+    if (storage(x) && storage(time) === timeStampHour()) {
       setUsersAnswers(storage(x));
     } else {
       firebase
@@ -38,6 +38,7 @@ const Difficult = () => {
           if (doc.exists) {
             const { usersAnswers } = doc.data();
             storage(x, usersAnswers);
+            storage(time, timeStampHour());
             setUsersAnswers(usersAnswers);
           }
         })
@@ -132,11 +133,10 @@ const Difficult = () => {
                                 // onClick={() => toogleShow(x.id)}
                                 onClick={() => toogleShow(i)}
                               >
-                                {x.show ? "Ukryj pytanie" : "Pokaż pytanie"}{" "}
-                                {x.nr}
+                                {x.show ? "Ukryj" : "Pytanie"} {x.nr}
                               </button>
                             ) : (
-                              <Link to={path.pricing}>Kup dostęp</Link>
+                              <Link to={path.pricing}>Cennik</Link>
                             )}
                           </td>
                           <td>{x.good}</td>

@@ -103,6 +103,11 @@ export const timeStamp = () => {
   return d.getTime();
 };
 
+export const timeStampHour = () => {
+  let d = new Date();
+  return Math.floor(d.getTime() / (1000 * 60 * 60));
+};
+
 //Filtering questions
 export const SHOW_ALL = "SHOW_ALL";
 export const SHOW_GOOD = "SHOW_GOOD";
