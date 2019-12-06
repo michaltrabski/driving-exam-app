@@ -14,20 +14,22 @@ const Home = () => {
             Wszystkie kategorie prawa jazdy <br />
             <span>A, A1, A2, AM, B, B1, C, C1, D, D1, T, PT</span>
           </P>
+          <MyLink to="difficult" label="Zobacz trudne pytania" success />
           <MyLink to="learn" label="Nauka pytań / Baza pytań" />
-          <MyLink to="exam" label="Wykonaj egzamin" />
-          <MyLink to="difficult" label="Zobacz trudne pytania" last />
+          <MyLink to="exam" label="Wykonaj egzamin" last />
         </Col>
       </Row>
     </Container>
   );
 };
 
-const MyLink = ({ to, label, last }) => {
+const MyLink = ({ to, label, success, last }) => {
   return (
     <>
       <Link to={path[to]}>
-        <button className="btn btn-primary">{label}</button>
+        <button className={`btn btn-${success ? "success" : "primary"}`}>
+          {label}
+        </button>
       </Link>
       {last || <p className="m-3">albo</p>}
     </>

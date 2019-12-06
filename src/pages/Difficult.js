@@ -133,7 +133,7 @@ const Difficult = () => {
                                 // onClick={() => toogleShow(x.id)}
                                 onClick={() => toogleShow(i)}
                               >
-                                {x.show ? "Ukryj" : "Pytanie"} {x.nr}
+                                {x.show ? "Ukryj" : `Pytanie ${x.nr}`}
                               </button>
                             ) : (
                               <Link to={path.pricing}>Cennik</Link>
