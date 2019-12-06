@@ -33,7 +33,7 @@ const Explanation = ({ id, t }) => {
   return (
     <>
       <Row>
-        <Col>
+        <Col className="poznajtesty-explanation">
           <h5 className="mt-1">Wyjaśnienie</h5>
           {poznajTestyHasAccess !== yes && (
             <div>

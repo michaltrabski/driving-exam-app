@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Row, Col } from "../elements/elements";
+import { Container, Row, Col, H1, P } from "../elements/elements";
 import { Link } from "react-router-dom";
 import { path } from "../config/path";
 import { getYear } from "../functions/functions";
@@ -9,24 +9,28 @@ const Home = () => {
     <Container transparent>
       <Row center>
         <Col>
-          <h1>Testy na prawo jazdy {getYear()}</h1>
-          <p>
+          <H1>Testy na prawo jazdy {getYear()}</H1>
+          <P>
             Wszystkie kategorie prawa jazdy <br />
             <span>A, A1, A2, AM, B, B1, C, C1, D, D1, T, PT</span>
-          </p>
-          <Link to={path.learn}>
-            <button className="btn btn-primary">
-              Nauka pytań / Baza pytań
-            </button>
-          </Link>
-          <p className="m-3">albo</p>
-          <Link to={path.exam}>
-            <button className="btn btn-primary">Wykonaj egzamin</button>
-          </Link>
+          </P>
+          <MyLink to="learn" label="Nauka pytań / Baza pytań" />
+          <MyLink to="exam" label="Wykonaj egzamin" />
+          <MyLink to="difficult" label="Zobacz trudne pytania" last />
         </Col>
       </Row>
     </Container>
   );
 };
 
+const MyLink = ({ to, label, last }) => {
+  return (
+    <>
+      <Link to={path[to]}>
+        <button className="btn btn-primary">{label}</button>
+      </Link>
+      {last || <p className="m-3">albo</p>}
+    </>
+  );
+};
 export default Home;

@@ -8,6 +8,7 @@ import { GetQuestions } from "../functions/functionalComponents";
 import Question from "../components/learning/Question";
 import { Link } from "react-router-dom";
 import { path } from "./../config/path";
+import { yes } from "./../store/reducers/usersReducer";
 
 const Difficult = () => {
   const [ready, setReady] = useState(false);
@@ -15,8 +16,13 @@ const Difficult = () => {
   const [usersAnswers, setUsersAnswers] = useState([]);
   const [calculatedSum, setCalculatedSum] = useState([]);
   const { allQuestions } = useSelector(state => state.questionsReducer);
+  const [perPage, setPerPage] = useState(100);
+  const {
+    userData: { poznajTestyHasAccess }
+  } = useSelector(state => state.usersReducer);
+  let limit = 10; // for free accounst
 
-  const limit = 10;
+  if (poznajTestyHasAccess === yes) limit = 1000000;
 
   useEffect(() => {
     const x = "usersAnswers";
@@ -91,7 +97,7 @@ const Difficult = () => {
     <>
       <GetQuestions />
       <Container>
-        <Row center>
+        <Row mb center>
           <Col>
             <H1>Lista trudnych pytań testowych!</H1>
             <P>
@@ -101,7 +107,7 @@ const Difficult = () => {
             </P>
           </Col>
         </Row>
-        <Row>
+        <Row mb>
           <Col>
             <div className="table-responsive">
               <table className="table table-sm table-hover table-striped">
@@ -116,7 +122,7 @@ const Difficult = () => {
                 </thead>
                 <tbody>
                   {ready ? (
-                    usersAnswers.map((x, i) => (
+                    usersAnswers.slice(0, perPage).map((x, i) => (
                       <React.Fragment key={x.id + " " + i}>
                         <tr>
                           <td>
@@ -157,6 +163,16 @@ const Difficult = () => {
                 </tbody>
               </table>
             </div>
+          </Col>
+        </Row>
+        <Row center>
+          <Col>
+            <button
+              className="btn btn-primary"
+              onClick={() => setPerPage(perPage + 100)}
+            >
+              Pokaż więcej
+            </button>
           </Col>
         </Row>
       </Container>

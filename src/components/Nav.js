@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { NavLink, Link, useLocation } from "react-router-dom";
-import { path, link_outside } from "../config/path";
+import { path } from "../config/path";
 import { useSelector, useDispatch } from "react-redux";
 import { yes } from "./../store/reducers/usersReducer";
 import TestyNotPaidInfo from "./TestyNotPaidInfo";
@@ -99,14 +99,14 @@ const MyLink = ({ to, label, green, video, children }) => {
   );
 };
 
-const MyLinkOut = ({ to, label }) => {
-  return (
-    <li className="nav-item">
-      <a className="nav-link" href={to}>
-        {label}
-      </a>
-    </li>
-  );
-};
+// const MyLinkOut = ({ to, label }) => {
+//   return (
+//     <li className="nav-item">
+//       <a className="nav-link" href={to}>
+//         {label}
+//       </a>
+//     </li>
+//   );
+// };
 
 export default Nav;

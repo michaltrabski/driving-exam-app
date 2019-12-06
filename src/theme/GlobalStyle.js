@@ -13,6 +13,34 @@ const GlobalStyle = createGlobalStyle`
     min-height: 100vh;
     background-color: ${({ theme }) => theme.light};
   }
+  
+  h1,h2 {
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  line-height: 1.2;
+}
+h1 {
+  font-size: 1.6rem;
+  @media (${({ theme }) => theme.tablet}) {
+    font-size: 2.5rem !important;
+  }
+}
+h2 {
+  font-size: 1.4rem;
+  @media (${({ theme }) => theme.tablet}) {
+    font-size: 2rem !important;
+  }
+}
+p {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
+
+
+.poznajtesty-explanation .border {
+  display: none;
+}
 
 .show-content.yes .d-none {
   display: block !important;

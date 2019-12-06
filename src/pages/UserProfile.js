@@ -73,7 +73,7 @@ const UserProfile = props => {
                       <span className="text-success">
                         Masz opłacony dostęp.{" "}
                       </span>
-                      <Link to={`${path.pages}/${course.slugToPaidContent}`}>
+                      <Link to={course.slugToPaidContent}>
                         Oglądaj szkolenie tutaj.
                       </Link>
                     </>
