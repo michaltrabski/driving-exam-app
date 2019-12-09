@@ -17,6 +17,7 @@ const Question = ({
 }) => {
   const [showExplanation, setShowExplanation] = useState(false);
   const { kat, search } = useSelector(state => state.questionsReducer);
+  const { mode } = useSelector(state => state.settingsReducer);
 
   return (
     <Container>
@@ -31,9 +32,16 @@ const Question = ({
         </Col>
         <Col pl left flex column>
           {search === "" ? (
-            <Text className={questionAnswerTextColor(r, userAns)}>{t}</Text>
+            <Text className={questionAnswerTextColor(r, userAns, mode)}>
+              {t}
+            </Text>
           ) : (
-            <TextRegExp t={replaceRegEx(t, search)} r={r} userAns={userAns} />
+            <TextRegExp
+              t={replaceRegEx(t, search)}
+              r={r}
+              userAns={userAns}
+              mode={mode}
+            />
           )}
           <Answer {...question} />
           <Actions
@@ -66,7 +74,7 @@ const Info = styled.p`
 const TextRegExp = props => {
   return (
     <Text
-      className={questionAnswerTextColor(props.r, props.userAns)}
+      className={questionAnswerTextColor(props.r, props.userAns, props.mode)}
       dangerouslySetInnerHTML={{
         __html: props.t
       }}

@@ -1,5 +1,6 @@
 import _ from "lodash";
 import firebase from "./../config/firebase";
+import { not_paid_mode } from "../store/actions/settingsActions";
 
 export const saveGlobalUserAnswers = (
   allQuestions,
@@ -165,11 +166,13 @@ export const textToSlug = text => {
   return text;
 };
 
-export const questionAnswerTextColor = (right_answer, userAns) => {
+export const questionAnswerTextColor = (right_answer, userAns, mode = "") => {
   let color = "";
   if (right_answer === userAns) color = "text-success";
   if (right_answer !== userAns) color = "text-danger";
   if (!userAns) color = "";
+
+  if (mode === not_paid_mode) color = "";
 
   return color;
 };

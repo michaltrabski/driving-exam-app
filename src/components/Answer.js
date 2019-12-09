@@ -6,8 +6,10 @@ import { examSaveAnswer } from "../store/actions/examActions";
 import {
   learn_mode,
   exam_mode,
-  reviev_mode
+  reviev_mode,
+  not_paid_mode
 } from "../store/actions/settingsActions";
+import AnswersForPaidAccountsInfo from "./AnswersForPaidAccountsInfo";
 
 const colors = {
   t: "light",
@@ -27,7 +29,7 @@ const Answer = props => {
   const { qIndex } = useSelector(state => state.examReducer);
   const { showAnswerNow, mode } = useSelector(state => state.settingsReducer);
   const [color, setColor] = useState(colors);
-
+  const [info, setInfo] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -61,6 +63,11 @@ const Answer = props => {
     if (mode === exam_mode) {
       setColor({ ...colors, [userAns]: "secondary" });
       dispatch(examSaveAnswer(props.id, userAns));
+    }
+
+    if (mode === not_paid_mode) {
+      setColor({ ...colors, [userAns]: "secondary" });
+      setInfo(true);
     }
 
     dispatch(saveAnswer(props.id, userAns, props.r));
@@ -102,7 +109,12 @@ const Answer = props => {
 
   let ans = props.a !== "" ? abc : yesNo;
 
-  return <AnswersWrapper>{ans}</AnswersWrapper>;
+  return (
+    <>
+      <AnswersWrapper>{ans}</AnswersWrapper>
+      {info && <AnswersForPaidAccountsInfo />}
+    </>
+  );
 };
 
 export default Answer;

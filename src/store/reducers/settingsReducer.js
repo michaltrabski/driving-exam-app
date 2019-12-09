@@ -2,12 +2,13 @@ import {
   TOOGLE_SHOW_ANSWER_NOW,
   CHANGE_MODE,
   TOGGLE_COLLAPSE,
-  COLLAPSE_NAV
+  COLLAPSE_NAV,
+  not_paid_mode
 } from "./../actions/settingsActions";
 
 const initialState = {
   showAnswerNow: false,
-  mode: "",
+  mode: not_paid_mode,
   collapse: true // inside nav top menu
 };
 

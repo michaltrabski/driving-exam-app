@@ -29,7 +29,7 @@ const Settings = props => {
         </Col>
       </Row>
 
-      <Row mb>
+      {/* <Row mb>
         <Col>
           <form>
             <div className="custom-control custom-checkbox">
@@ -46,7 +46,7 @@ const Settings = props => {
             </div>
           </form>
         </Col>
-      </Row>
+      </Row> */}
 
       <GoToQuestionNumber />
 

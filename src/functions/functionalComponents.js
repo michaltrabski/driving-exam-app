@@ -5,13 +5,18 @@ import { checking } from "../store/reducers/usersReducer";
 import { SHOW_ALL } from "./functions";
 import { getQuestions } from "../store/actions/questionsActions";
 import { path } from "./../config/path";
-import { changeMode, collapseNav } from "../store/actions/settingsActions";
+import {
+  changeMode,
+  collapseNav,
+  not_paid_mode
+} from "../store/actions/settingsActions";
 import {
   learn_mode,
   exam_mode,
   reviev_mode
 } from "./../store/actions/settingsActions";
 import { examReset } from "../store/actions/examActions";
+import { yes } from "./../store/reducers/usersReducer";
 
 export const GetQuestions = () => {
   let { allQuestions, filterOption, kat, lang } = useSelector(
@@ -34,6 +39,10 @@ export const GetQuestions = () => {
 };
 
 export const OnRouteChange = () => {
+  const {
+    isLoggedIn,
+    userData: { poznajTestyHasAccess }
+  } = useSelector(state => state.usersReducer);
   const { pathname } = useLocation();
   const dispatch = useDispatch();
 
@@ -44,7 +53,12 @@ export const OnRouteChange = () => {
     dispatch(collapseNav());
 
     //change mode on route change
-    if (pathname === path.learn) dispatch(changeMode(learn_mode));
+    if (pathname === path.learn && poznajTestyHasAccess === yes) {
+      dispatch(changeMode(learn_mode));
+    } else {
+      dispatch(changeMode(not_paid_mode));
+    }
+
     if (pathname === path.exam_reviev) dispatch(changeMode(reviev_mode));
     if (pathname === path.exam) {
       dispatch(changeMode(exam_mode));

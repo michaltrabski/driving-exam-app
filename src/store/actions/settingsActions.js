@@ -6,6 +6,7 @@ export const COLLAPSE_NAV = "COLLAPSE_NAV";
 export const learn_mode = "learn_mode";
 export const exam_mode = "exam_mode";
 export const reviev_mode = "reviev_mode";
+export const not_paid_mode = "not_paid_mode";
 
 export const toogleShowAnswerNow = () => {
   return {

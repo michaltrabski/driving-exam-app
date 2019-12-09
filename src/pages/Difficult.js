@@ -128,15 +128,19 @@ const Difficult = () => {
                         <tr>
                           <td>
                             {i < limit ? (
-                              <button
-                                className="btn btn-sm btn-secondary"
-                                // onClick={() => toogleShow(x.id)}
-                                onClick={() => toogleShow(i)}
-                              >
-                                {x.show ? "Ukryj" : `Pytanie ${x.nr}`}
-                              </button>
+                              <>
+                                <button
+                                  className="btn btn-sm btn-secondary mr-1"
+                                  // onClick={() => toogleShow(x.id)}
+                                  onClick={() => toogleShow(i)}
+                                >
+                                  {/* {x.show ? "Ukryj" : `Pytanie ${x.nr}`} */}
+                                  {x.show ? "Ukryj" : `Pokaż`}
+                                </button>
+                                <span>{x.nr}</span>
+                              </>
                             ) : (
-                              <Link to={path.pricing}>Cennik</Link>
+                              <Link to={path.pricing}>Pokaż pytanie</Link>
                             )}
                           </td>
                           <td>{x.good}</td>
