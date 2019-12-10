@@ -16,7 +16,7 @@ const Difficult = () => {
   const [usersAnswers, setUsersAnswers] = useState([]);
   const [calculatedSum, setCalculatedSum] = useState([]);
   const { allQuestions } = useSelector(state => state.questionsReducer);
-  const [perPage, setPerPage] = useState(100);
+  const [perPage, setPerPage] = useState(50);
   const {
     userData: { poznajTestyHasAccess }
   } = useSelector(state => state.usersReducer);
@@ -131,10 +131,8 @@ const Difficult = () => {
                               <>
                                 <button
                                   className="btn btn-sm btn-secondary mr-1"
-                                  // onClick={() => toogleShow(x.id)}
                                   onClick={() => toogleShow(i)}
                                 >
-                                  {/* {x.show ? "Ukryj" : `Pytanie ${x.nr}`} */}
                                   {x.show ? "Ukryj" : `Pokaż`}
                                 </button>
                                 <span>{x.nr}</span>

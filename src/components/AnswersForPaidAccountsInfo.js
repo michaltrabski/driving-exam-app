@@ -4,7 +4,7 @@ import { path } from "./../config/path";
 
 const AnswersForPaidAccountsInfo = () => {
   return (
-    <div className="alert alert-danger text-center m-0" role="alert">
+    <div className="alert alert-danger text-center m-0 mb-1" role="alert">
       Odpowiedzi z wyjaśnieniami dostępne są w poznajTesty premium:{" "}
       <Link to={path.pricing} className="alert-link">
         Cennik

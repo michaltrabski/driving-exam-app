@@ -6,6 +6,7 @@ import { yes, no } from "./../store/reducers/usersReducer";
 import { Link } from "react-router-dom";
 import { path, coursesList } from "./../config/path";
 import { link } from "react-router-dom";
+import AccessCode from "../components/AccessCode";
 
 const UserProfile = props => {
   const {
@@ -54,11 +55,14 @@ const UserProfile = props => {
               </p>
             </Col>
           </Row>
+
+          <AccessCode />
+
           <Row mb>
             <Col>
               <H2>Dostępy do szkoleń wideo:</H2>
               {coursesList.map(course => (
-                <div>
+                <div key={course.id}>
                   <strong>{course.title} </strong>
                   {userData[course.hasAccess] === no && (
                     <>

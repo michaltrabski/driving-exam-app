@@ -40,9 +40,10 @@ const SignUp = props => {
             kompendium_wiedzy: no,
             sytuacje_i_niespodzianki: no
           });
+        return res.user.uid;
       })
-      .then(() => {
-        dispatch({ type: SIGN_UP_SUCCESS });
+      .then(uid => {
+        dispatch({ type: SIGN_UP_SUCCESS, uid });
         props.history.push(path.user_profile);
       })
       .catch(err => {
