@@ -4,7 +4,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { updataUserAccess } from "./../store/actions/usersActions";
 
 const AccessCode = () => {
-  const { uid, userData } = useSelector(state => state.usersReducer);
+  const { uid, userData, productNotFoundInfo } = useSelector(
+    state => state.usersReducer
+  );
   const dispatch = useDispatch();
   const [code, setCode] = useState("");
 
@@ -40,6 +42,7 @@ const AccessCode = () => {
             Aktywuj dostęp
           </button>
         </form>
+        {productNotFoundInfo !== "" && <P>{productNotFoundInfo}</P>}
       </Col>
     </Row>
   );

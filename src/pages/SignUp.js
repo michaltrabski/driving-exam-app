@@ -7,6 +7,12 @@ import { path } from "./../config/path";
 import { Link } from "react-router-dom";
 import { role, no } from "../store/reducers/usersReducer";
 import { timeStamp } from "./../functions/functions";
+import {
+  poznajTestyHasAccess,
+  kompendium_wiedzy,
+  sytuacje_i_niespodzianki,
+  pulapki_egzaminacyjne
+} from "./../store/reducers/usersReducer";
 
 const SignUp = props => {
   const [cred, setCred] = useState({
@@ -36,9 +42,10 @@ const SignUp = props => {
             email: res.user.email,
             role: role.user,
             timeStamp: timeStamp(),
-            poznajTestyHasAccess: no,
-            kompendium_wiedzy: no,
-            sytuacje_i_niespodzianki: no
+            [poznajTestyHasAccess]: no,
+            [kompendium_wiedzy]: no,
+            [sytuacje_i_niespodzianki]: no,
+            [pulapki_egzaminacyjne]: no
           });
         return res.user.uid;
       })

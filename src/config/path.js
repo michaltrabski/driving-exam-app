@@ -1,3 +1,8 @@
+import {
+  kompendium_wiedzy,
+  sytuacje_i_niespodzianki
+} from "../store/reducers/usersReducer";
+
 export const path = {
   learn: "/nauka-pytan",
   exam: "/wykonaj-egzamin",
@@ -32,16 +37,16 @@ export const coursesList = [
     id: 1,
     title: "Kompendium wiedzy przed egzaminem na prawo jazdy.",
     slug: "kompendium-wiedzy",
-    slugToPaidContent: "kompendium_wiedzy",
-    hasAccess: "kompendium_wiedzy",
+    slugToPaidContent: kompendium_wiedzy,
+    hasAccess: kompendium_wiedzy,
     offerLinkOutside: link_outside.kompendium_wiedzy
   },
   {
     id: 2,
     title: "Sytuacje i niespodzianki na drodze.",
     slug: "sytuacje-i-niespodzianki",
-    slugToPaidContent: "sytuacje_i_niespodzianki",
-    hasAccess: "sytuacje_i_niespodzianki",
+    slugToPaidContent: sytuacje_i_niespodzianki,
+    hasAccess: sytuacje_i_niespodzianki,
     offerLinkOutside: link_outside.sytuacje_i_niespodzianki
   }
 ];

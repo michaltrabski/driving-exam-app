@@ -4,14 +4,19 @@ import {
   SIGN_UP_ERR,
   SIGN_UP_SUCCESS,
   SET_USER_NOT_LOGGED,
-  UPDATA_USER_ACCESS
+  UPDATA_USER_ACCESS,
+  UPDATA_USER_ACCESS_PRODUCT_NOT_FOUND
 } from "./../actions/usersActions";
 
 export const yes = "yes";
 export const no = "no";
 export const checking = "checking";
-
 export const role = { user: "user" };
+
+export const poznajTestyHasAccess = "poznajTestyHasAccess";
+export const kompendium_wiedzy = "kompendium_wiedzy";
+export const sytuacje_i_niespodzianki = "sytuacje_i_niespodzianki";
+export const pulapki_egzaminacyjne = "pulapki_egzaminacyjne";
 
 const initialState = {
   uid: "",
@@ -19,14 +24,16 @@ const initialState = {
   userData: {
     email: "",
     role: role.user,
-    poznajTestyHasAccess: checking, // yes,no,checking
-    kompendium_wiedzy: checking, // yes,no,checking
-    sytuacje_i_niespodzianki: checking // yes,no,checking
+    [poznajTestyHasAccess]: checking,
+    [kompendium_wiedzy]: checking,
+    [sytuacje_i_niespodzianki]: checking,
+    [pulapki_egzaminacyjne]: checking
   },
   createdOn: "",
   signUpMessage: "",
   signUpErr: "",
-  signOutMessage: ""
+  signOutMessage: "",
+  productNotFoundInfo: ""
 };
 export const usersReducer = (state = initialState, actions) => {
   switch (actions.type) {
@@ -37,6 +44,7 @@ export const usersReducer = (state = initialState, actions) => {
         isLoggedIn: yes,
         userData: { ...state.userData, ...actions.userData }
       };
+      console.log("2", state);
       return state;
     //------------------------------------------------------------
     case SET_USER_NOT_LOGGED:
@@ -64,15 +72,22 @@ export const usersReducer = (state = initialState, actions) => {
       return state;
     //------------------------------------------------------------
     case UPDATA_USER_ACCESS:
-      console.log("1", state, actions);
       state = {
         ...state,
         userData: {
           ...state.userData,
           [actions.product]: yes
-        }
+        },
+        productNotFoundInfo: "Dostęp został nadany!"
       };
-      console.log("2", state);
+      return state;
+    //------------------------------------------------------------
+    case UPDATA_USER_ACCESS_PRODUCT_NOT_FOUND:
+      state = {
+        ...state,
+        productNotFoundInfo:
+          "Podany kod nie istnieje, lub został już wykorzystany."
+      };
       return state;
     //------------------------------------------------------------
     default:
