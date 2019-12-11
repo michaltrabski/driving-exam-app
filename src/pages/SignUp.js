@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Container, Row, Col } from "../elements/elements";
+import { Container, Row, Col, P } from "../elements/elements";
 import { useSelector, useDispatch } from "react-redux";
 import firebase from "./../config/firebase";
 import { SIGN_UP_ERR, SIGN_UP_SUCCESS } from "../store/actions/usersActions";
@@ -20,7 +20,7 @@ const SignUp = props => {
     password: "",
     passwordRepeat: ""
   });
-
+  const [checked, setChecked] = useState(false);
   const { signUpErr } = useSelector(state => state.usersReducer);
   const dispatch = useDispatch();
 
@@ -95,16 +95,35 @@ const SignUp = props => {
                   value={cred.passwordRepeat}
                 />
               </div>
+              <div className="form-check mb-3">
+                <input
+                  type="checkbox"
+                  className="form-check-input"
+                  id="exampleCheck1"
+                  checked={checked}
+                  onChange={() => setChecked(!checked)}
+                />
+                <label className="form-check-label" for="exampleCheck1">
+                  Akceptuję regulamin.
+                </label>
+              </div>
               {signUpErr !== "" && (
                 <p className="text-danger">{JSON.stringify(signUpErr)}</p>
               )}
-              <button type="submit" className="btn btn-primary">
+              <button
+                type="submit"
+                className="btn btn-primary"
+                disabled={!checked}
+              >
                 Zarejestruj się
               </button>
             </form>
             <p className="mt-3">
               Masz już konto? <Link to={path.sign_in}>Zaloguj się</Link>
             </p>
+            <P>
+              <Link to={path.terms}>Regulamin i polityka prywatności.</Link>
+            </P>
           </div>
         </Col>
       </Row>
