@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Container, Row, Col, H1 } from "../elements/elements";
 import { useSelector, useDispatch } from "react-redux";
 import QuestionExam from "../components/exam/QuestionExam";
@@ -6,6 +6,9 @@ import { GetQuestions } from "../functions/functionalComponents";
 import { reviev_mode } from "./../store/actions/settingsActions";
 import { randomExam } from "./../store/actions/examActions";
 import ExamResult from "../components/exam/examResult";
+import axios from "axios";
+
+const url = "https://poznaj-testy.pl/wp-json/wp/v2/posts?slug=";
 
 const Exam = () => {
   const { allQuestions, exams } = useSelector(state => state.questionsReducer);
@@ -14,6 +17,25 @@ const Exam = () => {
   );
   const { mode } = useSelector(state => state.settingsReducer);
   const dispatch = useDispatch();
+  const [post, setPost] = useState("");
+  const slug = "zasady-przeprowadzania-egzaminu";
+
+  useEffect(() => {
+    setPost("");
+    axios
+      .get(url + slug)
+      .then(res => {
+        // console.log(res);
+        return {
+          title: res.data[0].title.rendered,
+          content: res.data[0].content.rendered
+        };
+      })
+      .then(res => setPost({ title: res.title, content: res.content }))
+      .catch(err => {
+        console.log("catch", err);
+      });
+  }, [slug]);
 
   return (
     <>
@@ -36,9 +58,12 @@ const Exam = () => {
           <Container>
             <Row>
               <Col>
-                <H1>
-                  Zasady przeprowadzania egzaminu teoretycznego na prawo jazdy.
-                </H1>
+                <H1>{post.title}</H1>
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: post.content
+                  }}
+                ></div>
               </Col>
             </Row>
           </Container>

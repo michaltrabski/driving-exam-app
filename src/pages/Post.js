@@ -7,7 +7,6 @@ const url = "https://poznaj-testy.pl/wp-json/wp/v2/posts?slug=";
 const empty = { title: "", content: "" };
 
 const Post = props => {
-  console.log("Post");
   const [post, setPost] = useState(empty);
   const { userData } = useSelector(state => state.usersReducer);
   const slug = props.match.params.id;
