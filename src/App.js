@@ -22,18 +22,18 @@ import { path } from "./config/path";
 import { useSelector } from "react-redux";
 
 function App() {
-  const {
-    isLoggedIn,
-    userData: { poznajTestyHasAccess }
-  } = useSelector(state => state.usersReducer);
-  const { mode } = useSelector(state => state.settingsReducer);
+  // const {
+  //   isLoggedIn,
+  //   userData: { poznajTestyHasAccess }
+  // } = useSelector(state => state.usersReducer);
+  // const { mode } = useSelector(state => state.settingsReducer);
   return (
     <Router>
       <OnRouteChange />
       <PageContainer>
-        poznajTestyHasAccess={JSON.stringify(poznajTestyHasAccess)}
+        {/* poznajTestyHasAccess={JSON.stringify(poznajTestyHasAccess)}
         <br />
-        mode={JSON.stringify(mode)}
+        mode={JSON.stringify(mode)} */}
         <Nav />
         <PageBackground>
           <Switch>
