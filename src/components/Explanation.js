@@ -16,7 +16,7 @@ const Explanation = ({ id, t }) => {
   const [expl, setExpl] = useState("Pobieram...");
 
   useEffect(() => {
-    if (poznajTestyHasAccess === yes) {
+    if (poznajTestyHasAccess === yes || 1 === 1) {
       axios
         .get(`${url}${urlToSlug(id, t)}`)
         .then(res => res.data[0].content.rendered)
@@ -34,7 +34,7 @@ const Explanation = ({ id, t }) => {
       <Row>
         <Col className="poznajtesty-explanation">
           <h5 className="mt-1">Wyjaśnienie</h5>
-          {poznajTestyHasAccess !== yes && (
+          {/* {poznajTestyHasAccess !== yes  && (
             <div>
               <span>
                 Wyjaśnienia pytań testowych dostępne są dla płatnych kont{" "}
@@ -43,7 +43,7 @@ const Explanation = ({ id, t }) => {
                 Cennik
               </Link>
             </div>
-          )}
+          )} */}
 
           <div
             dangerouslySetInnerHTML={{

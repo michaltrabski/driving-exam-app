@@ -3,12 +3,12 @@ import {
   CHANGE_MODE,
   TOGGLE_COLLAPSE,
   COLLAPSE_NAV,
-  not_paid_mode
+  learn_mode
 } from "./../actions/settingsActions";
 
 const initialState = {
   showAnswerNow: false,
-  mode: not_paid_mode,
+  mode: learn_mode,
   collapse: true // inside nav top menu
 };
 

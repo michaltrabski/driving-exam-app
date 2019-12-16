@@ -53,12 +53,7 @@ export const OnRouteChange = () => {
     dispatch(collapseNav());
 
     //change mode on route change
-    if (pathname === path.learn && poznajTestyHasAccess === yes) {
-      dispatch(changeMode(learn_mode));
-    } else {
-      dispatch(changeMode(not_paid_mode));
-    }
-
+    if (pathname === path.learn) dispatch(changeMode(learn_mode));
     if (pathname === path.exam_reviev) dispatch(changeMode(reviev_mode));
     if (pathname === path.exam) {
       dispatch(changeMode(exam_mode));

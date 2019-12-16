@@ -22,22 +22,21 @@ import { path } from "./config/path";
 import { useSelector } from "react-redux";
 
 function App() {
-  // const {
-  //   isLoggedIn,
-  //   userData: { poznajTestyHasAccess }
-  // } = useSelector(state => state.usersReducer);
-  // const { mode } = useSelector(state => state.settingsReducer);
+  const {
+    isLoggedIn,
+    userData: { poznajTestyHasAccess }
+  } = useSelector(state => state.usersReducer);
+  const { mode } = useSelector(state => state.settingsReducer);
   return (
     <Router>
       <OnRouteChange />
       <PageContainer>
-        {/* poznajTestyHasAccess={JSON.stringify(poznajTestyHasAccess)}
+        poznajTestyHasAccess={JSON.stringify(poznajTestyHasAccess)}
         <br />
-        mode={JSON.stringify(mode)} */}
+        mode={JSON.stringify(mode)}
         <Nav />
         <PageBackground>
           <Switch>
-            <Route exact path="/" component={Home} />
             <Route path={path.learn} component={Learning} />
             <Route path={path.difficult} component={Difficult} />
             <Route path={path.exam} component={Exam} />
@@ -55,6 +54,8 @@ function App() {
             <Route path={path.blog} component={Blog} />
 
             <Route path={`/:id`} component={Page} />
+
+            <Route path="/" component={Home} />
           </Switch>
         </PageBackground>
         <Footer />

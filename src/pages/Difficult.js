@@ -20,7 +20,8 @@ const Difficult = () => {
   const {
     userData: { poznajTestyHasAccess }
   } = useSelector(state => state.usersReducer);
-  let limit = poznajTestyHasAccess === yes ? 1000000 : 10; // for free accounst
+  // let limit = poznajTestyHasAccess === yes ? 1000000 : 10; // for free accounst
+  let limit = 1000000;
 
   useEffect(() => {
     const x = "usersAnswers";

@@ -14,9 +14,9 @@ const Home = () => {
             Wszystkie kategorie prawa jazdy <br />
             <span>A, A1, A2, AM, B, B1, C, C1, D, D1, T, PT</span>
           </P>
-          <MyLink to="difficult" label="Zobacz trudne pytania" success />
           <MyLink to="learn" label="Nauka pytań / Baza pytań" />
-          <MyLink to="exam" label="Wykonaj egzamin" last />
+          <MyLink to="exam" label="Wykonaj egzamin" />
+          <MyLink to="difficult" label="Zobacz trudne pytania" last />
         </Col>
       </Row>
     </Container>
