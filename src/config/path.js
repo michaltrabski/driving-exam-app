@@ -1,6 +1,7 @@
+import { HOME_PAGE_URL, KOMP_WIEDZY_OFERTA } from "../settings/settings";
 import {
   kompendium_wiedzy,
-  sytuacje_i_niespodzianki
+  sytuacje_i_niespodzianki,
 } from "../store/reducers/usersReducer";
 
 export const path = {
@@ -19,17 +20,17 @@ export const path = {
   pages: "/strony",
   difficult: "/trudne",
   terms: "/regulamin-i-polityka-prywatnosci",
-  contact: "/kontakt"
+  contact: "/kontakt",
 };
 
-const url = "https://poznaj-testy.pl/";
+const url = HOME_PAGE_URL;
 
 export const link_outside = {
   poznaj_testy_premium_3_miesiace:
     url + "koszyk/poznaj-testy-premium-3-miesiace/",
   blog: url,
   kompendium_wiedzy: url + "kompendium-wiedzy/",
-  sytuacje_i_niespodzianki: url + "sytuacje-i-niespodzianki/"
+  sytuacje_i_niespodzianki: url + "sytuacje-i-niespodzianki/",
 };
 
 export const coursesList = [
@@ -37,9 +38,9 @@ export const coursesList = [
     id: 1,
     title: "Kompendium wiedzy przed egzaminem na prawo jazdy.",
     slug: "kompendium-wiedzy",
-    slugToPaidContent: kompendium_wiedzy,
+    slugToPaidContent: KOMP_WIEDZY_OFERTA,
     hasAccess: kompendium_wiedzy,
-    offerLinkOutside: link_outside.kompendium_wiedzy
+    offerLinkOutside: KOMP_WIEDZY_OFERTA,
   },
   {
     id: 2,
@@ -47,13 +48,13 @@ export const coursesList = [
     slug: "sytuacje-i-niespodzianki",
     slugToPaidContent: sytuacje_i_niespodzianki,
     hasAccess: sytuacje_i_niespodzianki,
-    offerLinkOutside: link_outside.sytuacje_i_niespodzianki
-  }
+    offerLinkOutside: link_outside.sytuacje_i_niespodzianki,
+  },
 ];
 
 export const add_img_link = {
   kompendium_wiedzy_1:
     url + "wp-content/uploads/2019/12/kompendium-wiedzy-1.png",
   sytuacje_i_niespodzianki_1:
-    url + "wp-content/uploads/2019/12/sytuacje_i_niespodzianki_1.png"
+    url + "wp-content/uploads/2019/12/sytuacje_i_niespodzianki_1.png",
 };

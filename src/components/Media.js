@@ -1,8 +1,9 @@
 import React from "react";
 import { Video } from "../elements/elements";
+import { MEDIA_PATH } from "../settings/settings";
 import { Img } from "./../elements/elements";
 
-const path = "https://poznaj-testy.pl/wp-content/uploads/media/";
+const path = MEDIA_PATH;
 
 const Media = ({ m, v }) => {
   const src = path + m;
